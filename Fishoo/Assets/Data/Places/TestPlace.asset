@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da47581674ca684458ea058b301efad4, type: 3}
+  m_Name: TestPlace
+  m_EditorClassIdentifier: 
+  placeName: FirstPlace
+  description: The first place
+  description_detail: A lots of time has gone
+  cost: 0
+  TravelTime: 0
+  icon: {fileID: 0}
+  rainyPercent: 0.2
+  availableFishList:
+  - {fileID: 5436173513765085611, guid: f107d1fffe224fe49ad416683ac2d105, type: 3}
