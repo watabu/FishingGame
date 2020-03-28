@@ -8,7 +8,7 @@ namespace FishingGame
     public class FishingToolMgr : MonoBehaviour
     {
         public Tools.FishingRod fishingRod;
-        public Tools.FishingFloat fishingFloat;
+        public Tools.FishingBobber fishingFloat;
         public Tools.FishingHook fishingHook;
 
         public GameObject toolsHolder;
