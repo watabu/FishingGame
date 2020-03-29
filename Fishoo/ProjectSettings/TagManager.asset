@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGround
+    uniqueID: 869690785
+    locked: 0
+  - name: Stage
+    uniqueID: 1797334243
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Charactor
+    uniqueID: 3911383955
+    locked: 0
+  - name: Effect
+    uniqueID: 2697992903
     locked: 0
