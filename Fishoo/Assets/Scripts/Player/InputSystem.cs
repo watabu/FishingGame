@@ -18,14 +18,14 @@ namespace Player
 
         }
 
-        //試験的な入力　右クリックと左クリック
-        public bool Right()
+        //試験的な入力　右クリック・左クリックされているかどうか
+        public bool RightClicked()
         {
-            return UnityEngine.Input.GetMouseButton(1);
+            return Input.GetMouseButton(1);
         }
-        public bool Left()
+        public bool LeftClicked()
         {
-            return UnityEngine.Input.GetMouseButton(0);
+            return Input.GetMouseButton(0);
         }
 
 
