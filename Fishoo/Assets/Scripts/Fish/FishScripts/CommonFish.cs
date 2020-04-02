@@ -21,7 +21,7 @@ namespace Fish.FishScripts
         {
             transform.parent = fishingHook.transform;
             transform.localPosition = new Vector3(0, 0, 0);
-
+            isEscaping = false;
         }
         //釣りに失敗して逃げる
         public void Escape()
@@ -83,8 +83,10 @@ namespace Fish.FishScripts
             //毎フレーム回復する
             Regene();
 
+            //テスト　食いつく
             if (Input.GetKeyDown(KeyCode.Space))
                 Biting();
+            //テスト 逃げる
             else if(Input.GetKeyDown(KeyCode.UpArrow)){
                 Escape();
 
