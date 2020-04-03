@@ -43,7 +43,7 @@ namespace FishingGame.Tools
         // Update is called once per frame
         void Update()
         {
-            if (!linkMouse) return;
+          //  if (!linkMouse) return;
             //マウスに棒が追従するようにしている。画面をMaximizeしないとずれるので注意
             // Vector3でマウス位置座標を取得する
             var position = Input.mousePosition;
@@ -52,7 +52,7 @@ namespace FishingGame.Tools
             // マウス位置座標をスクリーン座標からワールド座標に変換する
            var screenToWorldPointPosition = Camera.main.ScreenToWorldPoint(position);
             // ワールド座標に変換されたマウス座標を代入
-            rotator.transform.position = screenToWorldPointPosition;
+            //rotator.transform.position = screenToWorldPointPosition;
         }
     }
 }
