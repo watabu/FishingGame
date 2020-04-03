@@ -9,7 +9,7 @@ namespace FishingGame
 
         public FishingToolMgr fishingToolMgr;
         public Fish.FishGenerator fishGenerator;
-        public Player.InputSystem inputSystem;
+        public Player.InputSystem input;
         [Header("When Fishing starts"), SerializeField]
         UnityEvent FishingStart;//釣りが成功したときに呼び出す関数
 
@@ -33,6 +33,16 @@ namespace FishingGame
         // Update is called once per frame
         void Update()
         {
+            if (input.RightClicked() )
+            {
+                fishingToolMgr.PullToRight();
+            }
+            else if (input.LeftClicked())
+            {
+                fishingToolMgr.PullToLeft();
+
+            }
+        
 
         }
 

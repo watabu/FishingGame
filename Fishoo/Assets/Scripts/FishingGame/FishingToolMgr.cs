@@ -14,6 +14,29 @@ namespace FishingGame
         public GameObject toolsHolder;
         public List<Tools.FishingTool> tools;
 
+        //釣り具を展開する
+        public void ExpandTools()
+        {
+
+
+
+        }
+
+        //釣りが終わり釣り具を収納する
+        public void PutAwayTools()
+        {
+
+
+        }
+        public void PullToLeft()
+        {
+            fishingRod.PullToLeft();
+        }
+        public void PullToRight()
+        {
+            fishingRod.PullToRight();
+
+        }
         // Start is called before the first frame update
         void Start()
         {
