@@ -22,6 +22,7 @@ namespace Fish.FishScripts
             transform.parent = fishingHook.transform;
             transform.localPosition = new Vector3(0, 0, 0);
             isEscaping = false;
+            fishMove.isFishing = true;
         }
         //釣りに失敗して逃げる
         public void Escape()

@@ -11,35 +11,31 @@ namespace Fish
         [SerializeField]
         Fish.FishMoveData data;
 
-        //釣りゲーム中か
+        //釣りゲーム中か isEscapingと紛らわしい
         public bool isFishing = false;
         //親として持つ魚本体
-        FishScripts.CommonFish fish;
-        struct NewVector
-        {
-            public Vector3 vec;
-            public float deltaTime;
-        }
-        //釣り竿に引っ張られて移動する先
-        NewVector newVector;
+        public FishScripts.CommonFish fish;
+        //釣り竿の先端
+        protected GameObject AheadofRod;
 
-        //vecの方向にdeltaTime時間を用いて魚が引っ張られる
-        public void Pull(Vector3 vec,float deltaTime)
-        {
-            newVector.vec = transform.localPosition + vec;
-            newVector.deltaTime = deltaTime;
-        }
+        //逃げる方向
+        public Vector2 movedirection;
 
-        // Start is called before the first frame update
-        void Start()
+
+        void Awake()
         {
-            fish = transform.parent.GetComponent<FishScripts.CommonFish>();
+            fish = transform.parent.gameObject.GetComponent<FishScripts.CommonFish>();
+           
+            AheadofRod = fish.fishingHook.obj.transform.parent.gameObject;
         }
 
         // Update is called once per frame
         void Update()
         {
 
-        }
+        } 
+
+
+
     }
 }
