@@ -32,5 +32,10 @@ namespace Environment
         //時間ごと、天候ごとに変更したい
         [Tooltip("その場所で釣れる魚たち")]
         public List<Fish.FishScripts.CommonFish> availableFishList;
+
+        [Tooltip("開始時刻")]
+        public int startTime;
+        [Tooltip("終了時刻")]
+        public int endTime;
     }
 }
