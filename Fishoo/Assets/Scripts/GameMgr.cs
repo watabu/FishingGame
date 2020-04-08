@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ゲームのマネージャー
+/// </summary>
 public class GameMgr : MonoBehaviour
 {
-
-    public FishingGame.FishingGameMgr fishingGameMgr;
-    public Player.InputSystem inputSystem;
+    [Header("References")]
+    [SerializeField] private FishingGame.FishingGameMgr fishingGameMgr;
+    [SerializeField] private Player.InputSystem inputSystem;
 
     // Start is called before the first frame update
     void Start()

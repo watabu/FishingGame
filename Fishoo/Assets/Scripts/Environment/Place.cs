@@ -4,15 +4,19 @@ using UnityEngine;
 
 namespace Environment
 {
-
+    /// <summary>
+    /// 場所
+    /// </summary>
     public class Place : MonoBehaviour
     {
+        [Header("Data")]
         //各場所の設定データ
         public PlaceData placeData;
         //
-        public Weather weather;
+        [Header("References")]
+        [SerializeField]private Weather weather;
         //
-        public TimeHolder timeHolder;
+        [SerializeField] private TimeHolder timeHolder;
         
         
         // Start is called before the first frame update

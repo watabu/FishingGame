@@ -6,10 +6,11 @@ namespace FishingGame
 {
     public class FishingGameMgr : MonoBehaviour
     {
+        [Header("References")]
+        [SerializeField] private FishingToolMgr fishingToolMgr;
+        [SerializeField] private Fish.FishGenerator fishGenerator;
+        [SerializeField] private Player.InputSystem input;
 
-        public FishingToolMgr fishingToolMgr;
-        public Fish.FishGenerator fishGenerator;
-        public Player.InputSystem input;
         [Header("When Fishing starts"), SerializeField]
         UnityEvent FishingStart;//釣りが成功したときに呼び出す関数
 

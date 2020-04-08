@@ -12,7 +12,7 @@ namespace Environment
     {
 
         //各場所についての天気の傾向はPlace.PlaceDataに含まれている
-        public Place place;
+        [SerializeField]private Place place;
 
 
         // Use this for initialization

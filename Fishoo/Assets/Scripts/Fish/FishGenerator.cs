@@ -6,10 +6,11 @@ namespace Fish {
     
     public class FishGenerator : MonoBehaviour
     {
-        public Environment.Place place;
+        [SerializeField]private Environment.Place place;
         
+
         //とりあえず生成される魚
-        public GameObject testFish;
+        public List<GameObject> testFish;
 
         // Start is called before the first frame update
         void Start()
@@ -21,7 +22,7 @@ namespace Fish {
         public GameObject GenerateFish()
         {
             //とりあえず生成される魚は確定
-            GameObject fish = Instantiate(testFish) as GameObject;
+            GameObject fish = Instantiate(testFish[0]);
 
             return fish;
         }
