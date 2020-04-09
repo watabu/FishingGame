@@ -3,16 +3,28 @@ using System.Collections;
 
 namespace Fish.FishScripts
 {
-    //普通の魚
+    /// <summary>
+    /// 普通の魚
+    /// </summary>
+    [RequireComponent(typeof(Rigidbody2D))]
     public class CommonFish : MonoBehaviour
     {
         public FishData fishData;
         public FishMoveData fishMoveData;
-        public FishMove fishMove;
         public FishStatus status;
 
+        [Header("Object References")]
        public  FishingGame.Tools.FishingHook fishingHook;
+        public FishMove fishMove;
+
+        float m_HP;
+
         bool isEscaping=false;
+
+        //hpが尽きたかどうか
+        bool m_IsDead = false;
+        public bool IsDead { get { return m_IsDead; } }
+
         Vector2 escapeDir;
         //釣りゲーム前(針に食いつく前)
 
@@ -29,9 +41,10 @@ namespace Fish.FishScripts
         {
             transform.parent = null;
             isEscaping = true;
-            float dirX = (int)Random.value % 2 == 0 ? 1 : -1;
+            float[] dirXRnd = { 1f, -1f };
+            float dirX = dirXRnd[Random.Range(0, 2)];
             dirX /= 8;
-            escapeDir = new  Vector2(dirX, 0);
+            escapeDir = new Vector2(dirX, 0);
         }
 
 
@@ -41,31 +54,21 @@ namespace Fish.FishScripts
         //ダメージを食らう
         public void Damaged(float damage)
         {
-            status.hp -= damage;
-            if (status.hp < 0)
-                status.hp = 0;
+            if (IsDead) return;
+           m_HP -= damage;
+            if (m_HP < 0)
+            {
+                m_HP = 0;
+                m_IsDead = true;
+            }
         }
 
         //体力回復
         void Regene()
         {
-            if (status.hp <= 0)
-            {
-                status.hp = 0;
-                return;
-            }
-            if (status.hp < status.hpMax)
-            {
-                status.hp += status.hpRegene;
-            }
-            if (status.hp > status.hpMax)
-                status.hp = status.hpMax;
-        }
-
-        //hpが尽きたかどうか
-        public bool isDead()
-        {
-            return (status.hp <= 0);
+            if (IsDead) return;
+            m_HP += status.hpRegene;
+            m_HP = Mathf.Clamp(m_HP, 0f, status.hpMax);
         }
 
         // Use this for initialization
@@ -73,7 +76,7 @@ namespace Fish.FishScripts
         {
             //ステータスの初期化
             status = fishData.status;
-            status.hp = status.hpMax;
+            m_HP = status.hpMax;
             //釣り針の取得
             fishingHook = GameObject.FindGameObjectWithTag("Hook").GetComponent<FishingGame.Tools.FishingHook>();
         }

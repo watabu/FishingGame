@@ -8,18 +8,21 @@ namespace Fish
     //釣りゲーム中の魚の動きを管理する
     public class FishMove : MonoBehaviour
     {
-        [SerializeField]
-        Fish.FishMoveData data;
+        [SerializeField] private Fish.FishMoveData data;
 
-        //釣りゲーム中か isEscapingと紛らわしい
+        //isEscapingと紛らわしい
+        [Tooltip("釣りゲーム中か")]
         public bool isFishing = false;
-        //親として持つ魚本体
+        [Tooltip("逃げる方向")]
+        public Vector2 escapeDirection;
+
+        [Header("Object References")]
+        [Tooltip("親として持つ魚本体")]
         public FishScripts.CommonFish fish;
+        [SerializeField] Rigidbody2D m_rigidbody;
+
         //釣り竿の先端
         protected GameObject AheadofRod;
-
-        //逃げる方向
-        public Vector2 movedirection;
 
 
         void Awake()
