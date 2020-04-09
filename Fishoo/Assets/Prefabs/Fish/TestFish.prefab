@@ -179,7 +179,6 @@ MonoBehaviour:
   fishMoveData: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
   status:
     hpMax: 0
-    hp: 0
     hpRegene: 0
     speed: 0
   fishingHook: {fileID: 0}
@@ -192,7 +191,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5436173513765085605}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

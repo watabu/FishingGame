@@ -30,10 +30,10 @@ namespace Fish
         void FixedUpdate()
         {
 
-            timer++;
-            if(timer > maxtime)
+            timer--;
+            if(timer <0)
             {
-                timer = 0;
+                timer = Random.Range(20, maxtime);
                 escapeDirection = DecideDirection();
             }
             if (isFishing)

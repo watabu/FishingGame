@@ -31,6 +31,7 @@ namespace Fish.FishScripts
         //針に食いついた
         public void Biting()
         {
+            //座標を釣り針に固定する
             transform.parent = fishingHook.transform;
             transform.localPosition = new Vector3(0, 0, 0);
             isEscaping = false;

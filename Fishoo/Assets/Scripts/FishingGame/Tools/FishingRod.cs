@@ -16,7 +16,6 @@ namespace FishingGame.Tools
 
         new public void PullToLeft()
         {
-            Debug.Log(Mathf.DeltaAngle(shaft.transform.eulerAngles.z, MaxAngle_Left));
             if (Mathf.DeltaAngle(shaft.transform.eulerAngles.z,MaxAngle_Left ) > 0.1f)
             {
                 shaft.transform.eulerAngles = new Vector3(0f,0f, Mathf.LerpAngle(shaft.transform.eulerAngles.z, MaxAngle_Left, Time.deltaTime*2));
@@ -25,7 +24,6 @@ namespace FishingGame.Tools
         }
         new public void PullToRight()
         {
-            Debug.Log(Mathf.DeltaAngle(shaft.transform.eulerAngles.z, MaxAngle_Right));
             if (Mathf.DeltaAngle(shaft.transform.eulerAngles.z, MaxAngle_Right) < -0.1f)
             {
                 shaft.transform.eulerAngles = new Vector3(0f, 0f, Mathf.LerpAngle(shaft.transform.eulerAngles.z, MaxAngle_Right, Time.deltaTime*2));
