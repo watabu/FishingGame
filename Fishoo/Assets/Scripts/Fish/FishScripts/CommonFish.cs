@@ -11,10 +11,10 @@ namespace Fish.FishScripts
     {
         public FishData fishData;
         public FishMoveData fishMoveData;
-        public FishStatus status;
+
+        public float moveSpeed=0.1f;
 
         [Header("Object References")]
-       public  FishingGame.Tools.FishingHook fishingHook;
         public FishMove fishMove;
 
         float m_HP;
@@ -25,14 +25,27 @@ namespace Fish.FishScripts
         bool m_IsDead = false;
         public bool IsDead { get { return m_IsDead; } }
 
-        Vector2 escapeDir;
+        static private FishingGame.Tools.FishingHook m_fishingHook;
+        static public  FishingGame.Tools.FishingHook FishingHook
+        {
+            get
+            {
+            //釣り針の取得
+                if(m_fishingHook==null)
+                    m_fishingHook = GameObject.FindGameObjectWithTag("Hook").GetComponent<FishingGame.Tools.FishingHook>();
+                return m_fishingHook;
+            }
+        }
+
+
+     Vector2 escapeDir;
         //釣りゲーム前(針に食いつく前)
 
         //針に食いついた
         public void Biting()
         {
             //座標を釣り針に固定する
-            transform.parent = fishingHook.transform;
+            transform.parent = FishingHook.transform;
             transform.localPosition = new Vector3(0, 0, 0);
             isEscaping = false;
             fishMove.isFishing = true;
@@ -56,7 +69,7 @@ namespace Fish.FishScripts
         public void Damaged(float damage)
         {
             if (IsDead) return;
-           m_HP -= damage;
+            m_HP -= damage;
             if (m_HP < 0)
             {
                 m_HP = 0;
@@ -68,18 +81,12 @@ namespace Fish.FishScripts
         void Regene()
         {
             if (IsDead) return;
-            m_HP += status.hpRegene;
-            m_HP = Mathf.Clamp(m_HP, 0f, status.hpMax);
+            m_HP += fishData.status.hpRegene;
+            m_HP = Mathf.Clamp(m_HP, 0f, fishData.status.hpMax);
         }
-
-        // Use this for initialization
-        void Start()
+        private void Awake()
         {
-            //ステータスの初期化
-            status = fishData.status;
-            m_HP = status.hpMax;
-            //釣り針の取得
-            fishingHook = GameObject.FindGameObjectWithTag("Hook").GetComponent<FishingGame.Tools.FishingHook>();
+            m_HP = fishData.status.hpMax;
         }
 
         // Update is called once per frame
@@ -94,14 +101,30 @@ namespace Fish.FishScripts
             //テスト 逃げる
             else if(Input.GetKeyDown(KeyCode.UpArrow)){
                 Escape();
-
             }
             //釣りに失敗したら逃げる
             if (isEscaping)
             {
                 transform.position += new Vector3(escapeDir.x, escapeDir.y, 0);
             }
+            else
+            {
+                MoveToBobber();
+            }
 
+        }
+
+        /// <summary>
+        /// 浮きの方に近づいていく
+        /// </summary>
+        void MoveToBobber()
+        {
+            transform.position= Vector3.MoveTowards(transform.position, FishingHook.transform.position, moveSpeed);
+        }
+
+        public bool IsNearBobber()
+        {
+            return (FishingHook.transform.position - transform.position).sqrMagnitude < 5f;
         }
     }
 }
