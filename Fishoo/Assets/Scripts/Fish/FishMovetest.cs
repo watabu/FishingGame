@@ -43,7 +43,7 @@ namespace Fish
                 C /= Mathf.Sqrt(C.x * C.x + C.y * C.y);
 
                 Vector2 force = (escapeDirection + C) * power;
-                fish.fishingHook.obj.GetComponent<Rigidbody2D>().AddForce(force);
+             //   Fish.FishScripts.CommonFish.GetComponent<Rigidbody2D>().AddForce(force);
 
 
             }

@@ -29,7 +29,7 @@ namespace Fish
         {
             fish = transform.parent.gameObject.GetComponent<FishScripts.CommonFish>();
            
-            AheadofRod = fish.fishingHook.obj.transform.parent.gameObject;
+            AheadofRod = Fish.FishScripts.CommonFish.FishingHook.obj.transform.parent.gameObject;
         }
 
         // Update is called once per frame
