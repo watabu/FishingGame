@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: TestFish
   m_EditorClassIdentifier: 
   FishName: The first fish
-  description: A lots of time has left
+  description: 
   description_Caught: This is too big
-  sellingPrice: 0
-  exp: 0
+  sellingPrice: 5
+  exp: 1
   icon: {fileID: 0}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
   status:
-    hpMax: 0
-    hp: 0
+    hpMax: 10
     hpRegene: 0
-    speed: 0
+    speed: 1

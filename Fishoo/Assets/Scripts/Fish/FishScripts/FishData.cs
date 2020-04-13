@@ -9,8 +9,6 @@ namespace Fish.FishScripts
     {
         [Tooltip("最大体力")]
         public float hpMax;
-      //  [Tooltip("現在体力")]
-     //   public float hp;//これはScene内のオブジェクトが保持すべき
         [Tooltip("体力回復(/1tick)")]
         public float hpRegene;
         [Tooltip("基礎的な速さ")]

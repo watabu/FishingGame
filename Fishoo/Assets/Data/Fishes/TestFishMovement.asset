@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8044401f67968c44c82dd9b9e56633ab, type: 3}
   m_Name: TestFishMovement
   m_EditorClassIdentifier: 
-  test: 0
+  tryEatCount: 1
+  escapeOnMiss: 0
+  speed: 1
+  recognitionDistance: 1
+  lifeTime: 200

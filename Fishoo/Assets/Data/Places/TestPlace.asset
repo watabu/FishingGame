@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeName: FirstPlace
   description: The first place
-  description_detail: A lots of time has gone
+  description_detail: 
   cost: 0
   TravelTime: 0
   icon: {fileID: 0}
+  startTime: 0
+  endTime: 0
   rainyPercent: 0.2
   availableFishList:
-  - {fileID: 5436173513765085611, guid: f107d1fffe224fe49ad416683ac2d105, type: 3}
+  - fish: {fileID: 0}
+    weather: 0
+    beginTime: 0
+    endTime: 0

@@ -1,12 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.Events;
 namespace Fish.FishScripts
 {
     /// <summary>
     /// 普通の魚
     /// </summary>
-    [RequireComponent(typeof(Rigidbody2D))]
+    /// 
+    public enum FishState
+    {
+        Nomal,//適当に泳いでいる
+        Approaching,//エサを狙っている
+        Biting,//エサに食いついて釣りゲーム中
+        Escaping,//釣りに失敗して逃げている
+        Caught//釣りに成功して捕まった
+    }
     public class CommonFish : MonoBehaviour
     {
         public FishData fishData;
@@ -17,13 +25,26 @@ namespace Fish.FishScripts
         [Header("Object References")]
         public FishMove fishMove;
 
-        float m_HP;
+        [Tooltip("現在体力")]
+        public float hp;
 
-        bool isEscaping=false;
+        [Tooltip("魚がエサを狙っているかなどの状態")]
+        public FishState state = FishState.Nomal;
 
-        //hpが尽きたかどうか
-        bool m_IsDead = false;
-        public bool IsDead { get { return m_IsDead; } }
+        [Tooltip("移動方向")]
+        public Vector2 escapeDir;
+        [Tooltip("体力が尽きたか")]
+        public bool IsDead;
+
+        [Tooltip("魚の画像")]
+        public SpriteRenderer sprite;
+
+        /// <summary>
+        /// 一時的に実行したい関数を入れる
+        /// </summary>
+        UnityEvent myUpdate;
+        //public delegate void myUpdate();
+
 
         static private FishingGame.Tools.FishingHook m_fishingHook;
         static public  FishingGame.Tools.FishingHook FishingHook
@@ -37,24 +58,142 @@ namespace Fish.FishScripts
             }
         }
 
+        private void Awake()
+        {
+            hp = fishData.status.hpMax;
+            if (myUpdate== null)
+                myUpdate = new UnityEvent();
+            if(sprite == null)
+            {
+                //画像が指定されていなければ子供のオブジェクトから画像を得る
+                sprite = transform.GetComponentInChildren<SpriteRenderer>();
+            }
+        }
 
-     Vector2 escapeDir;
-        //釣りゲーム前(針に食いつく前)
+        // Update is called once per frame
+        void Update()
+        {
+            myUpdate.Invoke();
+            //毎フレーム回復する
+            Regene();
 
-        //針に食いついた
+            //関数ポインタ的なの使いてえ！
+            //釣りに失敗したら逃げる
+            if (state == FishState.Escaping)
+            {
+                transform.position += new Vector3(escapeDir.x, escapeDir.y, 0);
+            }
+            //エサを狙っている
+            else if (state == FishState.Approaching)
+            {
+                MoveToHook();
+            }
+            //釣りゲーム中
+            else if (state == FishState.Biting)
+            {
+
+            }
+            //捕まった
+            else if (state == FishState.Caught)
+            {
+
+
+            }
+            //通常
+            else if (state == FishState.Nomal)
+            {
+                MoveFree();
+
+
+
+            }
+
+        }
+
+
+        //釣りゲーム外
+
+        /// <summary>
+        /// 魚が現れる
+        /// </summary>
+        public void SetAppear()
+        {
+            myUpdate.AddListener(Appear);
+        }
+        void Appear()
+        {
+            float speed = 0.01f;
+            Color color = sprite.color;
+            color.a += speed;
+            sprite.color = color;
+            if (sprite.color.a >= 0.99f)
+            {
+                color.a = 1.0f;
+                sprite.color = color;
+                myUpdate.RemoveListener(Appear);
+            }
+        }
+
+        
+        /// <summary>
+        /// 魚が消える
+        /// </summary>
+        public void SetDisAppear()
+        {
+            myUpdate.AddListener(DisAppear);
+        }
+        void DisAppear()
+        {
+            float speed = 0.01f;
+            Color color = sprite.color;
+            color.a -= speed;
+            sprite.color = color;
+            if(sprite.color.a <= 0.01f)
+            {
+                myUpdate.RemoveListener(DisAppear);
+
+            }
+        }
+
+        /// <summary>
+        /// とくに目的を持たず自由に動く
+        /// </summary>
+        void MoveFree()
+        {
+
+        }
+
+
+        /// <summary>
+        /// 釣り針の方に近づいていく
+        /// </summary>
+        void MoveToHook()
+        {
+            transform.position = Vector3.MoveTowards(transform.position, FishingHook.transform.position, moveSpeed);
+        }
+
+        public bool IsNearHook()
+        {
+            return (FishingHook.transform.position - transform.position).sqrMagnitude < 5f;
+        }
+        /// <summary>
+        /// 針に食いついた
+        /// </summary>
         public void Biting()
         {
             //座標を釣り針に固定する
             transform.parent = FishingHook.transform;
             transform.localPosition = new Vector3(0, 0, 0);
-            isEscaping = false;
-            fishMove.isFishing = true;
+            state = FishState.Biting;
         }
-        //釣りに失敗して逃げる
+
+        /// <summary>
+        /// 釣りに失敗して逃げる
+        /// </summary>
         public void Escape()
         {
             transform.parent = null;
-            isEscaping = true;
+            state = FishState.Escaping;
             float[] dirXRnd = { 1f, -1f };
             float dirX = dirXRnd[Random.Range(0, 2)];
             dirX /= 8;
@@ -62,69 +201,35 @@ namespace Fish.FishScripts
         }
 
 
-
-        //釣りゲーム中
-
-        //ダメージを食らう
+        // 釣りゲーム中
+        
+            
+        /// <summary>
+        /// ダメージを食らう
+        /// </summary>
+        /// <param name="damage"></param>
         public void Damaged(float damage)
         {
             if (IsDead) return;
-            m_HP -= damage;
-            if (m_HP < 0)
+            hp -= damage;
+            if (hp < 0)
             {
-                m_HP = 0;
-                m_IsDead = true;
+                hp = 0;
+                IsDead = true;
             }
-        }
-
-        //体力回復
-        void Regene()
-        {
-            if (IsDead) return;
-            m_HP += fishData.status.hpRegene;
-            m_HP = Mathf.Clamp(m_HP, 0f, fishData.status.hpMax);
-        }
-        private void Awake()
-        {
-            m_HP = fishData.status.hpMax;
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            //毎フレーム回復する
-            Regene();
-
-            //テスト　食いつく
-            if (Input.GetKeyDown(KeyCode.Space))
-                Biting();
-            //テスト 逃げる
-            else if(Input.GetKeyDown(KeyCode.UpArrow)){
-                Escape();
-            }
-            //釣りに失敗したら逃げる
-            if (isEscaping)
-            {
-                transform.position += new Vector3(escapeDir.x, escapeDir.y, 0);
-            }
-            else
-            {
-                MoveToBobber();
-            }
-
         }
 
         /// <summary>
-        /// 浮きの方に近づいていく
+        /// 体力を回復
         /// </summary>
-        void MoveToBobber()
+        void Regene()
         {
-            transform.position= Vector3.MoveTowards(transform.position, FishingHook.transform.position, moveSpeed);
+            if (IsDead) return;
+            hp += fishData.status.hpRegene;
+            hp = Mathf.Clamp(hp, 0f, fishData.status.hpMax);
         }
 
-        public bool IsNearBobber()
-        {
-            return (FishingHook.transform.position - transform.position).sqrMagnitude < 5f;
-        }
+
+
     }
 }

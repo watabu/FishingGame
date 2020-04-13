@@ -23,7 +23,7 @@ namespace Fish
         // Start is called before the first frame update
         void Start()
         {
-            escapeDirection = DecideDirection();
+            moveDirection = DecideDirection();
         }
 
         // Update is called once per frame
@@ -34,7 +34,7 @@ namespace Fish
             if(timer <0)
             {
                 timer = Random.Range(20, maxtime);
-                escapeDirection = DecideDirection();
+                moveDirection = DecideDirection();
             }
             if (isFishing)
             {
@@ -42,7 +42,7 @@ namespace Fish
                 Vector2 C = transform.position - AheadofRod.transform.position;
                 C /= Mathf.Sqrt(C.x * C.x + C.y * C.y);
 
-                Vector2 force = (escapeDirection + C) * power;
+                Vector2 force = (moveDirection + C) * power;
              //   Fish.FishScripts.CommonFish.GetComponent<Rigidbody2D>().AddForce(force);
 
 

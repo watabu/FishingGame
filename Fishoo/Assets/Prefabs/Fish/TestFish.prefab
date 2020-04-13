@@ -44,10 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
-  isFishing: 0
-  escapeDirection: {x: 0, y: 0}
+  moveDirection: {x: 0, y: 0}
   fish: {fileID: 5436173513765085611}
-  m_rigidbody: {fileID: 1393914943715955583}
+  m_rigidbody: {fileID: 0}
 --- !u!1 &5436173513352246323
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +138,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5436173513765085610}
   - component: {fileID: 5436173513765085611}
-  - component: {fileID: 1393914943715955583}
   m_Layer: 0
   m_Name: TestFish
   m_TagString: Fish
@@ -177,30 +175,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishData: {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
   fishMoveData: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
-  status:
-    hpMax: 0
-    hpRegene: 0
-    speed: 0
-  fishingHook: {fileID: 0}
+  moveSpeed: 0.1
   fishMove: {fileID: 1199823733860569568}
---- !u!50 &1393914943715955583
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5436173513765085605}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
+  hp: 0
+  state: 0
+  escapeDir: {x: 0, y: 0}
+  IsDead: 0
