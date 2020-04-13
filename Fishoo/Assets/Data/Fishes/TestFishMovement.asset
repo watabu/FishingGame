@@ -16,4 +16,8 @@ MonoBehaviour:
   escapeOnMiss: 0
   speed: 1
   recognitionDistance: 1
-  lifeTime: 200
+  lifeTime: 10000
+  status:
+    hpMax: 10
+    hpRegene: 1
+    speed: 1

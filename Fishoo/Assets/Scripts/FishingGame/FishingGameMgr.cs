@@ -12,18 +12,29 @@ namespace FishingGame
         [SerializeField] private Player.InputSystem input;
 
         [Header("When Fishing starts"), SerializeField]
-        UnityEvent FishingStart;//釣りが成功したときに呼び出す関数
+        UnityEvent WhenFishingStart;//釣りゲームが始まったときに呼び出す関数
 
 
         [Header("When Fishing is successful"), SerializeField]
-        UnityEvent FishingSucceeded;//釣りが成功したときに呼び出す関数
+        UnityEvent WhenFishingSucceeded;//釣りが成功したときに呼び出す関数
 
         [Header("When Fishing fails "), SerializeField]
-        UnityEvent FishingFailed;//釣りが失敗したときに呼び出す関数
+        UnityEvent WhenFishingFailed;//釣りが失敗したときに呼び出す関数
+
+        [Tooltip("今狙っている魚")]
+        public Fish.FishScripts.CommonFish targetFish;
+
+        /// <summary>
+        /// 釣りゲームが始まったときに呼び出す関数
+        /// </summary>
+        public void StartFishing()
+        {
+            WhenFishingStart.Invoke();
 
 
 
 
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -36,11 +47,11 @@ namespace FishingGame
         {
             if (input.RightClicked() )
             {
-                fishingToolMgr.PullToRight();
+               // fishingToolMgr.PullToRight();
             }
             else if (input.LeftClicked())
             {
-                fishingToolMgr.PullToLeft();
+               // fishingToolMgr.PullToLeft();
 
             }
         

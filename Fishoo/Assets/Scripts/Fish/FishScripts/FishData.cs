@@ -4,17 +4,11 @@ using UnityEngine;
 
 namespace Fish.FishScripts
 {
-    [System.Serializable]
-    public struct FishStatus
-    {
-        [Tooltip("最大体力")]
-        public float hpMax;
-        [Tooltip("体力回復(/1tick)")]
-        public float hpRegene;
-        [Tooltip("基礎的な速さ")]
-        public float speed;//FishMoveDataの方に移動してもいい感じ？
-    }
 
+
+    /// <summary>
+    /// 釣りゲーム外の、図鑑などでの魚のデータ
+    /// </summary>
     [CreateAssetMenu(menuName = "Data/FishData", order = 1)]
     public class FishData : ScriptableObject
     {
@@ -32,6 +26,6 @@ namespace Fish.FishScripts
         public Sprite icon;
         [Tooltip("動きのデータ")]
         public FishMoveData data;
-        public FishStatus status;
+
     }
 }

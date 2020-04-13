@@ -5,7 +5,9 @@ using UnityEngine;
 
 namespace Fish
 {
-    //釣りゲーム中の魚の動きを管理する
+    /// <summary>
+    /// 釣りゲーム中の魚の動きを管理する
+    /// </summary>
     public class FishMove : MonoBehaviour
     {
         [SerializeField] private Fish.FishMoveData data;
@@ -18,7 +20,6 @@ namespace Fish
         [Header("Object References")]
         [Tooltip("親として持つ魚本体")]
         public FishScripts.CommonFish fish;
-        [SerializeField] Rigidbody2D m_rigidbody;
 
         //釣り竿の先端
         protected GameObject AheadofRod;

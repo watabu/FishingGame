@@ -17,6 +17,9 @@ public class CommandGenerator : MonoBehaviour
 
     [SerializeField] private List<CommandData> commandsData=new List<CommandData>();
 
+    [Tooltip("コマンドが打ち終わったときにダメージを与える魚")]
+    public Fish.FishScripts.CommonFish targetFish;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,7 @@ public class CommandGenerator : MonoBehaviour
         var obj = Instantiate(commandPrefab, commandParent).GetComponent<CommandScript>();
         List<KeyCode> com = new List<KeyCode>() {KeyCode.A,KeyCode.B,KeyCode.UpArrow,KeyCode.DownArrow };
         obj.SetCommand(com);
+        
     }
 
     public GameObject GetCommandPrefab(KeyCode key)

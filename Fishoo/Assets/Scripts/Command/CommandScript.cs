@@ -14,6 +14,7 @@ public class CommandScript : MonoBehaviour
     List<KeyCode> m_commands = new List<KeyCode>();
     List<GameObject> m_commandObjects = new List<GameObject>();
 
+
     bool m_FinishesCommand=false;
     /// <summary>
     /// コマンドをすべて打ち終わったか
@@ -79,6 +80,8 @@ public class CommandScript : MonoBehaviour
 
     void OnFinish()
     {
+        float damage = 3;
+        Generator.targetFish.Damaged(damage);
         Destroy(gameObject);
     }
 }
