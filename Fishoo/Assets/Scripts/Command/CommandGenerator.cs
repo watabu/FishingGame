@@ -12,8 +12,9 @@ public class CommandGenerator : MonoBehaviour
     }
     [Header("Referances")]
     [SerializeField] private Transform commandParent;
+    [SerializeField] private Transform commandEffectParent;
     [Header("Properties")]
-    [SerializeField] private GameObject commandPrefab;
+    [SerializeField] private GameObject commandContainerPrefab;
 
     [SerializeField] private List<CommandData> commandsData=new List<CommandData>();
 
@@ -34,9 +35,9 @@ public class CommandGenerator : MonoBehaviour
 
     public void Generate()
     {
-        var obj = Instantiate(commandPrefab, commandParent).GetComponent<CommandScript>();
+        var obj = Instantiate(commandContainerPrefab, commandParent).GetComponent<CommandContainerScript>();
         List<KeyCode> com = new List<KeyCode>() {KeyCode.A,KeyCode.B,KeyCode.UpArrow,KeyCode.DownArrow };
-        obj.SetCommand(com);
+        obj.SetCommand(com,commandEffectParent);
         
     }
 
