@@ -17,9 +17,5 @@ MonoBehaviour:
   description_Caught: This is too big
   sellingPrice: 5
   exp: 1
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 222de1da8766fd740b77f9c9781d400e, type: 3}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
-  status:
-    hpMax: 10
-    hpRegene: 0
-    speed: 1
