@@ -2867,7 +2867,7 @@ Tilemap:
       - {fileID: -2978132118957627598, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -2357924917594286096, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -6261907049870616435, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
-      m_AnimationSpeed: 2.5
+      m_AnimationSpeed: 2.5000002
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -9, y: -7, z: 0}
@@ -3137,7 +3137,7 @@ Tilemap:
       - {fileID: -2978132118957627598, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -2357924917594286096, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -6261907049870616435, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
-      m_AnimationSpeed: 2.5
+      m_AnimationSpeed: 2.5000002
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -2, y: -6, z: 0}
@@ -3417,7 +3417,7 @@ Tilemap:
       - {fileID: -2978132118957627598, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -2357924917594286096, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -6261907049870616435, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
-      m_AnimationSpeed: 2.5
+      m_AnimationSpeed: 2.5000002
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 6, y: -5, z: 0}
@@ -3467,7 +3467,7 @@ Tilemap:
       - {fileID: -2978132118957627598, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -2357924917594286096, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -6261907049870616435, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
-      m_AnimationSpeed: 2.5000002
+      m_AnimationSpeed: 2.5
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -9, y: -4, z: 0}
@@ -3487,7 +3487,7 @@ Tilemap:
       - {fileID: -2978132118957627598, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -2357924917594286096, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -6261907049870616435, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
-      m_AnimationSpeed: 2.5
+      m_AnimationSpeed: 2.5000002
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -7, y: -4, z: 0}
@@ -3597,7 +3597,7 @@ Tilemap:
       - {fileID: -2978132118957627598, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -2357924917594286096, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -6261907049870616435, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
-      m_AnimationSpeed: 2.5000002
+      m_AnimationSpeed: 2.5
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 4, y: -4, z: 0}
@@ -3647,7 +3647,7 @@ Tilemap:
       - {fileID: -2978132118957627598, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -2357924917594286096, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -6261907049870616435, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
-      m_AnimationSpeed: 2.5
+      m_AnimationSpeed: 2.5000002
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 9, y: -4, z: 0}
@@ -4027,7 +4027,7 @@ Tilemap:
       - {fileID: -2978132118957627598, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -2357924917594286096, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -6261907049870616435, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
-      m_AnimationSpeed: 2.5000002
+      m_AnimationSpeed: 2.5
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 6, y: -2, z: 0}
@@ -4047,7 +4047,7 @@ Tilemap:
       - {fileID: -2978132118957627598, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -2357924917594286096, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
       - {fileID: -6261907049870616435, guid: b84955d1da24ee644944bcd69a16a53f, type: 3}
-      m_AnimationSpeed: 2.5
+      m_AnimationSpeed: 2.5000002
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 8, y: -2, z: 0}
@@ -4409,7 +4409,7 @@ BuoyancyEffector2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_SurfaceLevel: -0.53
-  m_Density: 10
+  m_Density: 4
   m_LinearDrag: 5
   m_AngularDrag: 5
   m_FlowAngle: 0

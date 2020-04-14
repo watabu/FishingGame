@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// rigidbodyを使った釣り竿　使わない
+/// </summary>
 public class RodTest : MonoBehaviour
 {
     //釣り竿を回転する軸

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 namespace Fish.FishScripts
 {
@@ -30,8 +31,13 @@ namespace Fish.FishScripts
         [Tooltip("現在体力")]
         public float hp;
 
-        [Tooltip("魚がエサを狙っているかなどの状態")]
-        public FishState state = FishState.Nomal;
+        [SerializeField,　Tooltip("魚がエサを狙っているかなどの状態")]
+        private FishState _state;
+
+        /// <summary>
+        /// 魚の状態(読み取り専用)
+        /// </summary>
+        public FishState state { get { return _state; } }
 
         [Tooltip("逃げる方向")]
         public Vector2 escapeDir;
@@ -65,9 +71,6 @@ namespace Fish.FishScripts
         {
             get
             {
-            //釣り針の取得
-                if(m_fishingHook==null)
-                    m_fishingHook = GameObject.FindGameObjectWithTag("Hook").GetComponent<FishingGame.Tools.FishingHook>();
                 return m_fishingHook;
             }
         }
@@ -85,6 +88,10 @@ namespace Fish.FishScripts
             }
             HPbar.maxValue = hp;
 
+            //釣り針の取得
+            if (m_fishingHook == null)
+                m_fishingHook = GameObject.FindGameObjectWithTag("Hook").GetComponent<FishingGame.Tools.FishingHook>();
+
             //魚をフェードインする
             Color color = sprite.color;
             color.a = 0;
@@ -97,7 +104,6 @@ namespace Fish.FishScripts
         {
             //一時的に行う関数などを行う
             myUpdate.Invoke();
-
             //回復する
             Regene();
 
@@ -110,22 +116,21 @@ namespace Fish.FishScripts
             //釣りに失敗したら逃げる
             if (state == FishState.Escaping)
             {
-                transform.position += new Vector3(escapeDir.x, escapeDir.y, 0);
+                Escape();
             }
             //エサを狙っている
             else if (state == FishState.Approaching)
             {
-                MoveToHook();
+                ApproachHook();
             }
             //釣りゲーム中
             else if (state == FishState.Biting)
             {
-
+                Bite();
             }
             //捕まった
             else if (state == FishState.Caught)
             {
-
 
             }
             //通常
@@ -133,12 +138,9 @@ namespace Fish.FishScripts
             {
                 MoveFree();
 
-
-
             }
 
         }
-
 
         //釣りゲーム外
 
@@ -147,8 +149,10 @@ namespace Fish.FishScripts
         /// </summary>
         public void SetAppear()
         {
+            Debug.Log("魚が現れた");
             myUpdate.AddListener(Appear);
             HPbar.gameObject.SetActive(false);
+            _state = FishState.Nomal;
         }
         void Appear()
         {
@@ -170,6 +174,7 @@ namespace Fish.FishScripts
         /// </summary>
         public void SetDisAppear()
         {
+            Debug.Log("魚は寿命をまっとうした。");
             myUpdate.AddListener(DisAppear);
         }
         void DisAppear()
@@ -201,6 +206,62 @@ namespace Fish.FishScripts
 
         }
 
+        /// <summary>
+        /// 釣り針を狙うときに行う最初の処理
+        /// </summary>
+        public void SetApproaching()
+        {
+            Debug.Log("魚がエサを狙っている");
+            _state = FishState.Approaching;
+
+        }
+
+        //非同期処理を一回だけ行うための変数
+        bool isDone=false;
+        /// <summary>
+        /// 釣り針を狙う
+        /// 釣りゲーム開始前のミニゲーム
+        /// </summary>
+        async void ApproachHook()
+        {
+
+            MoveToHook();
+            
+            //十分近づいたら針をつんつんする
+            if (IsNearHook() && !isDone)
+            {
+                isDone = true;
+                await Task.Delay(1500);
+                int time = 200;
+                float force = 4;
+                Debug.Log("1");
+                FishingHook.PullDown(force, time);
+                await Task.Delay(Random.Range(time * 10, time * 30));
+
+                Debug.Log("2");
+                time = 150;
+                FishingHook.PullDown(8, time);
+                await Task.Delay(Random.Range(time * 10, time * 30));
+
+                Debug.Log("3");
+                time = 300;
+                FishingHook.PullDown(3, time);
+                await Task.Delay(Random.Range(time * 10, time * 30));
+
+                Debug.Log("4");
+                time = 150;
+                FishingHook.PullDown(5, time);
+                await Task.Delay(Random.Range(time * 10, time * 30));
+
+                Debug.Log("5");
+                time = 150;
+                FishingHook.PullDown(40, time);
+
+                //食いついたときになにかを入力して釣りゲームへ移行する
+                SetBiting();
+            }
+         
+        }
 
         /// <summary>
         /// 釣り針の方に近づいていく
@@ -212,37 +273,63 @@ namespace Fish.FishScripts
 
         public bool IsNearHook()
         {
-            return (FishingHook.transform.position - transform.position).sqrMagnitude < 5f;
+            float distance = 5f;
+            return (FishingHook.transform.position - transform.position).sqrMagnitude < distance;
         }
+
+
         /// <summary>
         /// 針に食いついたときに最初に行う処理
+        /// 釣りゲーム状態に移行する
         /// </summary>
-        public void Bite()
+        public void SetBiting()
         {
+            Debug.Log("魚がかかった!");
             //座標を釣り針に固定する
             transform.parent = FishingHook.transform;
             transform.localPosition = new Vector3(0, 0, 0);
-            state = FishState.Biting;
+            _state = FishState.Biting;
             HPbar.gameObject.SetActive(true);
+
+            //釣りゲーム開始
+            m_fishingHook.fishingGameMgr.StartFishing();
+        }
+
+        /// <summary>
+        /// 釣りゲーム中の処理
+        /// </summary>
+        void Bite()
+        {
+
+
         }
 
         /// <summary>
         /// 釣りに失敗したときの最初に行う処理
+        /// 逃走状態に移行する
         /// </summary>
-        public void Escape()
+        public void SetEscaping()
         {
+            Debug.Log("魚は逃げ出した");
             transform.parent = null;
-            state = FishState.Escaping;
+            _state = FishState.Escaping;
             float[] dirXRnd = { 1f, -1f };
             float dirX = dirXRnd[Random.Range(0, 2)];
             dirX /= 8;
             escapeDir = new Vector2(dirX, 0);
         }
 
+        /// <summary>
+        /// 逃走中の処理
+        /// </summary>
+        void Escape()
+        {
+            transform.position += new Vector3(escapeDir.x, escapeDir.y, 0);
+        }
 
         // 釣りゲーム中
-        
-            
+
+
         /// <summary>
         /// ダメージを食らう
         /// </summary>
@@ -256,7 +343,7 @@ namespace Fish.FishScripts
             {
                 hp = 0;
                 IsDead = true;
-                state = FishState.Caught;
+                _state = FishState.Caught;
             }
         }
 
