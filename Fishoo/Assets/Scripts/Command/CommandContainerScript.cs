@@ -82,9 +82,14 @@ public class CommandContainerScript : MonoBehaviour
 
     void OnFinish()
     {
+        //今釣っている魚にダメージを与える
         if (Generator.targetFish == null) return;
         float damage = 3;
         Generator.targetFish.Damaged(damage);
+
+        //次のコマンドを生成する許可をする
+        Generator.fishingGameMgr.canAttack = true;
+            
         Destroy(gameObject);
     }
 }

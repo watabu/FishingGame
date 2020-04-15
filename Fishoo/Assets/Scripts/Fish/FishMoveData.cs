@@ -15,7 +15,7 @@ namespace Fish
         public float speed;//FishMoveDataの方に移動してもいい感じ？
     }
     /// <summary>
-    /// 釣りゲームに関する魚の動きについてのデータ
+    /// 釣りゲームに関する魚のデータ
     /// </summary>
     [CreateAssetMenu(menuName = "Data/FishMovementData", order = 1)]
     public class FishMoveData : ScriptableObject
@@ -33,5 +33,7 @@ namespace Fish
         public float lifeTime;
         [Tooltip("ステータス")]
         public FishStatus status;
+        [Tooltip("コマンド")]
+        public List<string> commands;
     }
 }

@@ -18,6 +18,7 @@ public class CommandGenerator : MonoBehaviour
 
     [SerializeField] private List<CommandData> commandsData=new List<CommandData>();
 
+    [Tooltip("釣りゲームMgr")] public FishingGame.FishingGameMgr fishingGameMgr;
     [Tooltip("コマンドが打ち終わったときにダメージを与える魚")]
     public Fish.FishScripts.CommonFish targetFish;
 
@@ -33,6 +34,9 @@ public class CommandGenerator : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// targetFishのFishMoveDataがもつコマンドのリストから一つ選んで生成する
+    /// </summary>
     public void Generate()
     {
         var obj = Instantiate(commandContainerPrefab, commandParent).GetComponent<CommandContainerScript>();

@@ -32,6 +32,7 @@ namespace FishingGame.Tools
         /// 力を及ぼす対象
         /// </summary>
         Rigidbody2D rg2d;
+
         private void Awake()
         {
             if (myUpdate == null)

@@ -21,3 +21,8 @@ MonoBehaviour:
     hpMax: 10
     hpRegene: 1
     speed: 1
+  commands:
+  - ABUD
+  - UDRL
+  - ABXY
+  - UDRL

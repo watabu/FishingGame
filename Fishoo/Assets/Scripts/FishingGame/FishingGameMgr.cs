@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+
 namespace FishingGame
 {
     public class FishingGameMgr : MonoBehaviour
@@ -11,6 +12,10 @@ namespace FishingGame
         [SerializeField] private Fish.FishGenerator fishGenerator;
         [SerializeField] private CommandGenerator commandGenerator;
         [SerializeField] private Player.InputSystem input;
+
+        [SerializeField, Tooltip("コマンドが生成されるまでの最低時間(tick)")] int attackTimeMin=150;
+
+
 
         [Header("When Fishing starts"), SerializeField, Tooltip("釣りゲームが始まったときに呼び出す関数")]
         UnityEvent WhenFishingStart;
@@ -25,6 +30,14 @@ namespace FishingGame
         [Tooltip("今狙っている魚")]
         public Fish.FishScripts.CommonFish targetFish;
 
+        bool isFishing = false;
+        public bool canAttack = false;
+
+        /// <summary>
+        /// 攻撃の間隔をあけるためのタイマー
+        /// </summary>
+        int attackTimer=0;
+
         /// <summary>
         /// 釣りゲームが始まったときに呼び出す関数
         /// </summary>
@@ -32,8 +45,29 @@ namespace FishingGame
         {
             WhenFishingStart.Invoke();
             commandGenerator.targetFish = targetFish;
-            targetFish.SetBiting();
 
+            isFishing = true;
+            canAttack = true;
+            attackTimer = attackTimeMin *3 /4;
+        }
+
+        /// <summary>
+        /// 釣りが成功したときに呼び出す
+        /// </summary>
+        public void FishingSucceeded()
+        {
+            WhenFishingSucceeded.Invoke();
+            isFishing = false;
+
+        }
+
+        /// <summary>
+        /// 釣りが失敗したときに呼び出す
+        /// </summary>
+        public void FishingFailed()
+        {
+            WhenFishingFailed.Invoke();
+            isFishing = false;
 
         }
 
@@ -51,21 +85,45 @@ namespace FishingGame
         // Update is called once per frame
         void Update()
         {
-            //釣り具の動作
-            if (input.RightClicked() )
+            if (isFishing)
             {
-               // fishingToolMgr.PullToRight();
+                Fishing();
             }
-            else if (input.LeftClicked())
-            {
-               // fishingToolMgr.PullToLeft();
-            }
+
+
+
+
+
+            ////釣り具の動作
+            //if (input.RightClicked() )
+            //{
+            //   // fishingToolMgr.PullToRight();
+            //}
+            //else if (input.LeftClicked())
+            //{
+            //   // fishingToolMgr.PullToLeft();
+            //}
         
 
         }
 
+        /// <summary>
+        /// 釣りゲーム中の処理
+        /// </summary>
+        void Fishing()
+        {
+            if(++attackTimer > attackTimeMin && canAttack)
+            {
+                canAttack = false;
+                attackTimer = 0;
+                commandGenerator.Generate();
+                
+            }
 
 
+        }
+
+        
 
     }
 }

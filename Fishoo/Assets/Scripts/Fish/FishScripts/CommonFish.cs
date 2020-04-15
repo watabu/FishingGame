@@ -18,6 +18,8 @@ namespace Fish.FishScripts
         Escaping,//釣りに失敗して逃げている
         Caught//釣りに成功して捕まった
     }
+
+
     public class CommonFish : MonoBehaviour
     {
         public FishData fishData;
@@ -218,43 +220,69 @@ namespace Fish.FishScripts
 
         //非同期処理を一回だけ行うための変数
         bool isDone=false;
+
         /// <summary>
         /// 釣り針を狙う
         /// 釣りゲーム開始前のミニゲーム
         /// </summary>
         async void ApproachHook()
         {
-
-            MoveToHook();
-            
+            if (!isDone)
+            {
+                MoveToHook();
+            }
             //十分近づいたら針をつんつんする
             if (IsNearHook() && !isDone)
             {
                 isDone = true;
-                await Task.Delay(1500);
-                int time = 200;
+                //座標を釣り針中心にする
+                transform.parent = FishingHook.transform;
+
+
+                //1回目
                 float force = 4;
+                int time = 200;
+                while (!IsNearHook())
+                {
+                    MoveToHook();
+                    await Task.Delay(10);
+                }
                 Debug.Log("1");
                 FishingHook.PullDown(force, time);
+                await Task.Delay(time);
+                LeaveFromHook();
                 await Task.Delay(Random.Range(time * 10, time * 30));
-
+                
+                //二回目
                 Debug.Log("2");
                 time = 150;
+                while (!IsNearHook())
+                {
+                    MoveToHook();
+                    await Task.Delay(10);
+                }
                 FishingHook.PullDown(8, time);
+                await Task.Delay(time);
+                LeaveFromHook();
                 await Task.Delay(Random.Range(time * 10, time * 30));
+                
+                //Debug.Log("3");
+                //time = 300;
+                //FishingHook.PullDown(3, time);
+                //await Task.Delay(Random.Range(time * 10, time * 30));
 
-                Debug.Log("3");
-                time = 300;
-                FishingHook.PullDown(3, time);
-                await Task.Delay(Random.Range(time * 10, time * 30));
-
-                Debug.Log("4");
-                time = 150;
-                FishingHook.PullDown(5, time);
-                await Task.Delay(Random.Range(time * 10, time * 30));
+                //Debug.Log("4");
+                //time = 150;
+                //FishingHook.PullDown(5, time);
+                //await Task.Delay(Random.Range(time * 10, time * 30));
 
                 Debug.Log("5");
-                time = 150;
+                time = 80;
+                while (!IsNearHook())
+                {
+                    MoveToHook();
+                    await Task.Delay(10);
+                }
                 FishingHook.PullDown(40, time);
 
                 //食いついたときになにかを入力して釣りゲームへ移行する
@@ -271,9 +299,27 @@ namespace Fish.FishScripts
             transform.position = Vector3.MoveTowards(transform.position, FishingHook.transform.position, moveSpeed);
         }
 
+        /// <summary>
+        /// 針をつついた後に向かう針から離れた点
+        /// </summary>
+        Vector3 LeavePoint;
+        void LeaveFromHook()
+        {
+            LeavePoint = FishingHook.transform.position;
+            LeavePoint.x += 0.5f;
+            myUpdate.AddListener(_LeaveFromHook);
+        }
+
+        void _LeaveFromHook()
+        {
+            transform.position = Vector3.MoveTowards(transform.position, LeavePoint, moveSpeed / 30);
+            if ((LeavePoint - transform.position).sqrMagnitude < 0.01f)
+                myUpdate.RemoveListener(_LeaveFromHook);
+        }
+
         public bool IsNearHook()
         {
-            float distance = 5f;
+            float distance = 0.001f;
             return (FishingHook.transform.position - transform.position).sqrMagnitude < distance;
         }
 
@@ -284,14 +330,12 @@ namespace Fish.FishScripts
         /// </summary>
         public void SetBiting()
         {
-            Debug.Log("魚がかかった!");
-            //座標を釣り針に固定する
-            transform.parent = FishingHook.transform;
-            transform.localPosition = new Vector3(0, 0, 0);
+            Debug.Log("魚がくいついた!");
             _state = FishState.Biting;
             HPbar.gameObject.SetActive(true);
 
-            //釣りゲーム開始
+            ////釣りゲーム開始
+            m_fishingHook.fishingGameMgr.targetFish = this;
             m_fishingHook.fishingGameMgr.StartFishing();
         }
 
@@ -300,7 +344,22 @@ namespace Fish.FishScripts
         /// </summary>
         void Bite()
         {
+            if (IsDead)
+            {
+                SetCaught();
 
+            }
+
+        }
+        
+        public void SetCaught()
+        {
+
+            HPbar.gameObject.SetActive(false);
+            Debug.Log("魚を捕まえた!");
+            _state = FishState.Caught;
+
+            m_fishingHook.fishingGameMgr.FishingSucceeded();
 
         }
 
@@ -343,7 +402,6 @@ namespace Fish.FishScripts
             {
                 hp = 0;
                 IsDead = true;
-                _state = FishState.Caught;
             }
         }
 
