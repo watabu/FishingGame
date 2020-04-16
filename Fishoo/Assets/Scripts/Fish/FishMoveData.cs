@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace Fish
 {
     [System.Serializable]
@@ -14,6 +15,8 @@ namespace Fish
         [Tooltip("基礎的な速さ")]
         public float speed;//FishMoveDataの方に移動してもいい感じ？
     }
+
+
     /// <summary>
     /// 釣りゲームに関する魚のデータ
     /// </summary>
@@ -35,5 +38,91 @@ namespace Fish
         public FishStatus status;
         [Tooltip("コマンド")]
         public List<string> commands;
+
+
+
+
+
+        /// <summary>
+        /// 魚がもつコマンドのリストを返す
+        /// </summary>
+        /// <returns></returns>
+        public List<List<KeyCode>> GetCommandsList()
+        {
+            List<List<KeyCode>> A = new List<List<KeyCode>>();
+            foreach (string S in commands)
+            {
+                A.Add(S.ToKeyCodeList());
+            }
+            if(A.Count < 1)
+            {
+                Debug.LogError("魚のコマンドが設定されていません。");
+            }
+            return A;
+        }
+
+        public List<KeyCode> GetCommands()
+        {
+            int N = commands.Count;
+            int selected = Random.Range(0, N);
+            List<List<KeyCode>> A = GetCommandsList();
+            return A[selected];
+        }
     }
+}
+
+
+/// <summary>
+/// 文字コードの拡張メソッドなどを含むクラス
+/// </summary>
+public static class MyExtensions
+{
+
+    /// <summary>
+    /// 文字をキーコードにする
+    /// </summary>
+    /// <param name="c"></param>
+    /// <returns></returns>
+    static public KeyCode ToKeyCode(this char c)
+    {
+        if (c == 'A')
+            return KeyCode.A;
+        if (c == 'B')
+            return KeyCode.B;
+        if (c == 'X')
+            return KeyCode.X;
+        if (c == 'Y')
+            return KeyCode.Y;
+        if (c == 'R')
+            return KeyCode.RightArrow;
+        if (c == 'D')
+            return KeyCode.DownArrow;
+        if (c == 'L')
+            return KeyCode.LeftArrow;
+        if (c == 'U')
+            return KeyCode.UpArrow;
+
+        Debug.LogWarning("想定していないボタンを要求されました。");
+        return KeyCode.Space;
+        //コントローラーのR
+
+        //コントローラーのL
+    }
+
+    /// <summary>
+    /// 文字列をキーコードのリストにする
+    /// </summary>
+    /// <param name="S"></param>
+    /// <returns></returns>
+    static public List<KeyCode> ToKeyCodeList(this string S)
+    {
+        List<KeyCode> A = new List<KeyCode>();
+        foreach (char c in S)
+        {
+            A.Add(c.ToKeyCode());
+        }
+        return A;
+
+    }
+
 }

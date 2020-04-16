@@ -39,8 +39,12 @@ public class CommandGenerator : MonoBehaviour
     /// </summary>
     public void Generate()
     {
+        Fish.FishMoveData fishMoveData = targetFish.fishMoveData;
+        
         var obj = Instantiate(commandContainerPrefab, commandParent).GetComponent<CommandContainerScript>();
-        List<KeyCode> com = new List<KeyCode>() {KeyCode.A,KeyCode.B,KeyCode.UpArrow,KeyCode.DownArrow };
+        //        List<KeyCode> com = new List<KeyCode>() {KeyCode.A,KeyCode.B,KeyCode.UpArrow,KeyCode.DownArrow };
+        List<KeyCode> com = fishMoveData.GetCommands();
+
         obj.SetCommand(com,commandEffectParent);
         
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Fish.FishScripts
 {
@@ -238,45 +239,33 @@ namespace Fish.FishScripts
                 //座標を釣り針中心にする
                 transform.parent = FishingHook.transform;
 
-
-                //1回目
-                float force = 4;
-                int time = 200;
-                while (!IsNearHook())
+                //浮きを沈める力と時間のリスト
+                List<Vector2> approachList = new List<Vector2>();
+                approachList.Add(new Vector2(4, 200));
+                approachList.Add(new Vector2(6, 150));
+                //approachList.Add(new Vector2(3, 300));
+                //approachList.Add(new Vector2(5, 150));
+                //                approachList.Add(new Vector2(40, 80));
+            
+                float force;
+                int time;
+                //アプローチリストに従って浮きをつんつんする
+                foreach (var a in approachList)
                 {
-                    MoveToHook();
-                    await Task.Delay(10);
+                    force = a.x;
+                    time = (int)a.y;
+                    while (!IsNearHook())
+                    {
+                        MoveToHook();
+                        await Task.Delay(10);
+                    }
+                    FishingHook.PullDown(force, time);
+                    await Task.Delay(time);
+                    LeaveFromHook();
+                    await Task.Delay(Random.Range(time * 10, time * 30));
                 }
-                Debug.Log("1");
-                FishingHook.PullDown(force, time);
-                await Task.Delay(time);
-                LeaveFromHook();
-                await Task.Delay(Random.Range(time * 10, time * 30));
-                
-                //二回目
-                Debug.Log("2");
-                time = 150;
-                while (!IsNearHook())
-                {
-                    MoveToHook();
-                    await Task.Delay(10);
-                }
-                FishingHook.PullDown(8, time);
-                await Task.Delay(time);
-                LeaveFromHook();
-                await Task.Delay(Random.Range(time * 10, time * 30));
-                
-                //Debug.Log("3");
-                //time = 300;
-                //FishingHook.PullDown(3, time);
-                //await Task.Delay(Random.Range(time * 10, time * 30));
 
-                //Debug.Log("4");
-                //time = 150;
-                //FishingHook.PullDown(5, time);
-                //await Task.Delay(Random.Range(time * 10, time * 30));
 
-                Debug.Log("5");
                 time = 80;
                 while (!IsNearHook())
                 {

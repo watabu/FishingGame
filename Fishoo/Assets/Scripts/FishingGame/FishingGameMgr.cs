@@ -49,6 +49,20 @@ namespace FishingGame
             isFishing = true;
             canAttack = true;
             attackTimer = attackTimeMin *3 /4;
+
+            List<List<KeyCode>> commandListTest = new List<List<KeyCode>>();
+            commandListTest = targetFish.fishMoveData.GetCommandsList();
+            Debug.Log("魚が持つコマンド:");
+            foreach(var commands in commandListTest)
+            {
+                string S="";
+                foreach(var command in commands)
+                {
+                    S += command.ToString();
+                }
+                Debug.Log(S);
+            }
+
         }
 
         /// <summary>
