@@ -24,7 +24,7 @@ public class EffectScript : MonoBehaviour
         if (m_time >= lifetime)
         {
             Destroy(gameObject);
-            onDead.Invoke();
+            onDead?.Invoke();
         }
             m_time += Time.deltaTime;
     }

@@ -12,6 +12,9 @@ namespace FishingGame.Tools
         [SerializeField]
         public FishingGame.FishingGameMgr fishingGameMgr;//publicこわい
 
+        [SerializeField] GameObject biteHookEffect;
+        [SerializeField] Transform effectParent;
+
         [Tooltip("釣り針を引っ張る力の大きさ")]
         public float force = 1;
 
@@ -72,6 +75,13 @@ namespace FishingGame.Tools
             rg2d.AddForce(q);
         }
 
+        /// <summary>
+        /// 食いついた
+        /// </summary>
+        public void OnBiteHook()
+        {
+            Instantiate(biteHookEffect,transform.position,Quaternion.identity, effectParent);
+        }
 
         public async void testPullDown()
         {
