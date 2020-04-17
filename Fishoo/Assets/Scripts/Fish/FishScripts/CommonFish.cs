@@ -40,12 +40,17 @@ namespace Fish.FishScripts
         /// <summary>
         /// 魚の状態(読み取り専用)
         /// </summary>
-        public FishState state { get { return _state; } }
+        public FishState state { get { return _state; }  }
 
         [Tooltip("逃げる方向")]
         public Vector2 escapeDir;
-        [Tooltip("体力が尽きたか")]
-        public bool IsDead;
+
+        /// <summary>
+        /// 体力が尽きたか
+        /// </summary>
+        public bool IsDead { get { return m_isDead; } private set { m_isDead = value; } }
+
+        private bool m_isDead=false;
 
         [Tooltip("魚の画像")]
         public SpriteRenderer sprite;
@@ -56,7 +61,7 @@ namespace Fish.FishScripts
         /// <summary>
         /// 魚が湧いてから経った時間
         /// </summary>
-        public int LivingTime;
+        public float m_livingTime;
         /// <summary>
         /// 自由に動くときの中心座標
         /// </summary>
@@ -101,7 +106,7 @@ namespace Fish.FishScripts
             sprite.color = color;
             SetAppear();
         }
-        
+
         // Update is called once per frame
         void Update()
         {
@@ -111,38 +116,35 @@ namespace Fish.FishScripts
             Regene();
 
             //寿命が尽きたら消える            
-            if (　++LivingTime > fishMoveData.lifeTime && state == FishState.Nomal)
+            if (m_livingTime > fishMoveData.lifeTime && state == FishState.Nomal)
             {
                 SetDisAppear();
             }
-
-            //釣りに失敗したら逃げる
-            if (state == FishState.Escaping)
+            switch (state)
             {
-                Escape();
+                //通常
+                case FishState.Nomal:
+                    MoveFree();
+                    break;
+                //エサを狙っている
+                case FishState.Approaching:
+                    ApproachHook();
+                    break;
+                //釣りゲーム中
+                case FishState.Biting:
+                    Bite();
+                    break;
+                //釣りに失敗したら逃げる
+                case FishState.Escaping:
+                    Escape();
+                    break;
+                //捕まった
+                case FishState.Caught:
+                    break;
+                default:
+                    break;
             }
-            //エサを狙っている
-            else if (state == FishState.Approaching)
-            {
-                ApproachHook();
-            }
-            //釣りゲーム中
-            else if (state == FishState.Biting)
-            {
-                Bite();
-            }
-            //捕まった
-            else if (state == FishState.Caught)
-            {
-
-            }
-            //通常
-            else if (state == FishState.Nomal)
-            {
-                MoveFree();
-
-            }
-
+            m_livingTime += Time.deltaTime;
         }
 
         //釣りゲーム外
@@ -186,7 +188,7 @@ namespace Fish.FishScripts
             Color color = sprite.color;
             color.a -= speed;
             sprite.color = color;
-            if(sprite.color.a <= 0.01f)
+            if (sprite.color.a <= 0.01f)
             {
                 myUpdate.RemoveListener(DisAppear);
                 gameObject.SetActive(false);
@@ -240,9 +242,7 @@ namespace Fish.FishScripts
                 transform.parent = FishingHook.transform;
 
                 //浮きを沈める力と時間のリスト
-                List<Vector2> approachList = new List<Vector2>();
-                approachList.Add(new Vector2(4, 200));
-                approachList.Add(new Vector2(6, 150));
+                List<Vector2> approachList = new List<Vector2> { new Vector2(4, 200), new Vector2(6, 150) };
                 //approachList.Add(new Vector2(3, 300));
                 //approachList.Add(new Vector2(5, 150));
                 //                approachList.Add(new Vector2(40, 80));
@@ -326,6 +326,7 @@ namespace Fish.FishScripts
             ////釣りゲーム開始
             m_fishingHook.fishingGameMgr.targetFish = this;
             m_fishingHook.fishingGameMgr.StartFishing();
+            FishingHook.OnBiteHook();
         }
 
         /// <summary>
