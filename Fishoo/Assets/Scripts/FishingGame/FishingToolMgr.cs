@@ -5,7 +5,7 @@ using UnityEngine;
 namespace FishingGame
 {
 
-    public class FishingToolMgr : MonoBehaviour
+    public class FishingToolMgr : SingletonMonoBehaviour<FishingToolMgr>
     {
         public Tools.FishingRod fishingRod;
         public Tools.FishingBobber fishingFloat;

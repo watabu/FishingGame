@@ -22,7 +22,7 @@ public class LightingMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_timeHolder.AddOnTimeChanged(()=> { SetLight(); });
+        m_timeHolder.AddOnTimeChanged((time)=> { SetLight(); });
     }
 
     // Update is called once per frame

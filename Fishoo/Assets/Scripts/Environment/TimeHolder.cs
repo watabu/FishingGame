@@ -9,8 +9,11 @@ namespace Environment
 
     //朝・夜などの時間を管理する
     //天候による効果(明るさなど)も管理する？
-    public class TimeHolder : MonoBehaviour
+    public class TimeHolder : SingletonMonoBehaviour<TimeHolder>
     {
+        [System.Serializable]
+        public class TimeHolderEvent : UnityEvent<int> { }
+
         [Tooltip("開始時刻")]
         public int startTime;
         [Tooltip("終了時刻")]
@@ -26,25 +29,25 @@ namespace Environment
             private set
             {
                 m_currentTime = Mathf.Clamp(value, startTime, endTime);
-                OnTimeChanged.Invoke();
+                OnTimeChanged.Invoke(m_currentTime);
             }
         }
 
         [SerializeField] private TextMeshProUGUI timeText;
+        [SerializeField] private TimeHolderEvent OnTimeChanged;
 
-        [SerializeField] private UnityEvent OnTimeChanged;
+        public void AddOnTimeChanged(UnityAction<int> func) { OnTimeChanged.AddListener(func); }
 
-        public void AddOnTimeChanged(UnityAction func) { OnTimeChanged.AddListener(func); }
-
-        private void Awake()
+        protected override void Awake()
         {
-            if(OnTimeChanged==null) OnTimeChanged =  new UnityEvent();
+            base.Awake();
+            if (OnTimeChanged == null) OnTimeChanged = new TimeHolderEvent();
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            AddOnTimeChanged(() => { timeText.text = GetTimeString(); });
+            AddOnTimeChanged((time) => { timeText.text = GetTimeString(); });
             CurrentTime = startTime;
         }
 

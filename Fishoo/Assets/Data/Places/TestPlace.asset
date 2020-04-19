@@ -18,9 +18,10 @@ MonoBehaviour:
   cost: 0
   TravelTime: 0
   icon: {fileID: 0}
-  startTime: 0
-  endTime: 0
+  startTime: 420
+  endTime: 1140
   rainyPercent: 0.2
+  rainDuration: 120
   availableFishList:
   - fish: {fileID: 0}
     weather: 0

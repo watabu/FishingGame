@@ -38,9 +38,9 @@ namespace Environment
         public int TravelTime;
         [Tooltip("場所のアイコン")]
         public Sprite icon;
-        [Tooltip("開始時刻")]
+        [Tooltip("開始時刻(分)")]
         public int startTime;
-        [Tooltip("終了時刻")]
+        [Tooltip("終了時刻(分)")]
         public int endTime;
 
         [Header("Weather")]
@@ -49,6 +49,9 @@ namespace Environment
         [Range(0,1.0f)]
         [Tooltip("降水確率")]
         public float rainyPercent;
+
+        [Tooltip("雨が何分続くか(分)")]
+        public int rainDuration=120;
 
         [Header("Available fish list(Experimental)")]
         //その場所で釣れる魚たち
