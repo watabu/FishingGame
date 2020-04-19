@@ -5,10 +5,9 @@ using UnityEngine.Events;
 
 namespace FishingGame
 {
-    public class FishingGameMgr : MonoBehaviour
+    public class FishingGameMgr : SingletonMonoBehaviour<FishingGameMgr>
     {
         [Header("References")]
-        [SerializeField] private FishingToolMgr fishingToolMgr;
         [SerializeField] private Fish.FishGenerator fishGenerator;
         [SerializeField] private CommandGenerator commandGenerator;
         [SerializeField] private Player.InputSystem input;

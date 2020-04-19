@@ -5,10 +5,9 @@ using UnityEngine;
 /// <summary>
 /// ゲームのマネージャー
 /// </summary>
-public class GameMgr : MonoBehaviour
+public class GameMgr : SingletonMonoBehaviour<GameMgr>
 {
     [Header("References")]
-    [SerializeField] private FishingGame.FishingGameMgr fishingGameMgr;
     [SerializeField] private Player.InputSystem inputSystem;
     [SerializeField] private GameObject pauseUI;
 
