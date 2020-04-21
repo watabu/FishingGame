@@ -5,7 +5,7 @@ using UnityEngine;
 namespace FishingGame.Tools
 {
     //釣り竿
-    public class FishingRod : FishingTool
+    public class FishingRod : MonoBehaviour, FishingTool
     {
     //釣り竿を回転する軸
         public GameObject shaft;
@@ -14,7 +14,7 @@ namespace FishingGame.Tools
         float MaxAngle_Left = 55;
         float MaxAngle_Right = -35;
 
-        new public void PullToLeft()
+        public void PullToLeft()
         {
             if (Mathf.DeltaAngle(shaft.transform.eulerAngles.z,MaxAngle_Left ) > 0.1f)
             {
@@ -22,7 +22,7 @@ namespace FishingGame.Tools
    //             shaft.transform.Rotate(new Vector3(0f, 0f, 2f));
             }
         }
-        new public void PullToRight()
+        public void PullToRight()
         {
             if (Mathf.DeltaAngle(shaft.transform.eulerAngles.z, MaxAngle_Right) < -0.1f)
             {

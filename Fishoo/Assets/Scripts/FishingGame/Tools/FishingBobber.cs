@@ -8,8 +8,16 @@ namespace FishingGame.Tools
     /// <summary>
     /// 釣浮き
     /// </summary>
-    public class FishingBobber : FishingTool
+    public class FishingBobber :  MonoBehaviour,FishingTool
     {
+        public void PullToLeft()
+        {
+        }
+
+        public void PullToRight()
+        {
+        }
+
         // Start is called before the first frame update
         void Start()
         {

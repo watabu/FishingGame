@@ -7,6 +7,18 @@ namespace FishingGame
 {
     public class FishingGameMgr : SingletonMonoBehaviour<FishingGameMgr>
     {
+        static private FishingGame.Tools.FishingHook m_fishingHook;
+        static public FishingGame.Tools.FishingHook FishingHook
+        {
+            get
+            {
+                //釣り針の取得
+                if (m_fishingHook == null)
+                    m_fishingHook = GameObject.FindGameObjectWithTag("Hook").GetComponent<FishingGame.Tools.FishingHook>();
+                return m_fishingHook;
+            }
+        }
+
         [Header("References")]
         [SerializeField] private Fish.FishGenerator fishGenerator;
         [SerializeField] private CommandGenerator commandGenerator;
@@ -14,6 +26,15 @@ namespace FishingGame
 
         [SerializeField, Tooltip("コマンドが生成されるまでの最低時間(tick)")] int attackTimeMin=150;
 
+        [Tooltip("今狙っている魚"),ReadOnly]
+        [SerializeField]
+        private Fish.FishScripts.CommonFish m_targetFish;
+        public Fish.FishScripts.CommonFish TargetFish
+        {
+            get { return m_targetFish; }
+        }
+        [ReadOnly]
+        public bool canAttack = false;
 
 
         [Header("When Fishing starts"), SerializeField, Tooltip("釣りゲームが始まったときに呼び出す関数")]
@@ -26,11 +47,8 @@ namespace FishingGame
         [Header("When Fishing fails "), SerializeField,Tooltip("釣りが失敗したときに呼び出す関数")]
         UnityEvent WhenFishingFailed;
 
-        [Tooltip("今狙っている魚")]
-        public Fish.FishScripts.CommonFish targetFish;
 
         bool isFishing = false;
-        public bool canAttack = false;
 
         /// <summary>
         /// 攻撃の間隔をあけるためのタイマー
@@ -40,19 +58,24 @@ namespace FishingGame
         /// <summary>
         /// 釣りゲームが始まったときに呼び出す関数
         /// </summary>
-        public void StartFishing()
+        public void StartFishing(Fish.FishScripts.CommonFish target)
         {
+            if (isFishing)
+            {
+                Debug.LogError("Fishing is already started");
+                return;
+            }
+            FishingHook.OnBiteHook();
             WhenFishingStart.Invoke();
-            commandGenerator.targetFish = targetFish;
+            m_targetFish = target;
 
             isFishing = true;
             canAttack = true;
             attackTimer = attackTimeMin *3 /4;
 
-            List<List<KeyCode>> commandListTest = new List<List<KeyCode>>();
-            commandListTest = targetFish.fishMoveData.GetCommandsList();
+            //デバッグ
             Debug.Log("魚が持つコマンド:");
-            foreach(var commands in commandListTest)
+            foreach(var commands in target.fishMoveData.GetCommandsList())
             {
                 string S="";
                 foreach(var command in commands)
@@ -71,7 +94,6 @@ namespace FishingGame
         {
             WhenFishingSucceeded.Invoke();
             isFishing = false;
-
         }
 
         /// <summary>
@@ -81,18 +103,17 @@ namespace FishingGame
         {
             WhenFishingFailed.Invoke();
             isFishing = false;
-
         }
 
-        private void Awake()
+        new private void Awake()
         {
+            base.Awake();
             if (WhenFishingFailed == null)
                 WhenFishingFailed = new UnityEvent();
             if (WhenFishingSucceeded == null)
                 WhenFishingSucceeded = new UnityEvent();
             if (WhenFishingStart == null)
                 WhenFishingStart = new UnityEvent();
-
         }
 
         // Update is called once per frame
@@ -130,10 +151,7 @@ namespace FishingGame
                 canAttack = false;
                 attackTimer = 0;
                 commandGenerator.Generate();
-                
             }
-
-
         }
 
         
