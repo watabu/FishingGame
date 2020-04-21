@@ -12,25 +12,22 @@ namespace Fish
     {
         [SerializeField] private Fish.FishMoveData data;
 
-        //釣りゲーム中か
-        public bool isFishing { get { return fish.state == FishScripts.FishState.Biting; } }
-        [Tooltip("移動方向")]
+        [Tooltip("移動方向"),ReadOnly]
         public Vector2 moveDirection;
 
         [Header("Object References")]
-        [Tooltip("親として持つ魚本体")]
-        public FishScripts.CommonFish fish;
-
         //釣り竿の先端
         protected GameObject AheadofRod;
 
-
+        Vector2 escapeVelocity;
         void Awake()
         {
-            fish = transform.parent.gameObject.GetComponent<FishScripts.CommonFish>();
-           
             //AheadofRod = Fish.FishScripts.CommonFish.FishingHook.obj.transform.parent.gameObject;
             moveDirection = DecideDirection();
+
+            float[] dirXRnd = { 1f, -1f };
+            float dirX = dirXRnd[Random.Range(0, 2)];
+            escapeVelocity = new Vector2(dirX, 0) / 8f;
         }
 
         // Update is called once per frame
@@ -50,5 +47,12 @@ namespace Fish
             return a;
         }
 
+        /// <summary>
+        /// 逃走中の処理
+        /// </summary>
+        public void Escape()
+        {
+            transform.position += (Vector3)escapeVelocity;
+        }
     }
 }

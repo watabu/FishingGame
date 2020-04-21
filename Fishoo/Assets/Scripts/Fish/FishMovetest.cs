@@ -36,7 +36,7 @@ namespace Fish
                 timer = Random.Range(20, maxtime);
                 moveDirection = DecideDirection();
             }
-            if (isFishing)
+          /*  if (isFishing)
             {
                 //竿から逃げようとする、釣り糸をたるませないための補正項
                 Vector2 C = transform.position - AheadofRod.transform.position;
@@ -46,7 +46,7 @@ namespace Fish
              //   Fish.FishScripts.CommonFish.GetComponent<Rigidbody2D>().AddForce(force);
 
 
-            }
+            }*/
         }
     }
 }

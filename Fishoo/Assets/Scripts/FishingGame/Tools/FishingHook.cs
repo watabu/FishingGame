@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Threading.Tasks;
+using Fish.FishScripts;
 
 namespace FishingGame.Tools
 {
     //釣り針
-    public class FishingHook : FishingTool
+    public class FishingHook : MonoBehaviour, FishingTool
     {
         [SerializeField]
         public FishingGame.FishingGameMgr fishingGameMgr;//publicこわい
@@ -36,6 +37,8 @@ namespace FishingGame.Tools
         /// </summary>
         Rigidbody2D rg2d;
 
+        CommonFish m_currentFish;
+
         private void Awake()
         {
             if (myUpdate == null)
@@ -48,6 +51,9 @@ namespace FishingGame.Tools
         }
 
 
+        public void SetTarget(CommonFish fish) { m_currentFish = fish; }
+        public bool CanBite() { return m_currentFish == null; }
+        public void FinishBite() { m_currentFish = null; }
 
 
         /// <summary>
@@ -121,5 +127,12 @@ namespace FishingGame.Tools
 
         }
 
+        public void PullToLeft()
+        {
+        }
+
+        public void PullToRight()
+        {
+        }
     }
 }

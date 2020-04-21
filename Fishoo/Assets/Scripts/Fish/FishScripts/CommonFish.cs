@@ -20,7 +20,7 @@ namespace Fish.FishScripts
         Caught//釣りに成功して捕まった
     }
 
-
+    [RequireComponent(typeof(Damageable))]
     public class CommonFish : MonoBehaviour
     {
         public FishData fishData;
@@ -28,22 +28,21 @@ namespace Fish.FishScripts
 
         public float moveSpeed=0.05f;
 
-        [Header("Object References")]
-        public FishMove fishMove;
+        /// <summary>
+        /// 魚が湧いてから経った時間
+        /// </summary>
+        [ReadOnly]
+        public float m_livingTime;
 
-        [Tooltip("現在体力")]
-        public float hp;
-
-        [SerializeField,　Tooltip("魚がエサを狙っているかなどの状態")]
+        [SerializeField, Tooltip("魚がエサを狙っているかなどの状態"), ReadOnly]
         private FishState _state;
-
         /// <summary>
         /// 魚の状態(読み取り専用)
         /// </summary>
-        public FishState state { get { return _state; }  }
+        public FishState state { get { return _state; } }
 
-        [Tooltip("逃げる方向")]
-        public Vector2 escapeDir;
+        [Header("Object References")]
+        public FishMove fishMove;
 
         /// <summary>
         /// 体力が尽きたか
@@ -59,10 +58,6 @@ namespace Fish.FishScripts
         public Slider HPbar;
 
         /// <summary>
-        /// 魚が湧いてから経った時間
-        /// </summary>
-        public float m_livingTime;
-        /// <summary>
         /// 自由に動くときの中心座標
         /// </summary>
         Vector3 neutralPos;
@@ -70,41 +65,37 @@ namespace Fish.FishScripts
         /// <summary>
         /// 一時的に実行したい関数を入れる
         /// </summary>
-        UnityEvent myUpdate;
+        UnityEvent myUpdate = new UnityEvent();
         //public delegate void myUpdate();
 
+        Damageable m_damageable;
 
         static private FishingGame.Tools.FishingHook m_fishingHook;
-        static public  FishingGame.Tools.FishingHook FishingHook
-        {
-            get
-            {
-                return m_fishingHook;
-            }
-        }
 
         private void Awake()
         {
             neutralPos = transform.position;
-            hp = fishMoveData.status.hpMax;
-            if (myUpdate== null)
-                myUpdate = new UnityEvent();
-            if(sprite == null)
+            HPbar.maxValue = fishMoveData.status.hpMax;
+            if (sprite == null)
             {
                 //画像が指定されていなければ子供のオブジェクトから画像を得る
                 sprite = transform.GetComponentInChildren<SpriteRenderer>();
             }
-            HPbar.maxValue = hp;
-
-            //釣り針の取得
-            if (m_fishingHook == null)
-                m_fishingHook = GameObject.FindGameObjectWithTag("Hook").GetComponent<FishingGame.Tools.FishingHook>();
-
-            //魚をフェードインする
-            Color color = sprite.color;
-            color.a = 0;
-            sprite.color = color;
             SetAppear();
+            m_damageable = GetComponent<Damageable>();
+            m_damageable.Initialize(fishMoveData.status.hpMax, fishMoveData.status.hpMax, fishMoveData.status.hpRegene);
+            m_damageable.AddHPChanged((hp) =>
+            {
+                HPbar.value = hp;
+            });
+            m_damageable.AddDead(() =>
+            {
+                SetDisAppear();
+            });
+        }
+        private void Start()
+        {
+            m_fishingHook = FishingGame.FishingGameMgr.FishingHook;
         }
 
         // Update is called once per frame
@@ -112,18 +103,14 @@ namespace Fish.FishScripts
         {
             //一時的に行う関数などを行う
             myUpdate.Invoke();
-            //回復する
-            Regene();
 
-            //寿命が尽きたら消える            
-            if (m_livingTime > fishMoveData.lifeTime && state == FishState.Nomal)
-            {
-                SetDisAppear();
-            }
             switch (state)
             {
                 //通常
                 case FishState.Nomal:
+                    //寿命が尽きたら消える            
+                    if (m_livingTime > fishMoveData.lifeTime)
+                        SetDisAppear();
                     MoveFree();
                     break;
                 //エサを狙っている
@@ -136,7 +123,7 @@ namespace Fish.FishScripts
                     break;
                 //釣りに失敗したら逃げる
                 case FishState.Escaping:
-                    Escape();
+                    fishMove.Escape();
                     break;
                 //捕まった
                 case FishState.Caught:
@@ -155,47 +142,21 @@ namespace Fish.FishScripts
         public void SetAppear()
         {
             Debug.Log("魚が現れた");
-            myUpdate.AddListener(Appear);
             HPbar.gameObject.SetActive(false);
             _state = FishState.Nomal;
-        }
-        void Appear()
-        {
-            float speed = 0.004f;
-            Color color = sprite.color;
-            color.a += speed;
-            sprite.color = color;
-            if (sprite.color.a >= 0.99f)
-            {
-                color.a = 1.0f;
-                sprite.color = color;
-                myUpdate.RemoveListener(Appear);
-            }
+            ColorFader.Instance.StartFade(sprite, true, 0.5f);
         }
 
-        
         /// <summary>
         /// 魚が消える時に最初に行う処理
         /// </summary>
         public void SetDisAppear()
         {
             Debug.Log("魚は寿命をまっとうした。");
-            myUpdate.AddListener(DisAppear);
-        }
-        void DisAppear()
-        {
-            float speed = 0.001f;
-            Color color = sprite.color;
-            color.a -= speed;
-            sprite.color = color;
-            if (sprite.color.a <= 0.01f)
-            {
-                myUpdate.RemoveListener(DisAppear);
-                gameObject.SetActive(false);
-            }
+            m_fishingHook.FinishBite();
+            ColorFader.Instance.StartFade(sprite, false, 0.5f, () => gameObject.SetActive(false));
         }
 
-       
         /// <summary>
         /// 自由に動く時の速さ(半径)
         /// </summary>
@@ -206,9 +167,8 @@ namespace Fish.FishScripts
         /// </summary>
         void MoveFree()
         {
-            float x = neutralPos.x + speed * Mathf.Sin(Time.time);
-            transform.position = new Vector3(x, neutralPos.y, neutralPos.z);
-
+            float x = speed * Mathf.Sin(Time.time);
+            transform.position = neutralPos + new Vector3(x, 0f, 0f);
         }
 
         /// <summary>
@@ -216,9 +176,16 @@ namespace Fish.FishScripts
         /// </summary>
         public void SetApproaching()
         {
-            Debug.Log("魚がエサを狙っている");
-            _state = FishState.Approaching;
-
+            if (m_fishingHook.CanBite())
+            {
+                Debug.Log("魚がエサを狙っている");
+                _state = FishState.Approaching;
+                m_fishingHook.SetTarget(this);
+            }
+            else
+            {
+                Debug.Log("すでに他の魚が狙っている");
+            }
         }
 
         //非同期処理を一回だけ行うための変数
@@ -230,23 +197,19 @@ namespace Fish.FishScripts
         /// </summary>
         async void ApproachHook()
         {
-            if (!isDone)
-            {
-                MoveToHook();
-            }
+            if (isDone) return;
+
+            MoveToHook();
             //十分近づいたら針をつんつんする
-            if (IsNearHook() && !isDone)
+            if (IsNearHook())
             {
                 isDone = true;
                 //座標を釣り針中心にする
-                transform.parent = FishingHook.transform;
+                transform.parent = m_fishingHook.transform;
 
                 //浮きを沈める力と時間のリスト
-                List<Vector2> approachList = new List<Vector2> { new Vector2(4, 200), new Vector2(6, 150) };
-                //approachList.Add(new Vector2(3, 300));
-                //approachList.Add(new Vector2(5, 150));
-                //                approachList.Add(new Vector2(40, 80));
-            
+                List<Vector2> approachList = new List<Vector2> { new Vector2(4, 200), new Vector2(6, 150) /*,new Vector2(3, 300),new Vector2(5, 150),new Vector2(40, 80)*/ };
+
                 float force;
                 int time;
                 //アプローチリストに従って浮きをつんつんする
@@ -259,25 +222,22 @@ namespace Fish.FishScripts
                         MoveToHook();
                         await Task.Delay(10);
                     }
-                    FishingHook.PullDown(force, time);
+                    m_fishingHook.PullDown(force, time);
                     await Task.Delay(time);
                     LeaveFromHook();
                     await Task.Delay(Random.Range(time * 10, time * 30));
                 }
-
-
                 time = 80;
                 while (!IsNearHook())
                 {
                     MoveToHook();
                     await Task.Delay(10);
                 }
-                FishingHook.PullDown(40, time);
+                m_fishingHook.PullDown(40, time);
 
                 //食いついたときになにかを入力して釣りゲームへ移行する
                 SetBiting();
             }
-         
         }
 
         /// <summary>
@@ -285,7 +245,7 @@ namespace Fish.FishScripts
         /// </summary>
         void MoveToHook()
         {
-            transform.position = Vector3.MoveTowards(transform.position, FishingHook.transform.position, moveSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, m_fishingHook.transform.position, moveSpeed);
         }
 
         /// <summary>
@@ -294,7 +254,7 @@ namespace Fish.FishScripts
         Vector3 LeavePoint;
         void LeaveFromHook()
         {
-            LeavePoint = FishingHook.transform.position;
+            LeavePoint = m_fishingHook.transform.position;
             LeavePoint.x += 0.5f;
             myUpdate.AddListener(_LeaveFromHook);
         }
@@ -309,7 +269,7 @@ namespace Fish.FishScripts
         public bool IsNearHook()
         {
             float distance = 0.001f;
-            return (FishingHook.transform.position - transform.position).sqrMagnitude < distance;
+            return (m_fishingHook.transform.position - transform.position).sqrMagnitude < distance;
         }
 
 
@@ -324,9 +284,7 @@ namespace Fish.FishScripts
             HPbar.gameObject.SetActive(true);
 
             ////釣りゲーム開始
-            m_fishingHook.fishingGameMgr.targetFish = this;
-            m_fishingHook.fishingGameMgr.StartFishing();
-            FishingHook.OnBiteHook();
+            m_fishingHook.fishingGameMgr.StartFishing(this);
         }
 
         /// <summary>
@@ -337,20 +295,15 @@ namespace Fish.FishScripts
             if (IsDead)
             {
                 SetCaught();
-
             }
-
         }
         
         public void SetCaught()
         {
-
             HPbar.gameObject.SetActive(false);
             Debug.Log("魚を捕まえた!");
             _state = FishState.Caught;
-
             m_fishingHook.fishingGameMgr.FishingSucceeded();
-
         }
 
         /// <summary>
@@ -362,51 +315,12 @@ namespace Fish.FishScripts
             Debug.Log("魚は逃げ出した");
             transform.parent = null;
             _state = FishState.Escaping;
-            float[] dirXRnd = { 1f, -1f };
-            float dirX = dirXRnd[Random.Range(0, 2)];
-            dirX /= 8;
-            escapeDir = new Vector2(dirX, 0);
+            m_fishingHook.fishingGameMgr.FishingFailed();
         }
-
-        /// <summary>
-        /// 逃走中の処理
-        /// </summary>
-        void Escape()
-        {
-            transform.position += new Vector3(escapeDir.x, escapeDir.y, 0);
-        }
-
-        // 釣りゲーム中
-
-
-        /// <summary>
-        /// ダメージを食らう
-        /// </summary>
-        /// <param name="damage"></param>
         public void Damaged(float damage)
         {
-            if (IsDead) return;
-            hp -= damage;
-            HPbar.value = hp;
-            if (hp < 0)
-            {
-                hp = 0;
-                IsDead = true;
-            }
+            m_damageable.TakeDamage(damage);
         }
-
-        /// <summary>
-        /// 体力を回復
-        /// </summary>
-        void Regene()
-        {
-            if (IsDead) return;
-            hp += fishMoveData.status.hpRegene*Time.deltaTime;
-            hp = Mathf.Clamp(hp, 0f, fishMoveData.status.hpMax);
-            HPbar.value = hp;
-        }
-
-
 
     }
 }
