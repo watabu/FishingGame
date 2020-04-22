@@ -22,7 +22,7 @@ namespace Environment
         /// <summary>
         /// 現在の時刻
         /// </summary>
-        int m_currentTime;
+        [SerializeField, ReadOnly]int m_currentTime;
         public int CurrentTime
         {
             get { return m_currentTime; }

@@ -7,12 +7,47 @@ namespace FishingGame.Tools
     //釣り竿
     public class FishingRod : MonoBehaviour, FishingTool
     {
-    //釣り竿を回転する軸
+ 
+    /// <summary>
+    /// 釣り竿を回転する軸
+    /// </summary>
         public GameObject shaft;
-        //釣り竿の画像
+        /// <summary>
+        /// 釣り竿の画像
+        /// </summary>
         public SpriteRenderer sprite;
+
+        [SerializeField]
+        Animation throwRodAnimation;
+
+
         float MaxAngle_Left = 55;
         float MaxAngle_Right = -35;
+
+
+        /// <summary>
+        /// 釣り具を展開する
+        /// </summary>
+        public void ExpandTools()
+        {
+            throwRodAnimation.Play();
+
+
+        }
+
+        /// <summary>
+        /// 釣りが終わり釣り具を収納する
+        /// </summary>
+        public void RetrieveTools() {
+
+
+        }
+       public  void SetInvisible()
+        {
+            var color = sprite.color;
+            color.a = 0;
+            sprite.color = color;
+        }
 
         public void PullToLeft()
         {

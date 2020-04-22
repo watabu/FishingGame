@@ -44,12 +44,7 @@ namespace Fish.FishScripts
         [Header("Object References")]
         public FishMove fishMove;
 
-        /// <summary>
-        /// 体力が尽きたか
-        /// </summary>
-        public bool IsDead { get { return m_isDead; } private set { m_isDead = value; } }
-
-        private bool m_isDead=false;
+        
 
         [Tooltip("魚の画像")]
         public SpriteRenderer sprite;
@@ -90,7 +85,9 @@ namespace Fish.FishScripts
             });
             m_damageable.AddDead(() =>
             {
-                SetDisAppear();
+                //釣られたときの処理
+                //SetDisAppear();
+                SetCaught();
             });
         }
         private void Start()
@@ -227,7 +224,7 @@ namespace Fish.FishScripts
                     LeaveFromHook();
                     await Task.Delay(Random.Range(time * 10, time * 30));
                 }
-                time = 80;
+                time = 50;
                 while (!IsNearHook())
                 {
                     MoveToHook();
@@ -292,10 +289,7 @@ namespace Fish.FishScripts
         /// </summary>
         void Bite()
         {
-            if (IsDead)
-            {
-                SetCaught();
-            }
+
         }
         
         public void SetCaught()

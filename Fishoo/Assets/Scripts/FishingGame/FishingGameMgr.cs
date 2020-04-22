@@ -19,6 +19,18 @@ namespace FishingGame
             }
         }
 
+        static private FishingToolMgr m_fishingToolMgr;
+        static public FishingToolMgr fishingToolMgr
+        {
+            get
+            {
+                //釣り針の取得
+                if (m_fishingToolMgr == null)
+                    m_fishingToolMgr = Transform.FindObjectOfType<FishingToolMgr>();
+                return m_fishingToolMgr;
+            }
+        }
+
         [Header("References")]
         [SerializeField] private Fish.FishGenerator fishGenerator;
         [SerializeField] private CommandGenerator commandGenerator;
@@ -35,6 +47,7 @@ namespace FishingGame
         }
         [ReadOnly]
         public bool canAttack = false;
+        
 
 
         [Header("When Fishing starts"), SerializeField, Tooltip("釣りゲームが始まったときに呼び出す関数")]
@@ -47,13 +60,26 @@ namespace FishingGame
         [Header("When Fishing fails "), SerializeField,Tooltip("釣りが失敗したときに呼び出す関数")]
         UnityEvent WhenFishingFailed;
 
-
-        bool isFishing = false;
+        
+        /// <summary>
+        /// 釣りゲーム中(コマンドバトル)しているか
+        /// </summary>
+        public bool isFishing { get { return m_isFishing; } }
+        bool m_isFishing = false;
 
         /// <summary>
         /// 攻撃の間隔をあけるためのタイマー
         /// </summary>
         int attackTimer=0;
+
+        /// <summary>
+        /// 魚が針を狙い始めた
+        /// </summary>
+        public void StartApproaching()
+        {
+            
+        }
+
 
         /// <summary>
         /// 釣りゲームが始まったときに呼び出す関数
@@ -69,7 +95,7 @@ namespace FishingGame
             WhenFishingStart.Invoke();
             m_targetFish = target;
 
-            isFishing = true;
+            m_isFishing = true;
             canAttack = true;
             attackTimer = attackTimeMin *3 /4;
 
@@ -93,7 +119,8 @@ namespace FishingGame
         public void FishingSucceeded()
         {
             WhenFishingSucceeded.Invoke();
-            isFishing = false;
+            m_isFishing = false;
+
         }
 
         /// <summary>
@@ -102,7 +129,7 @@ namespace FishingGame
         public void FishingFailed()
         {
             WhenFishingFailed.Invoke();
-            isFishing = false;
+            m_isFishing = false;
         }
 
         new private void Awake()

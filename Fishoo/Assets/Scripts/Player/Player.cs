@@ -6,7 +6,6 @@ namespace Player
 {
     public class Player : MonoBehaviour
     {
-
         public enum State
         {
              None,
@@ -14,21 +13,34 @@ namespace Player
              ThrowRod,
 
         }
+
+        FishingGame.FishingToolMgr fishingToolMgr;
+
+
         State m_state = State.None;
+        /// <summary>
+        /// 移動可能か
+        /// </summary>
+        [ReadOnly]bool canMove = true;
+
         // Start is called before the first frame update
         void Start()
         {
             m_state = State.Normal;
+            fishingToolMgr = FishingGame.FishingGameMgr.fishingToolMgr;
         }
 
         // Update is called once per frame
         void Update()
         {
+
             InputUpdate();
         }
 
         void InputUpdate()
         {
+            if (!canMove) return;
+
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 transform.position += new Vector3(-1f, 0f, 0f) * Time.deltaTime;
@@ -53,9 +65,10 @@ namespace Player
         /// <summary>
         /// 釣り竿を振り海に糸を垂らす
         /// </summary>
-        void ThrowRod()
+        public void ThrowRod()
         {
-
+            fishingToolMgr.ExpandTools();
+            canMove = false;
         }
 
         /// <summary>
@@ -63,7 +76,9 @@ namespace Player
         /// </summary>
         void RetrieveRod()
         {
-
+            fishingToolMgr.RetrieveTools();
+            //遅延を持たせたい
+            canMove = false;
         }
 
     }

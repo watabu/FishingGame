@@ -378,6 +378,16 @@ PrefabInstance:
       propertyPath: fishingHook
       value: 
       objectReference: {fileID: 1998751517899797842}
+    - target: {fileID: 8288859540231502201, guid: f107d1fffe224fe49ad416683ac2d105,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8288859540231502201, guid: f107d1fffe224fe49ad416683ac2d105,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1199823733860569568, guid: f107d1fffe224fe49ad416683ac2d105, type: 3}
     - {fileID: 3750161942586733589, guid: f107d1fffe224fe49ad416683ac2d105, type: 3}
@@ -401,10 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}
-  isFishing: 0
-  escapeDirection: {x: 0, y: 0}
-  fish: {fileID: 0}
-  m_rigidbody: {fileID: 0}
+  moveDirection: {x: 0, y: 0}
   maxtime: 100
   power: 400
 --- !u!1 &517857002
@@ -605,10 +612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}
-  isFishing: 0
-  escapeDirection: {x: 0, y: 0}
-  fish: {fileID: 0}
-  m_rigidbody: {fileID: 0}
+  moveDirection: {x: 0, y: 0}
   maxtime: 100
   power: 400
 --- !u!1 &884915192
@@ -3037,8 +3041,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb147071316ee84e8c7998e3a42aac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 1998751516376128393}
-  force: 8
 --- !u!212 &1998751517899797843
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3586,8 +3588,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb147071316ee84e8c7998e3a42aac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 6444745393993032357}
-  force: 8
 --- !u!212 &6444745393403448447
 SpriteRenderer:
   m_ObjectHideFlags: 0

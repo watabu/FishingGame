@@ -16,6 +16,8 @@ namespace FishingGame.Tools
         [SerializeField] GameObject biteHookEffect;
         [SerializeField] Transform effectParent;
 
+        public SpriteRenderer sprite;
+
         [Tooltip("釣り針を引っ張る力の大きさ")]
         public float force = 1;
 
@@ -54,6 +56,30 @@ namespace FishingGame.Tools
         public void SetTarget(CommonFish fish) { m_currentFish = fish; }
         public bool CanBite() { return m_currentFish == null; }
         public void FinishBite() { m_currentFish = null; }
+
+        /// <summary>
+        /// 釣り具を展開する
+        /// </summary>
+        public void ExpandTools()
+        {
+
+
+        }
+
+        /// <summary>
+        /// 釣りが終わり釣り具を収納する
+        /// </summary>
+        public void RetrieveTools()
+        {
+
+
+        }
+        public void SetInvisible()
+        {
+            var color = sprite.color;
+            color.a = 0;
+            sprite.color = color;
+        }
 
 
         /// <summary>

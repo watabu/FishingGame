@@ -16,8 +16,13 @@ public class Damageable : MonoBehaviour
     [SerializeField, Tooltip("秒間ごとの回復量"), ReadOnly]
     float m_HPRegene;
 
-    bool isDead = false;
+    /// <summary>
+    /// 体力が尽きたか
+    /// </summary>
+    public bool IsDead { get { return m_isDead; } private set { m_isDead = value; } }
 
+    private bool m_isDead = false;
+    
     [System.Serializable]
     public class DamageableEvent : UnityEvent<float> { }
     DamageableEvent m_OnHPChanged = new DamageableEvent();
@@ -46,13 +51,13 @@ public class Damageable : MonoBehaviour
 
     private void Update()
     {
-        if (isDead) return;
+        if (m_isDead) return;
         Regene();
     }
 
     void Regene()
     {
-        if (isDead) return;
+        if (m_isDead) return;
         m_HP += m_HPRegene * Time.deltaTime;
         m_HP = Mathf.Clamp(m_HP, 0f, m_MaxHP);
         m_OnHPChanged.Invoke(m_HP);
@@ -64,12 +69,12 @@ public class Damageable : MonoBehaviour
     /// <param name="damage"></param>
     public void TakeDamage(float damage)
     {
-        if (isDead) return;
+        if (m_isDead) return;
         m_HP -= damage;
         if (m_HP < 0f)
         {
             m_HP = 0f;
-            isDead = true;
+            m_isDead = true;
             m_OnDead.Invoke();
         }
         m_OnHPChanged.Invoke(m_HP);
