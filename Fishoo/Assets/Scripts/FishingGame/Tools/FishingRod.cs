@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,7 +25,9 @@ namespace FishingGame.Tools
         [SerializeField] AnimationClip retrieveRodClip;
 
 
+
         Animation throwRodAnimation;
+
 
 
         float MaxAngle_Left = 55;
@@ -37,8 +39,10 @@ namespace FishingGame.Tools
         /// </summary>
         public void ExpandTools()
         {
+
             throwRodAnimation.clip = throwRodClip;
             throwRodAnimation.Play();
+
         }
 
         /// <summary>
@@ -48,6 +52,7 @@ namespace FishingGame.Tools
             throwRodAnimation.clip = retrieveRodClip;
             throwRodAnimation.Play();
         }
+        
        public  void SetInvisible()
         {
             var color = sprite.color;

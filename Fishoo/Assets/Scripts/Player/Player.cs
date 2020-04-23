@@ -15,12 +15,14 @@ namespace Player
         }
 
         FishingGame.FishingToolMgr fishingToolMgr;
+
         [Header("Key config")]
         [SerializeField] KeyCode throwRod=KeyCode.A;
 
-        State m_state = State.None;
-
         [Header("Debug")]
+        public float speed=1;
+        [SerializeField,ReadOnly]State m_state = State.None;
+
         /// <summary>
         /// 移動可能か
         /// </summary>
@@ -42,8 +44,8 @@ namespace Player
 
       public  void InputUpdate()
         {
-            if (!canMove) return;
-            Move(InputSystem.Instance.GetInputArrow());
+        if (!canMove) return;
+        Move(InputSystem.Instance.GetInputArrow());
             if (Input.GetKeyDown(throwRod))
             {
                 if (m_state == State.Normal)
@@ -54,6 +56,7 @@ namespace Player
                     RetrieveRod();
                 }
             }
+
             
         }
 
@@ -68,6 +71,7 @@ namespace Player
         /// </summary>
         public void ThrowRod()
         {
+            m_state = State.ThrowRod;
             fishingToolMgr.ExpandTools();
             canMove = false;
         }
@@ -77,9 +81,10 @@ namespace Player
         /// </summary>
         void RetrieveRod()
         {
+            m_state = State.Normal;
             fishingToolMgr.RetrieveTools();
             //遅延を持たせたい
-            canMove = false;
+            canMove = true;
         }
 
     }

@@ -207,13 +207,14 @@ namespace Fish.FishScripts
                     LeaveFromHook();
                     await Task.Delay(Random.Range(time * 10, time * 30));
                 }
+
                 time = 50;
                 while (!IsNearHook())
                 {
                     MoveToHook();
                     await Task.Delay(10);
                 }
-                m_fishingHook.PullDown(40, time);
+                m_fishingHook.PullDown(50, time);
 
                 //食いついたときになにかを入力して釣りゲームへ移行する
                 SetBiting();
