@@ -19,6 +19,15 @@ namespace Fish
         //釣り竿の先端
         protected GameObject AheadofRod;
 
+        /// <summary>
+        /// 自由に動くときの中心座標
+        /// </summary>
+        Vector3 neutralPos;
+        /// <summary>
+        /// 自由に動く時の速さ(半径)
+        /// </summary>
+        float speed = 2;
+
         Vector2 escapeVelocity;
         void Awake()
         {
@@ -28,6 +37,7 @@ namespace Fish
             float[] dirXRnd = { 1f, -1f };
             float dirX = dirXRnd[Random.Range(0, 2)];
             escapeVelocity = new Vector2(dirX, 0) / 8f;
+            neutralPos = transform.position;
         }
 
         // Update is called once per frame
@@ -45,6 +55,16 @@ namespace Fish
             a.x *= (Random.value > 0.5f ? 1 : -1);
             a.y = Random.Range(-1.0f, -0.3f);
             return a;
+        }
+
+
+        /// <summary>
+        /// とくに目的を持たず自由に動く
+        /// </summary>
+        public void MoveFree()
+        {
+            float x = speed * Mathf.Sin(Time.time);
+            transform.position = neutralPos + new Vector3(x, 0f, 0f);
         }
 
         /// <summary>
