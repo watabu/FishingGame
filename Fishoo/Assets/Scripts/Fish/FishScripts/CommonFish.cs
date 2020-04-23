@@ -52,10 +52,6 @@ namespace Fish.FishScripts
         [Tooltip("体力バー")]
         public Slider HPbar;
 
-        /// <summary>
-        /// 自由に動くときの中心座標
-        /// </summary>
-        Vector3 neutralPos;
 
         /// <summary>
         /// 一時的に実行したい関数を入れる
@@ -69,7 +65,6 @@ namespace Fish.FishScripts
 
         private void Awake()
         {
-            neutralPos = transform.position;
             HPbar.maxValue = fishMoveData.status.hpMax;
             if (sprite == null)
             {
@@ -108,7 +103,7 @@ namespace Fish.FishScripts
                     //寿命が尽きたら消える            
                     if (m_livingTime > fishMoveData.lifeTime)
                         SetDisAppear();
-                    MoveFree();
+                    fishMove.MoveFree();
                     break;
                 //エサを狙っている
                 case FishState.Approaching:
@@ -154,19 +149,7 @@ namespace Fish.FishScripts
             ColorFader.Instance.StartFade(sprite, false, 0.5f, () => gameObject.SetActive(false));
         }
 
-        /// <summary>
-        /// 自由に動く時の速さ(半径)
-        /// </summary>
-        float speed = 2;
 
-        /// <summary>
-        /// とくに目的を持たず自由に動く
-        /// </summary>
-        void MoveFree()
-        {
-            float x = speed * Mathf.Sin(Time.time);
-            transform.position = neutralPos + new Vector3(x, 0f, 0f);
-        }
 
         /// <summary>
         /// 釣り針を狙うときに行う最初の処理

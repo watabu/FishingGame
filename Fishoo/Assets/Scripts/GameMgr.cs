@@ -11,6 +11,8 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     [SerializeField] private Player.InputSystem inputSystem;
     [SerializeField] private GameObject pauseUI;
 
+    List<IInputUpdatable> m_inputObjects=new List<IInputUpdatable>();
+
     bool m_IsPauseActive = false;
 
     // Start is called before the first frame update
@@ -30,6 +32,12 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
             else
                 OpenPauseUI();
         }
+        //ポーズ中はプレイヤーを動かしたりしない
+        if (!m_IsPauseActive)
+        {
+            foreach (var i in m_inputObjects)
+                i.InputUpdate();
+        }
     }
 
     public void OpenPauseUI()
@@ -42,5 +50,6 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         pauseUI.SetActive(false);
         m_IsPauseActive = false;
     }
-
+    public void AddInputUpdatable(IInputUpdatable obj) { m_inputObjects.Add(obj); }
+    public void RemoveInputUpdatable(IInputUpdatable obj) { m_inputObjects.Remove(obj); }
 }

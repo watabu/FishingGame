@@ -1,10 +1,13 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace FishingGame.Tools
 {
-    //釣り竿
+    [RequireComponent(typeof(Animation))]
+    /// <summary>
+    /// 釣り竿の動作を制御するクラス
+    /// </summary>
     public class FishingRod : MonoBehaviour, FishingTool
     {
  
@@ -16,10 +19,17 @@ namespace FishingGame.Tools
         /// 釣り竿の画像
         /// </summary>
         public SpriteRenderer sprite;
+        
+        [Header("Animations")]
+        [SerializeField] AnimationClip throwRodClip;
+        [SerializeField] AnimationClip retrieveRodClip;
 
-        [SerializeField] Animation RodAnimation;
-        [SerializeField] AnimationClip ThrowRodClip;
-        [SerializeField] AnimationClip RetriveRodClip;
+
+
+        Animation throwRodAnimation;
+
+
+
         float MaxAngle_Left = 55;
         float MaxAngle_Right = -35;
 
@@ -29,19 +39,20 @@ namespace FishingGame.Tools
         /// </summary>
         public void ExpandTools()
         {
-            RodAnimation.clip = ThrowRodClip;
-            RodAnimation.Play();
+
+            throwRodAnimation.clip = throwRodClip;
+            throwRodAnimation.Play();
+
         }
 
         /// <summary>
         /// 釣りが終わり釣り具を収納する
         /// </summary>
-        public void RetrieveTools()
-        {
-            RodAnimation.clip = RetriveRodClip;
-            RodAnimation.Play();
-
+        public void RetrieveTools() {
+            throwRodAnimation.clip = retrieveRodClip;
+            throwRodAnimation.Play();
         }
+        
        public  void SetInvisible()
         {
             var color = sprite.color;
@@ -70,7 +81,7 @@ namespace FishingGame.Tools
         // Start is called before the first frame update
         void Start()
         {
-
+            throwRodAnimation = GetComponent<Animation>();
         }
 
         // Update is called once per frame
