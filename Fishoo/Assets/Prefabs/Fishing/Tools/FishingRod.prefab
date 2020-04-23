@@ -51,6 +51,7 @@ MonoBehaviour:
   biteHookEffect: {fileID: 7921545891124407941, guid: b13b7b028ba934c47889529647bbd3aa,
     type: 3}
   effectParent: {fileID: 0}
+  sprite: {fileID: 0}
   force: 3
   _time: 10
   obj: {fileID: 5072582633628663535}
@@ -263,6 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eeb0a5239ba1ac4dbb9760a80dd8a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
 --- !u!50 &5072582634666495144
 Rigidbody2D:
   serializedVersion: 4
@@ -513,6 +515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5072582634750292714}
   - component: {fileID: 5072582634750292712}
+  - component: {fileID: 4641387994318323622}
   m_Layer: 0
   m_Name: FishingRod
   m_TagString: FishingTool
@@ -550,6 +553,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shaft: {fileID: 5072582634350938805}
   sprite: {fileID: 5072582634451358808}
+  throwRodClip: {fileID: 7400000, guid: d663cea6f329b2440bef907d3b763553, type: 2}
+  retrieveRodClip: {fileID: 0}
+--- !u!111 &4641387994318323622
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5072582634750292715}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: d663cea6f329b2440bef907d3b763553, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &5072582635312699428
 GameObject:
   m_ObjectHideFlags: 0

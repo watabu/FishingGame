@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IInputUpdatable
     {
         public enum State
         {
@@ -15,17 +15,21 @@ namespace Player
         }
 
         FishingGame.FishingToolMgr fishingToolMgr;
-
+        [Header("Key config")]
+        [SerializeField] KeyCode throwRod=KeyCode.A;
 
         State m_state = State.None;
+
+        [Header("Debug")]
         /// <summary>
         /// 移動可能か
         /// </summary>
-        [ReadOnly]bool canMove = true;
+        [SerializeField,ReadOnly]bool canMove = true;
 
         // Start is called before the first frame update
         void Start()
         {
+            GameMgr.Instance.AddInputUpdatable(this);
             m_state = State.Normal;
             fishingToolMgr = FishingGame.FishingGameMgr.fishingToolMgr;
         }
@@ -34,22 +38,13 @@ namespace Player
         void Update()
         {
 
-            InputUpdate();
         }
 
-        void InputUpdate()
+      public  void InputUpdate()
         {
             if (!canMove) return;
-
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                transform.position += new Vector3(-1f, 0f, 0f) * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                transform.position += new Vector3(1f, 0f, 0f) * Time.deltaTime;
-            }
-            if (Input.GetKeyDown(KeyCode.A))
+            Move(InputSystem.Instance.GetInputArrow());
+            if (Input.GetKeyDown(throwRod))
             {
                 if (m_state == State.Normal)
                 {
@@ -60,6 +55,12 @@ namespace Player
                 }
             }
             
+        }
+
+        public void Move(Vector2 velocity)
+        {
+            velocity.y = 0;
+            transform.position += (Vector3)velocity * Time.deltaTime;
         }
 
         /// <summary>
