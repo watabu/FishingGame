@@ -29,7 +29,10 @@ namespace FishingGame
         /// </summary>
         public void RetrieveTools()
         {
-
+            foreach (var tool in tools)
+            {
+                tool.RetrieveTools();
+            }
 
         }
 

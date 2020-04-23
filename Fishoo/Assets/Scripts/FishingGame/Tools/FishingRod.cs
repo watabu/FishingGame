@@ -17,10 +17,9 @@ namespace FishingGame.Tools
         /// </summary>
         public SpriteRenderer sprite;
 
-        [SerializeField]
-        Animation throwRodAnimation;
-
-
+        [SerializeField] Animation RodAnimation;
+        [SerializeField] AnimationClip ThrowRodClip;
+        [SerializeField] AnimationClip RetriveRodClip;
         float MaxAngle_Left = 55;
         float MaxAngle_Right = -35;
 
@@ -30,16 +29,17 @@ namespace FishingGame.Tools
         /// </summary>
         public void ExpandTools()
         {
-            throwRodAnimation.Play();
-
-
+            RodAnimation.clip = ThrowRodClip;
+            RodAnimation.Play();
         }
 
         /// <summary>
         /// 釣りが終わり釣り具を収納する
         /// </summary>
-        public void RetrieveTools() {
-
+        public void RetrieveTools()
+        {
+            RodAnimation.clip = RetriveRodClip;
+            RodAnimation.Play();
 
         }
        public  void SetInvisible()

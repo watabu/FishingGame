@@ -16,8 +16,9 @@ namespace Player
 
         FishingGame.FishingToolMgr fishingToolMgr;
 
+        public float speed=1;
 
-        State m_state = State.None;
+        [SerializeField,ReadOnly]State m_state = State.None;
         /// <summary>
         /// 移動可能か
         /// </summary>
@@ -39,26 +40,29 @@ namespace Player
 
         void InputUpdate()
         {
-            if (!canMove) return;
-
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                transform.position += new Vector3(-1f, 0f, 0f) * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                transform.position += new Vector3(1f, 0f, 0f) * Time.deltaTime;
-            }
             if (Input.GetKeyDown(KeyCode.A))
             {
                 if (m_state == State.Normal)
                 {
                     ThrowRod();
-                }else if (m_state == State.ThrowRod)
+
+                }
+                else if (m_state == State.ThrowRod)
                 {
                     RetrieveRod();
                 }
             }
+            if (!canMove) return;
+
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                transform.position += new Vector3(-speed, 0f, 0f) * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                transform.position += new Vector3(speed, 0f, 0f) * Time.deltaTime;
+            }
+
             
         }
 
@@ -67,6 +71,7 @@ namespace Player
         /// </summary>
         public void ThrowRod()
         {
+            m_state = State.ThrowRod;
             fishingToolMgr.ExpandTools();
             canMove = false;
         }
@@ -76,9 +81,10 @@ namespace Player
         /// </summary>
         void RetrieveRod()
         {
+            m_state = State.Normal;
             fishingToolMgr.RetrieveTools();
             //遅延を持たせたい
-            canMove = false;
+            canMove = true;
         }
 
     }
