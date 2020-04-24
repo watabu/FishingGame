@@ -8,7 +8,7 @@ namespace FishingGame.Tools
     /// <summary>
     /// 釣浮き
     /// </summary>
-    public class FishingBobber :  MonoBehaviour,FishingTool
+    public class Bobber :  MonoBehaviour,FishingTool
     {
 
         public SpriteRenderer sprite;

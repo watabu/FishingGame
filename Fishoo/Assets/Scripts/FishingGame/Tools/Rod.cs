@@ -8,7 +8,7 @@ namespace FishingGame.Tools
     /// <summary>
     /// 釣り竿の動作を制御するクラス
     /// </summary>
-    public class FishingRod : MonoBehaviour, FishingTool
+    public class Rod : MonoBehaviour, FishingTool
     {
  
     /// <summary>
@@ -49,6 +49,7 @@ namespace FishingGame.Tools
         /// 釣りが終わり釣り具を収納する
         /// </summary>
         public void RetrieveTools() {
+            Debug.Log("Retrive");
             throwRodAnimation.clip = retrieveRodClip;
             throwRodAnimation.Play();
         }

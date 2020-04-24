@@ -10,6 +10,7 @@ namespace Fish
     /// </summary>
     public class FishMove : MonoBehaviour
     {
+        [SerializeField] private Behavior.CommonFish fish;
         [SerializeField] private Fish.FishMoveData data;
 
         [Tooltip("移動方向"),ReadOnly]
@@ -31,7 +32,7 @@ namespace Fish
         Vector2 escapeVelocity;
         void Awake()
         {
-            //AheadofRod = Fish.FishScripts.CommonFish.FishingHook.obj.transform.parent.gameObject;
+            //AheadofRod = Fish.Behavior.CommonFish.Hook.obj.transform.parent.gameObject;
             moveDirection = DecideDirection();
 
             float[] dirXRnd = { 1f, -1f };
@@ -64,7 +65,7 @@ namespace Fish
         public void MoveFree()
         {
             float x = speed * Mathf.Sin(Time.time);
-            transform.position = neutralPos + new Vector3(x, 0f, 0f);
+            fish.gameObject.transform.position = neutralPos + new Vector3(x, 0f, 0f);
         }
 
         /// <summary>

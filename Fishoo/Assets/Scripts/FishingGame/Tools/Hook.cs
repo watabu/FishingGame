@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Threading.Tasks;
-using Fish.FishScripts;
+using Fish.Behavior;
 
 namespace FishingGame.Tools
 {
     //釣り針
-    public class FishingHook : MonoBehaviour, FishingTool
+    public class Hook : MonoBehaviour, FishingTool
     {
         [SerializeField]
         public FishingGame.FishingGameMgr fishingGameMgr;//publicこわい
@@ -54,16 +54,16 @@ namespace FishingGame.Tools
 
 
         public void SetTarget(CommonFish fish) { m_currentFish = fish; }
-        public bool CanBite() { return m_currentFish == null; }
+        public bool CanBite() { return m_currentFish == null && isInWater; }
         public void FinishBite() { m_currentFish = null; }
-
+        bool isInWater = false;
         /// <summary>
         /// 釣り具を展開する
         /// </summary>
-        public void ExpandTools()
+        public async void ExpandTools()
         {
-
-
+            await Task.Delay(2000);
+            isInWater = true;
         }
 
         /// <summary>
@@ -71,9 +71,10 @@ namespace FishingGame.Tools
         /// </summary>
         public void RetrieveTools()
         {
-
-
+            isInWater = false;
         }
+
+
         public void SetInvisible()
         {
             var color = sprite.color;

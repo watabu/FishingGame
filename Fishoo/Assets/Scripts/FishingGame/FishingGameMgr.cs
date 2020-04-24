@@ -7,14 +7,14 @@ namespace FishingGame
 {
     public class FishingGameMgr : SingletonMonoBehaviour<FishingGameMgr>
     {
-        static private FishingGame.Tools.FishingHook m_fishingHook;
-        static public FishingGame.Tools.FishingHook FishingHook
+        static private FishingGame.Tools.Hook m_fishingHook;
+        static public FishingGame.Tools.Hook Hook
         {
             get
             {
                 //釣り針の取得
                 if (m_fishingHook == null)
-                    m_fishingHook = GameObject.FindGameObjectWithTag("Hook").GetComponent<FishingGame.Tools.FishingHook>();
+                    m_fishingHook = GameObject.FindGameObjectWithTag("Hook").GetComponent<FishingGame.Tools.Hook>();
                 return m_fishingHook;
             }
         }
@@ -32,6 +32,7 @@ namespace FishingGame
         }
 
         [Header("References")]
+        [SerializeField] private Player.Player player;
         [SerializeField] private Fish.FishGenerator fishGenerator;
         [SerializeField] private CommandGenerator commandGenerator;
         [SerializeField] private Player.InputSystem input;
@@ -40,8 +41,8 @@ namespace FishingGame
 
         [Tooltip("今狙っている魚"),ReadOnly]
         [SerializeField]
-        private Fish.FishScripts.CommonFish m_targetFish;
-        public Fish.FishScripts.CommonFish TargetFish
+        private Fish.Behavior.CommonFish m_targetFish;
+        public Fish.Behavior.CommonFish TargetFish
         {
             get { return m_targetFish; }
         }
@@ -84,32 +85,20 @@ namespace FishingGame
         /// <summary>
         /// 釣りゲームが始まったときに呼び出す関数
         /// </summary>
-        public void StartFishing(Fish.FishScripts.CommonFish target)
+        public void StartFishing(Fish.Behavior.CommonFish target)
         {
             if (isFishing)
             {
                 Debug.LogError("Fishing is already started");
                 return;
             }
-            FishingHook.OnBiteHook();
+            Hook.OnBiteHook();
             WhenFishingStart.Invoke();
             m_targetFish = target;
 
             m_isFishing = true;
             canAttack = true;
             attackTimer = attackTimeMin *3 /4;
-
-            //デバッグ
-            Debug.Log("魚が持つコマンド:");
-            foreach(var commands in target.fishMoveData.GetCommandsList())
-            {
-                string S="";
-                foreach(var command in commands)
-                {
-                    S += command.ToString();
-                }
-                Debug.Log(S);
-            }
 
         }
 
@@ -120,7 +109,8 @@ namespace FishingGame
         {
             WhenFishingSucceeded.Invoke();
             m_isFishing = false;
-
+            player.CatchFish(TargetFish);
+            Hook.FinishBite();
         }
 
         /// <summary>
@@ -130,6 +120,8 @@ namespace FishingGame
         {
             WhenFishingFailed.Invoke();
             m_isFishing = false;
+            player.RetrieveRod();
+            Hook.FinishBite();
         }
 
         new private void Awake()

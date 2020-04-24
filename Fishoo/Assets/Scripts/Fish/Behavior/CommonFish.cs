@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace Fish.FishScripts
+namespace Fish.Behavior
 {
     /// <summary>
     /// 普通の魚
@@ -20,7 +20,7 @@ namespace Fish.FishScripts
         Caught//釣りに成功して捕まった
     }
 
-    [RequireComponent(typeof(Damageable))]
+    [RequireComponent(typeof(Damageable), typeof(CircleCollider2D))]
     public class CommonFish : MonoBehaviour
     {
         public FishData fishData;
@@ -52,6 +52,8 @@ namespace Fish.FishScripts
         [Tooltip("体力バー")]
         public Slider HPbar;
 
+        [Tooltip("針に気づく範囲")]
+        CircleCollider2D colliderToNoticeHook;
 
         /// <summary>
         /// 一時的に実行したい関数を入れる
@@ -61,7 +63,7 @@ namespace Fish.FishScripts
 
         Damageable m_damageable;
 
-        static private FishingGame.Tools.FishingHook m_fishingHook;
+        static private FishingGame.Tools.Hook m_fishingHook;
 
         private void Awake()
         {
@@ -71,6 +73,8 @@ namespace Fish.FishScripts
                 //画像が指定されていなければ子供のオブジェクトから画像を得る
                 sprite = transform.GetComponentInChildren<SpriteRenderer>();
             }
+            colliderToNoticeHook = GetComponent<CircleCollider2D>();
+            colliderToNoticeHook.radius = fishMoveData.recognitionDistance;
             SetAppear();
             m_damageable = GetComponent<Damageable>();
             m_damageable.Initialize(fishMoveData.status.hpMax, fishMoveData.status.hpMax, fishMoveData.status.hpRegene);
@@ -84,10 +88,13 @@ namespace Fish.FishScripts
                 //SetDisAppear();
                 SetCaught();
             });
+
+            
         }
+        
         private void Start()
         {
-            m_fishingHook = FishingGame.FishingGameMgr.FishingHook;
+            m_fishingHook = FishingGame.FishingGameMgr.Hook;
         }
 
         // Update is called once per frame
@@ -144,12 +151,22 @@ namespace Fish.FishScripts
         /// </summary>
         public void SetDisAppear()
         {
-            Debug.Log("魚は寿命をまっとうした。");
             m_fishingHook.FinishBite();
             ColorFader.Instance.StartFade(sprite, false, 0.5f, () => gameObject.SetActive(false));
         }
 
+        /// <summary>
+        /// 釣り針と接触したときに可能なら釣り針を狙う
+        /// </summary>
+        /// <param name="collision"></param>
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            Debug.Log("衝突！" + collision);
+            if (collision.gameObject.tag != "Hook") return;
 
+            SetApproaching();
+
+        }
 
         /// <summary>
         /// 釣り針を狙うときに行う最初の処理
@@ -164,7 +181,7 @@ namespace Fish.FishScripts
             }
             else
             {
-                Debug.Log("すでに他の魚が狙っている");
+                Debug.Log("釣り針はなにか用事があるようだ。");
             }
         }
 

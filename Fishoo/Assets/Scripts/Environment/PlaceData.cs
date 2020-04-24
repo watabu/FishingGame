@@ -10,7 +10,7 @@ namespace Environment
         [System.Serializable]
         public class FishGenerateData
         {
-            public Fish.FishScripts.CommonFish fish;
+            public Fish.Behavior.CommonFish fish;
             public Weather weather;
             //釣れる時刻
             public int beginTime;

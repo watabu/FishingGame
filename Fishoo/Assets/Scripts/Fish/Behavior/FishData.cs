@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Fish.FishScripts
+namespace Fish.Behavior
 {
 
 

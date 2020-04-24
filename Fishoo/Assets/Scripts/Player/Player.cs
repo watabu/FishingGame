@@ -8,25 +8,31 @@ namespace Player
     {
         public enum State
         {
-             None,
-             Normal,
-             ThrowRod,
+            None,
+            Normal,
+            ThrowRod,
 
         }
 
         FishingGame.FishingToolMgr fishingToolMgr;
 
         [Header("Key config")]
-        [SerializeField] KeyCode throwRod=KeyCode.A;
+        [SerializeField] KeyCode throwRod = KeyCode.A;
+        [SerializeField] KeyCode retriveRod = KeyCode.B;
+
 
         [Header("Debug")]
-        public float speed=1;
-        [SerializeField,ReadOnly]State m_state = State.None;
+        public float speed = 1;
+        [SerializeField, ReadOnly] State m_state = State.None;
 
+        /// <summary>
+        /// 操作可能か
+        /// </summary>
+        [SerializeField, ReadOnly] bool canMove = true;
         /// <summary>
         /// 移動可能か
         /// </summary>
-        [SerializeField,ReadOnly]bool canMove = true;
+        [SerializeField, ReadOnly] bool canWalk = true;
 
         // Start is called before the first frame update
         void Start()
@@ -42,24 +48,27 @@ namespace Player
 
         }
 
-      public  void InputUpdate()
+        public void InputUpdate()
         {
-        if (!canMove) return;
-        Move(InputSystem.Instance.GetInputArrow());
+            if (!canMove) return;
+
             if (Input.GetKeyDown(throwRod))
             {
                 if (m_state == State.Normal)
                 {
                     ThrowRod();
-                }else if (m_state == State.ThrowRod)
-                {
-                    RetrieveRod();
                 }
             }
+            else if (Input.GetKeyDown(retriveRod) &&  m_state == State.ThrowRod)
+            {
+                RetrieveRod();
+            }
 
-            
+            if (!canWalk) return;
+            Move(InputSystem.Instance.GetInputArrow());
+
+
         }
-
         public void Move(Vector2 velocity)
         {
             velocity.y = 0;
@@ -73,19 +82,29 @@ namespace Player
         {
             m_state = State.ThrowRod;
             fishingToolMgr.ExpandTools();
-            canMove = false;
+            //            canMove = false;
+            canWalk = false;
         }
 
         /// <summary>
         /// 釣り竿をもとに戻す
         /// </summary>
-        void RetrieveRod()
+        public void RetrieveRod()
         {
             m_state = State.Normal;
             fishingToolMgr.RetrieveTools();
             //遅延を持たせたい
-            canMove = true;
+            //canMove = true;
+            canWalk = true;
         }
+
+        public void CatchFish(Fish.Behavior.CommonFish fish)
+        {
+            m_state = State.Normal;
+            fishingToolMgr.CatchFish(fish);
+            canWalk = true;
+        }
+
 
     }
 }

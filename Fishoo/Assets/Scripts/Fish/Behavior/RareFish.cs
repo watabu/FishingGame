@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Fish.FishScripts
+namespace Fish.Behavior
 {
-    public class LegendaryFish : CommonFish
+    public class BigFish : CommonFish
     {
 
         // Use this for initialization

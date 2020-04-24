@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc534c6a2f9f22e409bed2f8ebd0a694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fish: {fileID: 5436173513765085611}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
   moveDirection: {x: 0, y: 0}
 --- !u!1 &2444259903321441932
@@ -345,6 +346,7 @@ GameObject:
   - component: {fileID: 5436173513765085610}
   - component: {fileID: 5436173513765085611}
   - component: {fileID: 6591575370827522758}
+  - component: {fileID: 205431935}
   m_Layer: 0
   m_Name: TestFish
   m_TagString: Fish
@@ -359,7 +361,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5436173513765085605}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -382,14 +384,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishData: {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
-  fishMoveData: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
+  fishMoveData: {fileID: 11400000, guid: 16e2c51513e90f349983c016c84d4f03, type: 2}
   moveSpeed: 0.1
-  fishMove: {fileID: 1199823733860569568}
+  m_livingTime: 0
   _state: 0
-  escapeDir: {x: 0, y: 0}
+  fishMove: {fileID: 1199823733860569568}
   sprite: {fileID: 5436173513352246321}
   HPbar: {fileID: 8529163511898761905}
-  m_livingTime: 0
 --- !u!114 &6591575370827522758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,6 +406,22 @@ MonoBehaviour:
   m_MaxHP: 0
   m_HP: 0
   m_HPRegene: 0
+--- !u!58 &205431935
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436173513765085605}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2
 --- !u!1 &7393163008718525857
 GameObject:
   m_ObjectHideFlags: 0
