@@ -24,8 +24,6 @@ namespace Fish
     public class FishMoveData : ScriptableObject
     {
         [Header("Properties")]
-        [Tooltip("何回針に食いつこうとするか")]
-        public int tryEatCount;
         [Tooltip("ミスしたときに逃げるか")]
         public bool escapeOnMiss;
         [Tooltip("泳ぐ速度")]

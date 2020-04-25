@@ -143,7 +143,7 @@ namespace Fish.Behavior
             Debug.Log("魚が現れた");
             HPbar.gameObject.SetActive(false);
             _state = FishState.Nomal;
-            ColorFader.Instance.StartFade(sprite, true, 0.5f);
+            ColorFader.Instance.StartFadeIn(sprite, 0.5f);
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace Fish.Behavior
         public void SetDisAppear()
         {
             m_fishingHook.FinishBite();
-            ColorFader.Instance.StartFade(sprite, false, 0.5f, () => gameObject.SetActive(false));
+            ColorFader.Instance.StartFadeOut(sprite, 0.5f, () => gameObject.SetActive(false));
         }
 
         /// <summary>
@@ -205,7 +205,8 @@ namespace Fish.Behavior
                 transform.parent = m_fishingHook.transform;
 
                 //浮きを沈める力と時間のリスト
-                List<Vector2> approachList = new List<Vector2> { new Vector2(4, 200), new Vector2(6, 150) /*,new Vector2(3, 300),new Vector2(5, 150),new Vector2(40, 80)*/ };
+                //リストにある要素の個数だけ針をつんつんする
+                List<Vector2> approachList = new List<Vector2> { new Vector2(4, 200) };
 
                 float force;
                 int time;

@@ -6,21 +6,19 @@ using UnityEngine.Events;
 public class ColorFader : SingletonMonoBehaviour<ColorFader>
 {
 
-    public void StartFade(SpriteRenderer sprite, bool fadeIn, float duration, UnityAction OnFadeFinished = null)
+    public void StartFadeIn(SpriteRenderer sprite, float duration, UnityAction OnFadeFinished = null)
     {
         Color c = sprite.color;
-        if (fadeIn)
-        {
-            c.a = 0f;
-            sprite.color = c;
-            StartCoroutine(Fade(sprite, 1f, duration, OnFadeFinished));
-        }
-        else
-        {
-            c.a = 1f;
-            sprite.color = c;
-            StartCoroutine(Fade(sprite, 0f, duration, OnFadeFinished));
-        }
+        c.a = 0f;
+        sprite.color = c;
+        StartCoroutine(Fade(sprite, 1f, duration, OnFadeFinished));
+    }
+    public void StartFadeOut(SpriteRenderer sprite, float duration, UnityAction OnFadeFinished = null)
+    {
+        Color c = sprite.color;
+        c.a = 1f;
+        sprite.color = c;
+        StartCoroutine(Fade(sprite, 0f, duration, OnFadeFinished));
     }
 
     IEnumerator Fade(SpriteRenderer sprite, float target, float duration, UnityAction OnFinished)

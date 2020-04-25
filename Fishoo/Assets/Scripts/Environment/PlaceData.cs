@@ -42,6 +42,8 @@ namespace Environment
         public int startTime;
         [Tooltip("終了時刻(分)")]
         public int endTime;
+        [Tooltip("時間ごとの環境光")]
+        public Gradient globalColor = new Gradient();
 
         [Header("Weather")]
         //天候に関するデータ
