@@ -12,6 +12,9 @@ namespace FishingGame.Tools
     {
 
         public SpriteRenderer sprite;
+        [SerializeField] AudioClip waterSE;
+
+        AudioSource audio;
         /// <summary>
         /// 釣り具を展開する
         /// </summary>
@@ -48,6 +51,7 @@ namespace FishingGame.Tools
         // Start is called before the first frame update
         void Start()
         {
+            audio = GetComponent<AudioSource>();
 
         }
 
@@ -55,6 +59,15 @@ namespace FishingGame.Tools
         void Update()
         {
 
+        }
+
+        void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Ocean"))
+            {
+                audio.Play();
+
+            }
         }
     }
 }

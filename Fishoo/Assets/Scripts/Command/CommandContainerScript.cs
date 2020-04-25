@@ -68,6 +68,7 @@ public class CommandContainerScript : MonoBehaviour
         m_commandObjects[0].Kill();
         m_commandObjects[0].transform.SetParent(transform.parent);
         m_commandObjects.RemoveAt(0);
+        CommandGenerator.Instance.OnCommandKilled();
         //text.text= text.text.Remove(0, 1);
         if (m_commands.Count == 0)
         {
