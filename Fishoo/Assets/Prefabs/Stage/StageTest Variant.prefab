@@ -281,6 +281,21 @@ PrefabInstance:
       propertyPath: m_ShapePath.Array.data[3].x
       value: -0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 651896487210556314, guid: faca6ed6527518649a16c8ea8112bcc2,
+        type: 3}
+      propertyPath: globalColor.key3.g
+      value: 0.7543008
+      objectReference: {fileID: 0}
+    - target: {fileID: 651896487210556314, guid: faca6ed6527518649a16c8ea8112bcc2,
+        type: 3}
+      propertyPath: globalColor.key3.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 651896487210556314, guid: faca6ed6527518649a16c8ea8112bcc2,
+        type: 3}
+      propertyPath: globalColor.atime2
+      value: 65535
+      objectReference: {fileID: 0}
     - target: {fileID: 1003159237187203209, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_StaticEditorFlags

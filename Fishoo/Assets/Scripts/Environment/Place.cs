@@ -18,6 +18,8 @@ namespace Environment
         //各場所の設定データ
         public PlaceData placeData;
 
+        LightingMgr lighting;
+
         int weatherStartTime = 0;
 
         // Start is called before the first frame update
@@ -33,6 +35,8 @@ namespace Environment
             });
             timeHolder.startTime = placeData.startTime;
             timeHolder.endTime = placeData.endTime;
+            lighting = GetComponent<LightingMgr>();
+            lighting.globalColor = placeData.globalColor;
         }
 
         // Update is called once per frame

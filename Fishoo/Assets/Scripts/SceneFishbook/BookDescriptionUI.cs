@@ -9,7 +9,7 @@ public class BookDescriptionUI : MonoBehaviour
     [Header("References")]
     [SerializeField] Image image;
     [SerializeField] TextMeshProUGUI description;
-    [SerializeField] TextMeshProUGUI name;
+    [SerializeField] new TextMeshProUGUI name;
 
     // Start is called before the first frame update
     void Start()
