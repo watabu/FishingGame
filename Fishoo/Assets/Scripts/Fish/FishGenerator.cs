@@ -14,6 +14,8 @@ namespace Fish
         //とりあえず生成される魚
         public List<GameObject> testFish;
 
+        List<Environment.PlaceData.FishGenerateData> availableFishList;
+
         [Tooltip("魚を生成するスパン(秒)")]
         public float generateSpan;
 
@@ -23,6 +25,7 @@ namespace Fish
         // Start is called before the first frame update
         void Start()
         {
+            availableFishList = place.placeData.availableFishList;
             foreach (Transform child in generatorsParent)
             {
                 generators.Add(child);
@@ -35,8 +38,15 @@ namespace Fish
         {
             //生成する座標をランダムで選択
             var pos = generators[Random.Range(0, generators.Count)].position;
+
+            //場所データから一つランダムに選択
+            GameObject selectedFish = availableFishList[Random.Range(0, availableFishList.Count)].fish.gameObject;            
+            
+            GameObject fish = Instantiate(selectedFish, pos, Quaternion.identity);
+
+
             //とりあえず生成される魚は確定
-            GameObject fish = Instantiate(testFish[0], pos, Quaternion.identity);
+            //GameObject fish = Instantiate(testFish[0], pos, Quaternion.identity);
 
             return fish;
         }

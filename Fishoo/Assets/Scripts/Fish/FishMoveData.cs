@@ -12,8 +12,6 @@ namespace Fish
         public float hpMax;
         [Tooltip("体力回復(/秒)")]
         public float hpRegene;
-        [Tooltip("基礎的な速さ")]
-        public float speed;//FishMoveDataの方に移動してもいい感じ？
     }
 
 
@@ -26,7 +24,15 @@ namespace Fish
         [Header("Properties")]
         [Tooltip("ミスしたときに逃げるか")]
         public bool escapeOnMiss;
-        [Tooltip("泳ぐ速度")]
+        /// <summary>
+        /// 釣りゲーム外での速さ
+        /// </summary>
+        [Tooltip("通常時の速さ")]
+        public float speed_nomal;
+        /// <summary>
+        /// 釣りゲーム中での速さ
+        /// </summary>
+        [Tooltip("釣り中に泳ぐ速度")]
         public float speed;
         [Tooltip("針を認識する距離")]
         public float recognitionDistance;
@@ -34,6 +40,9 @@ namespace Fish
         public float lifeTime;
         [Tooltip("ステータス")]
         public FishStatus status;
+        [Tooltip("通常時の魚の動き方")]
+        public Behavior.MoveType moveType = Behavior.MoveType.SwimHorizontaly;
+        
         [Tooltip("コマンド")]
         public List<string> commands;
 

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
-  m_Name: TestFish
+  m_Name: TestFish 1
   m_EditorClassIdentifier: 
-  FishName: The first fish
-  description: "\u666E\u901A\u306E\u9B5A\u3002\u5B9F\u306F\u5916\u6765\u9B5A\u3002"
+  FishName: The second  fish
+  description: "\u3068\u3066\u3082\u304A\u3044\u3057\u3044\u3002"
   description_Caught: 
-  sellingPrice: 5
-  exp: 1
+  sellingPrice: 15
+  exp: 2
   icon: {fileID: 21300000, guid: 222de1da8766fd740b77f9c9781d400e, type: 3}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}

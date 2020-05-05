@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 namespace FishingGame
 {
+
     public class FishingGameMgr : SingletonMonoBehaviour<FishingGameMgr>
     {
         static private FishingGame.Tools.Hook m_fishingHook;
@@ -31,13 +32,14 @@ namespace FishingGame
             }
         }
 
+        private Player.Player player { get { return fishingToolMgr.player; } }//釣りゲームが開始したときのみ他の操作の禁止をする
+
         [Header("References")]
-        [SerializeField] private Player.Player player;
         [SerializeField] private Fish.FishGenerator fishGenerator;
         [SerializeField] private CommandGenerator commandGenerator;
         [SerializeField] private Player.InputSystem input;
 
-        [SerializeField, Tooltip("コマンドが生成されるまでの最低時間(tick)")] int attackTimeMin=150;
+        [SerializeField, Tooltip("コマンドが生成されるまでの最低時間(tick)")] int attackTimeMin=100;
 
         [Tooltip("今狙っている魚"),ReadOnly]
         [SerializeField]
@@ -90,6 +92,7 @@ namespace FishingGame
             if (isFishing)
             {
                 Debug.LogError("Fishing is already started");
+
                 return;
             }
             Hook.OnBiteHook();
@@ -100,6 +103,7 @@ namespace FishingGame
             canAttack = true;
             attackTimer = attackTimeMin *3 /4;
 
+            player.StartFishing();
         }
 
         /// <summary>
@@ -109,7 +113,7 @@ namespace FishingGame
         {
             WhenFishingSucceeded.Invoke();
             m_isFishing = false;
-            player.CatchFish(TargetFish);
+            fishingToolMgr.CatchFish(TargetFish);
             Hook.FinishBite();
         }
 
@@ -120,8 +124,9 @@ namespace FishingGame
         {
             WhenFishingFailed.Invoke();
             m_isFishing = false;
-            player.RetrieveRod();
+            fishingToolMgr.RetrieveTools();
             Hook.FinishBite();
+            m_targetFish.SetEscaping();
         }
 
         new private void Awake()

@@ -25,7 +25,12 @@ namespace Fish.Behavior
     {
         public FishData fishData;
         public FishMoveData fishMoveData;
+        [Tooltip("針に気づく前の動き")]public NomalMove nomalMove;
 
+        /// <summary>
+        /// 針に気づいて近づく速さ
+        /// </summary>
+        [Tooltip("針に気づいて近づく速さ")]
         public float moveSpeed=0.05f;
 
         /// <summary>
@@ -107,13 +112,17 @@ namespace Fish.Behavior
             {
                 //通常
                 case FishState.Nomal:
-                    //寿命が尽きたら消える            
+                    //寿命が尽きたら消える       
+                    m_livingTime += Time.deltaTime;
                     if (m_livingTime > fishMoveData.lifeTime)
                         SetDisAppear();
-                    fishMove.MoveFree();
+                    //                    fishMove.MoveFree();
+                    //nomalMove.Move();
+                    SetApproaching();
                     break;
                 //エサを狙っている
                 case FishState.Approaching:
+                    
                     ApproachHook();
                     break;
                 //釣りゲーム中
@@ -123,6 +132,7 @@ namespace Fish.Behavior
                 //釣りに失敗したら逃げる
                 case FishState.Escaping:
                     fishMove.Escape();
+                    SetDisAppear();
                     break;
                 //捕まった
                 case FishState.Caught:
@@ -130,7 +140,7 @@ namespace Fish.Behavior
                 default:
                     break;
             }
-            m_livingTime += Time.deltaTime;
+
         }
 
         //釣りゲーム外
@@ -161,9 +171,8 @@ namespace Fish.Behavior
         /// <param name="collision"></param>
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("衝突！" + collision);
             if (collision.gameObject.tag != "Hook") return;
-
+//            Debug.Log("衝突！" + collision);
             SetApproaching();
 
         }
@@ -175,17 +184,17 @@ namespace Fish.Behavior
         {
             if (m_fishingHook.CanBite())
             {
-                Debug.Log("魚がエサを狙っている");
+//                Debug.Log("魚がエサを狙っている");
                 _state = FishState.Approaching;
                 m_fishingHook.SetTarget(this);
             }
             else
             {
-                Debug.Log("釣り針はなにか用事があるようだ。");
+  //              Debug.Log("釣り針はなにか用事があるようだ。");
             }
         }
 
-        //非同期処理を一回だけ行うための変数
+        //非同期処理を一回だけ行うための変数 もし釣りに失敗しても釣れるんだったら変える必要あり
         bool isDone=false;
 
         /// <summary>
@@ -211,30 +220,31 @@ namespace Fish.Behavior
                 float force;
                 int time;
                 //アプローチリストに従って浮きをつんつんする
-                foreach (var a in approachList)
-                {
-                    force = a.x;
-                    time = (int)a.y;
-                    while (!IsNearHook())
-                    {
-                        MoveToHook();
-                        await Task.Delay(10);
-                    }
-                    m_fishingHook.PullDown(force, time);
-                    await Task.Delay(time);
-                    LeaveFromHook();
-                    await Task.Delay(Random.Range(time * 10, time * 30));
-                }
+                //foreach (var a in approachList)
+                //{
+                //    force = a.x;
+                //    time = (int)a.y;
+                //    while (!IsNearHook())
+                //    {
+                //        MoveToHook();
+                //        await Task.Delay(10);
+                //    }
+                //    m_fishingHook.PullDown(force, time);
+                //    await Task.Delay(time);
+                //    LeaveFromHook();
+                //    await Task.Delay(Random.Range(time * 10, time * 30));
+                //}
 
+                force = 50;
                 time = 50;
                 while (!IsNearHook())
                 {
                     MoveToHook();
                     await Task.Delay(10);
                 }
-                m_fishingHook.PullDown(50, time);
+                m_fishingHook.PullDown(force, time);
 
-                //食いついたときになにかを入力して釣りゲームへ移行する
+                //釣りゲームへ移行する
                 SetBiting();
             }
         }
@@ -311,7 +321,7 @@ namespace Fish.Behavior
             Debug.Log("魚は逃げ出した");
             transform.parent = null;
             _state = FishState.Escaping;
-            m_fishingHook.fishingGameMgr.FishingFailed();
+         //   m_fishingHook.fishingGameMgr.FishingFailed();
         }
         public void Damaged(float damage)
         {

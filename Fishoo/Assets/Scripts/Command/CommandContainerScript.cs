@@ -11,6 +11,7 @@ public class CommandContainerScript : MonoBehaviour
 
     // [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Transform commandParent;
+    int commandsLength;
     List<KeyCode> m_commands = new List<KeyCode>();
     List<CommandScript> m_commandObjects = new List<CommandScript>();
 
@@ -35,7 +36,7 @@ public class CommandContainerScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -55,6 +56,7 @@ public class CommandContainerScript : MonoBehaviour
     {
         m_commands.Clear();
         m_commands = commands;
+        commandsLength = commands.Count;
         foreach (var i in commands)
         {
             m_commandObjects.Add(Instantiate(Generator.GetCommandPrefab(i), commandParent).GetComponent<CommandScript>());
@@ -86,6 +88,8 @@ public class CommandContainerScript : MonoBehaviour
         //今釣っている魚にダメージを与える
         if (FishingGame.FishingGameMgr.Instance.TargetFish == null) return;
         float damage = 3;
+        damage = commandsLength / 2 + 1;
+        Debug.Log(damage);
         FishingGame.FishingGameMgr.Instance.TargetFish.Damaged(damage);
 
         //次のコマンドを生成する許可をする

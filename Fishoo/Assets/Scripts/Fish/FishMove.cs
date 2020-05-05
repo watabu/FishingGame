@@ -25,6 +25,7 @@ namespace Fish
         /// </summary>
         Vector3 neutralPos;
         /// <summary>
+        /// テスト用
         /// 自由に動く時の速さ(半径)
         /// </summary>
         float speed = 2;
@@ -41,11 +42,6 @@ namespace Fish
             neutralPos = transform.position;
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
 
 
         //ランダムに単位ベクトルを返す

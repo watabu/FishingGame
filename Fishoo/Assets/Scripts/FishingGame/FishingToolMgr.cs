@@ -7,6 +7,9 @@ namespace FishingGame
 
     public class FishingToolMgr : SingletonMonoBehaviour<FishingToolMgr>
     {
+        [SerializeField] FishingGameMgr fishingGameMgr;
+        public Player.Player player { get { return m_player; } }
+        [SerializeField]Player.Player m_player ;
         public Tools.Rod fishingRod;
         public Tools.Bobber fishingBobber;
         public Tools.Hook fishingHook;
@@ -38,14 +41,16 @@ namespace FishingGame
             }
         }
 
+
         /// <summary>
-        /// 
+        /// 釣りゲームに成功して魚を釣り上げる
         /// </summary>
         /// <param name="fish"></param>
         public void CatchFish(Fish.Behavior.CommonFish fish)
         {
-            RetrieveTools();
+            player.CatchFish(fish);
             bucket.SwallowFish(fish);
+            RetrieveTools();
         }
 
         public void PullToLeft()

@@ -11,7 +11,7 @@ namespace FishingGame.Tools
     public class Hook : MonoBehaviour, FishingTool
     {
         [SerializeField]
-        public FishingGame.FishingGameMgr fishingGameMgr;//publicこわい
+        public FishingGame.FishingGameMgr fishingGameMgr;
 
         [SerializeField] GameObject biteHookEffect;
         [SerializeField] Transform effectParent;
@@ -19,15 +19,14 @@ namespace FishingGame.Tools
         public SpriteRenderer sprite;
 
         [Tooltip("釣り針を引っ張る力の大きさ")]
-        public float force = 1;
+        float force = 1;//魚の種類で釣り針の下がり具合を変えたければpublic
 
-        public int _time = 10;
         Vector3 prev;
 
         /// <summary>
-        ///     力の作用点
+        ///     力の作用するゲームオブジェクト(rg2dを持つ)
         /// </summary>
-        public GameObject obj;
+        GameObject obj;
 
         /// <summary>
         /// 一時的に行いたい関数
@@ -39,12 +38,18 @@ namespace FishingGame.Tools
         /// </summary>
         Rigidbody2D rg2d;
 
-        CommonFish m_currentFish;
+
+        [ReadOnly,SerializeField]CommonFish m_currentFish;
+        public CommonFish currentFish
+        {
+            get { return m_currentFish; }
+        }
 
         private void Awake()
         {
             if (myUpdate == null)
                 myUpdate = new UnityEvent();
+            obj = gameObject;
             rg2d = obj.GetComponent<Rigidbody2D>();
         }
         void Update()
@@ -54,14 +59,19 @@ namespace FishingGame.Tools
 
 
         public void SetTarget(CommonFish fish) { m_currentFish = fish; }
-        public bool CanBite() { return m_currentFish == null && isInWater; }
+        public bool CanBite() { return m_currentFish == null && isInWater && isInWater_mask; }
         public void FinishBite() { m_currentFish = null; }
         bool isInWater = false;
+        bool isInWater_mask = false;
+        
         /// <summary>
-        /// 釣り具を展開する
+        /// 釣り具を展開する 2秒後に釣り可能にする
         /// </summary>
         public async void ExpandTools()
         {
+            isInWater_mask = true;
+            isInWater = false;
+            m_currentFish = null;
             await Task.Delay(2000);
             isInWater = true;
         }
@@ -71,7 +81,13 @@ namespace FishingGame.Tools
         /// </summary>
         public void RetrieveTools()
         {
+            isInWater_mask = false;
             isInWater = false;
+            if (currentFish != null && currentFish.state != Fish.Behavior.FishState.Caught)
+            {
+                currentFish.SetEscaping();
+            }
+            m_currentFish = null;
         }
 
 
@@ -118,6 +134,8 @@ namespace FishingGame.Tools
 
         public async void testPullDown()
         {
+            int _time = 10;
+
             myUpdate.AddListener(_PullDown);
             await Task.Delay(_time);
             myUpdate.RemoveListener(_PullDown);

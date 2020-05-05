@@ -1,9 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Player
 {
+    /// <summary>
+    /// Player - FishingToolMgr - FishingGameMgr
+    /// 釣り竿を下す・回収する のみPlayerが指示する
+    /// 他はFishingToolMgr・FishingGameMgrの間で処理をする
+    /// </summary>
     public class Player : MonoBehaviour, IInputUpdatable
     {
         public enum State
@@ -11,7 +17,7 @@ namespace Player
             None,
             Normal,
             ThrowRod,
-
+            Fishing
         }
 
         FishingGame.FishingToolMgr fishingToolMgr;
@@ -22,7 +28,7 @@ namespace Player
 
 
         [Header("Debug")]
-        public float speed = 1;
+        public float speed = 5;
         [SerializeField, ReadOnly] State m_state = State.None;
 
         /// <summary>
@@ -51,8 +57,8 @@ namespace Player
         public void InputUpdate()
         {
             if (!canMove) return;
-
-            if (Input.GetKeyDown(throwRod))
+            if (m_state == State.Fishing) return;
+            if (Input.GetKeyDown(throwRod) && m_state == State.Normal) 
             {
                 if (m_state == State.Normal)
                 {
@@ -72,39 +78,48 @@ namespace Player
         public void Move(Vector2 velocity)
         {
             velocity.y = 0;
-            transform.position += (Vector3)velocity * Time.deltaTime;
+            transform.position += (Vector3)velocity * Time.deltaTime * speed;
         }
 
         /// <summary>
         /// 釣り竿を振り海に糸を垂らす
         /// </summary>
-        public void ThrowRod()
+        public async void ThrowRod()
         {
             m_state = State.ThrowRod;
             fishingToolMgr.ExpandTools();
-            //            canMove = false;
+            canMove = false;
             canWalk = false;
+            await Task.Delay(1000);
+            canMove = true;
         }
 
         /// <summary>
-        /// 釣り竿をもとに戻す
+        /// 釣り竿をもとに戻す(魚を釣らなかった)
         /// </summary>
-        public void RetrieveRod()
+        public async void RetrieveRod()
         {
             m_state = State.Normal;
             fishingToolMgr.RetrieveTools();
-            //遅延を持たせたい
-            //canMove = true;
+            canMove = false;
+            await Task.Delay(1000);
             canWalk = true;
+            canMove = true;
         }
 
-        public void CatchFish(Fish.Behavior.CommonFish fish)
+        public async void CatchFish(Fish.Behavior.CommonFish fish)
         {
             m_state = State.Normal;
-            fishingToolMgr.CatchFish(fish);
+            canMove = false;
+            await Task.Delay(1000);
             canWalk = true;
+            canMove = true;
         }
 
+        public void StartFishing()
+        {
+            m_state = State.Fishing;
 
+        }
     }
 }
