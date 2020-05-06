@@ -72,6 +72,13 @@ public class CommandContainerScript : MonoBehaviour
         m_commandObjects.RemoveAt(0);
         CommandGenerator.Instance.OnCommandKilled();
         //text.text= text.text.Remove(0, 1);
+        //今釣っている魚にダメージを与える
+        if (FishingGame.FishingGameMgr.Instance.TargetFish != null)
+        {
+            float damage = 0.25f ;
+            Debug.Log(damage);
+            FishingGame.FishingGameMgr.Instance.TargetFish.Damaged(damage);
+        }
         if (m_commands.Count == 0)
         {
             FinishesCommand = true;
@@ -80,18 +87,21 @@ public class CommandContainerScript : MonoBehaviour
     }
      void OnFalseKeyDown()
     {
-
+        m_generator.PlayeMistakeSound();
+        m_generator.ResetComboCount();
     }
 
     void OnFinish()
     {
         //今釣っている魚にダメージを与える
-        if (FishingGame.FishingGameMgr.Instance.TargetFish == null) return;
-        float damage = 3;
-        damage = commandsLength / 2 + 1;
-        Debug.Log(damage);
-        FishingGame.FishingGameMgr.Instance.TargetFish.Damaged(damage);
-
+        if (FishingGame.FishingGameMgr.Instance.TargetFish != null)
+        {
+            float damage;
+            Debug.Log(m_generator.comboCount);
+            damage = m_generator.comboCount/3 +1;
+            Debug.Log(damage);
+            FishingGame.FishingGameMgr.Instance.TargetFish.Damaged(damage);
+        }
         //次のコマンドを生成する許可をする
         FishingGame.FishingGameMgr.Instance.canAttack = true;
             

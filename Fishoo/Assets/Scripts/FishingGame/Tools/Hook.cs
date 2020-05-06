@@ -61,8 +61,8 @@ namespace FishingGame.Tools
         public void SetTarget(CommonFish fish) { m_currentFish = fish; }
         public bool CanBite() { return m_currentFish == null && isInWater && isInWater_mask; }
         public void FinishBite() { m_currentFish = null; }
-        bool isInWater = false;
-        bool isInWater_mask = false;
+        [ReadOnly,SerializeField]bool isInWater = false;
+        [ReadOnly,SerializeField]bool isInWater_mask = false;
         
         /// <summary>
         /// 釣り具を展開する 2秒後に釣り可能にする

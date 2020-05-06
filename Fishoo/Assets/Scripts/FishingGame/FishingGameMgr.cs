@@ -69,6 +69,7 @@ namespace FishingGame
         /// </summary>
         public bool isFishing { get { return m_isFishing; } }
         bool m_isFishing = false;
+        bool isFishCaught { get { return TargetFish.state == Fish.Behavior.FishState.Caught; } }
 
         /// <summary>
         /// 攻撃の間隔をあけるためのタイマー
@@ -104,6 +105,7 @@ namespace FishingGame
             attackTimer = attackTimeMin *3 /4;
 
             player.StartFishing();
+            commandGenerator.ResetComboCount();
         }
 
         /// <summary>
@@ -170,6 +172,11 @@ namespace FishingGame
         /// </summary>
         void Fishing()
         {
+            if(isFishCaught && canAttack)
+            {
+                FishingSucceeded();
+                return;
+            }
             if(++attackTimer > attackTimeMin && canAttack)
             {
                 canAttack = false;

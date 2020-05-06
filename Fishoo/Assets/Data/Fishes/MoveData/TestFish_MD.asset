@@ -19,7 +19,7 @@ MonoBehaviour:
   lifeTime: 10000
   status:
     hpMax: 10
-    hpRegene: 1
+    hpRegene: 0.2
   moveType: 4
   commands:
   - ABAB

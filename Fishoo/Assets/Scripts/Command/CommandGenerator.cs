@@ -31,7 +31,8 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
         //        List<KeyCode> com = new List<KeyCode>() {KeyCode.A,KeyCode.B,KeyCode.UpArrow,KeyCode.DownArrow };
         List<KeyCode> com = fishMoveData.GetCommands();
         obj.SetCommand(com,commandEffectParent);
-
+        if (comboCount >= commandsSE.Count -1)
+            comboCount = 0;
     }
 
     public GameObject GetCommandPrefab(KeyCode key)
@@ -43,12 +44,22 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
         return null;
     }
 
-    int comboCount = 0;
+    public int comboCount = 0;
     public void OnCommandKilled()
     {
         audio.clip = commandsSE[comboCount];
         audio.Play();
          comboCount++;
         if (comboCount >= commandsSE.Count) comboCount--;
+    }
+
+    public void PlayeMistakeSound()
+    {
+        audio.PlayOneShot(commandsSE[0]);
+        audio.PlayOneShot(commandsSE[2]);
+    }
+    public void ResetComboCount()
+    {
+        comboCount = 0;
     }
 }

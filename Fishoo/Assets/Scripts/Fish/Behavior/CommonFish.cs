@@ -161,7 +161,7 @@ namespace Fish.Behavior
         /// </summary>
         public void SetDisAppear()
         {
-            m_fishingHook.FinishBite();
+         //   m_fishingHook.FinishBite();
             ColorFader.Instance.StartFadeOut(sprite, 0.5f, () => gameObject.SetActive(false));
         }
 
@@ -309,7 +309,7 @@ namespace Fish.Behavior
             HPbar.gameObject.SetActive(false);
             Debug.Log("魚を捕まえた!");
             _state = FishState.Caught;
-            m_fishingHook.fishingGameMgr.FishingSucceeded();
+//            m_fishingHook.fishingGameMgr.FishingSucceeded();
         }
 
         /// <summary>
