@@ -70,6 +70,7 @@ namespace FishingGame
         public bool isFishing { get { return m_isFishing; } }
         bool m_isFishing = false;
         bool isFishCaught { get { return TargetFish.state == Fish.Behavior.FishState.Caught; } }
+        
 
         /// <summary>
         /// 攻撃の間隔をあけるためのタイマー
@@ -151,20 +152,6 @@ namespace FishingGame
             }
 
 
-
-
-
-            ////釣り具の動作
-            //if (input.RightClicked() )
-            //{
-            //   // fishingToolMgr.PullToRight();
-            //}
-            //else if (input.LeftClicked())
-            //{
-            //   // fishingToolMgr.PullToLeft();
-            //}
-        
-
         }
 
         /// <summary>
@@ -185,7 +172,6 @@ namespace FishingGame
             }
         }
 
-        
 
     }
 }

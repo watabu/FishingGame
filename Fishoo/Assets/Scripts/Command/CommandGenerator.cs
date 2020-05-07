@@ -19,6 +19,12 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
     [SerializeField] private List<CommandData> commandsData=new List<CommandData>();
     [SerializeField] private List<AudioClip> commandsSE=new List<AudioClip>();
     [SerializeField] private AudioSource audio;
+
+    public int comboCount = 0;
+    /// <summary>
+    /// コンボが最大まで達したか
+    /// </summary>
+    bool isFever = false;
     /// <summary>
     /// targetFishのFishMoveDataがもつコマンドのリストから一つ選んで生成する
     /// </summary>
@@ -31,8 +37,8 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
         //        List<KeyCode> com = new List<KeyCode>() {KeyCode.A,KeyCode.B,KeyCode.UpArrow,KeyCode.DownArrow };
         List<KeyCode> com = fishMoveData.GetCommands();
         obj.SetCommand(com,commandEffectParent);
-        if (comboCount >= commandsSE.Count -1)
-            comboCount = 0;
+        if (isFever)
+            ResetComboCount();
     }
 
     public GameObject GetCommandPrefab(KeyCode key)
@@ -44,13 +50,18 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
         return null;
     }
 
-    public int comboCount = 0;
+    
+
     public void OnCommandKilled()
     {
         audio.clip = commandsSE[comboCount];
         audio.Play();
          comboCount++;
-        if (comboCount >= commandsSE.Count) comboCount--;
+        if (comboCount >= commandsSE.Count)
+        {
+            isFever = true;
+            comboCount--;
+        }
     }
 
     public void PlayeMistakeSound()
@@ -61,5 +72,6 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
     public void ResetComboCount()
     {
         comboCount = 0;
+        isFever = false;
     }
 }

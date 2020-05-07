@@ -13,63 +13,69 @@ namespace Fish
         [SerializeField] private Behavior.CommonFish fish;
         [SerializeField] private Fish.FishMoveData data;
 
-        [Tooltip("移動方向"),ReadOnly]
+        [Tooltip("移動方向"), ReadOnly]
         public Vector2 moveDirection;
 
         [Header("Object References")]
-        //釣り竿の先端
-        protected GameObject AheadofRod;
+        [ReadOnly, SerializeField] KeyCode CurrentKey= KeyCode.None;
 
-        /// <summary>
-        /// 自由に動くときの中心座標
-        /// </summary>
-        Vector3 neutralPos;
-        /// <summary>
-        /// テスト用
-        /// 自由に動く時の速さ(半径)
-        /// </summary>
-        float speed = 2;
-
-        Vector2 escapeVelocity;
-        void Awake()
+        private void Update()
         {
-            //AheadofRod = Fish.Behavior.CommonFish.Hook.obj.transform.parent.gameObject;
-            moveDirection = DecideDirection();
-
-            float[] dirXRnd = { 1f, -1f };
-            float dirX = dirXRnd[Random.Range(0, 2)];
-            escapeVelocity = new Vector2(dirX, 0) / 8f;
-            neutralPos = transform.position;
+            if (fish.state == Behavior.FishState.Biting && CurrentKey!= KeyCode.None)
+            {
+                fish.transform.localPosition = KeyToVec3(CurrentKey) *2;
+            }
         }
 
 
 
-        //ランダムに単位ベクトルを返す
-        Vector2 DecideDirection()
+        public void ReceiveNextKey(KeyCode keyCode)
         {
-            Vector2 a;
-            a.x = Random.Range(0.6f, 1.0f);
-            a.x *= (Random.value > 0.5f ? 1 : -1);
-            a.y = Random.Range(-1.0f, -0.3f);
-            return a;
-        }
-
-
-        /// <summary>
-        /// とくに目的を持たず自由に動く
-        /// </summary>
-        public void MoveFree()
-        {
-            float x = speed * Mathf.Sin(Time.time);
-            fish.gameObject.transform.position = neutralPos + new Vector3(x, 0f, 0f);
+            CurrentKey = keyCode;
         }
 
         /// <summary>
-        /// 逃走中の処理
+        ///     Y
+        ///  X      B
+        ///     A
         /// </summary>
-        public void Escape()
+        /// <param name="keyCode"></param>
+        /// <returns></returns>
+        Vector3 KeyToVec3(KeyCode keyCode)
         {
-            transform.position += (Vector3)escapeVelocity;
+            Vector3 dir = new Vector3(0, 0, 0);
+            switch (keyCode)
+            {
+                case KeyCode.A:
+                    dir.y = -1;
+                    break;
+                case KeyCode.B:
+                    dir.x = 1;
+                    break;
+                case KeyCode.X:
+                    dir.x = -1;
+                    break;
+                case KeyCode.Y:
+                    dir.y = 1;
+                    break;
+                case KeyCode.RightArrow:
+                    dir.x = 1;
+                    break;
+                case KeyCode.LeftArrow:
+                    dir.x = -1;
+                    break;
+                case KeyCode.UpArrow:
+                    dir.y = 1;
+                    break;
+                case KeyCode.DownArrow:
+                    dir.y = -1;
+                    break;
+                default:
+                    Debug.LogError("想定されていないキーです。");
+                    break;
+            }
+            return -dir;
         }
+
     }
 }

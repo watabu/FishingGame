@@ -12,7 +12,7 @@ public class CommandContainerScript : MonoBehaviour
     // [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Transform commandParent;
     int commandsLength;
-    List<KeyCode> m_commands = new List<KeyCode>();
+    [SerializeField]List<KeyCode> m_commands = new List<KeyCode>();
     List<CommandScript> m_commandObjects = new List<CommandScript>();
 
     private Transform commandEffectParent;
@@ -62,6 +62,7 @@ public class CommandContainerScript : MonoBehaviour
             m_commandObjects.Add(Instantiate(Generator.GetCommandPrefab(i), commandParent).GetComponent<CommandScript>());
             m_commandObjects[m_commandObjects.Count - 1].effectParent = effectParent;
         }
+        FishingGame.FishingGameMgr.Instance.TargetFish.fishMove.ReceiveNextKey(m_commands[0]);
     }
     void OnTrueKeyDown()
     {
@@ -73,16 +74,19 @@ public class CommandContainerScript : MonoBehaviour
         CommandGenerator.Instance.OnCommandKilled();
         //text.text= text.text.Remove(0, 1);
         //今釣っている魚にダメージを与える
-        if (FishingGame.FishingGameMgr.Instance.TargetFish != null)
-        {
-            float damage = 0.25f ;
-            Debug.Log(damage);
-            FishingGame.FishingGameMgr.Instance.TargetFish.Damaged(damage);
-        }
+        
         if (m_commands.Count == 0)
         {
             FinishesCommand = true;
             OnFinish();
+            return;
+        }
+        if (FishingGame.FishingGameMgr.Instance.TargetFish != null)
+        {
+            float damage = 0.25f;
+            Debug.Log(damage);
+            FishingGame.FishingGameMgr.Instance.TargetFish.Damaged(damage);
+            FishingGame.FishingGameMgr.Instance.TargetFish.fishMove.ReceiveNextKey(m_commands[0]);
         }
     }
      void OnFalseKeyDown()
@@ -98,7 +102,7 @@ public class CommandContainerScript : MonoBehaviour
         {
             float damage;
             Debug.Log(m_generator.comboCount);
-            damage = m_generator.comboCount/3 +1;
+            damage = m_generator.comboCount * m_generator.comboCount /10;
             Debug.Log(damage);
             FishingGame.FishingGameMgr.Instance.TargetFish.Damaged(damage);
         }

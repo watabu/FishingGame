@@ -131,7 +131,7 @@ namespace Fish.Behavior
                     break;
                 //釣りに失敗したら逃げる
                 case FishState.Escaping:
-                    fishMove.Escape();
+
                     SetDisAppear();
                     break;
                 //捕まった

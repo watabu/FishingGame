@@ -13,6 +13,7 @@ namespace FishingGame.Tools
 
         public SpriteRenderer sprite;
         [SerializeField] AudioClip waterSE;
+        bool isThrown;
 
         AudioSource audio;
         /// <summary>
@@ -20,7 +21,7 @@ namespace FishingGame.Tools
         /// </summary>
         public void ExpandTools()
         {
-
+            isThrown = true;
 
         }
 
@@ -29,7 +30,7 @@ namespace FishingGame.Tools
         /// </summary>
         public void RetrieveTools()
         {
-
+            isThrown = false;
 
 
         }
@@ -63,7 +64,7 @@ namespace FishingGame.Tools
 
         void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Ocean"))
+            if (collision.gameObject.CompareTag("Ocean") && isThrown)
             {
                 audio.Play();
 
