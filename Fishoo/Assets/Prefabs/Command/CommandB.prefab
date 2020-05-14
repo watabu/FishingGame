@@ -10,13 +10,13 @@ PrefabInstance:
     - target: {fileID: 300069452633723421, guid: 8b92c4d2dcddb9b4eb339c6b21ab8964,
         type: 3}
       propertyPath: m_Name
-      value: CommandBVariant
+      value: CommandB
       objectReference: {fileID: 0}
     - target: {fileID: 2728041127774788185, guid: 8b92c4d2dcddb9b4eb339c6b21ab8964,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2776641468333020027, guid: 07589ba813240af4fada804008df123a,
+      objectReference: {fileID: -2776641468333020027, guid: bfd4b1b23bfea794690d6534f74d5af1,
         type: 3}
     - target: {fileID: 8922177950480495964, guid: 8b92c4d2dcddb9b4eb339c6b21ab8964,
         type: 3}
