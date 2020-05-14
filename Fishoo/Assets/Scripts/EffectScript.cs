@@ -26,6 +26,6 @@ public class EffectScript : MonoBehaviour
             Destroy(gameObject);
             onDead?.Invoke();
         }
-            m_time += Time.deltaTime;
+        m_time += Time.deltaTime;
     }
 }
