@@ -14,6 +14,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     [SerializeField] private GameObject gameStartEffectPrefab;
     [SerializeField] private Transform gameStartEffectParent;
     [SerializeField] AudioSource gameStartBell;
+    [SerializeField]private TutorialUI tutorialUI;
 
     List<IInputUpdatable> m_inputObjects=new List<IInputUpdatable>();
 
@@ -24,6 +25,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     {
         Nove,
         Ready,
+        Tutorial,
         Playing,
         Finished
     }
@@ -33,6 +35,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     void Start()
     {
         pauseUI.SetActive(false);
+        tutorialUI.gameObject.SetActive(false);
         m_IsPauseActive = false;
         m_state = GameState.Ready;
         gameStartEffect = Instantiate(gameStartEffectPrefab, gameStartEffectParent).GetComponent<GameStartEffect>();
@@ -40,7 +43,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         {
             gameStartBell.Play();
             gameStartEffect.FadeOut();
-            SwitchState(GameState.Playing);
+            SwitchState(GameState.Tutorial);
         });
     }
 
@@ -86,7 +89,12 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
                 break;
             case GameState.Ready:
                 break;
+            case GameState.Tutorial:
+                tutorialUI.gameObject.SetActive(true);
+                tutorialUI.Initialize();
+                break;
             case GameState.Playing:
+                tutorialUI.gameObject.SetActive(false);
                 OnGameStarted?.Invoke();
                 break;
             case GameState.Finished:
