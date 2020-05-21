@@ -9,8 +9,8 @@ namespace Fish.Behavior
     /// <summary>
     /// 釣りゲーム外の、図鑑などでの魚のデータ
     /// </summary>
-    [CreateAssetMenu(menuName = "Data/FishData", order = 1)]
-    public class FishData : ScriptableObject
+    [CreateAssetMenu(menuName = "Data/FishInfo", order = 1)]
+    public class FishInfo : ScriptableObject
     {
         [Tooltip("魚の名前")]
         public string FishName;

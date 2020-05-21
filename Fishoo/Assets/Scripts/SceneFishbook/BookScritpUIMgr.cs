@@ -14,14 +14,14 @@ public class BookScritpUIMgr : MonoBehaviour
 
     
     [SerializeField] GameObject fishPrefab;
-    [SerializeField] FishData[] data;
+    [SerializeField] FishInfo[] data;
     [Header("References")]
     [SerializeField] GameObject bookList;
     [SerializeField] GameObject bookListContent;
     [SerializeField] GameObject bookDescription;
     [SerializeField] Button descriptionBackButton;
     BookDescriptionUI descriptionUI;
-
+    [SerializeField] Button SelectedButton;
     private void Awake()
     {
         descriptionUI = bookDescription.GetComponent<BookDescriptionUI>();
@@ -29,6 +29,7 @@ public class BookScritpUIMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         foreach (var d in data)
         {
           var script=  Instantiate(fishPrefab, bookListContent.transform).GetComponent<FishButtonUIScript>();
@@ -37,6 +38,9 @@ public class BookScritpUIMgr : MonoBehaviour
                 descriptionUI.Set(d.icon,d.FishName,d.description);
             });
             script.icon.sprite = d.icon;
+            //図鑑に戻ったときの初期選択
+            if (SelectedButton == null)
+                SelectedButton = script.GetComponent<FishButtonUIScript>().GetButton;
         }
         Switch(BookScriptState.list);
         descriptionBackButton.onClick.AddListener(()=> { Switch(BookScriptState.list); });
@@ -55,10 +59,13 @@ public class BookScritpUIMgr : MonoBehaviour
             case BookScriptState.list:
                 bookList.SetActive(true);
                 bookDescription.SetActive(false);
+                SelectedButton.Select();
                 break;
             case BookScriptState.description:
                 bookList.SetActive(false);
                 bookDescription.SetActive(true);
+                //戻るボタンを選択状態に
+                descriptionBackButton.Select();
                 break;
             default:
                 break;

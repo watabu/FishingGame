@@ -43,10 +43,10 @@ public class CommandContainerScript : MonoBehaviour
     void Update()
     {
         if (FinishesCommand) return;
-        if (Input.GetKeyDown(m_commands[0])){//先頭の文字と同じ入力があったとき
+        if (Player.InputSystem.GetKeyDown(m_commands[0])){//先頭の文字と同じ入力があったとき
             OnTrueKeyDown();
         }
-        else if(Input.anyKeyDown)//間違えた文字を打ったとき
+        else if(Player.InputSystem.anyKeyDown)//間違えた文字を打ったとき
         {
             OnFalseKeyDown();
         }

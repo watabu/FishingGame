@@ -48,24 +48,20 @@ namespace Player
             fishingToolMgr = FishingGame.FishingGameMgr.fishingToolMgr;
         }
 
-        // Update is called once per frame
-        void Update()
-        {
 
-        }
 
         public void InputUpdate()
         {
             if (!canMove) return;
             if (m_state == State.Fishing) return;
-            if (Input.GetKeyDown(throwRod) && m_state == State.Normal) 
+            if (InputSystem.GetKeyDown(throwRod) && m_state == State.Normal) 
             {
                 if (m_state == State.Normal)
                 {
                     ThrowRod();
                 }
             }
-            else if (Input.GetKeyDown(retriveRod) &&  m_state == State.ThrowRod)
+            else if (InputSystem.GetKeyDown(retriveRod) &&  m_state == State.ThrowRod)
             {
                 RetrieveRod();
             }

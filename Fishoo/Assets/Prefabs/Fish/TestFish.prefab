@@ -47,6 +47,7 @@ MonoBehaviour:
   fish: {fileID: 5436173513765085611}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
   moveDirection: {x: 0, y: 0}
+  CurrentKey: 0
 --- !u!114 &237390409105275891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,7 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c63ea20fb5e9546a81c96d65983fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishData: {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
+  fishInfo: {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
   fishMoveData: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
   nomalMove: {fileID: 237390409105275891}
   moveSpeed: 0.1

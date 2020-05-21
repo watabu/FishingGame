@@ -23,7 +23,7 @@ namespace Fish.Behavior
     [RequireComponent(typeof(Damageable), typeof(CircleCollider2D))]
     public class CommonFish : MonoBehaviour
     {
-        public FishData fishData;
+        public FishInfo fishInfo;
         public FishMoveData fishMoveData;
         [Tooltip("針に気づく前の動き")]public NomalMove nomalMove;
 

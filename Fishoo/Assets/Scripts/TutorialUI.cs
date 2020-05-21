@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutorialUI : MonoBehaviour
 {
     [SerializeField] GameObject description;
-
+    [SerializeField] Button FirstSelectedButton;
     int m_pageCount = 0;
     int m_currentPage = 0;
 

@@ -47,6 +47,7 @@ MonoBehaviour:
   fish: {fileID: 5436173513765085611}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
   moveDirection: {x: 0, y: 0}
+  CurrentKey: 0
 --- !u!114 &237390409105275891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,12 +342,12 @@ SpriteRenderer:
   m_SortingLayerID: -383583341
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: f023c6732d7313a46a1b392ba09a7766, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 222de1da8766fd740b77f9c9781d400e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 1}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -400,7 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c63ea20fb5e9546a81c96d65983fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishData: {fileID: 11400000, guid: 147728ffde37aa849969fdaf3245df43, type: 2}
+  fishInfo: {fileID: 11400000, guid: 147728ffde37aa849969fdaf3245df43, type: 2}
   fishMoveData: {fileID: 11400000, guid: 96fcef59846695f4d88c8dfc04a1b3db, type: 2}
   nomalMove: {fileID: 237390409105275891}
   moveSpeed: 0.1
