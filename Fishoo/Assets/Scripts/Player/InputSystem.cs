@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 namespace Player
 {
@@ -10,7 +9,7 @@ namespace Player
         /// <summary>
         /// Axisesの過去の値を持つ 
         /// </summary>
-        static Dictionary<KeyCode,float> AxisValues = new Dictionary<KeyCode, float>();
+        static Dictionary<KeyCode,bool> AxisValues = new Dictionary<KeyCode, bool>();
         /// <summary>
         /// InputからGetButtonDownで入力を得るボタンたち
         /// </summary>
@@ -19,13 +18,12 @@ namespace Player
         /// InputからAxis経由で入力を得るボタンたち
         /// </summary>
         static List<KeyCode> Axises = new List<KeyCode>() { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.DownArrow };
-
         private void Awake()
         {
             //Axisesを値管理リストに入れる
             foreach( var key in Axises)
             {
-                AxisValues.Add(key, 0);
+                AxisValues.Add(key, false);
             }
         }
 
@@ -36,21 +34,24 @@ namespace Player
         private void Update()
         {
             InputTest();
+         //   Debug.Log(Input.GetAxisRaw("RightArrow"));
         }
         void UpdateInput()
         {
             foreach(var Axis in Axises)
             {
-                AxisValues[Axis] = Input.GetAxis(Axis.ToString());
+                AxisValues[Axis] = GetKey(Axis);
             }
         }
         static public bool GetKeyDown(KeyCode key)
         {
-
+            //キーボードで入力されていれば
+            if (Input.GetKeyDown(key))
+                return true;
             if (Buttons.Contains(key))
                 return Input.GetButtonDown(key.ToString());
             if (Axises.Contains(key))
-                return (AxisValues[key] ==0 && Input.GetAxis(key.ToString()) > 0);
+                return (AxisValues[key] ==false && GetKey(key));
             else
             {
                 Debug.LogWarning("想定していないキー入力です。");
@@ -59,11 +60,21 @@ namespace Player
         }
         static public bool GetKey(KeyCode key)
         {
-
+            //キーボードで入力されていれば
+            if (Input.GetKey(key))
+                return true;
             if (Buttons.Contains(key))
                 return Input.GetButton(key.ToString());
             if (Axises.Contains(key))
-                return (Input.GetAxis(key.ToString()) > 0);
+                if(key == KeyCode.RightArrow || key == KeyCode.LeftArrow)
+                    return (Input.GetAxisRaw(key.ToString()) > 0.99);
+                else
+                {
+//                    Debug.Log(Input.GetAxisRaw(key.ToString()) > 0.99);
+//                  Debug.Log(Mathf.Abs(Input.GetAxisRaw("UpArrow")) < 0.2);
+                    return Input.GetAxisRaw(key.ToString()) > 0.99 && Mathf.Abs(Input.GetAxisRaw("RightArrow")) < 0.2;
+                }
+                    
             else
             {
                 Debug.LogWarning("想定していないキー入力です。");
@@ -71,7 +82,8 @@ namespace Player
             return false;
         }
         /// <summary>
-        /// 十字キーを含めて、何らかのボタンが押されているか
+        /// アナログスティックを含めて、何らかのボタンが押されているか。
+        /// アナログスティックの押された判定が鋭敏なので注意。
         /// </summary>
         static public bool anyKeyDown
         {
@@ -87,6 +99,51 @@ namespace Player
                 return false;
 
             }
+        }
+
+        /// <summary>
+        /// 正解のキーが押されていないかつ、不正解のキーが押されたか
+        /// </summary>
+        /// <param name="trueKey"></param>
+        /// <returns></returns>
+        static public bool FalseKeyDown(KeyCode trueKey)
+        {
+            return !GetKeyDown(trueKey) && GetOppositeKeyDown(trueKey);
+        }
+
+        /// <summary>
+        /// （コントローラ上で)反対側にあるキーが押されたか
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        static public bool GetOppositeKeyDown(KeyCode key)
+        {
+            return GetKeyDown(OppositeKey(key));
+        }
+
+
+        /// <summary>
+        /// （コントローラ上で)反対側にあるキー
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        static KeyCode OppositeKey(KeyCode key)
+        {
+            if (key == KeyCode.A)
+                return KeyCode.B;
+            if (key == KeyCode.B)
+                return KeyCode.A;
+            if (key == KeyCode.RightArrow)
+                return KeyCode.LeftArrow;
+            if (key == KeyCode.LeftArrow)
+                return KeyCode.RightArrow;
+            if (key == KeyCode.UpArrow)
+                return KeyCode.DownArrow;
+            if (key == KeyCode.DownArrow)
+                return KeyCode.UpArrow;
+
+            Debug.LogWarning("設定していないキーです。");
+            return KeyCode.A;
         }
         public Vector2 GetInputArrow()
         {
@@ -154,6 +211,7 @@ public static class MyExtensions
 
     /// <summary>
     /// 文字をキーコードにする
+    /// ABXYの4種類が難しいのでX->(A,B)からランダム,Y->(RLUD)からランダムに変換する。
     /// </summary>
     /// <param name="c"></param>
     /// <returns></returns>
@@ -164,9 +222,9 @@ public static class MyExtensions
         if (c == 'B')
             return KeyCode.B;
         if (c == 'X')
-            return KeyCode.X;
+            return new List<KeyCode>() { KeyCode.A, KeyCode.B }[Random.Range(0, 2)];
         if (c == 'Y')
-            return KeyCode.Y;
+            return new List<KeyCode>() { KeyCode.RightArrow,KeyCode.LeftArrow,KeyCode.UpArrow,KeyCode.DownArrow }[Random.Range(0, 4)];
         if (c == 'R')
             return KeyCode.RightArrow;
         if (c == 'D')

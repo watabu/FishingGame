@@ -15,7 +15,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     [SerializeField] private Transform gameStartEffectParent;
     [SerializeField] AudioSource gameStartBell;
     [SerializeField]private TutorialUI tutorialUI;
-
+    [SerializeField] private bool canSkipTutorial=false;
     List<IInputUpdatable> m_inputObjects=new List<IInputUpdatable>();
 
     UnityAction OnGameStarted;
@@ -43,7 +43,10 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         {
             gameStartBell.Play();
             gameStartEffect.FadeOut();
-            SwitchState(GameState.Tutorial);
+            if (canSkipTutorial)
+                SwitchState(GameState.Playing);
+            else
+                SwitchState(GameState.Tutorial);
         });
     }
 

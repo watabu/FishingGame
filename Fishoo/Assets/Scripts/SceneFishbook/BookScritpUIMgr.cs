@@ -1,4 +1,4 @@
-﻿using Fish.Behavior;
+﻿using Fish;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

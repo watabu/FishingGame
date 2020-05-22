@@ -16,13 +16,13 @@ public class CommandScript : MonoBehaviour
 
     private void Update()
     {
-        if (!m_LiveFlag) Destroy(gameObject);
+//        if (!m_LiveFlag) Destroy(gameObject);
     }
 
     public void Kill()
     {
         var script=Instantiate(effect, effectParent).GetComponent<EffectScript>();
         script.SetOnDead(() => { m_LiveFlag = false; });
-        m_image.color = new Color(0f,0f,0f,0f);
+        m_image.color = m_image.color * new Color(1f,1f,1f,0.25f);
     }
 }

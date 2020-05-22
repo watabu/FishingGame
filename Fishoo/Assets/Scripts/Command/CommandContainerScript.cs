@@ -14,7 +14,7 @@ public class CommandContainerScript : MonoBehaviour
     int commandsLength;
     [SerializeField]List<KeyCode> m_commands = new List<KeyCode>();
     List<CommandScript> m_commandObjects = new List<CommandScript>();
-
+    int command_index;
     private Transform commandEffectParent;
     bool m_FinishesCommand=false;
     /// <summary>
@@ -43,10 +43,10 @@ public class CommandContainerScript : MonoBehaviour
     void Update()
     {
         if (FinishesCommand) return;
-        if (Player.InputSystem.GetKeyDown(m_commands[0])){//先頭の文字と同じ入力があったとき
+        if (Player.InputSystem.GetKeyDown(m_commands[command_index])){//同じ入力があったとき
             OnTrueKeyDown();
         }
-        else if(Player.InputSystem.anyKeyDown)//間違えた文字を打ったとき
+        else if(Player.InputSystem.FalseKeyDown(m_commands[command_index]))//正解と反対のキーを押したとき
         {
             OnFalseKeyDown();
         }
@@ -54,6 +54,7 @@ public class CommandContainerScript : MonoBehaviour
 
     public void SetCommand(List<KeyCode> commands,Transform effectParent)
     {
+        command_index = 0;
         m_commands.Clear();
         m_commands = commands;
         commandsLength = commands.Count;
@@ -67,15 +68,17 @@ public class CommandContainerScript : MonoBehaviour
     void OnTrueKeyDown()
     {
         if (FinishesCommand) return;
-        m_commands.RemoveAt(0);
-        m_commandObjects[0].Kill();
-        m_commandObjects[0].transform.SetParent(transform.parent);
-        m_commandObjects.RemoveAt(0);
+        //m_commands.RemoveAt(0);
+        m_commandObjects[command_index].Kill();
+        //m_commandObjects[0].transform.SetParent(transform.parent);
+        //m_commandObjects.RemoveAt(0);
         CommandGenerator.Instance.OnCommandKilled();
+        command_index++;
         //text.text= text.text.Remove(0, 1);
         //今釣っている魚にダメージを与える
-        
-        if (m_commands.Count == 0)
+
+        if(command_index == m_commands.Count)
+//        if (m_commands.Count == 0)
         {
             FinishesCommand = true;
             OnFinish();

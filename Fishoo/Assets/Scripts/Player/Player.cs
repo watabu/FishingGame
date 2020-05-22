@@ -74,7 +74,7 @@ namespace Player
         public void Move(Vector2 velocity)
         {
             velocity.y = 0;
-            transform.position += (Vector3)velocity * Time.deltaTime * speed;
+//            transform.position += (Vector3)velocity * Time.deltaTime * speed;
         }
 
         /// <summary>

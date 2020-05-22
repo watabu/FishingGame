@@ -478,12 +478,12 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
+    dead: 0
+    sensitivity: 1
     snap: 0
     invert: 0
     type: 2
-    axis: 5
+    axis: 0
     joyNum: 0
   - serializedVersion: 3
     m_Name: LeftArrow
@@ -494,12 +494,12 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
+    dead: 0
+    sensitivity: 1
     snap: 0
     invert: 1
     type: 2
-    axis: 5
+    axis: 0
     joyNum: 0
   - serializedVersion: 3
     m_Name: UpArrow
@@ -510,12 +510,12 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
+    dead: 0
+    sensitivity: 1
     snap: 0
-    invert: 0
+    invert: 1
     type: 2
-    axis: 6
+    axis: 1
     joyNum: 0
   - serializedVersion: 3
     m_Name: DownArrow
@@ -526,10 +526,10 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
+    dead: 0
+    sensitivity: 1
     snap: 0
-    invert: 1
+    invert: 0
     type: 2
-    axis: 6
+    axis: 1
     joyNum: 0

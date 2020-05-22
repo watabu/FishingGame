@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Fish
+namespace Fish.Behavior
 {
     /// <summary>
     /// 釣りゲーム中の魚の動きを管理する
@@ -47,10 +47,12 @@ namespace Fish
             switch (keyCode)
             {
                 case KeyCode.A:
-                    dir.y = -1;
+                    dir.y = 1;
+                    dir.x = -1;
                     break;
                 case KeyCode.B:
-                    dir.x = 1;
+                    dir.y = 1;
+                    dir.x = 2;
                     break;
                 case KeyCode.X:
                     dir.x = -1;
@@ -59,7 +61,7 @@ namespace Fish
                     dir.y = 1;
                     break;
                 case KeyCode.RightArrow:
-                    dir.x = 1;
+                    dir.x = 2;
                     break;
                 case KeyCode.LeftArrow:
                     dir.x = -1;
