@@ -20,12 +20,25 @@ public class StageSelectMgr : MonoBehaviour
     [SerializeField] private PlaceAndData[] scenesData;
     [Header("References")]
     [SerializeField] private Transform buttonsParent;
+    [SerializeField] private CanvasGroup titleCanvas;
+    [SerializeField] private CanvasGroup stageCanvas;
 
-
+    public enum StageSelectState
+    {
+        none,
+        title,
+        stageSelect,
+        selected
+    }
+    StageSelectState m_state = StageSelectState.none;
+    float m_time=0f;
     // Start is called before the first frame update
     void Start()
     {
-        foreach(var i in scenesData)
+        m_state = StageSelectState.title;
+        titleCanvas.alpha = 1;
+        stageCanvas.alpha = 0;
+        foreach (var i in scenesData)
         {
             i.button.Initialize(i.place.description,()=> { });
         }
@@ -34,6 +47,26 @@ public class StageSelectMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        switch (m_state)
+        {
+            case StageSelectState.none:
+                break;
+            case StageSelectState.title:
+                if (m_time >= 3f&&Input.anyKeyDown)
+                {
+                    m_state = StageSelectState.stageSelect;
+                    titleCanvas.alpha = 0;
+                    stageCanvas.alpha = 1;
+                }
+                break;
+            case StageSelectState.stageSelect:
+                break;
+            case StageSelectState.selected:
+                break;
+            default:
+                break;
+        }
+        m_time += Time.deltaTime;
     }
 
     public void Jump(int ID)
