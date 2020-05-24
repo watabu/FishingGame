@@ -9,11 +9,13 @@ public class StageSelectButton : MonoBehaviour
 {
 
     [SerializeField] TextMeshProUGUI description;
+    [SerializeField] TextMeshProUGUI buttonName;
     [SerializeField] Button button;
 
-    public void Initialize(string description_,UnityAction OnButtonClicked=null)
+    public void Initialize(string description_,string buttonName_,UnityAction OnButtonClicked=null)
     {
         description.text = description_;
+        buttonName.text = buttonName_;
         button.onClick.AddListener(OnButtonClicked);
     }
 
