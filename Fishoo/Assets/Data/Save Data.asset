@@ -15,3 +15,14 @@ MonoBehaviour:
   season: 0
   week: 0
   money: 0
+  fishes:
+  - {fileID: 11400000, guid: 868df025d9ab5d342824d9ad6d68d1f5, type: 2}
+  - {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
+  - {fileID: 11400000, guid: 147728ffde37aa849969fdaf3245df43, type: 2}
+  - {fileID: 11400000, guid: 5566acedaa854e94e9f6b0db90d9fb3d, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

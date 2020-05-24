@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.Events;
 using TMPro;
 
@@ -34,6 +35,14 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         Finished
     }
     GameState m_state=GameState.Nove;
+
+    private void OnApplicationQuit()
+    {
+        //ダーティとしてマークする(変更があった事を記録する)
+        EditorUtility.SetDirty(data);
+        //保存する
+        AssetDatabase.SaveAssets();
+    }
 
     // Start is called before the first frame update
     void Start()

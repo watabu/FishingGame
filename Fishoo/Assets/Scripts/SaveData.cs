@@ -27,4 +27,7 @@ public class SaveData : ScriptableObject
             default:return "";
         }
     }
+
+    public Fish.FishInfo[] fishes;
+
 }
