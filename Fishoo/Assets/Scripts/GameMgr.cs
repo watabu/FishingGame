@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 /// <summary>
 /// ゲームのマネージャー
@@ -16,6 +17,9 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     [SerializeField] AudioSource gameStartBell;
     [SerializeField]private TutorialUI tutorialUI;
     [SerializeField] private bool canSkipTutorial=false;
+    [SerializeField] private SaveData data;
+    [SerializeField] private TextMeshProUGUI seasonText;
+    [SerializeField] private TextMeshProUGUI weekText;
     List<IInputUpdatable> m_inputObjects=new List<IInputUpdatable>();
 
     UnityAction OnGameStarted;
@@ -38,6 +42,8 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         tutorialUI.gameObject.SetActive(false);
         m_IsPauseActive = false;
         m_state = GameState.Ready;
+        seasonText.text = data.GetSeasonKanji();
+        weekText.text = $"第{data.week}週";
         gameStartEffect = Instantiate(gameStartEffectPrefab, gameStartEffectParent).GetComponent<GameStartEffect>();
         this.Delay(3f, () =>
         {

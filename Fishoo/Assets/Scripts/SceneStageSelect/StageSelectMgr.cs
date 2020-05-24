@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 /// <summary>
 /// ボタンを押すと特定のシーンに移動できるようにするクラス
 /// </summary>
@@ -22,7 +23,10 @@ public class StageSelectMgr : MonoBehaviour
     [SerializeField] private Transform buttonsParent;
     [SerializeField] private CanvasGroup titleCanvas;
     [SerializeField] private CanvasGroup stageCanvas;
-
+    [SerializeField] private float activateInput = 3f;
+    [SerializeField] private TextMeshProUGUI daySeason;
+    [SerializeField] private TextMeshProUGUI dayWeek;
+    [SerializeField] private SaveData data;
     public enum StageSelectState
     {
         none,
@@ -38,9 +42,12 @@ public class StageSelectMgr : MonoBehaviour
         m_state = StageSelectState.title;
         titleCanvas.alpha = 1;
         stageCanvas.alpha = 0;
+        stageCanvas.interactable = false;
+        daySeason.text = data.GetSeasonKanji();
+        dayWeek.text = $"第<size=30>{data.week}</size>週";
         foreach (var i in scenesData)
         {
-            i.button.Initialize(i.place.description,()=> { });
+            i.button.Initialize(i.place.description, i.sceneName, ()=> { });
         }
     }
 
@@ -52,11 +59,12 @@ public class StageSelectMgr : MonoBehaviour
             case StageSelectState.none:
                 break;
             case StageSelectState.title:
-                if (m_time >= 3f&&Input.anyKeyDown)
+                if (m_time >= activateInput && Input.anyKeyDown)
                 {
                     m_state = StageSelectState.stageSelect;
                     titleCanvas.alpha = 0;
                     stageCanvas.alpha = 1;
+                    stageCanvas.interactable = true;
                 }
                 break;
             case StageSelectState.stageSelect:
