@@ -40,6 +40,10 @@ namespace Player
         /// </summary>
         [SerializeField, ReadOnly] bool canWalk = true;
 
+        List<Fish.Behavior.CommonFish> caughtFishList = new List<Fish.Behavior.CommonFish>();
+
+        public List<Fish.Behavior.CommonFish> GetFishList() { return caughtFishList; }
+
         // Start is called before the first frame update
         void Start()
         {
@@ -106,6 +110,7 @@ namespace Player
         public async void CatchFish(Fish.Behavior.CommonFish fish)
         {
             m_state = State.Normal;
+            caughtFishList.Add(fish);
             canMove = false;
             await Task.Delay(1000);
             canWalk = true;
