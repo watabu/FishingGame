@@ -29,7 +29,7 @@ public class TutorialUI : MonoBehaviour
     }
     public void ToPlayGame()
     {
-        GameMgr.Instance.SwitchState(GameMgr.GameState.Playing);
+        GameMgr.Instance.SwitchState(GameMgr.State.Playing);
     }
 
 }
