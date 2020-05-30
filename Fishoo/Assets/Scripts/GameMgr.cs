@@ -27,7 +27,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     UnityAction OnGameStarted;
     GameStartEffect gameStartEffect;
     bool m_IsPauseActive = false;
-    public enum GameState
+    public enum State
     {
         Nove,
         Ready,
@@ -35,7 +35,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         Playing,
         Finished
     }
-    GameState m_state=GameState.Nove;
+    State m_state = State.Nove;
 
     private void OnApplicationQuit()
     {
@@ -51,7 +51,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         pauseUI.SetActive(false);
         tutorialUI.gameObject.SetActive(false);
         m_IsPauseActive = false;
-        m_state = GameState.Ready;
+        m_state = State.Ready;
         seasonText.text = data.GetSeasonKanji();
         weekText.text = $"第{data.week}週";
         gameStartEffect = Instantiate(gameStartEffectPrefab, gameStartEffectParent).GetComponent<GameStartEffect>();
@@ -60,10 +60,11 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
             gameStartBell.Play();
             gameStartEffect.FadeOut();
             if (canSkipTutorial)
-                SwitchState(GameState.Playing);
+                SwitchState(State.Playing);
             else
-                SwitchState(GameState.Tutorial);
+                SwitchState(State.Tutorial);
         });
+        Environment.TimeHolder.Instance.AddOnTimeFinished((time)=> { SwitchState(State.Finished); });
     }
 
     // Update is called once per frame
@@ -108,24 +109,24 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
 
     public void AddOnGameStarted(UnityAction func) { OnGameStarted+=func; }
 
-    public void SwitchState(GameState state)
+    public void SwitchState(State state)
     {
         m_state = state;
         switch (m_state)
         {
-            case GameState.Nove:
+            case State.Nove:
                 break;
-            case GameState.Ready:
+            case State.Ready:
                 break;
-            case GameState.Tutorial:
+            case State.Tutorial:
                 tutorialUI.gameObject.SetActive(true);
                 tutorialUI.Initialize();
                 break;
-            case GameState.Playing:
+            case State.Playing:
                 tutorialUI.gameObject.SetActive(false);
                 OnGameStarted?.Invoke();
                 break;
-            case GameState.Finished:
+            case State.Finished:
                 SceneManager.sceneLoaded += ResultSceneLoaded;
                 SceneManager.LoadScene("Result");
                 break;
