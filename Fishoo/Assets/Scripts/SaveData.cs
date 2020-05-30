@@ -28,6 +28,7 @@ public class SaveData : ScriptableObject
         }
     }
 
+    [Tooltip("今までに取った魚")]
     public Fish.FishInfo[] fishes;
 
 }
