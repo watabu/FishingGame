@@ -14,7 +14,6 @@ public class BookScritpUIMgr : MonoBehaviour
 
     
     [SerializeField] GameObject fishPrefab;
-    [SerializeField] FishInfo[] data;
     [Header("References")]
     [SerializeField] GameObject bookList;
     [SerializeField] GameObject bookListContent;
@@ -22,6 +21,7 @@ public class BookScritpUIMgr : MonoBehaviour
     [SerializeField] Button descriptionBackButton;
     BookDescriptionUI descriptionUI;
     [SerializeField] Button SelectedButton;
+    [SerializeField] SaveData data;
     private void Awake()
     {
         descriptionUI = bookDescription.GetComponent<BookDescriptionUI>();
@@ -30,8 +30,9 @@ public class BookScritpUIMgr : MonoBehaviour
     void Start()
     {
 
-        foreach (var d in data)
+        foreach (var d in data.fishes)
         {
+            if (d == null) continue;
           var script=  Instantiate(fishPrefab, bookListContent.transform).GetComponent<FishButtonUIScript>();
             script.SetOnClicked(()=> { 
                 Switch(BookScriptState.description);
