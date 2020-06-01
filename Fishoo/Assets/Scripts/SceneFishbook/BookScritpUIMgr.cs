@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BookScritpUIMgr : MonoBehaviour
@@ -72,4 +73,11 @@ public class BookScritpUIMgr : MonoBehaviour
                 break;
         }
     }
+
+    public void BackToTitle()
+    {
+        SceneManager.LoadScene("StageSelect");
+
+    }
+
 }

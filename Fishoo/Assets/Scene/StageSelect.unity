@@ -313,7 +313,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &340032047
 MonoBehaviour:
@@ -338,15 +338,15 @@ MonoBehaviour:
     place: {fileID: 11400000, guid: 557376cd35af8704292975cc6dc17c0f, type: 2}
     button: {fileID: 515188222}
   - sceneName: FishBook
-    place: {fileID: 11400000, guid: 557376cd35af8704292975cc6dc17c0f, type: 2}
+    place: {fileID: 11400000, guid: 8e87942a00b679e44b74b8b709008b3d, type: 2}
     button: {fileID: 1979529424}
   buttonsParent: {fileID: 840964686}
   titleCanvas: {fileID: 778291175}
   stageCanvas: {fileID: 1769093714}
-  activateInput: 2
   daySeason: {fileID: 880406799}
   dayWeek: {fileID: 1623343066}
   data: {fileID: 11400000, guid: 99c8a66cead9076449846857ca683267, type: 2}
+  activateInput: 2
 --- !u!4 &340032048
 Transform:
   m_ObjectHideFlags: 0
@@ -355,7 +355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340032046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 356.23206, y: 205.65366, z: -24.125}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2670,12 +2670,23 @@ PrefabInstance:
     - target: {fileID: 7665192857077112013, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7665192857077112013, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665192857077112013, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7531586957010362340, guid: 2c3e7a5b3c6d5804db28db99df1dad05,
+        type: 2}
+    - target: {fileID: 7665192857077112013, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7920195445422277070, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
         type: 3}
