@@ -192,7 +192,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5072582633628663535}
   m_BodyType: 0
-  m_Simulated: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -260,7 +260,7 @@ Transform:
   - {fileID: 5072582634451358809}
   m_Father: {fileID: 5072582634750292714}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5.95}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.92}
 --- !u!1 &5072582634451358810
 GameObject:
   m_ObjectHideFlags: 0
