@@ -423,6 +423,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eeb0a5239ba1ac4dbb9760a80dd8a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  waterSE: {fileID: 0}
 --- !u!1 &65013504
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,6 +618,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shaft: {fileID: 1860470222}
   sprite: {fileID: 350280483}
+  throwRodClip: {fileID: 0}
+  retrieveRodClip: {fileID: 0}
 --- !u!1 &230693251
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,9 +665,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9658e096447679743a099bcf62aca607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fishingGameMgr: {fileID: 0}
+  m_player: {fileID: 0}
   fishingRod: {fileID: 112344467}
-  fishingFloat: {fileID: 28672978}
+  fishingBobber: {fileID: 0}
   fishingHook: {fileID: 1387182263}
+  bucket: {fileID: 0}
   toolsHolder: {fileID: 1065154872}
 --- !u!1 &350280481
 GameObject:
@@ -1072,6 +1079,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputSystem: {fileID: 487605938}
   pauseUI: {fileID: 713175737}
+  gameStartEffectPrefab: {fileID: 0}
+  gameStartEffectParent: {fileID: 0}
+  gameStartBell: {fileID: 0}
+  tutorialUI: {fileID: 0}
+  canSkipTutorial: 0
+  data: {fileID: 0}
+  seasonText: {fileID: 0}
+  weekText: {fileID: 0}
 --- !u!4 &621125309
 Transform:
   m_ObjectHideFlags: 0
@@ -1868,8 +1883,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc534c6a2f9f22e409bed2f8ebd0a694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fish: {fileID: 0}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
   moveDirection: {x: 0, y: 0}
+  CurrentKey: 0
 --- !u!50 &977406182
 Rigidbody2D:
   serializedVersion: 4
@@ -2655,8 +2672,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startTime: 420
   endTime: 1140
+  timeSpan: 0
+  timeDelta: 0
+  m_currentTime: 0
   timeText: {fileID: 1178212040}
   OnTimeChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTimeFinished:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1339180093
@@ -2896,7 +2919,7 @@ SpriteRenderer:
   m_Size: {x: 2, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1387182261
@@ -2947,9 +2970,10 @@ MonoBehaviour:
   fishingGameMgr: {fileID: 0}
   biteHookEffect: {fileID: 0}
   effectParent: {fileID: 0}
-  force: 1
-  _time: 10
-  obj: {fileID: 0}
+  sprite: {fileID: 0}
+  m_currentFish: {fileID: 0}
+  isInWater: 0
+  isInWater_mask: 0
 --- !u!1 &1399176565
 GameObject:
   m_ObjectHideFlags: 0
@@ -3197,6 +3221,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8288859540231502201, guid: f107d1fffe224fe49ad416683ac2d105,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8288859540231502201, guid: f107d1fffe224fe49ad416683ac2d105,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f107d1fffe224fe49ad416683ac2d105, type: 3}
 --- !u!1 &1599049621
@@ -3245,6 +3279,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aebd36fc5023c98429ba92168df458fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwRod: 97
+  retriveRod: 98
+  speed: 5
+  m_state: 0
+  canMove: 1
+  canWalk: 1
 --- !u!1001 &1681868412
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3721,8 +3761,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc534c6a2f9f22e409bed2f8ebd0a694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fish: {fileID: 0}
   data: {fileID: 0}
   moveDirection: {x: 0, y: 0}
+  CurrentKey: 0
 --- !u!212 &2005222777
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4342,7 +4384,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[14].second.m_AnimationSpeed
-      value: 2.5
+      value: 2.5000002
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -4417,7 +4459,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[32].second.m_AnimationSpeed
-      value: 2.5
+      value: 2.5000002
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -4477,7 +4519,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[114].second.m_AnimationSpeed
-      value: 2.5
+      value: 2.5000002
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -4567,7 +4609,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[46].second.m_AnimationSpeed
-      value: 2.5
+      value: 2.5000002
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -4662,11 +4704,21 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[59].second.m_AnimationSpeed
-      value: 2.5000002
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[94].second.m_AnimationSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
+        type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[16].second.m_AnimationSpeed
+      value: 2.5000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
+        type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[36].second.m_AnimationSpeed
       value: 2.5000002
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434837388609, guid: faca6ed6527518649a16c8ea8112bcc2,

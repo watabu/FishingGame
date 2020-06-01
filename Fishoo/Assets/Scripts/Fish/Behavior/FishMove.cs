@@ -23,10 +23,11 @@ namespace Fish.Behavior
         {
             if (fish.state == Behavior.FishState.Biting && CurrentKey!= KeyCode.None)
             {
-                fish.transform.localPosition = KeyToVec3(CurrentKey) *2;
+//                fish.transform.localPosition = KeyToVec3(CurrentKey) *2;
+                fish.GetHook.PulledToPos(KeyToVec3(CurrentKey) * 2);
+
             }
         }
-
 
 
         public void ReceiveNextKey(KeyCode keyCode)

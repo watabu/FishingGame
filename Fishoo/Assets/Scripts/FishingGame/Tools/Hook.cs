@@ -16,12 +16,13 @@ namespace FishingGame.Tools
         [SerializeField] GameObject biteHookEffect;
         [SerializeField] Transform effectParent;
 
+        public Bobber bobber;
         public SpriteRenderer sprite;
 
         [Tooltip("釣り針を引っ張る力の大きさ")]
         float force = 1;//魚の種類で釣り針の下がり具合を変えたければpublic
-
-        Vector3 prev;
+        [Tooltip("ニュートラルポジション")]
+        Vector3 neutralPos;
 
         /// <summary>
         ///     力の作用するゲームオブジェクト(rg2dを持つ)
@@ -36,7 +37,7 @@ namespace FishingGame.Tools
         /// <summary>
         /// 力を及ぼす対象
         /// </summary>
-        Rigidbody2D rg2d;
+//        Rigidbody2D rg2d;
 
 
         [ReadOnly,SerializeField]CommonFish m_currentFish;
@@ -50,7 +51,8 @@ namespace FishingGame.Tools
             if (myUpdate == null)
                 myUpdate = new UnityEvent();
             obj = gameObject;
-            rg2d = obj.GetComponent<Rigidbody2D>();
+            neutralPos = transform.localPosition;
+            //            rg2d = obj.GetComponent<Rigidbody2D>();
         }
         void Update()
         {
@@ -60,7 +62,10 @@ namespace FishingGame.Tools
 
         public void SetTarget(CommonFish fish) { m_currentFish = fish; }
         public bool CanBite() { return m_currentFish == null && isInWater && isInWater_mask; }
-        public void FinishBite() { m_currentFish = null; }
+        public void FinishBite() {
+            m_currentFish = null;
+//            rg2d.simulated = true;
+        }
         [ReadOnly,SerializeField]bool isInWater = false;
         [ReadOnly,SerializeField]bool isInWater_mask = false;
         
@@ -69,6 +74,9 @@ namespace FishingGame.Tools
         /// </summary>
         public async void ExpandTools()
         {
+            //         rg2d.simulated = true;
+            transform.localPosition = neutralPos;
+
             isInWater_mask = true;
             isInWater = false;
             m_currentFish = null;
@@ -121,7 +129,7 @@ namespace FishingGame.Tools
             q.x = 0;
             q.y = -1;
             q *= force;
-            rg2d.AddForce(q);
+//            rg2d.AddForce(q);
         }
 
         /// <summary>
@@ -130,6 +138,16 @@ namespace FishingGame.Tools
         public void OnBiteHook()
         {
             Instantiate(biteHookEffect,transform.position,Quaternion.identity, effectParent);
+            
+            bobber.SetInvisible();
+ //           rg2d.simulated = false;
+//            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        public void PulledToPos(Vector3 pos)
+        {
+            transform.localPosition = neutralPos + pos;
+
         }
 
         public async void testPullDown()

@@ -40,6 +40,12 @@ namespace FishingGame.Tools
             color.a = 0;
             sprite.color = color;
         }
+        public void SetVisible()
+        {
+            var color = sprite.color;
+            color.a = 1;
+            sprite.color = color;
+        }
 
         public void PullToLeft()
         {

@@ -89,7 +89,7 @@ public class CommandContainerScript : MonoBehaviour
             float damage = 0.25f;
             Debug.Log(damage);
             FishingGame.FishingGameMgr.Instance.TargetFish.Damaged(damage);
-            FishingGame.FishingGameMgr.Instance.TargetFish.fishMove.ReceiveNextKey(m_commands[0]);
+            FishingGame.FishingGameMgr.Instance.TargetFish.fishMove.ReceiveNextKey(m_commands[command_index]);
         }
     }
      void OnFalseKeyDown()

@@ -25,13 +25,13 @@ namespace Fish.Behavior
     {
         public FishInfo fishInfo;
         public FishMoveData fishMoveData;
-        [Tooltip("針に気づく前の動き")]public NomalMove nomalMove;
+        [Tooltip("針に気づく前の動き")] public NomalMove nomalMove;
 
         /// <summary>
         /// 針に気づいて近づく速さ
         /// </summary>
         [Tooltip("針に気づいて近づく速さ")]
-        public float moveSpeed=0.05f;
+        public float moveSpeed = 0.05f;
 
         /// <summary>
         /// 魚が湧いてから経った時間
@@ -49,7 +49,7 @@ namespace Fish.Behavior
         [Header("Object References")]
         public FishMove fishMove;
 
-        
+
 
         [Tooltip("魚の画像")]
         public SpriteRenderer sprite;
@@ -69,6 +69,7 @@ namespace Fish.Behavior
         Damageable m_damageable;
 
         static private FishingGame.Tools.Hook m_fishingHook;
+        public FishingGame.Tools.Hook GetHook{get { return m_fishingHook; }}
 
         private void Awake()
         {

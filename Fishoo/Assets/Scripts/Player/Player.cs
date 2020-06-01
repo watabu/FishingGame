@@ -40,6 +40,7 @@ namespace Player
         /// </summary>
         [SerializeField, ReadOnly] bool canWalk = true;
 
+        [SerializeField, ReadOnly]
         List<Fish.Behavior.CommonFish> caughtFishList = new List<Fish.Behavior.CommonFish>();
 
         public List<Fish.Behavior.CommonFish> GetFishList() { return caughtFishList; }
