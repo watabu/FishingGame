@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Result.unity
     guid: e5395930c73f5164a860c12eaffa6af4
+  - enabled: 1
+    path: Assets/Scene/FishBook.unity
+    guid: 560c5bdaa9c17f04f9920cc5892d561a
+  - enabled: 1
+    path: Assets/Scene/StageSelect.unity
+    guid: 72244b299a017df4db0a9a9d17e80cda
   m_configObjects: {}

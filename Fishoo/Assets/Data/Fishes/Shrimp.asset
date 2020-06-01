@@ -17,5 +17,5 @@ MonoBehaviour:
   description_Caught: 
   sellingPrice: 50
   exp: 10
-  icon: {fileID: 21300000, guid: 222de1da8766fd740b77f9c9781d400e, type: 3}
+  icon: {fileID: 21300000, guid: d42ee0f1bf69579439571dab5e2578b7, type: 3}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}

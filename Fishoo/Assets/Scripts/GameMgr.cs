@@ -134,4 +134,9 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
                 break;
         }
     }
+
+    public void BackToTitle()
+    {
+        SceneManager.LoadScene("StageSelect");
+    }
 }

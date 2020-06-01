@@ -23,10 +23,13 @@ public class StageSelectMgr : MonoBehaviour
     [SerializeField] private Transform buttonsParent;
     [SerializeField] private CanvasGroup titleCanvas;
     [SerializeField] private CanvasGroup stageCanvas;
-    [SerializeField] private float activateInput = 3f;
     [SerializeField] private TextMeshProUGUI daySeason;
     [SerializeField] private TextMeshProUGUI dayWeek;
     [SerializeField] private SaveData data;
+    [Header("Parameter")]
+    [Tooltip("Title画面から遷移するときに何秒経てば遷移できるか")]
+    [SerializeField] private float activateInput = 3f;
+
     public enum StageSelectState
     {
         none,
@@ -47,7 +50,7 @@ public class StageSelectMgr : MonoBehaviour
         dayWeek.text = $"第<size=30>{data.week}</size>週";
         foreach (var i in scenesData)
         {
-            i.button.Initialize(i.place.description, i.sceneName, ()=> { });
+            i.button.Initialize(i.place.description, i.sceneName, ()=> { SceneManager.LoadScene(i.sceneName); });
         }
     }
 
