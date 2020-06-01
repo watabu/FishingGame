@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//使わない
 /* 魚の動き方のメモ
  * 上層を浮かびながら下流へ流れていく
  * 表面をはねる

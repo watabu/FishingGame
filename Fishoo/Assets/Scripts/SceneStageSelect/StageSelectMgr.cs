@@ -47,7 +47,8 @@ public class StageSelectMgr : MonoBehaviour
         dayWeek.text = $"第<size=30>{data.week}</size>週";
         foreach (var i in scenesData)
         {
-            i.button.Initialize(i.place.description, i.sceneName, ()=> { });
+            i.button.Initialize(i.place.description, i.sceneName, ()=> { SceneManager.LoadScene(i.sceneName); });
+            //i.button.Initialize(i.place.description, i.sceneName, ()=> { });
         }
     }
 

@@ -125,10 +125,10 @@ namespace FishingGame
         /// </summary>
         public void FishingFailed()
         {
+            Hook.FinishBite();
             WhenFishingFailed.Invoke();
             m_isFishing = false;
             fishingToolMgr.RetrieveTools();
-            Hook.FinishBite();
             m_targetFish.SetEscaping();
         }
 
