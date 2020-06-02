@@ -13,17 +13,20 @@ namespace Player
         /// <summary>
         /// InputからGetButtonDownで入力を得るボタンたち
         /// </summary>
-        static List<KeyCode> Buttons = new List<KeyCode>() { KeyCode.A, KeyCode.B, KeyCode.X, KeyCode.Y };
+        static List<KeyCode> Buttons = new List<KeyCode>() { KeyCode.A, KeyCode.B, KeyCode.X, KeyCode.Y ,KeyCode.Escape};
         /// <summary>
         /// InputからAxis経由で入力を得るボタンたち
         /// </summary>
         static List<KeyCode> Axises = new List<KeyCode>() { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.DownArrow };
         private void Awake()
         {
-            //Axisesを値管理リストに入れる
-            foreach( var key in Axises)
+            if (AxisValues.Count == 0)
             {
-                AxisValues.Add(key, false);
+                //Axisesを値管理リストに入れる
+                foreach (var key in Axises)
+                {
+                    AxisValues.Add(key, false);
+                }
             }
         }
 
@@ -34,7 +37,7 @@ namespace Player
         private void Update()
         {
             InputTest();
-         //   Debug.Log(Input.GetAxisRaw("RightArrow"));
+            //   Debug.Log(Input.GetAxisRaw("RightArrow"));
         }
         void UpdateInput()
         {
@@ -141,7 +144,7 @@ namespace Player
                 return KeyCode.DownArrow;
             if (key == KeyCode.DownArrow)
                 return KeyCode.UpArrow;
-
+                
             Debug.LogWarning("設定していないキーです。");
             return KeyCode.A;
         }
@@ -157,7 +160,7 @@ namespace Player
 
         void InputTest()
         {
-            foreach(var key in Buttons)
+            foreach (var key in Buttons)
             {
                 if (GetKeyDown(key))
                     Debug.Log(key);

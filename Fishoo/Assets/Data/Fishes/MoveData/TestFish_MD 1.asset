@@ -19,10 +19,10 @@ MonoBehaviour:
   lifeTime: 10000
   status:
     hpMax: 15
-    hpRegene: 0.5
+    hpRegene: 0.2
   moveType: 4
   commands:
   - ABLUALU
   - XYDRXDR
-  - AAA
-  - BYBB
+  - AAYB
+  - BBYA

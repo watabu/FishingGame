@@ -70,7 +70,9 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetButtonDown(KeyCode.Escape.ToString()))
+
+//            if (Player.InputSystem.GetKeyDown(KeyCode.Escape))
         {
             if (m_IsPauseActive)
                 ClosePauseUI();
@@ -89,8 +91,10 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     //リザルト画面に切り替えたとき呼ばれる
     private void ResultSceneLoaded(Scene next, LoadSceneMode mode)
     {
-        var player = FindObjectOfType<Player.Player>();
-        FindObjectOfType<ResultManager>().SetList(player.GetFishList());
+        //        var player = FindObjectOfType<Player.Player>();
+        var coolerBox= FindObjectOfType<Player.CoolerBox>();
+        FindObjectOfType<ResultManager>().SetList(coolerBox.GetFishList);
+//        Destroy(coolerBox);
         SceneManager.sceneLoaded -= ResultSceneLoaded;
     }
 

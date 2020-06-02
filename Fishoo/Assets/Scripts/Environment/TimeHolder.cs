@@ -20,14 +20,16 @@ namespace Environment
         public int endTime;
 
         [Tooltip("時刻変化")]
-        public float timeSpan;
+        public float timeSpan=0.2f;
         [Tooltip("時刻変化量")]
         public int timeDelta;
 
+        const float defalt_timeSpan = 0.2f;
         /// <summary>
         /// 現在の時刻
         /// </summary>
         [SerializeField, ReadOnly]int m_currentTime;
+        [SerializeField] bool Skip;
         public int CurrentTime
         {
             get { return m_currentTime; }
@@ -54,6 +56,7 @@ namespace Environment
         // Start is called before the first frame update
         void Start()
         {
+            if (Skip) timeSpan = 0.0005f;
             AddOnTimeChanged((time) => { timeText.text = GetTimeString(); });
             CurrentTime = startTime;
             InvokeRepeating("TimeChange", 0f, timeSpan);

@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.Events;
 
 /// <summary>
 /// シーンに入って最初に指定されるボタンやBボタンを押したときに指定されたボタンへ遷移させる

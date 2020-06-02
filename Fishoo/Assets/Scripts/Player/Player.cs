@@ -22,9 +22,10 @@ namespace Player
 
         FishingGame.FishingToolMgr fishingToolMgr;
 
-        [Header("Key config")]
-        [SerializeField] KeyCode throwRod = KeyCode.A;
-        [SerializeField] KeyCode retriveRod = KeyCode.B;
+        [SerializeField]CoolerBox coolerBox;
+        //[Header("Key config")]
+        KeyCode throwRod = KeyCode.A;
+        KeyCode retriveRod = KeyCode.B;
 
 
         [Header("Debug")]
@@ -112,6 +113,7 @@ namespace Player
         {
             m_state = State.Normal;
             caughtFishList.Add(fish);
+            coolerBox.Add(fish);
             canMove = false;
             await Task.Delay(1000);
             canWalk = true;

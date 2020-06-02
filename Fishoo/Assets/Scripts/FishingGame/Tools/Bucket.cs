@@ -11,7 +11,6 @@ namespace FishingGame.Tools
     {
 
         [SerializeField, Tooltip("画像")] SpriteRenderer sprite;
-        [SerializeField, Tooltip("釣った魚のリスト")] List<Fish.Behavior.CommonFish> CaughtFishList;
 
         /// <summary>
         /// 釣った魚をバケツに入れる
@@ -19,7 +18,6 @@ namespace FishingGame.Tools
         /// <param name="fish"></param>
         public void SwallowFish(Fish.Behavior.CommonFish fish)
         {
-            CaughtFishList.Add(fish);
             _SwallowFish(fish);
         }
 
@@ -29,6 +27,7 @@ namespace FishingGame.Tools
         async　void _SwallowFish(Fish.Behavior.CommonFish fish)
         {
             await Task.Delay(800);
+            if (fish == null) return;
             fish.transform.parent = gameObject.transform;
 
             GameObject obj = fish.gameObject;
@@ -38,19 +37,20 @@ namespace FishingGame.Tools
             {
                 obj.transform.position = Vector3.MoveTowards(obj.transform.position, AheadOfBucket, 0.3f);
                 await Task.Delay(20);
+                if (obj == null) return;
             }
             fish.SetDisAppear();
             while ((transform.position - obj.transform.position).sqrMagnitude > 0.01f)
             {
                 obj.transform.position = Vector3.MoveTowards(obj.transform.position, transform.position, 0.3f);
                 await Task.Delay(20);
+                if (obj == null) return;
             }
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            CaughtFishList = new List<Fish.Behavior.CommonFish>();
         }
 
         // Update is called once per frame

@@ -34,7 +34,7 @@ public class LightingMgr : MonoBehaviour
     void SetLight()
     {
        var col= globalColor.Evaluate(m_timeHolder.NormalizedTime);
-        Debug.Log("time"+m_timeHolder.NormalizedTime);
+//        Debug.Log("time"+m_timeHolder.NormalizedTime);
         globalLight.color = col;
     }
 
