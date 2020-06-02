@@ -15,7 +15,6 @@ public class ResultManager : MonoBehaviour
     State m_state;
     [SerializeField] ResultPanel panel;
     [SerializeField] Animator messagePanel;
-    [SerializeField, ReadOnly] List<Fish.Behavior.CommonFish> m_fishList;
     // Start is called before the first frame update
     void Awake()
     {
@@ -33,10 +32,9 @@ public class ResultManager : MonoBehaviour
         }
     }
 
-    public void SetList(List<Fish.Behavior.CommonFish> fishList)
+    public void SetList(List<Fish.FishInfo> fishList)
     {
-        m_fishList = fishList;
-        Debug.Log("合計:" + m_fishList.Count);
+        panel.UpdateResult(fishList);
     }
     public void ActivateMessage()
     {

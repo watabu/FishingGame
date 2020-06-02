@@ -9,9 +9,9 @@ namespace Player
     /// </summary>
     public class CoolerBox : MonoBehaviour
     {
-        [SerializeField, ReadOnly]
-        List<Fish.Behavior.CommonFish> m_caughtFishList = new List<Fish.Behavior.CommonFish>();
-        public List<Fish.Behavior.CommonFish> GetFishList { get { return m_caughtFishList; } }
+        [SerializeField]
+        List<Fish.FishInfo> m_caughtFishList = new List<Fish.FishInfo>();
+        public List<Fish.FishInfo> GetFishList { get { return m_caughtFishList; } }
 
         // Start is called before the first frame update
         private void Awake()
@@ -20,7 +20,7 @@ namespace Player
         }
         public void Add(Fish.Behavior.CommonFish fish)
         {
-            m_caughtFishList.Add(fish);
+            m_caughtFishList.Add(fish.fishInfo);
         }
         
 

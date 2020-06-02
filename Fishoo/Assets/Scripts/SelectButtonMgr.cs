@@ -39,4 +39,9 @@ public class SelectButtonMgr : MonoBehaviour
         SceneManager.LoadScene("StageSelect");
         
     }
+
+    public void DebugPrint()
+    {
+        Debug.Log("aaaaaaaaaaa");
+    }
 }
