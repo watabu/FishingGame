@@ -15,12 +15,12 @@ public class ResultManager : MonoBehaviour
     State m_state;
     [SerializeField] ResultPanel panel;
     [SerializeField] Animator messagePanel;
+    
+
     // Start is called before the first frame update
     void Awake()
     {
         messagePanel.gameObject.SetActive(false);
-
-
     }
 
     // Update is called once per frame
@@ -42,5 +42,5 @@ public class ResultManager : MonoBehaviour
 
     }
 
-
+    
 }

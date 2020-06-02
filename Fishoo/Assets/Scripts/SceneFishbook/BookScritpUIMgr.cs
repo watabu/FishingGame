@@ -22,6 +22,7 @@ public class BookScritpUIMgr : MonoBehaviour
     [SerializeField] Button descriptionBackButton;
     BookDescriptionUI descriptionUI;
     [SerializeField] Button SelectedButton;
+    [SerializeField] FishInfoFolder FishFolder;
     [SerializeField] SaveData data;
     private void Awake()
     {
@@ -31,14 +32,19 @@ public class BookScritpUIMgr : MonoBehaviour
     void Start()
     {
 
-        foreach (var d in data.fishes)
+        foreach (var d in FishFolder.AvailableFishes)
         {
             if (d == null) continue;
           var script=  Instantiate(fishPrefab, bookListContent.transform).GetComponent<FishButtonUIScript>();
-            script.SetOnClicked(()=> { 
-                Switch(BookScriptState.description);
-                descriptionUI.Set(d.icon,d.FishName,d.description);
-            });
+            //捕まえたなら詳しい情報を見れる
+            if (data.isCaught(d))
+            {
+                script.SetOnClicked(() =>
+                {
+                    Switch(BookScriptState.description);
+                    descriptionUI.Set(d.icon, d.FishName, d.description);
+                });
+            }
             script.icon.sprite = d.icon;
             //図鑑に戻ったときの初期選択
             if (SelectedButton == null)

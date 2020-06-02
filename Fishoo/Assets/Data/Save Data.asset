@@ -15,14 +15,48 @@ MonoBehaviour:
   season: 0
   week: 0
   money: 0
-  fishes:
-  - {fileID: 11400000, guid: 868df025d9ab5d342824d9ad6d68d1f5, type: 2}
+  Debug: 1
+  m_fishes:
   - {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
   - {fileID: 11400000, guid: 147728ffde37aa849969fdaf3245df43, type: 2}
-  - {fileID: 11400000, guid: 5566acedaa854e94e9f6b0db90d9fb3d, type: 2}
-  - {fileID: 11400000, guid: 65c7a5c1bc7278847a32c73ebdf0693b, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: d3738a5cce2663f4fbfd31d432881c43, type: 2}
+  - {fileID: 11400000, guid: 0c89c9f0f70d7de449719ab8d8824f87, type: 2}
+  - {fileID: 11400000, guid: 7cb02415e3ec6034a89035be3f96b087, type: 2}
+  - {fileID: 11400000, guid: 8e0c8d45325d998498c96f0b21a511c3, type: 2}
+  - {fileID: 11400000, guid: 30e5e7eaa3599274d952abf13122fbdd, type: 2}
+  - {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
+  - {fileID: 11400000, guid: 147728ffde37aa849969fdaf3245df43, type: 2}
+  - {fileID: 11400000, guid: d3738a5cce2663f4fbfd31d432881c43, type: 2}
+  - {fileID: 11400000, guid: 0c89c9f0f70d7de449719ab8d8824f87, type: 2}
+  - {fileID: 11400000, guid: 7cb02415e3ec6034a89035be3f96b087, type: 2}
+  - {fileID: 11400000, guid: 8e0c8d45325d998498c96f0b21a511c3, type: 2}
+  - {fileID: 11400000, guid: 30e5e7eaa3599274d952abf13122fbdd, type: 2}
+  - {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
+  - {fileID: 11400000, guid: 147728ffde37aa849969fdaf3245df43, type: 2}
+  - {fileID: 11400000, guid: d3738a5cce2663f4fbfd31d432881c43, type: 2}
+  - {fileID: 11400000, guid: 0c89c9f0f70d7de449719ab8d8824f87, type: 2}
+  - {fileID: 11400000, guid: 7cb02415e3ec6034a89035be3f96b087, type: 2}
+  - {fileID: 11400000, guid: 8e0c8d45325d998498c96f0b21a511c3, type: 2}
+  - {fileID: 11400000, guid: 30e5e7eaa3599274d952abf13122fbdd, type: 2}
+  - {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
+  - {fileID: 11400000, guid: 147728ffde37aa849969fdaf3245df43, type: 2}
+  - {fileID: 11400000, guid: d3738a5cce2663f4fbfd31d432881c43, type: 2}
+  - {fileID: 11400000, guid: 0c89c9f0f70d7de449719ab8d8824f87, type: 2}
+  - {fileID: 11400000, guid: 7cb02415e3ec6034a89035be3f96b087, type: 2}
+  - {fileID: 11400000, guid: 8e0c8d45325d998498c96f0b21a511c3, type: 2}
+  - {fileID: 11400000, guid: 30e5e7eaa3599274d952abf13122fbdd, type: 2}
+  - {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
+  - {fileID: 11400000, guid: 147728ffde37aa849969fdaf3245df43, type: 2}
+  - {fileID: 11400000, guid: d3738a5cce2663f4fbfd31d432881c43, type: 2}
+  - {fileID: 11400000, guid: 0c89c9f0f70d7de449719ab8d8824f87, type: 2}
+  - {fileID: 11400000, guid: 7cb02415e3ec6034a89035be3f96b087, type: 2}
+  - {fileID: 11400000, guid: 8e0c8d45325d998498c96f0b21a511c3, type: 2}
+  - {fileID: 11400000, guid: 30e5e7eaa3599274d952abf13122fbdd, type: 2}
+  firstAddedfishes:
+  - {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
+  - {fileID: 11400000, guid: 147728ffde37aa849969fdaf3245df43, type: 2}
+  - {fileID: 11400000, guid: d3738a5cce2663f4fbfd31d432881c43, type: 2}
+  - {fileID: 11400000, guid: 0c89c9f0f70d7de449719ab8d8824f87, type: 2}
+  - {fileID: 11400000, guid: 7cb02415e3ec6034a89035be3f96b087, type: 2}
+  - {fileID: 11400000, guid: 8e0c8d45325d998498c96f0b21a511c3, type: 2}
+  - {fileID: 11400000, guid: 30e5e7eaa3599274d952abf13122fbdd, type: 2}

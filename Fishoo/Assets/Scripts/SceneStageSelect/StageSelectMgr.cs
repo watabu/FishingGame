@@ -29,6 +29,7 @@ public class StageSelectMgr : MonoBehaviour
     [Header("Parameter")]
     [Tooltip("Title画面から遷移するときに何秒経てば遷移できるか")]
     [SerializeField] private float activateInput = 3f;
+    static bool NoTitle = false;
 
     public enum StageSelectState
     {
@@ -42,7 +43,9 @@ public class StageSelectMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_state = StageSelectState.title;
+        if (!NoTitle)
+            m_state = StageSelectState.title;
+        NoTitle = true;
         titleCanvas.alpha = 1;
         stageCanvas.alpha = 0;
         stageCanvas.interactable = false;

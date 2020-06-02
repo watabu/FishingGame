@@ -6,9 +6,9 @@ using TMPro;
 
 /// <summary>
 /// リザルト画面の一番下に表示されるまとめ
-/// 魚の総数と合計金額
+/// 今日の魚の総数と合計金額
 /// </summary>
-public class TotalResult : MonoBehaviour
+public class TodaysSummary: MonoBehaviour
 {
     public TextMeshProUGUI count;
     public TextMeshProUGUI Money;
