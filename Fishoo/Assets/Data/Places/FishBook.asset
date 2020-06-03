@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FishBook
   m_EditorClassIdentifier: 
   placeName: FishBook
-  description: "\u9B5A\u56F3\u9451"
+  description: "\u9B5A\u56F3\u9451\u3092\u898B\u308B"
   description_detail: 
   cost: 0
   TravelTime: 0

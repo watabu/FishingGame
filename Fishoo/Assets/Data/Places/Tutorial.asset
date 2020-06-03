@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da47581674ca684458ea058b301efad4, type: 3}
-  m_Name: Shop
+  m_Name: Tutorial
   m_EditorClassIdentifier: 
-  placeName: Shop
-  description: "\u30B7\u30E7\u30C3\u30D7"
+  placeName: Tutorial
+  description: "\u30C1\u30E5\u30FC\u30C8\u30EA\u30A2\u30EB\u8AAC\u660E\u3092\u898B\u308B"
   description_detail: 
   cost: 0
   TravelTime: 0
