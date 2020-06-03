@@ -25,4 +25,21 @@ public class CommandScript : MonoBehaviour
         script.SetOnDead(() => { m_LiveFlag = false; });
         m_image.color = m_image.color * new Color(1f,1f,1f,0.25f);
     }
+    public void Kill(int combo, int Maxcombo, Vector3 Point)
+    {
+        var script = Instantiate(effect, effectParent).GetComponent<EffectScript>();
+        script.SetOnDead(() => { m_LiveFlag = false; });
+        m_image.color = m_image.color * new Color(1f, 1f, 1f, 0.25f);
+
+        //コンボ数に応じてエフェクトの大きさを変化
+        float Scale = (0.6f + 0.5f * combo / Maxcombo);
+        var main = script.GetComponent<ParticleSystem>().main;
+        main.simulationSpeed /= Scale * Scale;
+        script.lifetime *= Scale*Scale;
+        script.transform.localScale *= Scale*Scale;
+
+        //座標を魚の現在位置に合わせる
+        script.transform.position = Point;
+    }
+
 }
