@@ -103,9 +103,9 @@ public class CommandContainerScript : MonoBehaviour
         if (FishingGame.FishingGameMgr.Instance.TargetFish != null)
         {
             float damage;
-            Debug.Log(m_generator.comboCount);
+//            Debug.Log(m_generator.comboCount);
             damage = m_generator.comboCount * m_generator.comboCount /10;
-            Debug.Log(damage);
+  //          Debug.Log(damage);
             FishingGame.FishingGameMgr.Instance.TargetFish.Damaged(damage);
         }
         //次のコマンドを生成する許可をする

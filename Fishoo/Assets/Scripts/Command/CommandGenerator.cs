@@ -67,6 +67,7 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
 
     public void PlayeMistakeSound()
     {
+        GetComponent<Cinemachine.CinemachineImpulseSource>().GenerateImpulse();
         audio.PlayOneShot(commandsSE[0]);
         audio.PlayOneShot(commandsSE[2]);
     }

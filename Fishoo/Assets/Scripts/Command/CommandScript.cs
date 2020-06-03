@@ -32,11 +32,12 @@ public class CommandScript : MonoBehaviour
         m_image.color = m_image.color * new Color(1f, 1f, 1f, 0.25f);
 
         //コンボ数に応じてエフェクトの大きさを変化
-        float Scale = (0.6f + 0.5f * combo / Maxcombo);
+        float Scale = 0.3f + 0.6f *combo / Maxcombo* combo / Maxcombo;
+        Debug.Log(Scale);
         var main = script.GetComponent<ParticleSystem>().main;
-        main.simulationSpeed /= Scale * Scale;
-        script.lifetime *= Scale*Scale;
-        script.transform.localScale *= Scale*Scale;
+        main.simulationSpeed /= Scale;
+        script.lifetime *= Scale;
+        script.transform.localScale *=Scale;
 
         //座標を魚の現在位置に合わせる
         script.transform.position = Point;

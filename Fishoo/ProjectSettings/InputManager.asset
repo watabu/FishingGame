@@ -582,7 +582,7 @@ InputManager:
     axis: 1
     joyNum: 0
   - serializedVersion: 3
-    m_Name: L
+    m_Name: R
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
