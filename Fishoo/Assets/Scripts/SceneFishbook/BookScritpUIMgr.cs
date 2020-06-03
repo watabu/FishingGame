@@ -35,29 +35,24 @@ public class BookScritpUIMgr : MonoBehaviour
         foreach (var d in FishFolder.AvailableFishes)
         {
             if (d == null) continue;
-          var script=  Instantiate(fishPrefab, bookListContent.transform).GetComponent<FishButtonUIScript>();
+            var script = Instantiate(fishPrefab, bookListContent.transform).GetComponent<FishButtonUIScript>();
             //捕まえたなら詳しい情報を見れる
             if (data.isCaught(d))
             {
                 script.SetOnClicked(() =>
                 {
                     Switch(BookScriptState.description);
-                    descriptionUI.Set(d.icon, d.FishName, d.description);
+                    descriptionUI.Set(d.icon, d.FishName, d.description, data.fishes[d].count);
                 });
+
             }
+            script.Interactable = data.isCaught(d);
             script.icon.sprite = d.icon;
             //図鑑に戻ったときの初期選択
-            if (SelectedButton == null)
-                SelectedButton = script.GetComponent<FishButtonUIScript>().GetButton;
+            if (SelectedButton == null) SelectedButton = script.GetComponent<FishButtonUIScript>().GetButton;
         }
         Switch(BookScriptState.list);
-        descriptionBackButton.onClick.AddListener(()=> { Switch(BookScriptState.list); });
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        descriptionBackButton.onClick.AddListener(() => { Switch(BookScriptState.list); });
     }
 
     public void Switch(BookScriptState state)
