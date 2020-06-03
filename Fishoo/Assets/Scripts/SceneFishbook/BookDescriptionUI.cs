@@ -10,6 +10,7 @@ public class BookDescriptionUI : MonoBehaviour
     [SerializeField] Image image;
     [SerializeField] TextMeshProUGUI description;
     [SerializeField] new TextMeshProUGUI name;
+    [SerializeField] TextMeshProUGUI count;
 
     // Start is called before the first frame update
     void Start()
@@ -23,10 +24,11 @@ public class BookDescriptionUI : MonoBehaviour
         
     }
 
-    public void Set(Sprite icon,string name_,string description_)
+    public void Set(Sprite icon,string name_,string description_,int count_)
     {
         image.sprite = icon;
         description.text = description_;
         name.text = name_;
+        count.text = $"釣った回数：{count_}";
     }
 }

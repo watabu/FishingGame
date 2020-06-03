@@ -28,18 +28,18 @@ public class SaveData : ScriptableObject
     /// 釣った魚の数を魚別にカウントする。
     /// </summary>
     List<isCaughtFish> EachFishCount = new List<isCaughtFish>();
-    
+
     //public bool isCaught(Fish.FishInfo fish){ return CaughtFishDictionary.ContainsKey(fish); }
 
     public string GetSeasonKanji()
     {
         switch (season)
         {
-            case Season.spring:return "春";
+            case Season.spring: return "春";
             case Season.summer: return "夏";
             case Season.autumn: return "秋";
             case Season.winter: return "冬";
-            default:return "";
+            default: return "";
         }
     }
 
@@ -53,24 +53,52 @@ public class SaveData : ScriptableObject
     /// <summary>
     /// 釣ったことのある魚のリスト
     /// </summary>
-    [SerializeField,ReadOnly]
-    List<Fish.FishInfo> m_fishes= new List<Fish.FishInfo>();
+    [SerializeField]
+    List<FishData> m_fishes = new List<FishData>();
     /// <summary>
     /// デバッグ用の最初から追加される魚
     /// </summary>
-    [SerializeField,Tooltip("デバッグ用")]
-    List<Fish.FishInfo> firstAddedfishes= new List<Fish.FishInfo>();
+    [SerializeField, Tooltip("デバッグ用")]
+    List<Fish.FishInfo> firstAddedfishes = new List<Fish.FishInfo>();
+
+    [System.Serializable]
+    public class FishData
+    {
+        public Fish.FishInfo fish;
+        public int count;
+    }
+
+    Dictionary<Fish.FishInfo, FishData> fishData ;
 
     /// <summary>
     /// 今までに取ったことのある魚
     /// </summary>
-    public List<Fish.FishInfo> fishes { get { return m_fishes; } }
+    public Dictionary<Fish.FishInfo,FishData> fishes { 
+        get {
+            if (fishData == null) InitializeData();
+            return fishData;
+        }
+    }
 
+    public void InitializeData() { 
+        fishData=new Dictionary<Fish.FishInfo, FishData>();
+        foreach(var i in m_fishes)
+        {
+            if (i == null||i.fish==null) continue;
+            fishData.Add(i.fish,i);
+        }
+    }
 
-    public void DebugAddFishes() { 
+    public bool isCaught(Fish.FishInfo  fish)
+    {
+        return fishes.ContainsKey(fish);
+    }
+
+    public void DebugAddFishes()
+    {
         if (Debug)
         {
-            foreach(var fish in firstAddedfishes)
+            foreach (var fish in firstAddedfishes)
             {
                 AddFish(fish);
             }
@@ -81,14 +109,21 @@ public class SaveData : ScriptableObject
     /// TODO
     /// </summary>
     /// <param name="fish"></param>
-    public  void AddFish(Fish.FishInfo fish)
+    public void AddFish(Fish.FishInfo fish_)
     {
-        if (!m_fishes.Contains(fish))
+        if (fish_ == null) return;
+        foreach (var i in m_fishes)
         {
-            m_fishes.Add(fish);
+            if (isCaught(fish_))
+            {
+                i.count++;
+                m_caughtFishCount++;
+                return;
+            }
         }
-
-        m_caughtFishCount++;
+        var f = new FishData { fish = fish_, count = 1 };
+        m_fishes.Add(f);
+        fishes.Add(fish_, f);
     }
 
 }

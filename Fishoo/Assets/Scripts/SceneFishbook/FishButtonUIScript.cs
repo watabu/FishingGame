@@ -8,24 +8,28 @@ public class FishButtonUIScript : MonoBehaviour
 {
     public Image icon;
     Button button;
-    public Button GetButton { get { return button; } }
-    // Start is called before the first frame update
-    void Awake()
-    {
-        button = GetComponent<Button>();
+    public Button GetButton {
+        get { 
+            if(button==null) button = GetComponent<Button>();
+            return button;
+        } 
     }
+    public bool Interactable
+    {
+        set
+        {
+            GetButton.interactable = value;
+        }
+    }
+   
     private void Start()
     {
-        button.Select();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GetButton.Select();
     }
 
     public void SetOnClicked(UnityAction func)
     {
-        button.onClick.AddListener(func);
+        GetButton.onClick.AddListener(func);
     }
+    
 }

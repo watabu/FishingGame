@@ -37,13 +37,6 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     }
     State m_state = State.Nove;
 
-    private void OnApplicationQuit()
-    {
-        //ダーティとしてマークする(変更があった事を記録する)
-        EditorUtility.SetDirty(data);
-        //保存する
-        AssetDatabase.SaveAssets();
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -94,7 +87,14 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         //        var player = FindObjectOfType<Player.Player>();
         var coolerBox= FindObjectOfType<Player.CoolerBox>();
         FindObjectOfType<ResultManager>().SetList(coolerBox.GetFishList);
-//        Destroy(coolerBox);
+
+        //===============================================================================================================セーブデータ保存
+        //ダーティとしてマークする(変更があった事を記録する)
+        EditorUtility.SetDirty(data);
+        //保存する
+        AssetDatabase.SaveAssets();
+
+        //        Destroy(coolerBox);
         SceneManager.sceneLoaded -= ResultSceneLoaded;
     }
 
