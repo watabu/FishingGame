@@ -68,15 +68,14 @@ public class CommandContainerScript : MonoBehaviour
     void OnTrueKeyDown()
     {
         if (FinishesCommand) return;
-        //m_commands.RemoveAt(0);
-        m_commandObjects[command_index].Kill();
-        //m_commandObjects[0].transform.SetParent(transform.parent);
-        //m_commandObjects.RemoveAt(0);
+
+        Vector3 EffectPoint = FishingGame.FishingGameMgr.Instance.TargetFish.transform.position;
+        m_commandObjects[command_index].Kill(m_generator.comboCount,m_generator.MaxCombo,EffectPoint );
         CommandGenerator.Instance.OnCommandKilled();
         command_index++;
         //text.text= text.text.Remove(0, 1);
+        
         //今釣っている魚にダメージを与える
-
         if(command_index == m_commands.Count)
 //        if (m_commands.Count == 0)
         {
@@ -87,7 +86,7 @@ public class CommandContainerScript : MonoBehaviour
         if (FishingGame.FishingGameMgr.Instance.TargetFish != null)
         {
             float damage = 0.25f;
-            Debug.Log(damage);
+//            Debug.Log(damage);
             FishingGame.FishingGameMgr.Instance.TargetFish.Damaged(damage);
             FishingGame.FishingGameMgr.Instance.TargetFish.fishMove.ReceiveNextKey(m_commands[command_index]);
         }
@@ -104,9 +103,9 @@ public class CommandContainerScript : MonoBehaviour
         if (FishingGame.FishingGameMgr.Instance.TargetFish != null)
         {
             float damage;
-            Debug.Log(m_generator.comboCount);
+//            Debug.Log(m_generator.comboCount);
             damage = m_generator.comboCount * m_generator.comboCount /10;
-            Debug.Log(damage);
+  //          Debug.Log(damage);
             FishingGame.FishingGameMgr.Instance.TargetFish.Damaged(damage);
         }
         //次のコマンドを生成する許可をする

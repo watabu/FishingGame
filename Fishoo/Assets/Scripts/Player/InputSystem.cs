@@ -13,7 +13,7 @@ namespace Player
         /// <summary>
         /// InputからGetButtonDownで入力を得るボタンたち
         /// </summary>
-        static List<KeyCode> Buttons = new List<KeyCode>() { KeyCode.A, KeyCode.B, KeyCode.X, KeyCode.Y ,KeyCode.Escape};
+        static List<KeyCode> Buttons = new List<KeyCode>() { KeyCode.A, KeyCode.B, KeyCode.X, KeyCode.Y ,KeyCode.Escape, KeyCode.L, KeyCode.R};
         /// <summary>
         /// InputからAxis経由で入力を得るボタンたち
         /// </summary>
@@ -190,7 +190,11 @@ namespace Player
                 Debug.Log("UpArrow");
             if (Input.GetButtonDown("DownArrow"))
                 Debug.Log("DownArrow");
-            
+            if (Input.GetButtonDown("L"))
+                Debug.Log("L");
+            if (Input.GetButtonDown("R"))
+                Debug.Log("R");
+
             /*
             if (Input.GetKeyDown("joystick button 0"))
                 Debug.Log("0");

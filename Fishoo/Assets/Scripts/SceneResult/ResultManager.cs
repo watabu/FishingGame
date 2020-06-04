@@ -15,7 +15,7 @@ public class ResultManager : MonoBehaviour
     State m_state;
     [SerializeField] ResultPanel panel;
     [SerializeField] Animator messagePanel;
-    
+    [SerializeField] RankingPanel ranking;
 
     // Start is called before the first frame update
     void Awake()
@@ -28,7 +28,9 @@ public class ResultManager : MonoBehaviour
     {
         if (Player.InputSystem.GetKeyDown(KeyCode.B))
         {
-            messagePanel.gameObject.SetActive(messagePanel.gameObject.activeSelf ^true);
+            bool isActive = messagePanel.gameObject.activeSelf;
+            messagePanel.gameObject.SetActive(isActive ^true);
+            ranking.gameObject.SetActive(isActive ^ true);
         }
     }
 

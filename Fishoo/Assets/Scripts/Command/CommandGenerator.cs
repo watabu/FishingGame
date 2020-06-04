@@ -20,7 +20,8 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
     [SerializeField] private List<AudioClip> commandsSE=new List<AudioClip>();
     [SerializeField] private AudioSource audio;
 
-    public int comboCount = 0;
+    public int MaxCombo = 8;
+    [ReadOnly]public int comboCount = 0;
     /// <summary>
     /// コンボが最大まで達したか
     /// </summary>
@@ -66,6 +67,7 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
 
     public void PlayeMistakeSound()
     {
+        GetComponent<Cinemachine.CinemachineImpulseSource>().GenerateImpulse();
         audio.PlayOneShot(commandsSE[0]);
         audio.PlayOneShot(commandsSE[2]);
     }

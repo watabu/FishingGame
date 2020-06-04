@@ -56,6 +56,10 @@ namespace Player
 
         public void InputUpdate()
         {
+            if (InputSystem.GetKeyDown(KeyCode.L))
+            {
+                GetComponent<Cinemachine.CinemachineImpulseSource>().GenerateImpulse();
+            }
             if (!canMove) return;
             if (m_state == State.Fishing) return;
             if (InputSystem.GetKeyDown(throwRod) && m_state == State.Normal) 
