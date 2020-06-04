@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
-  m_Name: RollingRock
+  m_Name: Mijinko
   m_EditorClassIdentifier: 
-  FishName: The first fish
-  description: "\u3069\u3046\u3084\u3063\u305F\u3089\u3053\u3093\u306A\u306E\u91E3\u308C\u308B\u3093\u3060\uFF1F"
+  FishName: "\u30DF\u30B8\u30F3\u30B3"
+  description: "\u307B\u307C\u898B\u3048\u306A\u3044"
   description_Caught: 
-  sellingPrice: 5
-  exp: 1
-  icon: {fileID: 21300000, guid: 08d6afab735c2064ea2b05bb1c934f0f, type: 3}
-  data: {fileID: 11400000, guid: 84cc1473861715a468cb1c722429a6dc, type: 2}
+  sellingPrice: 15
+  exp: 2
+  icon: {fileID: 21300000, guid: b6731cae40887f148b52a37955a5dba8, type: 3}
+  data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
+  isGomi: 0

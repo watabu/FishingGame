@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
-  m_Name: StarFish
+  m_Name: Tire
   m_EditorClassIdentifier: 
-  FishName: Star fish
-  description: "\u30D2\u30C8\u30C7\u3002\u3069\u3046\u3084\u3063\u3066\u91DD\u306B\u98DF\u3044\u3064\u3044\u305F\u3093\u3060\u308D\u3046"
+  FishName: "\u30BF\u30A4\u30E4"
+  description: "\u304A\u3082\u3044\u3002\u30DD\u30A4\u6368\u3066\u7981\u6B62\u3002"
   description_Caught: 
   sellingPrice: 50
   exp: 10
-  icon: {fileID: 21300000, guid: f227432d5ed5a3c4799bb32490dcab24, type: 3}
+  icon: {fileID: 21300000, guid: 4b59465ebece3e74195623b9ff166b37, type: 3}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
+  isGomi: 1
