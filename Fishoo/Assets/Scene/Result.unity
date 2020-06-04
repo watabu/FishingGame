@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -368,8 +368,6 @@ RectTransform:
   m_Children:
   - {fileID: 85781462}
   - {fileID: 1324847034}
-  - {fileID: 768040597}
-  - {fileID: 1424440366}
   - {fileID: 470327900}
   - {fileID: 915631086}
   - {fileID: 795699119}
@@ -1376,12 +1374,12 @@ RectTransform:
   m_Children:
   - {fileID: 1124919212}
   m_Father: {fileID: 14423190}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -31, y: -41.200012}
-  m_SizeDelta: {x: -97.11002, y: -99.5}
+  m_AnchoredPosition: {x: -28.97998, y: -41.200012}
+  m_SizeDelta: {x: -83.54, y: -99.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &470327901
 MonoBehaviour:
@@ -1434,11 +1432,11 @@ MonoBehaviour:
   contentPrefab: {fileID: 2021371381632504478, guid: 78e522b458317774b802ac575182e3e7,
     type: 3}
   result: {fileID: 1763953534}
-  totalScore: {fileID: 55338740}
+  totalScore: {fileID: 0}
   contentParent: {fileID: 940439372}
-  scrollbar: {fileID: 1158794994}
-  saveData: {fileID: 11400000, guid: 99c8a66cead9076449846857ca683267, type: 2}
-  Debug: 0
+  scrollbar: {fileID: 0}
+  saveData: {fileID: 0}
+  Debug: 1
   DebugfishList:
   - {fileID: 11400000, guid: 8c25641d943b65f4faf56839f44a776f, type: 2}
   - {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
@@ -2243,7 +2241,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &768040596
+--- !u!1 &829351384
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2317,6 +2315,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 768040596}
   m_CullTransparentMesh: 0
 --- !u!1 &795699118
+>>>>>>> watabu/master
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2888,7 +2887,7 @@ RectTransform:
   - {fileID: 1967357063}
   - {fileID: 1536856934}
   m_Father: {fileID: 14423190}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4572,7 +4571,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -162, y: -32.049988}
+  m_AnchoredPosition: {x: -100, y: -32.049988}
   m_SizeDelta: {x: 180.59998, y: 41.200012}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1324847035

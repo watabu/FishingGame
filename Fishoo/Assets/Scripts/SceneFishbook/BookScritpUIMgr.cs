@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class BookScritpUIMgr : MonoBehaviour
 {
-    public enum BookScriptState
+    public enum State
     {
         list,
         description
@@ -19,19 +19,23 @@ public class BookScritpUIMgr : MonoBehaviour
     [SerializeField] GameObject bookList;
     [SerializeField] GameObject bookListContent;
     [SerializeField] GameObject bookDescription;
-    [SerializeField] Button descriptionBackButton;
     BookDescriptionUI descriptionUI;
     [SerializeField] Button SelectedButton;
     [SerializeField] FishInfoFolder FishFolder;
     [SerializeField] SaveData data;
+    [SerializeField] Button backButton;
+
+    State m_currentState;
+    float m_changeTime=0f;//切り替わってから何秒経ったか
+
+
     private void Awake()
     {
         descriptionUI = bookDescription.GetComponent<BookDescriptionUI>();
     }
-    // Start is called before the first frame update
     void Start()
     {
-
+        FishButtonUIScript lastObj = null;//最後に生成されたボタン(最初に生成されたボタンは右下に追いやられるようなので？要検討)
         foreach (var d in FishFolder.AvailableFishes)
         {
             if (d == null) continue;
@@ -41,44 +45,53 @@ public class BookScritpUIMgr : MonoBehaviour
             {
                 script.SetOnClicked(() =>
                 {
-                    Switch(BookScriptState.description);
+                    Switch(State.description);
                     descriptionUI.Set(d.icon, d.FishName, d.description, data.fishes[d].count);
                 });
 
             }
             script.Interactable = data.isCaught(d);
             script.icon.sprite = d.icon;
-            //図鑑に戻ったときの初期選択
-            if (SelectedButton == null) SelectedButton = script.GetComponent<FishButtonUIScript>().GetButton;
+            lastObj = script;
         }
-        Switch(BookScriptState.list);
-        descriptionBackButton.onClick.AddListener(() => { Switch(BookScriptState.list); });
+        //図鑑に戻ったときの初期選択
+        if (SelectedButton == null) SelectedButton = lastObj.GetButton;
+        Switch(State.list);
+        backButton.onClick.AddListener(()=> { SceneManager.LoadScene("StageSelect"); });
     }
 
-    public void Switch(BookScriptState state)
+
+    private void Update()
     {
+        if(m_currentState == State.description)
+        {
+            if (Input.anyKeyDown&& m_changeTime>=0.5f)//切り替わってから0.5秒経たないとシーン切り替えができないように
+            {
+                Switch(State.list);
+            }
+        }
+        m_changeTime += Time.deltaTime;
+    }
+    public void Switch(State state)
+    {
+        m_currentState = state;
+        m_changeTime = 0f;
         switch (state)
         {
-            case BookScriptState.list:
+            case State.list:
                 bookList.SetActive(true);
                 bookDescription.SetActive(false);
                 SelectedButton.Select();
+                backButton.interactable = true;
                 break;
-            case BookScriptState.description:
+            case State.description:
                 bookList.SetActive(false);
                 bookDescription.SetActive(true);
-                //戻るボタンを選択状態に
-                descriptionBackButton.Select();
+                backButton.interactable = false;
                 break;
             default:
                 break;
         }
-    }
-
-    public void BackToTitle()
-    {
-        SceneManager.LoadScene("StageSelect");
-
     }
 
 }

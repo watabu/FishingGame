@@ -88,7 +88,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         var coolerBox= FindObjectOfType<Player.CoolerBox>();
         FindObjectOfType<ResultManager>().SetList(coolerBox.GetFishList);
 
-        //===============================================================================================================セーブデータ保存
+        //===============================================================================================================セーブデータ保存(変更するならよろしく)
         //ダーティとしてマークする(変更があった事を記録する)
         EditorUtility.SetDirty(data);
         //保存する

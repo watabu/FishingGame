@@ -13,6 +13,7 @@ public class TutorialUI : MonoBehaviour
     public void Initialize()
     {
         m_pageCount = description.transform.childCount;
+        m_currentPage = 0;
         description.transform.GetChild(m_currentPage).gameObject.SetActive(true);
     }
     public void ToPrev()
@@ -30,6 +31,11 @@ public class TutorialUI : MonoBehaviour
     public void ToPlayGame()
     {
         GameMgr.Instance.SwitchState(GameMgr.State.Playing);
+    }
+
+    public void CloseUI()
+    {
+        gameObject.SetActive(false);
     }
 
 }

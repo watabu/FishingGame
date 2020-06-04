@@ -13,38 +13,24 @@ public class SaveData : ScriptableObject
         autumn,
         winter
     }
-
-    struct isCaughtFish
+    [System.Serializable]
+    public class FishData
     {
-        Fish.FishInfo fish;
-        bool isCaught;
+        public Fish.FishInfo fish;
+        public int count;
     }
+
+
     public Season season;
     public int week;
     public int money;
-    public SaveData saveData;
     [SerializeField] bool Debug;
-    /// <summary>
-    /// 釣った魚の数を魚別にカウントする。
-    /// </summary>
-    List<isCaughtFish> EachFishCount = new List<isCaughtFish>();
+    public bool canSkipTutorial=false;
 
-    //public bool isCaught(Fish.FishInfo fish){ return CaughtFishDictionary.ContainsKey(fish); }
-
-    public string GetSeasonKanji()
-    {
-        switch (season)
-        {
-            case Season.spring: return "春";
-            case Season.summer: return "夏";
-            case Season.autumn: return "秋";
-            case Season.winter: return "冬";
-            default: return "";
-        }
-    }
 
     [Tooltip("捕まえた魚の数")]
     int m_caughtFishCount;
+
     /// <summary>
     /// 捕まえた魚の合計数
     /// </summary>
@@ -54,19 +40,14 @@ public class SaveData : ScriptableObject
     /// 釣ったことのある魚のリスト
     /// </summary>
     [SerializeField]
+    [Header("Fish Data")]
     List<FishData> m_fishes = new List<FishData>();
+
     /// <summary>
     /// デバッグ用の最初から追加される魚
     /// </summary>
     [SerializeField, Tooltip("デバッグ用")]
     List<Fish.FishInfo> firstAddedfishes = new List<Fish.FishInfo>();
-
-    [System.Serializable]
-    public class FishData
-    {
-        public Fish.FishInfo fish;
-        public int count;
-    }
 
     Dictionary<Fish.FishInfo, FishData> fishData ;
 
@@ -89,20 +70,13 @@ public class SaveData : ScriptableObject
         }
     }
 
-    public bool isCaught(Fish.FishInfo  fish)
-    {
-        return fishes.ContainsKey(fish);
-    }
+    public bool isCaught(Fish.FishInfo fish) { return fishes.ContainsKey(fish); }
 
     public void DebugAddFishes()
     {
-        if (Debug)
-        {
-            foreach (var fish in firstAddedfishes)
-            {
-                AddFish(fish);
-            }
-        }
+        if (!Debug) return;
+        foreach (var fish in firstAddedfishes)
+            AddFish(fish);
     }
 
     /// <summary>
@@ -124,6 +98,17 @@ public class SaveData : ScriptableObject
         var f = new FishData { fish = fish_, count = 1 };
         m_fishes.Add(f);
         fishes.Add(fish_, f);
+    }
+    public string GetSeasonKanji()
+    {
+        switch (season)
+        {
+            case Season.spring: return "春";
+            case Season.summer: return "夏";
+            case Season.autumn: return "秋";
+            case Season.winter: return "冬";
+            default: return "";
+        }
     }
 
 }

@@ -25,36 +25,41 @@ public class StageSelectMgr : MonoBehaviour
     [SerializeField] private CanvasGroup stageCanvas;
     [SerializeField] private TextMeshProUGUI daySeason;
     [SerializeField] private TextMeshProUGUI dayWeek;
+    [SerializeField] private TextMeshProUGUI money;
     [SerializeField] private SaveData data;
+    [SerializeField] private GameObject tutorialUI;
     [Header("Parameter")]
     [Tooltip("Title画面から遷移するときに何秒経てば遷移できるか")]
     [SerializeField] private float activateInput = 3f;
     static bool NoTitle = false;
 
-    public enum StageSelectState
+    public enum State
     {
         none,
         title,
         stageSelect,
         selected
     }
-    StageSelectState m_state = StageSelectState.none;
+    State m_state = State.none;
     float m_time=0f;
     // Start is called before the first frame update
     void Start()
     {
         if (!NoTitle)
-            m_state = StageSelectState.title;
+            m_state = State.title;
+        else
+            m_state = State.stageSelect;
+        SwitchState(m_state);
+
         NoTitle = true;
-        titleCanvas.alpha = 1;
-        stageCanvas.alpha = 0;
-        stageCanvas.interactable = false;
         daySeason.text = data.GetSeasonKanji();
         dayWeek.text = $"第<size=30>{data.week}</size>週";
         foreach (var i in scenesData)
         {
             i.button.Initialize(i.place.description, i.sceneName, ()=> { SceneManager.LoadScene(i.sceneName); });
         }
+        money.text = $"現在の所持金：{data.money}";
+        m_time = 0f;
     }
 
     // Update is called once per frame
@@ -62,20 +67,17 @@ public class StageSelectMgr : MonoBehaviour
     {
         switch (m_state)
         {
-            case StageSelectState.none:
+            case State.none:
                 break;
-            case StageSelectState.title:
+            case State.title:
                 if (m_time >= activateInput && Input.anyKeyDown)
                 {
-                    m_state = StageSelectState.stageSelect;
-                    titleCanvas.alpha = 0;
-                    stageCanvas.alpha = 1;
-                    stageCanvas.interactable = true;
+                    SwitchState(State.stageSelect);
                 }
                 break;
-            case StageSelectState.stageSelect:
+            case State.stageSelect:
                 break;
-            case StageSelectState.selected:
+            case State.selected:
                 break;
             default:
                 break;
@@ -87,4 +89,41 @@ public class StageSelectMgr : MonoBehaviour
     {
         SceneManager.LoadScene(scenesData[ID].sceneName);
     }
+
+    public void SwitchState(State state)
+    {
+        m_state = state;
+        switch (m_state)
+        {
+            case State.none:
+                break;
+            case State.title:
+                titleCanvas.alpha = 1;
+                stageCanvas.alpha = 0;
+                stageCanvas.interactable = false;
+                titleCanvas.interactable = true;
+                break;
+            case State.stageSelect:
+                titleCanvas.alpha = 0;
+                stageCanvas.alpha = 1;
+                stageCanvas.interactable = true;
+                titleCanvas.interactable = false;
+                break;
+            case State.selected:
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void ActivateTutorial()
+    {
+        tutorialUI.SetActive(true);
+        tutorialUI.GetComponent<TutorialUI>().Initialize();
+    }
+    public void DeActivateTutorial()
+    {
+        tutorialUI.SetActive(false);
+    }
+
 }
