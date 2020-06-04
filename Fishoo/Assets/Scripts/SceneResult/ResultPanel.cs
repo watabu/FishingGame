@@ -12,7 +12,7 @@ public class ResultPanel : MonoBehaviour
     [SerializeField]Scrollbar scrollbar;
     [SerializeField, Tooltip("一匹も釣らなかった時にもらえる魚")]
     Fish.FishInfo GivenFish;
-    [SerializeField] bool Debug;
+    [SerializeField] bool debug;
     [SerializeField,Tooltip("Debug")]List<Fish.FishInfo> DebugfishList = new List<Fish.FishInfo>();
 
     public bool canScroll;
@@ -20,8 +20,7 @@ public class ResultPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        canScroll = false;
-        if (Debug)
+        if (debug)
         {
             UpdateResult(DebugfishList);
         }
