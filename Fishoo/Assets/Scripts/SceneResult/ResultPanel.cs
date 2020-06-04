@@ -9,14 +9,18 @@ public class ResultPanel : MonoBehaviour
     [SerializeField] GameObject result;
     [SerializeField] GameObject totalScore;
     [SerializeField] Transform contentParent;
-    [SerializeField] Scrollbar scrollbar;
-    [SerializeField] SaveData saveData;
+    [SerializeField]Scrollbar scrollbar;
+    [SerializeField, Tooltip("一匹も釣らなかった時にもらえる魚")]
+    Fish.FishInfo GivenFish;
     [SerializeField] bool Debug;
     [SerializeField,Tooltip("Debug")]List<Fish.FishInfo> DebugfishList = new List<Fish.FishInfo>();
 
+    public bool canScroll;
+    public SaveData saveData;
     // Start is called before the first frame update
     void Start()
     {
+        canScroll = false;
         if (Debug)
         {
             UpdateResult(DebugfishList);
@@ -26,7 +30,7 @@ public class ResultPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player.InputSystem.GetKeyDown(KeyCode.UpArrow) || Player.InputSystem.GetKeyDown(KeyCode.DownArrow))
+        if (canScroll &&( Player.InputSystem.GetKeyDown(KeyCode.UpArrow) || Player.InputSystem.GetKeyDown(KeyCode.DownArrow)))
         {
             scrollbar.Select();
         }
@@ -51,6 +55,21 @@ public class ResultPanel : MonoBehaviour
             Money += fish.sellingPrice;
             saveData.AddFish(fish);
         }
+        //一匹も釣らなかった時にもらえる魚
+        if (fishList.Count < 1)
+        {
+            var fish = GivenFish;
+            var script = Instantiate(contentPrefab, contentParent.transform).GetComponent<ResultContent>();
+            script.icon.sprite = fish.icon;
+            //魚の値段によって枠の色を変えるとか?
+            //script.Frame.sprite = ;
+            script.Name.text = fish.FishName;
+            script.Money.text = (fish.sellingPrice).ToString();
+            script.gameObject.transform.SetParent(contentParent.transform);
+            Money += fish.sellingPrice;
+            saveData.AddFish(fish);
+        }
+
         //一日のまとめ                
         var summary= result.GetComponent<TodaysSummary>();
         summary.Money.text = Money.ToString();

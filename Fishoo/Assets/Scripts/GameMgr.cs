@@ -42,7 +42,8 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     void Start()
     {
         pauseUI.SetActive(false);
-        tutorialUI.gameObject.SetActive(false);
+        if (tutorialUI != null)
+            tutorialUI.gameObject.SetActive(false);
         m_IsPauseActive = false;
         m_state = State.Ready;
         seasonText.text = data.GetSeasonKanji();
@@ -123,10 +124,20 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
             case State.Ready:
                 break;
             case State.Tutorial:
+                if (tutorialUI == null)
+                {
+                    SwitchState(State.Playing);
+                    break;
+                }
                 tutorialUI.gameObject.SetActive(true);
                 tutorialUI.Initialize();
                 break;
             case State.Playing:
+                if (tutorialUI == null)
+                {
+                    OnGameStarted?.Invoke();
+                    break;
+                }
                 tutorialUI.gameObject.SetActive(false);
                 OnGameStarted?.Invoke();
                 break;

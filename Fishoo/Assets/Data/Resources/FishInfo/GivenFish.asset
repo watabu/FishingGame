@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
+  m_Name: GivenFish
+  m_EditorClassIdentifier: 
+  FishName: "\u3082\u3089\u3063\u305F\u9B5A"
+  description: "\u4E00\u5339\u3082\u91E3\u308C\u306A\u304B\u3063\u305F\u6642\u306B\u3068\u306A\u308A\u306E\u4EBA\u304B\u3089\u3082\u3089\u3063\u305F\u9B5A\u3002\u6765\u9031\u3053\u305D\u306F\u91E3\u308C\u308B\u3088\u3046\u306B\u304C\u3093\u3070\u308D\u3046\uFF01"
+  description_Caught: 
+  sellingPrice: 50
+  exp: 10
+  icon: {fileID: 21300000, guid: 4b59465ebece3e74195623b9ff166b37, type: 3}
+  data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}

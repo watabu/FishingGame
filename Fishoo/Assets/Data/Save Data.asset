@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   season: 0
   week: 0
-  money: 315
-  saveData: {fileID: 0}
+  money: 3045
   Debug: 0
+  canSkipTutorial: 0
   m_fishes:
   - fish: {fileID: 11400000, guid: d3738a5cce2663f4fbfd31d432881c43, type: 2}
-    count: 11
+    count: 80
   - fish: {fileID: 11400000, guid: 7cb02415e3ec6034a89035be3f96b087, type: 2}
     count: 1
   - fish: {fileID: 0}
@@ -35,6 +35,12 @@ MonoBehaviour:
   - fish: {fileID: 11400000, guid: 868df025d9ab5d342824d9ad6d68d1f5, type: 2}
     count: 1
   - fish: {fileID: 11400000, guid: 147728ffde37aa849969fdaf3245df43, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 8c25641d943b65f4faf56839f44a776f, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 0c89c9f0f70d7de449719ab8d8824f87, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 5566acedaa854e94e9f6b0db90d9fb3d, type: 2}
     count: 1
   firstAddedfishes:
   - {fileID: 11400000, guid: 00c755003769fa04f96028f1169dba99, type: 2}

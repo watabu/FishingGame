@@ -14,9 +14,9 @@ namespace Fish
     {
         [Tooltip("魚の名前")]
         public string FishName;
-        [Tooltip("アイテムとしての魚の説明欄（図鑑など）")]
+        [Tooltip("アイテムとしての魚の説明欄（図鑑など）"),TextArea]
         public string description;
-        [Tooltip("釣りあげたときに表示される説明")]
+        [Tooltip("釣りあげたときに表示される説明 未使用")]
         public string description_Caught;
         [Tooltip("売るときなどの価値")]
         public int sellingPrice;
