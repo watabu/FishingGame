@@ -24,6 +24,7 @@ public class BookScritpUIMgr : MonoBehaviour
     [SerializeField] FishInfoFolder FishFolder;
     [SerializeField] SaveData data;
     [SerializeField] Button backButton;
+    [SerializeField] bool showNonCaughtFish = false;
 
     State m_currentState;
     float m_changeTime=0f;//切り替わってから何秒経ったか
@@ -35,22 +36,60 @@ public class BookScritpUIMgr : MonoBehaviour
     }
     void Start()
     {
+        FishFolder.InitiateList();
         FishButtonUIScript lastObj = null;//最後に生成されたボタン(最初に生成されたボタンは右下に追いやられるようなので？要検討)
         foreach (var d in FishFolder.AvailableFishes)
         {
             if (d == null) continue;
             var script = Instantiate(fishPrefab, bookListContent.transform).GetComponent<FishButtonUIScript>();
             //捕まえたなら詳しい情報を見れる
-            if (data.isCaught(d))
+            if ( data.isCaught(d))
             {
                 script.SetOnClicked(() =>
                 {
                     Switch(State.description);
                     descriptionUI.Set(d.icon, d.FishName, d.description, data.fishes[d].count);
+                    SelectedButton = script.GetButton;
                 });
 
+            }else if (showNonCaughtFish)
+            {
+                script.SetOnClicked(() =>
+                {
+                    Switch(State.description);
+                    descriptionUI.Set(d.icon, d.FishName, d.description,0);
+                    SelectedButton = script.GetButton;
+                });
             }
-            script.Interactable = data.isCaught(d);
+            script.Interactable = showNonCaughtFish||data.isCaught(d);
+            script.icon.sprite = d.icon;
+            lastObj = script;
+        }
+
+        foreach (var d in FishFolder.AvailableGomi)
+        {
+            if (d == null) continue;
+            var script = Instantiate(fishPrefab, bookListContent.transform).GetComponent<FishButtonUIScript>();
+            //捕まえたなら詳しい情報を見れる
+            if (showNonCaughtFish || data.isCaught(d))
+            {
+                script.SetOnClicked(() =>
+                {
+                    Switch(State.description);
+                    descriptionUI.Set(d.icon, d.FishName, d.description, data.fishes[d].count);
+                    SelectedButton = script.GetButton;
+                });
+            }
+            else if (showNonCaughtFish)
+            {
+                script.SetOnClicked(() =>
+                {
+                    Switch(State.description);
+                    descriptionUI.Set(d.icon, d.FishName, d.description, 0);
+                    SelectedButton = script.GetButton;
+                });
+            }
+            script.Interactable = showNonCaughtFish||data.isCaught(d);
             script.icon.sprite = d.icon;
             lastObj = script;
         }
@@ -81,8 +120,8 @@ public class BookScritpUIMgr : MonoBehaviour
             case State.list:
                 bookList.SetActive(true);
                 bookDescription.SetActive(false);
-                SelectedButton.Select();
                 backButton.interactable = true;
+                SelectedButton.Select();
                 break;
             case State.description:
                 bookList.SetActive(false);

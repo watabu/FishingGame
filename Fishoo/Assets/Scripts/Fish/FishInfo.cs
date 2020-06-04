@@ -26,6 +26,7 @@ namespace Fish
         public Sprite icon;
         [Tooltip("動きのデータ")]
         public FishMoveData data;
+        public bool isGomi=false;
 
     }
 }

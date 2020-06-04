@@ -13,12 +13,21 @@ namespace Fish
     public class FishInfoFolder : ScriptableObject
     {
         public List<FishInfo> AvailableFishes = new List<FishInfo>();
+        public List<FishInfo> AvailableGomi = new List<FishInfo>();
+
         public void InitiateList()
         {
+            AvailableFishes.Clear();
+            AvailableGomi.Clear();
             var FishList = Resources.LoadAll<FishInfo>("FishInfo");
-            foreach(var fish in FishList)
+            foreach (var fish in FishList)
             {
-
+                AvailableFishes.Add(fish);
+            }
+            var GomiList = Resources.LoadAll<FishInfo>("GomiInfo");
+            foreach (var gomi in GomiList)
+            {
+                AvailableGomi.Add(gomi);
             }
         }
 
