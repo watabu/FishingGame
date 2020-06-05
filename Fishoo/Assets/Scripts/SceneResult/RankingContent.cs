@@ -11,7 +11,7 @@ public class RankingContent : MonoBehaviour
     public Image Frame;
     public TextMeshProUGUI Name;
     public TextMeshProUGUI count;
-    public TextMeshProUGUI Money;
+    public TextMeshProUGUI score;
     // Start is called before the first frame update
     void Start()
     {
