@@ -60,6 +60,7 @@ public class StageSelectMgr : MonoBehaviour
         }
         money.text = $"現在の所持金：{data.money}";
         m_time = 0f;
+        tutorialUI.SetActive(false);
     }
 
     // Update is called once per frame
