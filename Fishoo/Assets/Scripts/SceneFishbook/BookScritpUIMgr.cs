@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,11 +10,12 @@ public class BookScritpUIMgr : MonoBehaviour
 {
     public enum State
     {
+        none,
         list,
         description
     }
 
-    
+
     [SerializeField] GameObject fishPrefab;
     [Header("References")]
     [SerializeField] GameObject bookList;
@@ -26,8 +28,8 @@ public class BookScritpUIMgr : MonoBehaviour
     [SerializeField] Button backButton;
     [SerializeField] bool showNonCaughtFish = false;
 
-    State m_currentState;
-    float m_changeTime=0f;//切り替わってから何秒経ったか
+    State m_currentState=State.none;
+    float m_changeTime = 0f;//切り替わってから何秒経ったか
 
 
     private void Awake()
@@ -43,7 +45,7 @@ public class BookScritpUIMgr : MonoBehaviour
             if (d == null) continue;
             var script = Instantiate(fishPrefab, bookListContent.transform).GetComponent<FishButtonUIScript>();
             //捕まえたなら詳しい情報を見れる
-            if ( data.isCaught(d))
+            if (data.isCaught(d))
             {
                 script.SetOnClicked(() =>
                 {
@@ -52,16 +54,17 @@ public class BookScritpUIMgr : MonoBehaviour
                     SelectedButton = script.GetButton;
                 });
 
-            }else if (showNonCaughtFish)
+            }
+            else if (showNonCaughtFish)
             {
                 script.SetOnClicked(() =>
                 {
                     Switch(State.description);
-                    descriptionUI.Set(d.icon, d.FishName, d.description,0);
+                    descriptionUI.Set(d.icon, d.FishName, d.description, 0);
                     SelectedButton = script.GetButton;
                 });
             }
-            script.Interactable = showNonCaughtFish||data.isCaught(d);
+            script.Interactable = showNonCaughtFish || data.isCaught(d);
             script.icon.sprite = d.icon;
             lastObj = script;
         }
@@ -89,30 +92,35 @@ public class BookScritpUIMgr : MonoBehaviour
                     SelectedButton = script.GetButton;
                 });
             }
-            script.Interactable = showNonCaughtFish||data.isCaught(d);
+            script.Interactable = showNonCaughtFish || data.isCaught(d);
             script.icon.sprite = d.icon;
             lastObj = script;
         }
         //図鑑に戻ったときの初期選択
         if (SelectedButton == null) SelectedButton = lastObj.GetButton;
-        Switch(State.list);
-        backButton.onClick.AddListener(()=> { SceneManager.LoadScene("StageSelect"); });
+        Switch(State.list,true);
+        backButton.onClick.AddListener(() => { SceneManager.LoadScene("StageSelect"); });
     }
 
 
     private void Update()
     {
-        if(m_currentState == State.description)
+        if (m_currentState == State.description)
         {
-            if (Input.anyKeyDown&& m_changeTime>=0.5f)//切り替わってから0.5秒経たないとシーン切り替えができないように
+            if (Input.anyKeyDown )
             {
                 Switch(State.list);
             }
         }
         m_changeTime += Time.deltaTime;
+        currentGameObject = EventSystem.current.currentSelectedGameObject;
+        Scroll(currentGameObject);
     }
-    public void Switch(State state)
+    public void Switch(State state,bool ignore=false)
     {
+        if (!ignore&&m_changeTime < 0.1f) return;//切り替わってから0.5秒経たないとシーン切り替えができないように
+        if (m_currentState == state) return;
+        Debug.Log($"Switch {state}");
         m_currentState = state;
         m_changeTime = 0f;
         switch (state)
@@ -124,7 +132,7 @@ public class BookScritpUIMgr : MonoBehaviour
                 SelectedButton.Select();
                 break;
             case State.description:
-                bookList.SetActive(false);
+                //bookList.SetActive(false);
                 bookDescription.SetActive(true);
                 backButton.interactable = false;
                 break;
@@ -133,4 +141,59 @@ public class BookScritpUIMgr : MonoBehaviour
         }
     }
 
+    [Header("Scroll")]
+    [SerializeField] private ScrollRect _scrollRect;
+    [SerializeField] private Transform _contentTransform;
+    [SerializeField] private RectTransform _viewportRectransform;
+    [Header("Debug")]
+    [SerializeField,ReadOnly] private GameObject currentGameObject;
+    [SerializeField, ReadOnly] private float currentTop;
+    [SerializeField, ReadOnly] private float currentBottom;
+    [SerializeField, ReadOnly] private float centerPosition;
+    [SerializeField, ReadOnly] private float topPosition;
+    [SerializeField, ReadOnly] private float bottomPosition;
+    [SerializeField, ReadOnly] private float viewportSize;
+    /// <summary>
+    /// 自動スクロール
+    /// </summary>
+    void Scroll(GameObject current_)
+    {
+        float parenty = current_.transform.parent.position.y;
+        RectTransform current = (current_.transform) as RectTransform;
+        currentTop = parenty + current.offsetMin.y;
+        currentBottom = parenty + current.offsetMax.y;
+
+        //現在のスクロール範囲の数値を計算しやすい様に上下反転
+        var p = 1.0f - _scrollRect.verticalNormalizedPosition;
+
+        //描画範囲のサイズ
+        viewportSize = _viewportRectransform.rect.height;
+        //描画範囲のサイズの半分
+        var harlViewport = viewportSize * 0.5f;
+
+        var contentSize = (_contentTransform as RectTransform).sizeDelta.y;
+
+        //現在の描画範囲の中心座標
+        centerPosition = (contentSize - viewportSize) * p + harlViewport;
+        //現在の描画範囲の上端座標
+        topPosition = centerPosition - harlViewport;
+        //現在の現在描画の下端座標
+        bottomPosition = centerPosition + harlViewport;
+
+        //選択した要素が上側にはみ出ている
+        if (topPosition > currentTop)
+        {
+            //選択要素が描画範囲に収まるようにスクロール
+            _scrollRect.verticalNormalizedPosition -= 0.1f;
+            return;
+        }
+
+        //選択した要素が下側にはみ出ている
+        if (currentBottom < bottomPosition)
+        {
+            _scrollRect.verticalNormalizedPosition += 0.1f;
+        }
+    }
 }
+
+//https://qiita.com/toRisouP/items/3619ad3d2b7d785968f1

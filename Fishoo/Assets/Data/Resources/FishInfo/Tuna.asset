@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
-  m_Name: RollingRock
+  m_Name: Tuna
   m_EditorClassIdentifier: 
-  FishName: "\u5CA9"
-  description: "\u3069\u3046\u3084\u3063\u305F\u3089\u3053\u3093\u306A\u306E\u91E3\u308C\u308B\u3093\u3060\uFF1F"
+  FishName: "\u307E\u3050\u308D"
+  description: "\u30AF\u30ED\u30DE\u30B0\u30ED\u306F\u30EC\u30C3\u30C9\u30EA\u30B9\u30C8\u306B\u767B\u9332\u3055\u308C\u3066\u305F\u308A\u3059\u308B"
   description_Caught: 
   sellingPrice: 5
   exp: 1
-  icon: {fileID: 21300000, guid: dbb09e7fc9dd57148ab45b7b40f05765, type: 3}
-  data: {fileID: 11400000, guid: 84cc1473861715a468cb1c722429a6dc, type: 2}
-  isGomi: 1
+  icon: {fileID: 21300000, guid: 53cb921b28b74a74cab785b4692fd077, type: 3}
+  data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
+  isGomi: 0
