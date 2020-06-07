@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class FishButtonUIScript : MonoBehaviour
 {
     public Image icon;
+    public int verticalIndex = 0;
     Button button;
     public Button GetButton {
         get { 

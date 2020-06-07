@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
+  m_Name: Unagi
+  m_EditorClassIdentifier: 
+  FishName: "\u3046\u306A\u304E"
+  description: "\u5225\u306E\u9B5A\u306E\u304B\u3070\u713C\u304D\u3067\u3082\u3046\u306A\u304E\u306E\u305F\u308C\u3092\u304B\u3051\u305F\u3089\u533A\u5225\u3067\u304D\u306A\u3044\u3068\u601D\u3063\u3066\u3044\u308B\u3002"
+  description_Caught: 
+  sellingPrice: 15
+  exp: 2
+  icon: {fileID: 21300000, guid: 2b62b6ac77f3f4149b347325e3c2f14a, type: 3}
+  data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
+  isGomi: 0
