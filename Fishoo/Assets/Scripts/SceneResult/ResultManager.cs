@@ -23,9 +23,10 @@ public class ResultManager : MonoBehaviour
     [SerializeField] ResultPanel result;
     [SerializeField] Animator messagePanel;
     [SerializeField] RankingPanel ranking;
+    [SerializeField] Animator animator;
     [SerializeField] SaveData saveData;
     [SerializeField] Sprite PlayerIcon;
-
+    [SerializeField] SelectButtonMgr buttonMgr;
     // Start is called before the first frame update
     void Awake()
     {
@@ -35,7 +36,6 @@ public class ResultManager : MonoBehaviour
         result.canScroll = true;
         ChangePanel(PanelState.result);
         ranking.saveData = saveData;
-        ranking.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -46,20 +46,28 @@ public class ResultManager : MonoBehaviour
             //メッセージパネルがあるならスクロール操作をしない
             isMessagePanelActive ^= true;
             messagePanel.gameObject.SetActive(isMessagePanelActive);
+            if (isMessagePanelActive)
+                buttonMgr.BackButton.Select();
+
             if (panelState == PanelState.result)
             {
                 result.canScroll = !isMessagePanelActive;
+                if (!isMessagePanelActive)
+                    result.GetSrollbar.Select();
             }
-            else if(panelState == PanelState.ranking)
+            else if (panelState == PanelState.ranking)
             {
                 ranking.canScroll = !isMessagePanelActive;
+                if (!isMessagePanelActive)
+                    ranking.GetSrollbar.Select();
+
             }
         }
 
 
-        if (Player.InputSystem.GetKeyDown(KeyCode.R))
+        if (Player.InputSystem.GetKeyDown(KeyCode.R) || Player.InputSystem.GetKeyDown(KeyCode.RightArrow))
             ChangePanel(PanelState.ranking);
-        if (Player.InputSystem.GetKeyDown(KeyCode.L))
+        if (Player.InputSystem.GetKeyDown(KeyCode.L) || Player.InputSystem.GetKeyDown(KeyCode.LeftArrow))
             ChangePanel(PanelState.result);
 
     }
@@ -89,21 +97,22 @@ public class ResultManager : MonoBehaviour
     void ChangePanel(PanelState state)
     {
         isMessagePanelActive = false;
-        if (state == PanelState.result)
+        if (state == PanelState.result && panelState == PanelState.ranking)
         {
-            ranking.gameObject.SetActive(false);
-            messagePanel.gameObject.SetActive(false);
+            panelState = PanelState.result;
             //リザルトのアニメーション
-            result.gameObject.SetActive(true);
+            animator.SetTrigger("ToResult");
+
             result.canScroll = true;
             ranking.canScroll = false;
         }
-        else if (state == PanelState.ranking)
-        {
-            result.gameObject.SetActive(false);
-            messagePanel.gameObject.SetActive(false);
+        else if (state == PanelState.ranking && panelState == PanelState.result)
+            {
+            panelState = PanelState.result;
+
             //ランキングのアニメーション
-            ranking.gameObject.SetActive(true);
+            animator.SetTrigger("ToRanking");
+
             ranking.canScroll = true;
             result.canScroll = true;
         }
