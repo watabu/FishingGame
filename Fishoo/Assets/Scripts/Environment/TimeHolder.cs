@@ -47,8 +47,10 @@ namespace Environment
         [SerializeField] private TextMeshProUGUI timeText;
         [SerializeField] private TimeHolderEvent OnTimeChanged = new TimeHolderEvent();
         [SerializeField] private TimeHolderEvent OnTimeFinished = new TimeHolderEvent();
-
+        
         public void AddOnTimeChanged(UnityAction<int> func) { OnTimeChanged.AddListener(func); }
+        public void RemoveOnTimeChanged(UnityAction<int> func) { OnTimeChanged.RemoveListener(func); }
+
         public void AddOnTimeFinished(UnityAction<int> func) { OnTimeFinished.AddListener(func); }
 
         float m_time=0f;

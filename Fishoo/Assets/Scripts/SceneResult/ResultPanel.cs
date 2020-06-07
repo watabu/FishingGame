@@ -10,6 +10,7 @@ public class ResultPanel : MonoBehaviour
     [SerializeField] GameObject totalScore;
     [SerializeField] Transform contentParent;
     [SerializeField]Scrollbar scrollbar;
+    public Scrollbar GetSrollbar { get { return scrollbar; } }
     [SerializeField, Tooltip("一匹も釣らなかった時にもらえる魚")]
     Fish.FishInfo GivenFish;
     [SerializeField] bool debug;

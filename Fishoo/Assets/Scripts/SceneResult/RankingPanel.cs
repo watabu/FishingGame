@@ -7,7 +7,9 @@ public class RankingPanel : MonoBehaviour
 {
     [SerializeField] GameObject contentPrefab;
     [SerializeField] Transform contentParent;
-    [SerializeField] public Scrollbar scrollbar;
+    [SerializeField] Scrollbar scrollbar;
+    public Scrollbar GetSrollbar { get { return scrollbar; } }
+
     [SerializeField] bool debug;
 
     public bool canScroll;
