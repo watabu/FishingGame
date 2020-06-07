@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 /// <summary>
 /// ボタンを押すと特定のシーンに移動できるようにするクラス
 /// </summary>
@@ -49,7 +50,7 @@ public class StageSelectMgr : MonoBehaviour
             m_state = State.title;
         else
             m_state = State.stageSelect;
-        SwitchState(m_state);
+        SwitchState(m_state,true);
 
         NoTitle = true;
         daySeason.text = data.GetSeasonKanji();
@@ -66,12 +67,13 @@ public class StageSelectMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         switch (m_state)
         {
             case State.none:
                 break;
             case State.title:
-                if (m_time >= activateInput && Input.anyKeyDown)
+                if (Input.anyKeyDown)
                 {
                     SwitchState(State.stageSelect);
                 }
@@ -91,24 +93,33 @@ public class StageSelectMgr : MonoBehaviour
         SceneManager.LoadScene(scenesData[ID].sceneName);
     }
 
-    public void SwitchState(State state)
+    public void SwitchState(State state,bool ignore=false)
     {
+        if (!ignore&&m_time < activateInput) return;
         m_state = state;
         switch (m_state)
         {
             case State.none:
                 break;
             case State.title:
-                titleCanvas.alpha = 1;
-                stageCanvas.alpha = 0;
-                stageCanvas.interactable = false;
-                titleCanvas.interactable = true;
+                titleCanvas.gameObject.SetActive(true);
+                titleCanvas.DOFade(1f, 0.5f);
+                stageCanvas.DOFade(0f, 0.5f).OnComplete(() =>
+                {
+                    stageCanvas.gameObject.SetActive(false);
+                    stageCanvas.interactable = false;
+                    titleCanvas.interactable = true;
+                });
                 break;
             case State.stageSelect:
-                titleCanvas.alpha = 0;
-                stageCanvas.alpha = 1;
-                stageCanvas.interactable = true;
-                titleCanvas.interactable = false;
+                stageCanvas.gameObject.SetActive(true);
+                titleCanvas.DOFade(0f, 0.5f);
+                stageCanvas.DOFade(1f, 0.5f).OnComplete(() =>
+                {
+                    titleCanvas.gameObject.SetActive(false);
+                    titleCanvas.interactable = false;
+                    stageCanvas.interactable = true;
+                });
                 break;
             case State.selected:
                 break;

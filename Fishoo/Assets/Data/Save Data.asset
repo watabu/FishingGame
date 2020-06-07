@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Save Data
   m_EditorClassIdentifier: 
   season: 0
-  week: 0
+  week: 1
   money: 10125
   Debug: 0
   canSkipTutorial: 0

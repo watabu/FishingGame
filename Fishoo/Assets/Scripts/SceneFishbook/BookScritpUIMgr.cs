@@ -10,6 +10,7 @@ public class BookScritpUIMgr : MonoBehaviour
 {
     public enum State
     {
+        none,
         list,
         description
     }
@@ -27,7 +28,7 @@ public class BookScritpUIMgr : MonoBehaviour
     [SerializeField] Button backButton;
     [SerializeField] bool showNonCaughtFish = false;
 
-    State m_currentState;
+    State m_currentState=State.none;
     float m_changeTime = 0f;//切り替わってから何秒経ったか
 
 
@@ -97,7 +98,7 @@ public class BookScritpUIMgr : MonoBehaviour
         }
         //図鑑に戻ったときの初期選択
         if (SelectedButton == null) SelectedButton = lastObj.GetButton;
-        Switch(State.list);
+        Switch(State.list,true);
         backButton.onClick.AddListener(() => { SceneManager.LoadScene("StageSelect"); });
     }
 
@@ -106,7 +107,7 @@ public class BookScritpUIMgr : MonoBehaviour
     {
         if (m_currentState == State.description)
         {
-            if (Input.anyKeyDown && m_changeTime >= 0.5f)//切り替わってから0.5秒経たないとシーン切り替えができないように
+            if (Input.anyKeyDown )
             {
                 Switch(State.list);
             }
@@ -115,8 +116,11 @@ public class BookScritpUIMgr : MonoBehaviour
         currentGameObject = EventSystem.current.currentSelectedGameObject;
         Scroll(currentGameObject);
     }
-    public void Switch(State state)
+    public void Switch(State state,bool ignore=false)
     {
+        if (!ignore&&m_changeTime < 0.1f) return;//切り替わってから0.5秒経たないとシーン切り替えができないように
+        if (m_currentState == state) return;
+        Debug.Log($"Switch {state}");
         m_currentState = state;
         m_changeTime = 0f;
         switch (state)
@@ -128,7 +132,7 @@ public class BookScritpUIMgr : MonoBehaviour
                 SelectedButton.Select();
                 break;
             case State.description:
-                bookList.SetActive(false);
+                //bookList.SetActive(false);
                 bookDescription.SetActive(true);
                 backButton.interactable = false;
                 break;
