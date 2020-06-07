@@ -12,9 +12,10 @@ public class SelectButtonMgr : MonoBehaviour
 
     [Tooltip("Bボタンを押したときに指定されるボタン"), SerializeField]
     Button backButton;
+    public Button BackButton { get { return backButton; } }
     [Tooltip("シーンで最初に指定されるボタン"), SerializeField]
     Button firstButton;
-
+    public Button FirstButton { get { return firstButton; } }
     // Use this for initialization
     void Start()
     {
@@ -34,6 +35,7 @@ public class SelectButtonMgr : MonoBehaviour
             backButton.Select();
         }
     }
+
     public void LoadStageSelect()
     {
         SceneManager.LoadScene("StageSelect");
