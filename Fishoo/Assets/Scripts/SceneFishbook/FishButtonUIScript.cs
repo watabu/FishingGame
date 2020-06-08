@@ -22,11 +22,6 @@ public class FishButtonUIScript : MonoBehaviour
             GetButton.interactable = value;
         }
     }
-   
-    private void Start()
-    {
-        GetButton.Select();
-    }
 
     public void SetOnClicked(UnityAction func)
     {
