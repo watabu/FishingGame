@@ -10,7 +10,7 @@ public class RankingPanel : MonoBehaviour
     [SerializeField] Scrollbar scrollbar;
     public Scrollbar GetSrollbar { get { return scrollbar; } }
 
-    [SerializeField,Tooltip("釣ゲームから遷移しない場合にランキングを表示する")] bool debug;
+    [SerializeField,Tooltip("釣ゲームから遷移しない場合にランキングを表示する")]public bool debug;
 
     public bool canScroll;
     public SaveData saveData;
@@ -42,6 +42,7 @@ public class RankingPanel : MonoBehaviour
     /// <param name="record"></param>
     public void UpdateRanking(RankingSaveData.Record record)
     {
+        Debug.Log("updateRanking");
         int rank = RankingData.InsertRecord(record);
 
         DrawRanking();
@@ -51,7 +52,6 @@ public class RankingPanel : MonoBehaviour
     {
         foreach (var rec in RankingData.Ranking)
         {
-            Debug.Log(rec);
             var script = Instantiate(contentPrefab, contentParent.transform).GetComponent<RankingContent>();
             script.icon.sprite = rec.icon;
             //魚の値段によって枠の色を変えるとか?

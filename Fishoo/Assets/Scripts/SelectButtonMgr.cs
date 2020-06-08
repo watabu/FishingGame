@@ -13,26 +13,33 @@ public class SelectButtonMgr : MonoBehaviour
     [Tooltip("Bボタンを押したときに指定されるボタン"), SerializeField]
     Button backButton;
     public Button BackButton { get { return backButton; } }
+
+    public Button temporaryBackButton;
+
     [Tooltip("シーンで最初に指定されるボタン"), SerializeField]
     Button firstButton;
     public Button FirstButton { get { return firstButton; } }
     // Use this for initialization
     void Start()
     {
-        firstButton.Select();
+        if (firstButton != null)
+            firstButton.Select();
     }
 
     // Update is called once per frame
     void Update()
     {
         //ボタンが操作不可能だったり存在しなければ
-        if (backButton ==null|| firstButton == null)
+        if (backButton ==null || !backButton.IsActive())
             return;
-        if (!backButton.IsActive() || !firstButton.IsActive())
-            return;
+        
 
-        if (Player.InputSystem.GetKeyDown(KeyCode.B)){
-            backButton.Select();
+        if (Player.InputSystem.GetKeyDown(KeyCode.B))
+        {
+            if (temporaryBackButton != null)
+                temporaryBackButton.Select();
+            else
+                backButton.Select();
         }
     }
 
@@ -40,6 +47,11 @@ public class SelectButtonMgr : MonoBehaviour
     {
         SceneManager.LoadScene("StageSelect");
         
+    }
+    public void LoadStage(string Stage)
+    {
+        SceneManager.LoadScene(Stage);
+
     }
 
     public void DebugPrint()

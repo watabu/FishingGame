@@ -13,11 +13,20 @@ MonoBehaviour:
   m_Name: Save Data
   m_EditorClassIdentifier: 
   season: 0
-  week: 0
-  money: 0
+  week: 1
+  money: 630
   Debug: 0
   canSkipTutorial: 0
-  firstAddedFish: {fileID: 11400000, guid: 0c89c9f0f70d7de449719ab8d8824f87, type: 2}
-  m_caughtFishCount: 0
-  m_fishes: []
+  m_caughtFishCount: 22
+  m_fishes:
+  - fish: {fileID: 11400000, guid: 65c7a5c1bc7278847a32c73ebdf0693b, type: 2}
+    count: 18
+  - fish: {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 147728ffde37aa849969fdaf3245df43, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 868df025d9ab5d342824d9ad6d68d1f5, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 7295029901e7fae48b1fed7b5a56dbf1, type: 2}
+    count: 1
   firstAddedfishes: []

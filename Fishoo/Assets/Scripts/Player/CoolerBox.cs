@@ -19,7 +19,7 @@ namespace Player
         private void Awake()
         {
             DontDestroyOnLoad(this.gameObject);
-            saveData.DebugAddFishes();
+//            saveData.DebugAddFishes();
         }
         public void Add(Fish.Behavior.CommonFish fish)
         {

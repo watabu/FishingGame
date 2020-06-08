@@ -44,7 +44,7 @@ public class RankingSaveData : ScriptableObject
     /// <returns></returns>
     public int InsertRecord(Record record)
     {
-        Ranking.Add(record);
+
         for(int i = 0; i < Ranking.Count; i++)
         {
             if( record.Score > Ranking[i].Score )

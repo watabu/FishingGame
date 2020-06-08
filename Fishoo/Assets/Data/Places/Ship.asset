@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da47581674ca684458ea058b301efad4, type: 3}
+  m_Name: Ship
+  m_EditorClassIdentifier: 
+  placeName: FirstPlace
+  description: The first place
+  description_detail: 
+  moneyCondition: 2000
+  weekCondition: 6
+  icon: {fileID: 0}
+  startTime: 420
+  endTime: 1140
+  globalColor:
+    serializedVersion: 2
+    key0: {r: 0.8349056, g: 1, b: 0.98696625, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 1, g: 0.8745098, b: 0.69411767, a: 0}
+    key3: {r: 1, g: 0.7543008, b: 0.740566, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 35273
+    ctime2: 60138
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
+  rainyPercent: 0.2
+  rainDuration: 120
+  availableFishList:
+  - fish: {fileID: 5436173513765085611, guid: f107d1fffe224fe49ad416683ac2d105, type: 3}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fish: {fileID: 5436173513765085611, guid: 698804cda834cf14bb2d92a63509cd03, type: 3}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fish: {fileID: 5436173513765085611, guid: a6c7000cd9557404386e80e6fe2c5f05, type: 3}
+    weather: 0
+    beginTime: 0
+    endTime: 0

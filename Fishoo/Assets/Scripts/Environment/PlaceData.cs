@@ -32,10 +32,10 @@ namespace Environment
         public string description;
         [Tooltip("場所の詳細な説明（図鑑とか）")]
         public string description_detail;
-        [Tooltip("行くときに使う金？")]
-        public int cost;
-        [Tooltip("行くのにかかる移動時間？")]
-        public int TravelTime;
+        [Tooltip("何円以上持ってれば移動可能か")]
+        public int moneyCondition;
+        [Tooltip("何週目から移動可能か")]
+        public int weekCondition;
         [Tooltip("場所のアイコン")]
         public Sprite icon;
         [Tooltip("開始時刻(分)")]

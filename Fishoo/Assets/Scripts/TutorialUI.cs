@@ -7,6 +7,7 @@ public class TutorialUI : MonoBehaviour
 {
     [SerializeField] GameObject description;
     [SerializeField] Button FirstSelectedButton;
+    [SerializeField] SelectButtonMgr buttonMgr;
     int m_pageCount = 0;
     int m_currentPage = 0;
 
@@ -15,11 +16,13 @@ public class TutorialUI : MonoBehaviour
         m_pageCount = description.transform.childCount;
         m_currentPage = 0;
         description.transform.GetChild(m_currentPage).gameObject.SetActive(true);
+        buttonMgr.temporaryBackButton = FirstSelectedButton;
+        FirstSelectedButton.Select();
     }
     public void ToPrev()
     {
         description.transform.GetChild(m_currentPage).gameObject.SetActive(false);
-        m_currentPage = (m_currentPage - 1) % m_pageCount;
+        m_currentPage = Mathf.Max((m_currentPage - 1),0) % m_pageCount;
         description.transform.GetChild(m_currentPage).gameObject.SetActive(true);
     }
     public void ToNext()
@@ -35,7 +38,9 @@ public class TutorialUI : MonoBehaviour
 
     public void CloseUI()
     {
+        buttonMgr.temporaryBackButton = null;
         gameObject.SetActive(false);
+        buttonMgr.FirstButton.Select();
     }
 
 }

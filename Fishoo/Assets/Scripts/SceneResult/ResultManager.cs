@@ -64,29 +64,38 @@ public class ResultManager : MonoBehaviour
             }
         }
 
-
+        if (isMessagePanelActive)
+            return;
         if (Player.InputSystem.GetKeyDown(KeyCode.R) || Player.InputSystem.GetKeyDown(KeyCode.RightArrow))
             ChangePanel(PanelState.ranking);
         if (Player.InputSystem.GetKeyDown(KeyCode.L) || Player.InputSystem.GetKeyDown(KeyCode.LeftArrow))
             ChangePanel(PanelState.result);
-        if (Player.InputSystem.GetKeyDown(KeyCode.X))
-            Debug.Log(panelState);
+
     }
 
+
+    /// <summary>
+    /// 釣ゲームから遷移した場合に成果を登録する
+    /// 自動でresultPanel,rankingPanelのdebugをfalseにする
+    /// </summary>
+    /// <param name="fishList"></param>
     public void SetList(List<Fish.FishInfo> fishList)
     {
+        Debug.Log("SetList");
+        result.debug = false;
+        ranking.debug = false;
+        //リザルトの更新
         result.UpdateResult(fishList);
+        //ランキングの更新
         RankingSaveData.Record record;
         record.Name = "You";
         record.icon = PlayerIcon;
         record.FishCount = fishList.Count;
         int sum = 0;
         record.Score = 0;
-        Debug.Log(record);
         foreach (var x in fishList)
             sum += x.sellingPrice;
         record.Score = sum;
-        Debug.Log(record);
         ranking.UpdateRanking(record);
     }
     public void ActivateMessage()
@@ -97,8 +106,6 @@ public class ResultManager : MonoBehaviour
 
     void ChangePanel(PanelState state)
     {
-        Debug.Log(state);
-        Debug.Log(panelState);
         isMessagePanelActive = false;
         //ランキングー＞リザルト
         if (state == PanelState.result && panelState == PanelState.ranking)

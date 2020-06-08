@@ -13,7 +13,7 @@ public class ResultPanel : MonoBehaviour
     public Scrollbar GetSrollbar { get { return scrollbar; } }
     [SerializeField, Tooltip("一匹も釣らなかった時にもらえる魚")]
     Fish.FishInfo GivenFish;
-    [SerializeField] bool debug;
+    [SerializeField]public bool debug;
     [SerializeField,Tooltip("Debug")]List<Fish.FishInfo> DebugfishList = new List<Fish.FishInfo>();
 
     public bool canScroll;
@@ -43,6 +43,7 @@ public class ResultPanel : MonoBehaviour
     /// <param name="fishList"></param>
     public void UpdateResult(List<Fish.FishInfo> fishList) 
     {
+        Debug.Log("updateResult");
         int Money = 0;
         foreach(var fish in fishList) {
             var script = Instantiate(contentPrefab, contentParent.transform).GetComponent<ResultContent>();
