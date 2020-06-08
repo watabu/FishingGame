@@ -10,7 +10,7 @@ public class RankingPanel : MonoBehaviour
     [SerializeField] Scrollbar scrollbar;
     public Scrollbar GetSrollbar { get { return scrollbar; } }
 
-    [SerializeField] bool debug;
+    [SerializeField,Tooltip("釣ゲームから遷移しない場合にランキングを表示する")] bool debug;
 
     public bool canScroll;
     public SaveData saveData;
@@ -35,6 +35,11 @@ public class RankingPanel : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ゲームから遷移された際にResultPanelから呼ばれる。
+    /// 更新と描写を兼ね備える
+    /// </summary>
+    /// <param name="record"></param>
     public void UpdateRanking(RankingSaveData.Record record)
     {
         int rank = RankingData.InsertRecord(record);

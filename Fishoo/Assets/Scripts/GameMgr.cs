@@ -36,7 +36,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         Finished
     }
     State m_state = State.Nove;
-
+    public SaveData saveData { get { return data; } }
 
     // Start is called before the first frame update
     void Start()

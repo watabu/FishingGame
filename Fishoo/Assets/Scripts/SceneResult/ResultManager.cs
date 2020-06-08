@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class ResultManager : MonoBehaviour
 {
 
@@ -69,7 +69,8 @@ public class ResultManager : MonoBehaviour
             ChangePanel(PanelState.ranking);
         if (Player.InputSystem.GetKeyDown(KeyCode.L) || Player.InputSystem.GetKeyDown(KeyCode.LeftArrow))
             ChangePanel(PanelState.result);
-
+        if (Player.InputSystem.GetKeyDown(KeyCode.X))
+            Debug.Log(panelState);
     }
 
     public void SetList(List<Fish.FishInfo> fishList)
@@ -96,7 +97,10 @@ public class ResultManager : MonoBehaviour
 
     void ChangePanel(PanelState state)
     {
+        Debug.Log(state);
+        Debug.Log(panelState);
         isMessagePanelActive = false;
+        //ランキングー＞リザルト
         if (state == PanelState.result && panelState == PanelState.ranking)
         {
             panelState = PanelState.result;
@@ -106,16 +110,23 @@ public class ResultManager : MonoBehaviour
             result.canScroll = true;
             ranking.canScroll = false;
         }
+        //リザルト->ランキング
         else if (state == PanelState.ranking && panelState == PanelState.result)
             {
-            panelState = PanelState.result;
+            panelState = PanelState.ranking;
 
             //ランキングのアニメーション
             animator.SetTrigger("ToRanking");
 
             ranking.canScroll = true;
-            result.canScroll = true;
+            result.canScroll = false;
         }
     }
-    
+
+    public void ToStageSelect()
+    {
+        SceneManager.LoadScene("StageSelect");
+        saveData.AddWeek();
+    }
+
 }

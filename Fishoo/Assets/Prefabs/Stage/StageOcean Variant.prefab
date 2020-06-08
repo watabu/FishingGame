@@ -6039,6 +6039,11 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[80].second.m_AllTileFlags
       value: 1073741825
       objectReference: {fileID: 0}
+    - target: {fileID: 3202501434257753183, guid: faca6ed6527518649a16c8ea8112bcc2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[0].second.m_AnimationSpeed
@@ -6107,7 +6112,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[26].second.m_AnimationSpeed
-      value: 2.5000002
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -6477,7 +6482,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[125].second.m_AnimationSpeed
-      value: 2.5000002
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -6517,7 +6522,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[96].second.m_AnimationSpeed
-      value: 2.5000002
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -6547,7 +6552,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[88].second.m_AnimationSpeed
-      value: 2.5
+      value: 2.5000002
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -6557,7 +6562,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[107].second.m_AnimationSpeed
-      value: 2.5000002
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}

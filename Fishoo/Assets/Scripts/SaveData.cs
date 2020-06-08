@@ -27,8 +27,7 @@ public class SaveData : ScriptableObject
     [SerializeField] bool Debug;
     public bool canSkipTutorial=false;
 
-
-    [Tooltip("捕まえた魚の数")]
+    [SerializeField,Tooltip("捕まえた魚の数")]
     int m_caughtFishCount;
 
     /// <summary>
@@ -43,12 +42,15 @@ public class SaveData : ScriptableObject
     [Header("Fish Data")]
     List<FishData> m_fishes = new List<FishData>();
 
+
+
+
     /// <summary>
     /// デバッグ用の最初から追加される魚
     /// </summary>
     [SerializeField, Tooltip("デバッグ用")]
     List<Fish.FishInfo> firstAddedfishes = new List<Fish.FishInfo>();
-
+    
     Dictionary<Fish.FishInfo, FishData> fishData ;
 
     /// <summary>
@@ -68,6 +70,8 @@ public class SaveData : ScriptableObject
             if (i == null||i.fish==null) continue;
             fishData.Add(i.fish,i);
         }
+        //if (fishData.Count == 0)
+        //    AddFish(firstAddedFish);
     }
 
     public bool isCaught(Fish.FishInfo fish) { return fishes.ContainsKey(fish); }
@@ -86,18 +90,21 @@ public class SaveData : ScriptableObject
     public void AddFish(Fish.FishInfo fish_)
     {
         if (fish_ == null) return;
+        m_caughtFishCount++;
+        
         foreach (var i in m_fishes)
         {
             if (isCaught(fish_))
             {
                 i.count++;
-                m_caughtFishCount++;
                 return;
             }
         }
         var f = new FishData { fish = fish_, count = 1 };
         m_fishes.Add(f);
-        fishes.Add(fish_, f);
+        fishes[fish_]= f;
+        //fishes.Add(fish_, f);
+
     }
     public string GetSeasonKanji()
     {
@@ -111,4 +118,19 @@ public class SaveData : ScriptableObject
         }
     }
 
+    public void AddWeek()
+    {
+        week++;
+    }
+
+    public void DeleteAll()
+    {
+        week = 0;
+        money = 0;
+        m_caughtFishCount = 0;
+        m_fishes.Clear();
+        fishData.Clear();
+        m_caughtFishCount = 0;
+
+    }
 }

@@ -9,17 +9,22 @@ using UnityEngine;
 /// </summary>
 public class FireFly : MonoBehaviour
 {
-    [Tooltip("hhmmで設定")]public int AppearTime;
+    [SerializeField, Tooltip("出現する周、要素数0で毎週")]
+    List<int> WeekList = new List<int>();
+    [Tooltip("hhmmで設定")] public int AppearTime;
     [Tooltip("hhmmで設定")] public int DisappearTime;
-    [ReadOnly,SerializeField]int m_AppearTime;
-    [ReadOnly, SerializeField]int m_DisappearTime;
 
+    [ReadOnly, SerializeField] int m_AppearTime;
+    [ReadOnly, SerializeField] int m_DisappearTime;
+
+    [SerializeField,Tooltip("")] bool debug;
 
     /// <summary>
     /// 時間を比較して条件を満たせば現れる
     /// </summary>
     /// <param name="time"></param>
-    void Appear(int time) {
+    void Appear(int time)
+    {
         if (time >= m_AppearTime)
         {
             gameObject.SetActive(true);
@@ -43,6 +48,16 @@ public class FireFly : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_AppearTime = AppearTime / 100 * 60 + AppearTime % 100;
+        m_DisappearTime = DisappearTime / 100 * 60 + DisappearTime % 100;
+        Initialize();
+
+    }
+
+    public void Initialize()
+    {
+        int week = GameMgr.Instance.saveData.week;
+        if (!WeekList.Contains(week) && WeekList.Count > 0) return;
 
         m_AppearTime = AppearTime / 100 * 60 + AppearTime % 100;
         m_DisappearTime = DisappearTime / 100 * 60 + DisappearTime % 100;
@@ -55,5 +70,4 @@ public class FireFly : MonoBehaviour
 
     }
 
-  
 }
