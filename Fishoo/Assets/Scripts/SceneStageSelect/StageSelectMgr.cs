@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 /// <summary>
 /// ボタンを押すと特定のシーンに移動できるようにするクラス
 /// </summary>
@@ -30,7 +31,9 @@ public class StageSelectMgr : MonoBehaviour
     [SerializeField] private TextMeshProUGUI money;
     [SerializeField] private SaveData data;
     [SerializeField] private GameObject tutorialUI;
+    [SerializeField] private Selectable tutorialSelectButton;
     [SerializeField] private GameObject popUpUI;
+    [SerializeField] private Selectable popUpSelectButton;
     [Header("Parameter")]
     [Tooltip("Title画面から遷移するときに何秒経てば遷移できるか")]
     [SerializeField] private float activateInput = 3f;
@@ -144,13 +147,16 @@ public class StageSelectMgr : MonoBehaviour
         tutorialUI.SetActive(false);
     }
 
+    Selectable optionBefore;
     public void ActivateOption()
     {
+        optionBefore= EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
         optionCanvas.gameObject.SetActive(true);
         optionCanvas.DOFade(1f, 0.5f).OnComplete(() =>
         {
             stageCanvas.interactable = false;
             optionCanvas.interactable = true;
+        tutorialSelectButton.Select();
         });
     }
     public void DeActivateOption()
@@ -161,15 +167,21 @@ public class StageSelectMgr : MonoBehaviour
             stageCanvas.interactable = true;
             optionCanvas.gameObject.SetActive(false);
         });
+        optionBefore.Select();
     }
+
+    Selectable popUpBefore;
 
     public void ActivatePopUp()
     {
         popUpUI.SetActive(true);
+        popUpBefore = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
+        popUpSelectButton.Select();
     }
     public void DeActivatePopUp()
     {
         popUpUI.SetActive(false);
+        popUpBefore.Select();
     }
 
 }
