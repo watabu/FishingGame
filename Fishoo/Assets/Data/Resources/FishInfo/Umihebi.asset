@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
-  m_Name: Umineko
+  m_Name: Umihebi
   m_EditorClassIdentifier: 
-  FishName: "\u30A6\u30DF\u30CD\u30B3\uFF1F"
-  description: "\u6D77\u3067\u91E3\u308C\u305F\u304B\u3089\u30A6\u30DF\u30CD\u30B3\u3002"
+  FishName: "\u30A6\u30DF\u30D8\u30D3"
+  description: "\u30A6\u30DF\u30D8\u30D3"
   description_Caught: 
   sellingPrice: 15
   exp: 2
-  icon: {fileID: 21300000, guid: ab2c1957838f69743af6eb929c528eb5, type: 3}
+  icon: {fileID: 21300000, guid: 8e8c6f7f740fcb04dbab9b5294f9ac39, type: 3}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
   isGomi: 0
