@@ -14,8 +14,7 @@ namespace FishingGame
             get
             {
                 //釣り針の取得
-                if (m_fishingHook == null)
-                    m_fishingHook = GameObject.FindGameObjectWithTag("Hook").GetComponent<FishingGame.Tools.Hook>();
+                if (m_fishingHook == null) m_fishingHook = GameObject.FindGameObjectWithTag("Hook").GetComponent<FishingGame.Tools.Hook>();
                 return m_fishingHook;
             }
         }
@@ -94,7 +93,6 @@ namespace FishingGame
             if (isFishing)
             {
                 Debug.LogError("Fishing is already started");
-
                 return;
             }
             Hook.OnBiteHook();
@@ -117,6 +115,7 @@ namespace FishingGame
             WhenFishingSucceeded.Invoke();
             m_isFishing = false;
             fishingToolMgr.CatchFish(TargetFish);
+            FIshCatchEffect.Instance.Initialize(TargetFish.fishInfo);
             Hook.FinishBite();
         }
 
@@ -135,12 +134,9 @@ namespace FishingGame
         new private void Awake()
         {
             base.Awake();
-            if (WhenFishingFailed == null)
-                WhenFishingFailed = new UnityEvent();
-            if (WhenFishingSucceeded == null)
-                WhenFishingSucceeded = new UnityEvent();
-            if (WhenFishingStart == null)
-                WhenFishingStart = new UnityEvent();
+            if (WhenFishingFailed == null) WhenFishingFailed = new UnityEvent();
+            if (WhenFishingSucceeded == null) WhenFishingSucceeded = new UnityEvent();
+            if (WhenFishingStart == null) WhenFishingStart = new UnityEvent();
         }
 
         // Update is called once per frame
@@ -150,8 +146,6 @@ namespace FishingGame
             {
                 Fishing();
             }
-
-
         }
 
         /// <summary>

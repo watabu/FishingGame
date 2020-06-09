@@ -18,14 +18,11 @@ namespace Player
         // Start is called before the first frame update
         private void Awake()
         {
-            
 //            saveData.DebugAddFishes();
         }
         public void Add(Fish.Behavior.CommonFish fish)
         {
             m_caughtFishList.Add(fish.fishInfo);
         }
-        
-
     }
 }

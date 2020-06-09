@@ -28,5 +28,14 @@ namespace Fish
         public FishMoveData data;
         public bool isGomi=false;
 
+        public enum Rank
+        {
+            R,
+            SR,
+            SSR
+        }
+
+        public Rank rank;
+
     }
 }

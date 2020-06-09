@@ -22,7 +22,6 @@ namespace FishingGame.Tools
         public void ExpandTools()
         {
             isThrown = true;
-
         }
 
         /// <summary>
@@ -47,25 +46,10 @@ namespace FishingGame.Tools
             sprite.color = color;
         }
 
-        public void PullToLeft()
-        {
-        }
-
-        public void PullToRight()
-        {
-        }
-
         // Start is called before the first frame update
         void Start()
         {
             audio = GetComponent<AudioSource>();
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         void OnTriggerEnter2D(Collider2D collision)
@@ -73,7 +57,6 @@ namespace FishingGame.Tools
             if (collision.gameObject.CompareTag("Ocean") && isThrown)
             {
                 audio.Play();
-
             }
         }
     }

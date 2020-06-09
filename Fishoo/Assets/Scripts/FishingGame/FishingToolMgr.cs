@@ -7,9 +7,11 @@ namespace FishingGame
 
     public class FishingToolMgr : SingletonMonoBehaviour<FishingToolMgr>
     {
-        [SerializeField] FishingGameMgr fishingGameMgr;
+        [Header("Object References")]
+        [SerializeField]Player.Player m_player;
         public Player.Player player { get { return m_player; } }
-        [SerializeField]Player.Player m_player ;
+
+
         public Tools.Rod fishingRod;
         public Tools.Bobber fishingBobber;
         public Tools.Hook fishingHook;
@@ -18,17 +20,11 @@ namespace FishingGame
         public GameObject toolsHolder;
         public List<Tools.FishingTool> tools = new List<Tools.FishingTool>();
 
-
-
         //釣り具を展開する
         public void ExpandTools()
         {
             foreach(var tool in tools)
-            {
                 tool.ExpandTools();
-            }
-            
-
         }
         /// <summary>
         /// 釣りが終わり釣り具を収納する
@@ -36,11 +32,8 @@ namespace FishingGame
         public void RetrieveTools()
         {
             foreach (var tool in tools)
-            {
                 tool.RetrieveTools();
-            }
         }
-
 
         /// <summary>
         /// 釣りゲームに成功して魚を釣り上げる
@@ -51,17 +44,6 @@ namespace FishingGame
             player.CatchFish(fish);
             bucket.SwallowFish(fish);
             RetrieveTools();
-        }
-
-        public void PullToLeft()
-        {
-            fishingRod.PullToLeft();
-        }
-
-        public void PullToRight()
-        {
-            fishingRod.PullToRight();
-
         }
 
         // Start is called before the first frame update
@@ -80,10 +62,5 @@ namespace FishingGame
             //}
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }

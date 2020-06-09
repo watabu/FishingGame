@@ -48,16 +48,6 @@ namespace FishingGame.Tools
             }
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
         /// <summary>
         /// 釣り具を展開する
         /// </summary>
@@ -70,14 +60,6 @@ namespace FishingGame.Tools
         /// 釣りが終わり釣り具を収納する
         /// </summary>
         public void RetrieveTools()
-        {
-
-        }
-        public void PullToLeft()
-        {
-
-        }
-        public void PullToRight()
         {
 
         }

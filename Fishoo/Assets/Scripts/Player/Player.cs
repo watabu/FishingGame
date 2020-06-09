@@ -27,7 +27,6 @@ namespace Player
         KeyCode throwRod = KeyCode.A;
         KeyCode retriveRod = KeyCode.B;
 
-
         [Header("Debug")]
         public float speed = 5;
         [SerializeField, ReadOnly] State m_state = State.None;
@@ -36,10 +35,6 @@ namespace Player
         /// 操作可能か
         /// </summary>
         [SerializeField, ReadOnly] bool canMove = true;
-        /// <summary>
-        /// 移動可能か
-        /// </summary>
-        [SerializeField, ReadOnly] bool canWalk = true;
 
         [SerializeField, ReadOnly]
         List<Fish.Behavior.CommonFish> caughtFishList = new List<Fish.Behavior.CommonFish>();
@@ -54,37 +49,18 @@ namespace Player
             fishingToolMgr = FishingGame.FishingGameMgr.fishingToolMgr;
         }
 
-
-
         public void InputUpdate()
         {
-            if (InputSystem.GetKeyDown(KeyCode.L))
-            {
-                GetComponent<Cinemachine.CinemachineImpulseSource>().GenerateImpulse();
-            }
             if (!canMove) return;
             if (m_state == State.Fishing) return;
-            if (InputSystem.GetKeyDown(throwRod) && m_state == State.Normal) 
+            if (m_state == State.Normal && InputSystem.GetKeyDown(throwRod))
             {
-                if (m_state == State.Normal)
-                {
-                    ThrowRod();
-                }
+                ThrowRod();
             }
-            else if (InputSystem.GetKeyDown(retriveRod) &&  m_state == State.ThrowRod)
+            else if (m_state == State.ThrowRod && InputSystem.GetKeyDown(retriveRod))
             {
                 RetrieveRod();
             }
-
-            if (!canWalk) return;
-            Move(InputSystem.Instance.GetInputArrow());
-
-
-        }
-        public void Move(Vector2 velocity)
-        {
-            velocity.y = 0;
-//            transform.position += (Vector3)velocity * Time.deltaTime * speed;
         }
 
         /// <summary>
@@ -95,7 +71,6 @@ namespace Player
             m_state = State.ThrowRod;
             fishingToolMgr.ExpandTools();
             canMove = false;
-            canWalk = false;
             await Task.Delay(1000);
             canMove = true;
         }
@@ -109,7 +84,6 @@ namespace Player
             fishingToolMgr.RetrieveTools();
             canMove = false;
             await Task.Delay(1000);
-            canWalk = true;
             canMove = true;
         }
 
@@ -119,14 +93,12 @@ namespace Player
             coolerBox.Add(fish);
             canMove = false;
             await Task.Delay(1000);
-            canWalk = true;
             canMove = true;
         }
 
         public void StartFishing()
         {
             m_state = State.Fishing;
-
         }
     }
 }
