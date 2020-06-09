@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/StageSelect.unity
     guid: 72244b299a017df4db0a9a9d17e80cda
+  - enabled: 1
+    path: Assets/Scene/Stage/Stage_Lake.unity
+    guid: cf8bd1de1798ae047bbabd55ccdc35f4
+  - enabled: 1
+    path: Assets/Scene/Stage/Stage_River.unity
+    guid: 0a96a1ec750697640afb78dd2badfc89
+  - enabled: 1
+    path: Assets/Scene/Stage/Stage_Sea.unity
+    guid: ef42bf082318249468d62cbd769be272
   m_configObjects: {}

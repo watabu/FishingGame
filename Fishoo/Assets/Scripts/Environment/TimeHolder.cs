@@ -66,7 +66,6 @@ namespace Environment
             if (Skip) timeSpan = 0.0005f;
             AddOnTimeChanged((time) => { timeText.text = GetTimeString(); });
             CurrentTime = startTime;
-            Debug.Log(startTime);
             InvokeRepeating("TimeChange", 0f, timeSpan);
         }
 

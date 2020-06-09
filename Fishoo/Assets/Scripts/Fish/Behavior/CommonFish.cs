@@ -151,7 +151,7 @@ namespace Fish.Behavior
         /// </summary>
         public void SetAppear()
         {
-            Debug.Log("魚が現れた");
+//            Debug.Log("魚が現れた");
             HPbar.gameObject.SetActive(false);
             _state = FishState.Nomal;
             ColorFader.Instance.StartFadeIn(sprite, 0.5f);
@@ -289,7 +289,7 @@ namespace Fish.Behavior
         /// </summary>
         public void SetBiting()
         {
-            Debug.Log("魚がくいついた!");
+//            Debug.Log("魚がくいついた!");
             _state = FishState.Biting;
             HPbar.gameObject.SetActive(true);
 
@@ -308,7 +308,7 @@ namespace Fish.Behavior
         public void SetCaught()
         {
             HPbar.gameObject.SetActive(false);
-            Debug.Log("魚を捕まえた!");
+//            Debug.Log("魚を捕まえた!");
             _state = FishState.Caught;
 //            m_fishingHook.fishingGameMgr.FishingSucceeded();
         }
@@ -319,7 +319,7 @@ namespace Fish.Behavior
         /// </summary>
         public void SetEscaping()
         {
-            Debug.Log("魚は逃げ出した");
+//            Debug.Log("魚は逃げ出した");
             transform.parent = null;
             _state = FishState.Escaping;
          //   m_fishingHook.fishingGameMgr.FishingFailed();

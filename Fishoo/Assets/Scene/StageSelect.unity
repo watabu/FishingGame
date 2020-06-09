@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1023,6 +1023,41 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1718308860}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadStage
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Stage_Sea
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a7ce76c8c4ab040a161e67dcaf99fb, type: 3}
 --- !u!1 &319701237
@@ -1210,19 +1245,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scenesData:
-  - sceneName: Ship
+  - sceneName: Stage_Ship
     place: {fileID: 11400000, guid: 557376cd35af8704292975cc6dc17c0f, type: 2}
     button: {fileID: 11531923}
-  - sceneName: Sea
-    place: {fileID: 11400000, guid: 557376cd35af8704292975cc6dc17c0f, type: 2}
+  - sceneName: Stage_Sea
+    place: {fileID: 11400000, guid: 43221295fc1f22442990c1768b61dba1, type: 2}
     button: {fileID: 2021898942}
   - sceneName: FishBook
     place: {fileID: 11400000, guid: 8e87942a00b679e44b74b8b709008b3d, type: 2}
     button: {fileID: 1979529424}
-  - sceneName: Lake
+  - sceneName: Stage_Lake
     place: {fileID: 11400000, guid: 349354f98366d394d861d532f4cd5434, type: 2}
     button: {fileID: 1258352470}
-  - sceneName: Fishingtest 1
+  - sceneName: Stage_River
     place: {fileID: 11400000, guid: 1178ab60dcfbbd3409d85bef488393c6, type: 2}
     button: {fileID: 1888898065}
   buttonsParent: {fileID: 840964686}
@@ -1287,7 +1322,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -305.4, y: 98.92}
-  m_SizeDelta: {x: 166.5, y: 22.26}
+  m_SizeDelta: {x: 177.62, y: 22.26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &375384473
 GameObject:
@@ -9232,6 +9267,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
       propertyPath: m_Navigation.m_Mode
       value: 4
       objectReference: {fileID: 0}
@@ -9255,6 +9295,36 @@ PrefabInstance:
       propertyPath: m_Navigation.m_SelectOnLeft
       value: 
       objectReference: {fileID: 1747682246}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1718308860}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadStage
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Stage_Lake
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a7ce76c8c4ab040a161e67dcaf99fb, type: 3}
 --- !u!224 &1312368840 stripped
@@ -14765,7 +14835,7 @@ PrefabInstance:
     - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Fishingtest 1
+      value: Stage_River
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a7ce76c8c4ab040a161e67dcaf99fb, type: 3}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da47581674ca684458ea058b301efad4, type: 3}
   m_Name: River
   m_EditorClassIdentifier: 
-  placeName: FirstPlace
-  description: The first place
+  placeName: Relief River
+  description: "\u8DB3\u3092\u5165\u308C\u3066\u6DBC\u3082\u3046"
   description_detail: 
   moneyCondition: 0
   weekCondition: 0
@@ -51,9 +51,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   rainyPercent: 0.2
   rainDuration: 120
-  backGroundPrefab: {fileID: 4167059100125856806, guid: aaced5bf41b2d6240ac612559e1c8c6d,
+  backGroundPrefab: {fileID: 4096971335943411646, guid: c9dde814d8597444ca5ba3b01ba6b4a0,
     type: 3}
-  rankingSaveData: {fileID: 11400000, guid: c7c7c2166667aab44a7252c2412259be, type: 2}
+  rankingSaveData: {fileID: 11400000, guid: 70330402770a3a048a71c618dd05d2aa, type: 2}
   availableFishList:
   - fish: {fileID: 5436173513765085611, guid: f107d1fffe224fe49ad416683ac2d105, type: 3}
     weather: 0

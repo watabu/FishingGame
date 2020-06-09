@@ -26,9 +26,9 @@ namespace Environment
             Windy,
         }
 
-        [Tooltip("場所の名前")]
+        [Tooltip("場所の名前"), TextArea]
         public string placeName;
-        [Tooltip("場所の説明（地図での）")]
+        [Tooltip("場所の説明（地図での）"), TextArea]
         public string description;
         [Tooltip("場所の詳細な説明（図鑑とか）")]
         public string description_detail;

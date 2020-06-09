@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da47581674ca684458ea058b301efad4, type: 3}
   m_Name: Lake
   m_EditorClassIdentifier: 
-  placeName: FirstPlace
-  description: The first place
+  placeName: Leeway Lake
+  description: "\u5CF6\u306E\u552F\u4E00\u306E\u6E56\u3000\u9759\u304B\u3067\u843D\u3061\u7740\u304F"
   description_detail: 
   moneyCondition: 0
   weekCondition: 0
@@ -51,6 +51,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   rainyPercent: 0.2
   rainDuration: 120
+  backGroundPrefab: {fileID: 7517221855657897763, guid: b912090cca0830949bfbf12fe249dd40,
+    type: 3}
+  rankingSaveData: {fileID: 11400000, guid: c7c7c2166667aab44a7252c2412259be, type: 2}
   availableFishList:
   - fish: {fileID: 5436173513765085611, guid: f107d1fffe224fe49ad416683ac2d105, type: 3}
     weather: 0

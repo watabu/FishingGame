@@ -39,31 +39,11 @@ MonoBehaviour:
     FishCount: 2
     Score: 200
   - icon: {fileID: 0}
-    Name: You
+    Name: "\u3042\u306A\u305F"
     FishCount: 3
     Score: 150
   - icon: {fileID: 0}
-    Name: You
-    FishCount: 3
-    Score: 115
-  - icon: {fileID: 0}
     Name: "\u3042\u306A\u305F"
     FishCount: 3
     Score: 115
-  - icon: {fileID: 0}
-    Name: "\u3042\u306A\u305F"
-    FishCount: 3
-    Score: 115
-  - icon: {fileID: 0}
-    Name: You
-    FishCount: 3
-    Score: 80
-  - icon: {fileID: 0}
-    Name: You
-    FishCount: 3
-    Score: 80
-  - icon: {fileID: 0}
-    Name: "\u3042\u306A\u305F"
-    FishCount: 2
-    Score: 65
   MaxRanking: 20

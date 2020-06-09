@@ -327,7 +327,7 @@ MonoBehaviour:
   m_livingTime: 0
   _state: 0
   fishMove: {fileID: 1199823733860569568}
-  sprite: {fileID: 0}
+  sprite: {fileID: 8399078169453963855}
   HPbar: {fileID: 8529163511898761905}
 --- !u!114 &6591575370827522758
 MonoBehaviour:
@@ -591,7 +591,7 @@ SpriteRenderer:
   m_SortingLayerID: -383583341
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 4b59465ebece3e74195623b9ff166b37, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 106b8e24149f1e64fa3069371d35693f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

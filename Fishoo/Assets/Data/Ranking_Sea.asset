@@ -14,12 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlaceName: 
   Ranking:
-  - icon: {fileID: 2360968652226049678, guid: bfd4b1b23bfea794690d6534f74d5af1, type: 3}
-    Name: TAS
-    FishCount: 999
-    Score: 99999
-  - icon: {fileID: 0}
-    Name: "\u3042\u306A\u305F"
-    FishCount: 3
-    Score: 80
+  - icon: {fileID: 5308215785005892262, guid: df3014b604923fb47af170f797e9b538, type: 3}
+    Name: "\u5996\u7CBE\u3055\u3093"
+    FishCount: 20
+    Score: 3000
+  - icon: {fileID: -6476175936065799379, guid: c245cf24608afa842b3790771ea1f0cb, type: 3}
+    Name: "\u73CA\u745A\u5546"
+    FishCount: 5
+    Score: 2100
+  - icon: {fileID: 21300000, guid: dbb09e7fc9dd57148ab45b7b40f05765, type: 3}
+    Name: "\u3044\u308F\u3044\u308F\u3044\u308F"
+    FishCount: 10
+    Score: 125
+  - icon: {fileID: 21300000, guid: a3416cf51e8ec3943bec8226efcf4108, type: 3}
+    Name: "\u3061\u308A\u3081\u3093\u3058\u3083\u3053"
+    FishCount: 12
+    Score: 50
   MaxRanking: 20
