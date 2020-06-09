@@ -13,7 +13,7 @@ public class CommandContainerScript : MonoBehaviour
     [SerializeField] private Transform commandParent;
     int commandsLength;
     [SerializeField]List<KeyCode> m_commands = new List<KeyCode>();
-    public bool cheat;
+    public bool cheat = true;
     List<CommandScript> m_commandObjects = new List<CommandScript>();
     int command_index;
     private Transform commandEffectParent;

@@ -36,7 +36,7 @@ namespace Player
         }
         private void Update()
         {
-            InputTest();
+          //  InputTest();
             //   Debug.Log(Input.GetAxisRaw("RightArrow"));
         }
         void UpdateInput()

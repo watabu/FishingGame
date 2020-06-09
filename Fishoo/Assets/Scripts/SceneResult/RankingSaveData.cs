@@ -9,6 +9,9 @@ using UnityEngine;
 /// </summary>
 public class RankingSaveData : ScriptableObject
 {
+    [SerializeField]
+    public string PlaceName;
+
     [System.Serializable]
     public struct Record
     {
@@ -19,7 +22,7 @@ public class RankingSaveData : ScriptableObject
     };
     
 
-    [SerializeField,Tooltip("「消去する」でそのレコードを削除")] public List<Record> Ranking = new List<Record>();
+    [SerializeField,Tooltip("Nameを「消去する」にするとそのレコードを削除")] public List<Record> Ranking = new List<Record>();
     [SerializeField] public int MaxRanking;
 
     private void OnEnable()

@@ -130,7 +130,6 @@ public class SaveData : ScriptableObject
         m_caughtFishCount = 0;
         m_fishes.Clear();
         fishData.Clear();
-        m_caughtFishCount = 0;
 
     }
 }

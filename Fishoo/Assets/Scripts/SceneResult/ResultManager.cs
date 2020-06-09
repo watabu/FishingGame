@@ -35,7 +35,6 @@ public class ResultManager : MonoBehaviour
         result.saveData = saveData;
         result.canScroll = true;
         ChangePanel(PanelState.result);
-        ranking.saveData = saveData;
     }
 
     // Update is called once per frame
@@ -88,7 +87,7 @@ public class ResultManager : MonoBehaviour
         result.UpdateResult(fishList);
         //ランキングの更新
         RankingSaveData.Record record;
-        record.Name = "You";
+        record.Name = "あなた";
         record.icon = PlayerIcon;
         record.FishCount = fishList.Count;
         int sum = 0;
@@ -135,5 +134,8 @@ public class ResultManager : MonoBehaviour
         SceneManager.LoadScene("StageSelect");
         saveData.AddWeek();
     }
-
+    public void SelectRankingData(RankingSaveData data)
+    {
+        ranking.RankingData = data;
+    }
 }

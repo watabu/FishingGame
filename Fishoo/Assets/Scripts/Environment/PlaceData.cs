@@ -54,6 +54,10 @@ namespace Environment
 
         [Tooltip("雨が何分続くか(分)")]
         public int rainDuration=120;
+        [Tooltip("その場所の背景")]
+        public GameObject backGroundPrefab;
+        [Tooltip("ランキングデータ")]
+        public RankingSaveData rankingSaveData;
 
         [Header("Available fish list(Experimental)")]
         //その場所で釣れる魚たち

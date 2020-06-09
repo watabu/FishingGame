@@ -17,10 +17,10 @@ namespace Environment
         [Tooltip("開始時刻")]
         public int startTime;
         [Tooltip("終了時刻")]
-        public int endTime;
+        public int endTime = 999999;
 
         [Tooltip("時刻変化")]
-        public float timeSpan=0.2f;
+        public float timeSpan = 0.2f;
         [Tooltip("時刻変化量")]
         public int timeDelta;
 
@@ -28,7 +28,7 @@ namespace Environment
         /// <summary>
         /// 現在の時刻
         /// </summary>
-        [SerializeField, ReadOnly]int m_currentTime;
+        [SerializeField, ReadOnly] int m_currentTime;
         [SerializeField] bool Skip;
         public int CurrentTime
         {
@@ -39,6 +39,7 @@ namespace Environment
                 OnTimeChanged.Invoke(m_currentTime);
                 if (m_currentTime == endTime)
                 {
+                    Debug.Log(m_currentTime);
                     OnTimeFinished.Invoke(m_currentTime);
                 }
             }
@@ -47,20 +48,25 @@ namespace Environment
         [SerializeField] private TextMeshProUGUI timeText;
         [SerializeField] private TimeHolderEvent OnTimeChanged = new TimeHolderEvent();
         [SerializeField] private TimeHolderEvent OnTimeFinished = new TimeHolderEvent();
-        
+
         public void AddOnTimeChanged(UnityAction<int> func) { OnTimeChanged.AddListener(func); }
         public void RemoveOnTimeChanged(UnityAction<int> func) { OnTimeChanged.RemoveListener(func); }
 
         public void AddOnTimeFinished(UnityAction<int> func) { OnTimeFinished.AddListener(func); }
 
-        float m_time=0f;
+        float m_time = 0f;
 
+        private void Awake()
+        {
+            endTime = 999999;
+        }
         // Start is called before the first frame update
         void Start()
         {
             if (Skip) timeSpan = 0.0005f;
             AddOnTimeChanged((time) => { timeText.text = GetTimeString(); });
             CurrentTime = startTime;
+            Debug.Log(startTime);
             InvokeRepeating("TimeChange", 0f, timeSpan);
         }
 

@@ -5,6 +5,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 namespace Environment
 {
+    [DefaultExecutionOrder(0)]
     /// <summary>
     /// 場所
     /// </summary>
@@ -38,6 +39,9 @@ namespace Environment
             timeHolder.endTime = placeData.endTime;
             lighting = GetComponent<LightingMgr>();
             lighting.globalColor = placeData.globalColor;
+
+            //リザルトの背景・ランキングのために渡す
+            GameMgr.Instance.currentPlace = placeData;
         }
 
         // Update is called once per frame

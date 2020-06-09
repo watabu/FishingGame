@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32163a8d9cb6f543ac6a033d52a2e51, type: 3}
+  m_Name: Ranking_Lake
+  m_EditorClassIdentifier: 
+  PlaceName: 
+  Ranking:
+  - icon: {fileID: 2360968652226049678, guid: bfd4b1b23bfea794690d6534f74d5af1, type: 3}
+    Name: TAS
+    FishCount: 999
+    Score: 99999
+  - icon: {fileID: 0}
+    Name: "\u3042\u306A\u305F"
+    FishCount: 3
+    Score: 80
+  MaxRanking: 20

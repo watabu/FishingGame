@@ -9254,7 +9254,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Navigation.m_SelectOnLeft
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1747682246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a7ce76c8c4ab040a161e67dcaf99fb, type: 3}
 --- !u!224 &1312368840 stripped

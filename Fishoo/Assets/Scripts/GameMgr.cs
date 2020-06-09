@@ -22,7 +22,9 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     [SerializeField] private SaveData data;
     [SerializeField] private TextMeshProUGUI seasonText;
     [SerializeField] private TextMeshProUGUI weekText;
-    List<IInputUpdatable> m_inputObjects=new List<IInputUpdatable>();
+    List<IInputUpdatable> m_inputObjects = new List<IInputUpdatable>();
+
+    [SerializeField] public Environment.PlaceData currentPlace;
 
     UnityAction OnGameStarted;
     GameStartEffect gameStartEffect;
@@ -85,18 +87,26 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     //リザルト画面に切り替えたとき呼ばれる
     private void ResultSceneLoaded(Scene next, LoadSceneMode mode)
     {
-        //        var player = FindObjectOfType<Player.Player>();
         var coolerBox= FindObjectOfType<Player.CoolerBox>();
-        FindObjectOfType<ResultManager>().SetList(coolerBox.GetFishList);
+        var resultManager = FindObjectOfType<ResultManager>();
 
-        //===============================================================================================================セーブデータ保存(変更するならよろしく)
+        //ランキングや背景を渡す
+        Instantiate(currentPlace.backGroundPrefab, resultManager.transform);
+        resultManager.SelectRankingData(currentPlace.rankingSaveData);
+
+        //魚を渡す
+        resultManager.SetList(coolerBox.GetFishList);
+
+
         //ダーティとしてマークする(変更があった事を記録する)
         EditorUtility.SetDirty(data);
+        EditorUtility.SetDirty(FindObjectOfType<RankingPanel>().RankingData);
         //保存する
         AssetDatabase.SaveAssets();
         SceneManager.MoveGameObjectToScene(coolerBox.gameObject, SceneManager.GetActiveScene());
         SceneManager.sceneLoaded -= ResultSceneLoaded;
     }
+
 
     public void OpenPauseUI()
     {
@@ -142,6 +152,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
                 break;
             case State.Finished:
                 SceneManager.sceneLoaded += ResultSceneLoaded;
+                Debug.Log("aa");
                 SceneManager.LoadScene("Result");
                 break;
             default:
@@ -151,6 +162,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
 
     public void BackToTitle()
     {
+        SceneManager.sceneLoaded += ResultSceneLoaded;
         SceneManager.LoadScene("StageSelect");
     }
 }

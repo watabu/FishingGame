@@ -16,7 +16,7 @@ MonoBehaviour:
   description: The first place
   description_detail: 
   moneyCondition: 0
-  weekCondition: 2
+  weekCondition: 0
   icon: {fileID: 0}
   startTime: 420
   endTime: 1140
@@ -51,6 +51,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   rainyPercent: 0.2
   rainDuration: 120
+  backGroundPrefab: {fileID: 4167059100125856806, guid: aaced5bf41b2d6240ac612559e1c8c6d,
+    type: 3}
+  rankingSaveData: {fileID: 11400000, guid: c7c7c2166667aab44a7252c2412259be, type: 2}
   availableFishList:
   - fish: {fileID: 5436173513765085611, guid: f107d1fffe224fe49ad416683ac2d105, type: 3}
     weather: 0

@@ -1671,6 +1671,11 @@ PrefabInstance:
       propertyPath: globalColor.atime2
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 758300207957575317, guid: faca6ed6527518649a16c8ea8112bcc2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1003159237187203209, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1680,6 +1685,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -7.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202501433885808134, guid: faca6ed6527518649a16c8ea8112bcc2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3202501433885808139, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -2412,6 +2422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Tiles.Array.data[19].second.m_AllTileFlags
       value: 1073741825
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202501434207864586, guid: faca6ed6527518649a16c8ea8112bcc2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434207864591, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -5382,6 +5397,11 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[80].second.m_AllTileFlags
       value: 1073741825
       objectReference: {fileID: 0}
+    - target: {fileID: 3202501434257753183, guid: faca6ed6527518649a16c8ea8112bcc2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[0].second.m_AnimationSpeed
@@ -5405,7 +5425,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[39].second.m_AnimationSpeed
-      value: 2.5
+      value: 2.5000002
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -5505,7 +5525,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[111].second.m_AnimationSpeed
-      value: 2.5000002
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -5515,7 +5535,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[18].second.m_AnimationSpeed
-      value: 2.5000002
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -5775,7 +5795,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[97].second.m_AnimationSpeed
-      value: 2.5
+      value: 2.5000002
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -5790,7 +5810,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[46].second.m_AnimationSpeed
-      value: 2.5000002
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -5810,7 +5830,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[32].second.m_AnimationSpeed
-      value: 2.5000002
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -5935,7 +5955,7 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[102].second.m_AnimationSpeed
-      value: 2.5
+      value: 2.5000002
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -6025,7 +6045,12 @@ PrefabInstance:
     - target: {fileID: 3202501434257753184, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[95].second.m_AnimationSpeed
-      value: 2.5000002
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202501434628228719, guid: faca6ed6527518649a16c8ea8112bcc2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3202501434628228720, guid: faca6ed6527518649a16c8ea8112bcc2,
         type: 3}
@@ -20256,6 +20281,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123342382405411500, guid: faca6ed6527518649a16c8ea8112bcc2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: faca6ed6527518649a16c8ea8112bcc2, type: 3}

@@ -13,8 +13,7 @@ public class RankingPanel : MonoBehaviour
     [SerializeField,Tooltip("釣ゲームから遷移しない場合にランキングを表示する")]public bool debug;
 
     public bool canScroll;
-    public SaveData saveData;
-    [Tooltip("各ステージのランキングデータ(未実装)")]
+    [Tooltip("各ステージのランキングデータ")]
     public RankingSaveData RankingData;
     // Start is called before the first frame update
     void Start()
