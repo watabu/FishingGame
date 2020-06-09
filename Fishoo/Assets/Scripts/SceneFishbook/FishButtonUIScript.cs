@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class FishButtonUIScript : MonoBehaviour
 {
     public Image icon;
+    public Sprite notFound;
     public int verticalIndex = 0;
     Button button;
     public Button GetButton {
@@ -26,6 +27,12 @@ public class FishButtonUIScript : MonoBehaviour
     public void SetOnClicked(UnityAction func)
     {
         GetButton.onClick.AddListener(func);
+    }
+
+    public void SetFound(bool isFound)
+    {
+        if (!isFound)
+            icon.sprite = notFound;
     }
     
 }

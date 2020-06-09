@@ -11,8 +11,9 @@ using System.Linq;
 public class ColorGroup : MonoBehaviour
 {
     Button button;
+    [SerializeField] bool isMultiply=false;
     List<Graphic> targets;
-
+    
     void Start()
     {
         button = GetComponent<Button>();
@@ -21,6 +22,15 @@ public class ColorGroup : MonoBehaviour
 
     void Update()
     {
-        targets.ForEach(t => t.color = button.targetGraphic.canvasRenderer.GetColor());
+        targets.ForEach(t => {
+            if (isMultiply)
+            {
+                t.color = button.targetGraphic.canvasRenderer.GetColor();
+            }
+            else
+            {
+                t.color = button.targetGraphic.canvasRenderer.GetColor();
+            }
+        });
     }
 }
