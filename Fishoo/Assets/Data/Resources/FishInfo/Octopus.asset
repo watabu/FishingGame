@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
-  m_Name: Boot
+  m_Name: Octopus
   m_EditorClassIdentifier: 
-  FishName: "\u30D6\u30FC\u30C4"
-  description: "\u3042\u308B\u610F\u5473\u9244\u677F\u30A2\u30A4\u30C6\u30E0\u3002"
+  FishName: "\u305F\u3053"
+  description: "\u6700\u3082\u8CE2\u3044\u7121\u810A\u690E\u52D5\u7269\u3068\u3082\u3044\u308F\u308C\u308B\u3002"
   description_Caught: 
-  sellingPrice: 50
-  exp: 10
-  icon: {fileID: 21300000, guid: 9f0fcc7b074149e49acd38a2634ab77c, type: 3}
+  sellingPrice: 15
+  exp: 2
+  icon: {fileID: 21300000, guid: 74fefc6b77291164aa9648451012937a, type: 3}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
-  isGomi: 1
+  isGomi: 0
