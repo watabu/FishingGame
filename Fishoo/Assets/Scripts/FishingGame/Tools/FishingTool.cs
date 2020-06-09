@@ -18,8 +18,6 @@ namespace FishingGame.Tools
         /// 釣りが終わり釣り具を収納する
         /// </summary>
         void RetrieveTools();
-        void PullToLeft();
-        void PullToRight();
 
         void SetInvisible();
 
