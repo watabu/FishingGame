@@ -13,6 +13,7 @@ public class CommandContainerScript : MonoBehaviour
     [SerializeField] private Transform commandParent;
     int commandsLength;
     [SerializeField]List<KeyCode> m_commands = new List<KeyCode>();
+    public bool cheat;
     List<CommandScript> m_commandObjects = new List<CommandScript>();
     int command_index;
     private Transform commandEffectParent;
@@ -49,6 +50,11 @@ public class CommandContainerScript : MonoBehaviour
         else if(Player.InputSystem.FalseKeyDown(m_commands[command_index]))//正解と反対のキーを押したとき
         {
             OnFalseKeyDown();
+        }
+        if (cheat && Player.InputSystem.GetKeyDown(KeyCode.R))
+        {
+            FishingGame.FishingGameMgr.Instance.TargetFish.Damaged(100);
+            OnFinish();
         }
     }
 

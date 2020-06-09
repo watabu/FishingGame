@@ -46,7 +46,9 @@ public class ResultPanel : MonoBehaviour
         Debug.Log("updateResult");
         int Money = 0;
         foreach(var fish in fishList) {
+            if (fish == null) continue;
             var script = Instantiate(contentPrefab, contentParent.transform).GetComponent<ResultContent>();
+
             script.icon.sprite = fish.icon;
             //魚の値段によって枠の色を変えるとか?
             //script.Frame.sprite = ;

@@ -33,7 +33,7 @@ public class CommandScript : MonoBehaviour
 
         //コンボ数に応じてエフェクトの大きさを変化
         float Scale = 0.3f + 0.6f *combo / Maxcombo* combo / Maxcombo;
-        Debug.Log(Scale);
+        //Debug.Log(Scale);
         var main = script.GetComponent<ParticleSystem>().main;
         main.simulationSpeed /= Scale;
         script.lifetime *= Scale;

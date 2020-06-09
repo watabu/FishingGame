@@ -94,8 +94,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         EditorUtility.SetDirty(data);
         //保存する
         AssetDatabase.SaveAssets();
-
-        //        Destroy(coolerBox);
+        SceneManager.MoveGameObjectToScene(coolerBox.gameObject, SceneManager.GetActiveScene());
         SceneManager.sceneLoaded -= ResultSceneLoaded;
     }
 

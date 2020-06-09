@@ -18,7 +18,7 @@ namespace Player
         // Start is called before the first frame update
         private void Awake()
         {
-            DontDestroyOnLoad(this.gameObject);
+            
 //            saveData.DebugAddFishes();
         }
         public void Add(Fish.Behavior.CommonFish fish)

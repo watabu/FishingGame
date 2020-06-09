@@ -47,6 +47,8 @@ namespace Player
         // Start is called before the first frame update
         void Start()
         {
+            DontDestroyOnLoad(coolerBox.gameObject);
+
             GameMgr.Instance.AddInputUpdatable(this);
             m_state = State.Normal;
             fishingToolMgr = FishingGame.FishingGameMgr.fishingToolMgr;

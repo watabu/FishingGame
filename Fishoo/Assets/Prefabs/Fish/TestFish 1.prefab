@@ -401,7 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c63ea20fb5e9546a81c96d65983fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishInfo: {fileID: 11400000, guid: 147728ffde37aa849969fdaf3245df43, type: 2}
+  fishInfo: {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
   fishMoveData: {fileID: 11400000, guid: 96fcef59846695f4d88c8dfc04a1b3db, type: 2}
   nomalMove: {fileID: 237390409105275891}
   moveSpeed: 0.1

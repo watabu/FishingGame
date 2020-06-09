@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
   m_Name: TestFish
   m_EditorClassIdentifier: 
-  FishName: The first fish
-  description: "\u666E\u901A\u306E\u9B5A\u3002\u5B9F\u306F\u5916\u6765\u9B5A\u3002"
+  FishName: "\u8336\u8272\u3044\u9B5A"
+  description: "\u6DE1\u6C34\u3067\u3088\u304F\u898B\u308B\u9B5A\u3002\u5916\u6765\u9B5A\u3060\u304C\u304A\u3044\u3057\u3044\u3002"
   description_Caught: 
-  sellingPrice: 5
+  sellingPrice: 15
   exp: 1
   icon: {fileID: 21300000, guid: 222de1da8766fd740b77f9c9781d400e, type: 3}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
+  isGomi: 0

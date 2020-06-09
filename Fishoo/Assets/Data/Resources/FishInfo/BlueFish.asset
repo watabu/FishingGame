@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: BlueFish
   m_EditorClassIdentifier: 
   FishName: Blue fish
-  description: "\u304A\u3082\u3044\u3002"
+  description: "DHA\u914D\u5408"
   description_Caught: 
   sellingPrice: 50
   exp: 10
   icon: {fileID: 21300000, guid: 917b98fed822e894aa76533fab5856d4, type: 3}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
+  isGomi: 0

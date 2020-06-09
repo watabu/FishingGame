@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8044401f67968c44c82dd9b9e56633ab, type: 3}
-  m_Name: RollingRock_MD
+  m_Name: nomal1
   m_EditorClassIdentifier: 
   escapeOnMiss: 0
   speed_nomal: 1
@@ -18,11 +18,11 @@ MonoBehaviour:
   recognitionDistance: 2
   lifeTime: 10000
   status:
-    hpMax: 20
-    hpRegene: 0
-  moveType: 9
+    hpMax: 6
+    hpRegene: 0.2
+  moveType: 4
   commands:
-  - ABXYRLRL
-  - UDUDRLRL
-  - AXXXBDAAAXBAAA
-  - AXYAXYLULU
+  - ALRB
+  - ABLR
+  - AAAR
+  - BBAB
