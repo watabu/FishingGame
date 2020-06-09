@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 6915837151772027409}
+  notFound: {fileID: 21300000, guid: 26fa27cfd5e5691459bea4907b9a0bcc, type: 3}
   verticalIndex: 0
 --- !u!114 &6915837150498110791
 MonoBehaviour:
@@ -146,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a58646d18ceb24885446398945fa15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMultiply: 0
 --- !u!1 &6915837151772027411
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,18 +12,6 @@ public class BookDescriptionUI : MonoBehaviour
     [SerializeField] new TextMeshProUGUI name;
     [SerializeField] TextMeshProUGUI count;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Set(Sprite icon,string name_,string description_,int count_)
     {
         image.sprite = icon;

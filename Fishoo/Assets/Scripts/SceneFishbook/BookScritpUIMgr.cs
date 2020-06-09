@@ -15,6 +15,7 @@ public class BookScritpUIMgr : MonoBehaviour
     }
 
     [SerializeField] GameObject fishPrefab;
+    [SerializeField] Sprite fishNotFound;
     [Header("References")]
     [SerializeField] GameObject bookList;
     [SerializeField] GameObject bookListContent;
@@ -66,6 +67,7 @@ public class BookScritpUIMgr : MonoBehaviour
             }
             script.Interactable = showNonCaughtFish || data.isCaught(d);
             script.icon.sprite = d.icon;
+            script.SetFound(data.isCaught(d));
         }
     }
 
