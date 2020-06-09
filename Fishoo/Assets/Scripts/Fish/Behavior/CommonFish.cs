@@ -71,6 +71,22 @@ namespace Fish.Behavior
         static private FishingGame.Tools.Hook m_fishingHook;
         public FishingGame.Tools.Hook GetHook{get { return m_fishingHook; }}
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fishInfo"></param>
+        /// <param name="fishMoveData"></param>
+        public void InitData(FishInfo fishInfo,Sprite sprite)
+        {
+            this.fishInfo = fishInfo;
+            fishMove.fish = this;
+            fishMove.data = fishInfo.data;
+
+            var hpbar = HPbar.GetComponent<RectTransform>().sizeDelta;
+            hpbar.x = 10 * fishMoveData.status.hpMax;
+            this.sprite.sprite = sprite;
+        }
+
         private void Awake()
         {
             HPbar.maxValue = fishMoveData.status.hpMax;
@@ -307,6 +323,7 @@ namespace Fish.Behavior
         
         public void SetCaught()
         {
+            sprite.sprite = fishInfo.icon;
             HPbar.gameObject.SetActive(false);
 //            Debug.Log("魚を捕まえた!");
             _state = FishState.Caught;

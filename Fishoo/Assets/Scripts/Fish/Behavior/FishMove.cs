@@ -10,8 +10,8 @@ namespace Fish.Behavior
     /// </summary>
     public class FishMove : MonoBehaviour
     {
-        [SerializeField] private Behavior.CommonFish fish;
-        [SerializeField] private Fish.FishMoveData data;
+        [SerializeField] public Behavior.CommonFish fish;
+        [SerializeField] public Fish.FishMoveData data;
 
         [Tooltip("移動方向"), ReadOnly]
         public Vector2 moveDirection;

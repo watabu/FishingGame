@@ -55,15 +55,35 @@ MonoBehaviour:
     type: 3}
   rankingSaveData: {fileID: 11400000, guid: 7f348a1e7b5b813439e639c7437a36e3, type: 2}
   availableFishList:
-  - fish: {fileID: 5436173513765085611, guid: f107d1fffe224fe49ad416683ac2d105, type: 3}
+  - fishInfo: {fileID: 11400000, guid: 00c755003769fa04f96028f1169dba99, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
-  - fish: {fileID: 5436173513765085611, guid: 698804cda834cf14bb2d92a63509cd03, type: 3}
+  - fishInfo: {fileID: 11400000, guid: cca6f96024e7a754a86f5f3603fbf468, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
-  - fish: {fileID: 5436173513765085611, guid: a6c7000cd9557404386e80e6fe2c5f05, type: 3}
+  - fishInfo: {fileID: 11400000, guid: 60b01eff3481eaa468fa5a3730c3a441, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 1b345b1f2edc4864fa87260e5859ded3, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: b7876aaae610f114c95129f92549d639, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 4508ec88f1f03b44ca85cd1ffb749b3a, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: c5afcbe42c5a4c74b9f2f3503ebf53f0, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 4508ec88f1f03b44ca85cd1ffb749b3a, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0

@@ -37,5 +37,10 @@ namespace Fish
 
         public Rank rank;
 
+        /// <summary>
+        /// 魚のレア度に応じた魚影のスプライトを得る
+        /// </summary>
+        /// <returns></returns>
+
     }
 }

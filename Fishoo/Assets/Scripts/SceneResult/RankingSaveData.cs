@@ -22,7 +22,7 @@ public class RankingSaveData : ScriptableObject
     };
     
 
-    [SerializeField,Tooltip("Nameを「消去する」にするとそのレコードを削除")] public List<Record> Ranking = new List<Record>();
+    [SerializeField,Tooltip("ランキングはスコアで自動でソートされる")] public List<Record> Ranking = new List<Record>();
     [SerializeField] public int MaxRanking;
 
     private void OnEnable()
@@ -31,13 +31,7 @@ public class RankingSaveData : ScriptableObject
         {
             return  y.Score - x.Score ;
         });
-        for(int i = 0; i < Ranking.Count; i++)
-        {
-            if (Ranking[i].Name == "消去する")
-            {
-                Ranking.RemoveAt(i);
-            }
-        }
+
     }
 
     /// <summary>

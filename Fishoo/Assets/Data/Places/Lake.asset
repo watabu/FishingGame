@@ -53,17 +53,17 @@ MonoBehaviour:
   rainDuration: 120
   backGroundPrefab: {fileID: 7517221855657897763, guid: b912090cca0830949bfbf12fe249dd40,
     type: 3}
-  rankingSaveData: {fileID: 11400000, guid: c7c7c2166667aab44a7252c2412259be, type: 2}
+  rankingSaveData: {fileID: 11400000, guid: 4ad4299fa0f40fe4aacf8aaa452fb371, type: 2}
   availableFishList:
-  - fish: {fileID: 5436173513765085611, guid: f107d1fffe224fe49ad416683ac2d105, type: 3}
+  - fishInfo: {fileID: 11400000, guid: 65c7a5c1bc7278847a32c73ebdf0693b, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
-  - fish: {fileID: 5436173513765085611, guid: 698804cda834cf14bb2d92a63509cd03, type: 3}
+  - fishInfo: {fileID: 11400000, guid: 868df025d9ab5d342824d9ad6d68d1f5, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
-  - fish: {fileID: 5436173513765085611, guid: a6c7000cd9557404386e80e6fe2c5f05, type: 3}
+  - fishInfo: {fileID: 11400000, guid: 04389fd2d1f75f34d91d71ad379ef358, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
