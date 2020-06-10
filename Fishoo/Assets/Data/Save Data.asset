@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   season: 3
   week: 4
-  money: 5950
+  money: 6300
   Debug: 0
   canSkipTutorial: 0
   Spring: {r: 1, g: 0.7019608, b: 0.9372549, a: 1}
   Summer: {r: 0.3726415, g: 1, b: 0.40425918, a: 1}
   Autumn: {r: 1, g: 0.5623682, b: 0.3537736, a: 1}
   Winter: {r: 0.15566039, g: 0.72596765, b: 1, a: 1}
-  m_caughtFishCount: 155
+  m_caughtFishCount: 162
   m_fishes:
   - fish: {fileID: 11400000, guid: 65c7a5c1bc7278847a32c73ebdf0693b, type: 2}
-    count: 144
+    count: 151
   - fish: {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
     count: 1
   - fish: {fileID: 11400000, guid: 868df025d9ab5d342824d9ad6d68d1f5, type: 2}
