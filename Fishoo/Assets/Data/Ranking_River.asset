@@ -36,6 +36,10 @@ MonoBehaviour:
     Score: 300
   - icon: {fileID: 0}
     Name: "\u3042\u306A\u305F"
+    FishCount: 6
+    Score: 285
+  - icon: {fileID: 0}
+    Name: "\u3042\u306A\u305F"
     FishCount: 10
     Score: 220
   - icon: {fileID: -8078793662644061373, guid: bfd4b1b23bfea794690d6534f74d5af1, type: 3}
@@ -48,16 +52,20 @@ MonoBehaviour:
     Score: 150
   - icon: {fileID: 0}
     Name: "\u3042\u306A\u305F"
+    FishCount: 4
+    Score: 135
+  - icon: {fileID: 0}
+    Name: "\u3042\u306A\u305F"
     FishCount: 3
     Score: 115
   - icon: {fileID: 0}
     Name: "\u3042\u306A\u305F"
-    FishCount: 0
-    Score: 0
+    FishCount: 4
+    Score: 95
   - icon: {fileID: 0}
     Name: "\u3042\u306A\u305F"
-    FishCount: 0
-    Score: 0
+    FishCount: 3
+    Score: 70
   - icon: {fileID: 0}
     Name: "\u3042\u306A\u305F"
     FishCount: 0

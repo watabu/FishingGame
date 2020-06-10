@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using System.Threading.Tasks;
+using UnityEngine.UI;
 
 namespace Environment
 {
@@ -25,6 +27,13 @@ namespace Environment
         public int timeDelta;
 
         const float defalt_timeSpan = 0.2f;
+        const float countDownSpan = 1f;
+        public enum Phase{
+            nomarl,
+            phase1,//カウントダウンの表示
+            phase2//音による警告
+        }
+        Phase phase;
         /// <summary>
         /// 現在の時刻
         /// </summary>
@@ -37,15 +46,27 @@ namespace Environment
             {
                 m_currentTime = Mathf.Clamp(value, startTime, endTime);
                 OnTimeChanged.Invoke(m_currentTime);
-                if (m_currentTime == endTime)
+                if(phase == Phase.nomarl&& m_currentTime +60 > endTime)
                 {
-                    Debug.Log(m_currentTime);
+                    phase = Phase.phase1;
+                    AddOnTimeChanged((time) => { countDownText.text = "残" + GetTimeString(endTime- m_currentTime); });
+                    Appear();
+                }
+                if(phase == Phase.phase1 && m_currentTime +10 > endTime)
+                {
+                    phase = Phase.phase2;
+                    InvokeRepeating("CountDown", 0, countDownSpan);
+                }
+                if (phase == Phase.phase2 && m_currentTime == endTime)
+                {
                     OnTimeFinished.Invoke(m_currentTime);
                 }
             }
         }
 
         [SerializeField] private TextMeshProUGUI timeText;
+        [SerializeField] private TextMeshProUGUI countDownText;
+        [SerializeField] private AudioSource countDownAudio;
         [SerializeField] private TimeHolderEvent OnTimeChanged = new TimeHolderEvent();
         [SerializeField] private TimeHolderEvent OnTimeFinished = new TimeHolderEvent();
 
@@ -59,6 +80,14 @@ namespace Environment
         private void Awake()
         {
             endTime = 999999;
+            phase = Phase.nomarl;
+            var color = countDownText.GetComponentInParent<Image>().color;
+            color.a = 0;
+            countDownText.GetComponentInParent<Image>().color = color;
+            var textColor = countDownText.color;
+            textColor.a = color.a;
+            countDownText.color = textColor;
+
         }
         // Start is called before the first frame update
         void Start()
@@ -71,6 +100,30 @@ namespace Environment
 
         void TimeChange() { AddTime(timeDelta); }
 
+        /// <summary>
+        /// カウントダウンの音を再生するなど一定時間毎に処理すること
+        /// </summary>
+        void CountDown()
+        {
+            countDownAudio.Play();
+        }
+
+        async void Appear()
+        {
+            var color = countDownText.GetComponentInParent<Image>().color;
+            color.a = 0;
+            while( color.a < 0.5)
+            {
+                color.a += 0.05f;
+                countDownText.GetComponentInParent<Image>().color = color;
+                var textColor = countDownText.color;
+                textColor.a = color.a*2;
+                countDownText.color = textColor;
+                await Task.Delay(20);
+            }
+
+        }
+
         public void AddTime(int t) { CurrentTime += t; }
         public void SubTime(int t) { CurrentTime -= t; }
 
@@ -79,5 +132,10 @@ namespace Environment
             return string.Format("{0:00}:{1:00}", CurrentTime / 60, CurrentTime % 60);
         }
         public float NormalizedTime { get { return (float)(CurrentTime - startTime) / (float)(endTime - startTime); } }
+
+        public string GetTimeString(int currentTime)
+        {
+            return string.Format("{0:00}:{1:00}", currentTime / 60, currentTime % 60);
+        }
     }
 }

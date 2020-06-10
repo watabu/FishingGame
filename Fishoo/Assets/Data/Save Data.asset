@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3e08a3ee903b540bd59b32f5f11523, type: 3}
   m_Name: Save Data
   m_EditorClassIdentifier: 
-  season: 3
-  week: 4
-  money: 6300
+  season: 0
+  week: 29
+  money: 13880
   Debug: 0
   canSkipTutorial: 0
-  Spring: {r: 1, g: 0.7019608, b: 0.9372549, a: 1}
-  Summer: {r: 0.3726415, g: 1, b: 0.40425918, a: 1}
-  Autumn: {r: 1, g: 0.5623682, b: 0.3537736, a: 1}
-  Winter: {r: 0.15566039, g: 0.72596765, b: 1, a: 1}
-  m_caughtFishCount: 162
+  springColor: {r: 0, g: 0, b: 0, a: 0}
+  summerColor: {r: 0, g: 0, b: 0, a: 0}
+  autumnColor: {r: 0, g: 0, b: 0, a: 0}
+  winterColor: {r: 0, g: 0, b: 0, a: 0}
+  m_caughtFishCount: 371
   m_fishes:
   - fish: {fileID: 11400000, guid: 65c7a5c1bc7278847a32c73ebdf0693b, type: 2}
-    count: 151
+    count: 350
   - fish: {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
     count: 1
   - fish: {fileID: 11400000, guid: 868df025d9ab5d342824d9ad6d68d1f5, type: 2}
@@ -46,5 +46,25 @@ MonoBehaviour:
   - fish: {fileID: 11400000, guid: 60b01eff3481eaa468fa5a3730c3a441, type: 2}
     count: 1
   - fish: {fileID: 11400000, guid: d3738a5cce2663f4fbfd31d432881c43, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 3f05c895793234d4886a9cae2fab7409, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 1b345b1f2edc4864fa87260e5859ded3, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 70e15d8ce6f0c7c43af57096507c1d11, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 7699ac18272ccc74f88abb0ebae7defb, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 30e5e7eaa3599274d952abf13122fbdd, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 5a5fc6c7d46c21b4386b72c8f344e132, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 006598fc192398748898c0ba1ca48c45, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 8e0c8d45325d998498c96f0b21a511c3, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: bb74db3e562066643b8f14f3ff8cb76b, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 6233a1eecbc084f4f81ae6e329e9ff5f, type: 2}
     count: 1
   firstAddedfishes: []

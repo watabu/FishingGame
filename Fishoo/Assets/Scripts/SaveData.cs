@@ -27,10 +27,10 @@ public class SaveData : ScriptableObject
     [SerializeField] bool Debug;
     public bool canSkipTutorial=false;
 
-    [SerializeField]Color Spring;
-    [SerializeField] Color Summer;
-    [SerializeField] Color Autumn;
-    [SerializeField] Color Winter;
+    [SerializeField]Color springColor;
+    [SerializeField] Color summerColor;
+    [SerializeField] Color autumnColor;
+    [SerializeField] Color winterColor;
 
     [SerializeField,Tooltip("捕まえた魚の数")]
     int m_caughtFishCount;
@@ -126,12 +126,12 @@ public class SaveData : ScriptableObject
     {
         switch (season)
         {
-            case Season.spring: return Spring;
-            case Season.summer: return Summer;
-            case Season.autumn: return Autumn;
-            case Season.winter: return Winter;
+            case Season.spring: return springColor;
+            case Season.summer: return summerColor;
+            case Season.autumn: return autumnColor;
+            case Season.winter: return winterColor;
         }
-        return Spring;
+        return springColor;
     }
 
     public void AddWeek()
