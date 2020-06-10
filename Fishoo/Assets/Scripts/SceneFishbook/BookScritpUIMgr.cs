@@ -86,7 +86,7 @@ public class BookScritpUIMgr : MonoBehaviour
     {
         if (m_currentState == State.description)
         {
-            if (Input.anyKeyDown)
+            if (Player.InputSystem.anyKeyDown)
             {
                 Switch(State.list);
             }

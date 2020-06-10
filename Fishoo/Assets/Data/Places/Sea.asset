@@ -83,7 +83,23 @@ MonoBehaviour:
     weather: 0
     beginTime: 0
     endTime: 0
-  - fishInfo: {fileID: 11400000, guid: 4508ec88f1f03b44ca85cd1ffb749b3a, type: 2}
+  - fishInfo: {fileID: 11400000, guid: f3891ce8479969c4689d4ed971087ad0, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 008b83388c502c349ad4c2b5fdd8d0ee, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 96c4b04ccf6e6c04f8c98099a90d2dd5, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: d3738a5cce2663f4fbfd31d432881c43, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 006598fc192398748898c0ba1ca48c45, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0

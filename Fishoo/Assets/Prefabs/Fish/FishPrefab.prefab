@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fish: {fileID: 5436173513765085611}
-  data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
+  data: {fileID: 0}
   moveDirection: {x: 0, y: 0}
   CurrentKey: 0
 --- !u!114 &237390409105275891
@@ -320,8 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c63ea20fb5e9546a81c96d65983fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishInfo: {fileID: 11400000, guid: 868df025d9ab5d342824d9ad6d68d1f5, type: 2}
-  fishMoveData: {fileID: 11400000, guid: 84cc1473861715a468cb1c722429a6dc, type: 2}
+  fishInfo: {fileID: 0}
+  fishMoveData: {fileID: 0}
   nomalMove: {fileID: 237390409105275891}
   moveSpeed: 0.1
   m_livingTime: 0
@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 2713564561257580504}
   - component: {fileID: 8399078169453963855}
   m_Layer: 0
-  m_Name: tire
+  m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

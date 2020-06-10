@@ -32,6 +32,22 @@ MonoBehaviour:
     Score: 50
   - icon: {fileID: 0}
     Name: "\u3042\u306A\u305F"
+    FishCount: 1
+    Score: 50
+  - icon: {fileID: 0}
+    Name: "\u3042\u306A\u305F"
+    FishCount: 1
+    Score: 50
+  - icon: {fileID: 0}
+    Name: "\u3042\u306A\u305F"
     FishCount: 2
     Score: 30
+  - icon: {fileID: 0}
+    Name: "\u3042\u306A\u305F"
+    FishCount: 1
+    Score: 15
+  - icon: {fileID: 0}
+    Name: "\u3042\u306A\u305F"
+    FishCount: 1
+    Score: 15
   MaxRanking: 20

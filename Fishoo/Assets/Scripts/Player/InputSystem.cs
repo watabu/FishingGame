@@ -48,6 +48,7 @@ namespace Player
         }
         static public bool GetKeyDown(KeyCode key)
         {
+
             //キーボードで入力されていれば
             if (Input.GetKeyDown(key))
                 return true;

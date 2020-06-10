@@ -81,19 +81,17 @@ namespace Fish.Behavior
             this.fishInfo = fishInfo;
             fishMove.fish = this;
             fishMove.data = fishInfo.data;
+            fishMoveData = fishInfo.data;
 
             var hpbar = HPbar.GetComponent<RectTransform>().sizeDelta;
             hpbar.x = 10 * fishMoveData.status.hpMax;
+            HPbar.GetComponent<RectTransform>().sizeDelta = hpbar;
             this.sprite.sprite = sprite;
-        }
-
-        private void Awake()
-        {
             HPbar.maxValue = fishMoveData.status.hpMax;
-            if (sprite == null)
+            if (this.sprite == null)
             {
                 //画像が指定されていなければ子供のオブジェクトから画像を得る
-                sprite = transform.GetComponentInChildren<SpriteRenderer>();
+                this.sprite = transform.GetComponentInChildren<SpriteRenderer>();
             }
             colliderToNoticeHook = GetComponent<CircleCollider2D>();
             colliderToNoticeHook.radius = fishMoveData.recognitionDistance;
@@ -110,6 +108,12 @@ namespace Fish.Behavior
                 //SetDisAppear();
                 SetCaught();
             });
+        }
+
+        private void Awake()
+        {
+
+
 
             
         }
@@ -131,6 +135,8 @@ namespace Fish.Behavior
                 case FishState.Nomal:
                     //寿命が尽きたら消える       
                     m_livingTime += Time.deltaTime;
+                    if (fishMoveData == null)
+                        return;
                     if (m_livingTime > fishMoveData.lifeTime)
                         SetDisAppear();
                     //                    fishMove.MoveFree();

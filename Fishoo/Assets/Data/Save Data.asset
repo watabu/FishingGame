@@ -14,13 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   season: 0
   week: 1
-  money: 4415
+  money: 5030
   Debug: 0
   canSkipTutorial: 0
-  m_caughtFishCount: 119
+  Spring: {r: 1, g: 0.7019608, b: 0.9372549, a: 1}
+  Summer: {r: 0.3726415, g: 1, b: 0.40425918, a: 1}
+  Autumn: {r: 1, g: 0.5623682, b: 0.3537736, a: 1}
+  Winter: {r: 0.15566039, g: 0.72596765, b: 1, a: 1}
+  m_caughtFishCount: 134
   m_fishes:
   - fish: {fileID: 11400000, guid: 65c7a5c1bc7278847a32c73ebdf0693b, type: 2}
-    count: 113
+    count: 123
   - fish: {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
     count: 1
   - fish: {fileID: 11400000, guid: 868df025d9ab5d342824d9ad6d68d1f5, type: 2}
@@ -32,5 +36,15 @@ MonoBehaviour:
   - fish: {fileID: 11400000, guid: 0c89c9f0f70d7de449719ab8d8824f87, type: 2}
     count: 1
   - fish: {fileID: 11400000, guid: 5566acedaa854e94e9f6b0db90d9fb3d, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 00c755003769fa04f96028f1169dba99, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 04389fd2d1f75f34d91d71ad379ef358, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: f3891ce8479969c4689d4ed971087ad0, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: 60b01eff3481eaa468fa5a3730c3a441, type: 2}
+    count: 1
+  - fish: {fileID: 11400000, guid: d3738a5cce2663f4fbfd31d432881c43, type: 2}
     count: 1
   firstAddedfishes: []

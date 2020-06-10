@@ -15,9 +15,9 @@ MonoBehaviour:
   FishName: "\u30C0\u30A4\u30AA\u30A6\u30A4\u30AB"
   description: "\u5DE8\u5927\u306A\u30A4\u30AB\u3002\u6DF1\u6D77\u306B\u751F\u606F\u3057\u3001\u8DB3\u3092\u5668\u7528\u306B\u6271\u3046\u3002"
   description_Caught: 
-  sellingPrice: 50
+  sellingPrice: 120
   exp: 10
   icon: {fileID: 21300000, guid: aa4c4f6da0d4a214f9efb4e7219ddaf2, type: 3}
-  data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
+  data: {fileID: 11400000, guid: 2d8dd6716ec60a044b3e6b6e8c329a22, type: 2}
   isGomi: 0
-  rank: 0
+  rank: 2

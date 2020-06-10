@@ -49,7 +49,8 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         m_IsPauseActive = false;
         m_state = State.Ready;
         seasonText.text = data.GetSeasonKanji();
-        weekText.text = $"第{data.week}週";
+        seasonText.color = data.GetSeasonColor();
+        weekText.text = $"{data.Year}年目";
         gameStartEffect = Instantiate(gameStartEffectPrefab, gameStartEffectParent).GetComponent<GameStartEffect>();
         this.Delay(3f, () =>
         {
@@ -89,7 +90,8 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     {
         var coolerBox= FindObjectOfType<Player.CoolerBox>();
         var resultManager = FindObjectOfType<ResultManager>();
-
+        if (resultManager == null)
+            return;
         //ランキングや背景を渡す
         Instantiate(currentPlace.backGroundPrefab, resultManager.transform);
         resultManager.SelectRankingData(currentPlace.rankingSaveData);

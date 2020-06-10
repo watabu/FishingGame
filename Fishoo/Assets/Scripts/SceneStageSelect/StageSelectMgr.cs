@@ -66,7 +66,9 @@ public class StageSelectMgr : MonoBehaviour
 
         NoTitle = true;
         daySeason.text = data.GetSeasonKanji();
-        dayWeek.text = $"第<size=30>{data.week}</size>週";
+        daySeason.color = data.GetSeasonColor();
+        Debug.Log(data.GetSeasonColor());
+        dayWeek.text = $"<size=30>{data.Year}</size>年目";
         foreach (var i in scenesData)
         {
             i.button.Initialize(i.place.description, i.place.placeName, () => { SceneManager.LoadScene(i.sceneName); });
@@ -158,13 +160,13 @@ public class StageSelectMgr : MonoBehaviour
     Selectable optionBefore;
     public void ActivateOption()
     {
-        optionBefore= EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
+        optionBefore = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
         optionCanvas.gameObject.SetActive(true);
         optionCanvas.DOFade(1f, 0.5f).OnComplete(() =>
         {
             stageCanvas.interactable = false;
             optionCanvas.interactable = true;
-        tutorialSelectButton.Select();
+            tutorialSelectButton.Select();
         });
     }
     public void DeActivateOption()
@@ -213,4 +215,11 @@ public class StageSelectMgr : MonoBehaviour
         }
     }
 
+    public void DebugSeason()
+    {
+        data.AddWeek();
+        daySeason.text = data.GetSeasonKanji();
+        daySeason.color = data.GetSeasonColor();
+        dayWeek.text = $"<size=30>{data.Year}</size>年目";
+    }
 }

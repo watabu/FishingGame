@@ -27,6 +27,11 @@ public class SaveData : ScriptableObject
     [SerializeField] bool Debug;
     public bool canSkipTutorial=false;
 
+    [SerializeField]Color Spring;
+    [SerializeField] Color Summer;
+    [SerializeField] Color Autumn;
+    [SerializeField] Color Winter;
+
     [SerializeField,Tooltip("捕まえた魚の数")]
     int m_caughtFishCount;
 
@@ -117,12 +122,39 @@ public class SaveData : ScriptableObject
             default: return "";
         }
     }
+    public Color GetSeasonColor()
+    {
+        switch (season)
+        {
+            case Season.spring: return Spring;
+            case Season.summer: return Summer;
+            case Season.autumn: return Autumn;
+            case Season.winter: return Winter;
+        }
+        return Spring;
+    }
 
     public void AddWeek()
     {
         week++;
+        switch (week % 4)
+        {
+            case 1: season = Season.spring;
+                break;
+            case 2: season = Season.summer;
+                break;
+            case 3: season = Season.autumn;
+                break;
+            case 0: season = Season.winter;
+                break;
+        }
     }
 
+    /// <summary>
+    /// 現在の年数
+    /// </summary>
+    public int Year { get { return (week+3) / 4 ; }}
+    
     public void DeleteAll()
     {
         week = 0;

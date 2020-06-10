@@ -238,4 +238,4 @@ MonoBehaviour:
   SSRfish: {fileID: 21300000, guid: 7930f3a4056862d48858a51bac4488f3, type: 3}
   testFish:
   - {fileID: 5436173513765085605, guid: f107d1fffe224fe49ad416683ac2d105, type: 3}
-  generateSpan: 8
+  generateSpan: 4

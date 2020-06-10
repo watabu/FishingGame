@@ -48,8 +48,7 @@ namespace Fish
             FishInfo selectedFish = availableFishList[Random.Range(0, availableFishList.Count)].fishInfo;
             //Debug.Log(selectedFish);
             GameObject fishObj = Instantiate(FishPrefab.gameObject, pos, Quaternion.identity);
-            var commonFish = fishObj.GetComponent<Behavior.CommonFish>();
-            commonFish.InitData(selectedFish, GetShadowSprite(commonFish.fishInfo.rank));
+            fishObj.GetComponent<Behavior.CommonFish>().InitData(selectedFish, GetShadowSprite(selectedFish.rank));
 //            commonFish.sprite.sprite = GetShadowSprite(commonFish.fishInfo.rank);
             
             //とりあえず生成される魚は確定

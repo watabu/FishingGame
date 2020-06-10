@@ -12,8 +12,10 @@ public class Day : MonoBehaviour
     void Start()
     {
         var data = FindObjectOfType<ResultPanel>().saveData;
+
+        seasontext.color = data.GetSeasonColor();
         seasontext.text = data.GetSeasonKanji();
-        weekText.text = $"第<size=30>{data.week}</size>週";
+        weekText.text = $"<size=30>{data.Year}</size>年目";
     }
 
     

@@ -74,27 +74,24 @@ namespace Fish.Behavior
     public class NomalMove : MonoBehaviour
     {
         [ReadOnly,SerializeField]CommonFish fish;
-        [ReadOnly,SerializeField]FishMoveData fishMoveData;
-        /// <summary>
-        ///Awakeで初期化
-        /// </summary>
-        [SerializeField]MoveType m_MoveType;
+        FishMoveData fishMoveData { get { return fish.fishMoveData; } }
 
-        float m_speed;
+        MoveType m_MoveType { get { return fish.fishMoveData.moveType; } }
+
+        float m_speed {get{ return fishMoveData.speed_nomal; } }
 
         /// <summary>
         /// RollingAtBottomの回転半径
         /// </summary>
         public float RollingRadius = 1;
 
-        private void Awake()
+        private void Start()
         {
             fish = transform.parent.GetComponent<CommonFish>();
             if (fish == null) Debug.LogError("親オブジェクトがCommonFishを持っていません。");
-            fishMoveData = fish.fishMoveData;
-            m_speed = fishMoveData.speed_nomal;
-            m_MoveType = fish.fishMoveData.moveType;
+            
         }
+
         public void Move()
         {
             Move(m_MoveType);

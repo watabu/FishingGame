@@ -67,7 +67,31 @@ MonoBehaviour:
     weather: 0
     beginTime: 0
     endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 7699ac18272ccc74f88abb0ebae7defb, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 3f05c895793234d4886a9cae2fab7409, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 8e0c8d45325d998498c96f0b21a511c3, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 006598fc192398748898c0ba1ca48c45, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
   - fishInfo: {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 1b345b1f2edc4864fa87260e5859ded3, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 70e15d8ce6f0c7c43af57096507c1d11, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
