@@ -51,6 +51,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   rainyPercent: 0.2
   rainDuration: 120
+  backGroundPrefab: {fileID: 0}
+  rankingSaveData: {fileID: 11400000, guid: 9512525e72c774146b0209ac0316167c, type: 2}
   availableFishList:
   - fish: {fileID: 5436173513765085611, guid: f107d1fffe224fe49ad416683ac2d105, type: 3}
     weather: 0

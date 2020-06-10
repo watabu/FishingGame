@@ -30,4 +30,8 @@ MonoBehaviour:
     Name: "\u3061\u308A\u3081\u3093\u3058\u3083\u3053"
     FishCount: 12
     Score: 50
+  - icon: {fileID: 0}
+    Name: "\u3042\u306A\u305F"
+    FishCount: 2
+    Score: 30
   MaxRanking: 20

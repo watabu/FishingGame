@@ -10,6 +10,11 @@ namespace Fish
         [SerializeField] private Environment.Place place;
         [Tooltip("魚を生成する座標オブジェクトをまとめている親オブジェクト")]
         [SerializeField] private Transform generatorsParent;
+        [SerializeField] Fish.Behavior.CommonFish FishPrefab;
+        [SerializeField] Sprite Rfish;
+        [SerializeField] Sprite SRfish;
+        [SerializeField] Sprite SSRfish;
+       
 
         //とりあえず生成される魚
         public List<GameObject> testFish;
@@ -40,15 +45,17 @@ namespace Fish
             var pos = generators[Random.Range(0, generators.Count)].position;
 
             //場所データから一つランダムに選択
-            GameObject selectedFish = availableFishList[Random.Range(0, availableFishList.Count)].fish.gameObject;            
+            FishInfo selectedFish = availableFishList[Random.Range(0, availableFishList.Count)].fishInfo;
+            //Debug.Log(selectedFish);
+            GameObject fishObj = Instantiate(FishPrefab.gameObject, pos, Quaternion.identity);
+            var commonFish = fishObj.GetComponent<Behavior.CommonFish>();
+            commonFish.InitData(selectedFish, GetShadowSprite(commonFish.fishInfo.rank));
+//            commonFish.sprite.sprite = GetShadowSprite(commonFish.fishInfo.rank);
             
-            GameObject fish = Instantiate(selectedFish, pos, Quaternion.identity);
-
-
             //とりあえず生成される魚は確定
             //GameObject fish = Instantiate(testFish[0], pos, Quaternion.identity);
 
-            return fish;
+            return fishObj;
         }
         IEnumerator Generate()
         {
@@ -59,5 +66,23 @@ namespace Fish
             }
         }
 
+        /// <summary>
+        /// レア度に応じた魚影を返す
+        /// </summary>
+        /// <param name="rank"></param>
+        /// <returns></returns>
+        public Sprite GetShadowSprite(FishInfo.Rank rank)
+        {
+            switch (rank)
+            {
+                case FishInfo.Rank.R:
+                    return Rfish;
+                case FishInfo.Rank.SR:
+                    return SRfish;
+                case FishInfo.Rank.SSR:
+                    return SSRfish;
+            }
+            return Rfish;
+        }
     }
 }

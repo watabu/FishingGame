@@ -10,10 +10,12 @@ namespace Environment
         [System.Serializable]
         public class FishGenerateData
         {
-            public Fish.Behavior.CommonFish fish;
+            public Fish.FishInfo fishInfo;
             public Weather weather;
             //釣れる時刻
+            [Tooltip("unused")]
             public int beginTime;
+            [Tooltip("unused")]
             public int endTime;
         }
 
