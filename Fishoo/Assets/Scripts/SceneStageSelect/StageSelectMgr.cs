@@ -36,7 +36,6 @@ public class StageSelectMgr : MonoBehaviour
     [SerializeField] private TextMeshProUGUI daySeason;
     [SerializeField] private TextMeshProUGUI dayWeek;
     [SerializeField] private TextMeshProUGUI money;
-    [SerializeField] private SaveData data;
     [SerializeField] private GameObject tutorialUI;
     [SerializeField] private Selectable tutorialSelectButton;
     [SerializeField] private GameObject popUpUI;
@@ -65,15 +64,15 @@ public class StageSelectMgr : MonoBehaviour
         SwitchState(m_state, true);
 
         NoTitle = true;
-        daySeason.text = data.GetSeasonKanji();
-        daySeason.color = data.GetSeasonColor();
-        Debug.Log(data.GetSeasonColor());
-        dayWeek.text = $"<size=30>{data.Year}</size>年目";
+        daySeason.text = SaveManager.Instance.GetSeasonKanji();
+        daySeason.color = SaveManager.Instance.GetSeasonColor();
+        Debug.Log(SaveManager.Instance.GetSeasonColor());
+        dayWeek.text = $"<size=30>{SaveManager.Instance.Year}</size>年目";
         foreach (var i in scenesData)
         {
             i.button.Initialize(i.place.description, i.place.placeName, () => { SceneManager.LoadScene(i.sceneName); });
         }
-        money.text = $"現在の所持金：{data.money}";
+        money.text = $"現在の所持金：{SaveManager.Instance.money}";
         m_time = 0f;
         tutorialUI.SetActive(false);
         popUpUI.SetActive(false);
@@ -196,18 +195,18 @@ public class StageSelectMgr : MonoBehaviour
 
     void SetMapFromSeason()
     {
-        switch (data.season)
+        switch (SaveManager.Instance.GetSeason())
         {
-            case SaveData.Season.spring:
+            case SaveManager.Season.spring:
                 back.sprite = backSpring;
                 break;
-            case SaveData.Season.summer:
+            case SaveManager.Season.summer:
                 back.sprite = backSummer;
                 break;
-            case SaveData.Season.autumn:
+            case SaveManager.Season.autumn:
                 back.sprite = backAutumn;
                 break;
-            case SaveData.Season.winter:
+            case SaveManager.Season.winter:
                 back.sprite = backWinter;
                 break;
             default:
@@ -217,9 +216,18 @@ public class StageSelectMgr : MonoBehaviour
 
     public void DebugSeason()
     {
-        data.AddWeek();
-        daySeason.text = data.GetSeasonKanji();
-        daySeason.color = data.GetSeasonColor();
-        dayWeek.text = $"<size=30>{data.Year}</size>年目";
+        SaveManager.Instance.AddWeek();
+        daySeason.text = SaveManager.Instance.GetSeasonKanji();
+        daySeason.color = SaveManager.Instance.GetSeasonColor();
+        dayWeek.text = $"<size=30>{ SaveManager.Instance.Year}</size>年目";
+    }
+
+public void QuitApp()
+    {
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+
+#endif
     }
 }

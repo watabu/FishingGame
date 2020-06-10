@@ -24,7 +24,6 @@ public class ResultManager : MonoBehaviour
     [SerializeField] Animator messagePanel;
     [SerializeField] RankingPanel ranking;
     [SerializeField] Animator animator;
-    [SerializeField] SaveData saveData;
     [SerializeField] Sprite PlayerIcon;
     [SerializeField] SelectButtonMgr buttonMgr;
     // Start is called before the first frame update
@@ -32,7 +31,6 @@ public class ResultManager : MonoBehaviour
     {
         isMessagePanelActive = false;
         messagePanel.gameObject.SetActive(false);
-        result.saveData = saveData;
         result.canScroll = true;
         ChangePanel(PanelState.result);
     }
@@ -132,7 +130,7 @@ public class ResultManager : MonoBehaviour
     public void ToStageSelect()
     {
         SceneManager.LoadScene("StageSelect");
-        saveData.AddWeek();
+        SaveManager.Instance.AddWeek();
     }
     public void SelectRankingData(RankingSaveData data)
     {

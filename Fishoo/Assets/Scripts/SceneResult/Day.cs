@@ -11,11 +11,9 @@ public class Day : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var data = FindObjectOfType<ResultPanel>().saveData;
-
-        seasontext.color = data.GetSeasonColor();
-        seasontext.text = data.GetSeasonKanji();
-        weekText.text = $"<size=30>{data.Year}</size>年目";
+        seasontext.color = SaveManager.Instance.GetSeasonColor();
+        seasontext.text = SaveManager.Instance.GetSeasonKanji();
+        weekText.text = $"<size=30>{SaveManager.Instance.Year}</size>年目";
     }
 
     
