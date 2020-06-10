@@ -64,7 +64,6 @@ namespace Fish.Behavior
         /// 一時的に実行したい関数を入れる
         /// </summary>
         UnityEvent myUpdate = new UnityEvent();
-        //public delegate void myUpdate();
 
         Damageable m_damageable;
 
@@ -110,14 +109,6 @@ namespace Fish.Behavior
             });
         }
 
-        private void Awake()
-        {
-
-
-
-            
-        }
-        
         private void Start()
         {
             m_fishingHook = FishingGame.FishingGameMgr.Hook;
@@ -135,8 +126,7 @@ namespace Fish.Behavior
                 case FishState.Nomal:
                     //寿命が尽きたら消える       
                     m_livingTime += Time.deltaTime;
-                    if (fishMoveData == null)
-                        return;
+                    if (fishMoveData == null) return;
                     if (m_livingTime > fishMoveData.lifeTime)
                         SetDisAppear();
                     //                    fishMove.MoveFree();
@@ -145,7 +135,6 @@ namespace Fish.Behavior
                     break;
                 //エサを狙っている
                 case FishState.Approaching:
-                    
                     ApproachHook();
                     break;
                 //釣りゲーム中
@@ -154,7 +143,6 @@ namespace Fish.Behavior
                     break;
                 //釣りに失敗したら逃げる
                 case FishState.Escaping:
-
                     SetDisAppear();
                     break;
                 //捕まった
@@ -197,7 +185,6 @@ namespace Fish.Behavior
             if (collision.gameObject.tag != "Hook") return;
 //            Debug.Log("衝突！" + collision);
             SetApproaching();
-
         }
 
         /// <summary>

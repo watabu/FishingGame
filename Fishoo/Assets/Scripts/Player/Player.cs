@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
+using UnityEngine.Events;
 
 namespace Player
 {
@@ -39,6 +40,13 @@ namespace Player
         [SerializeField, ReadOnly]
         List<Fish.Behavior.CommonFish> caughtFishList = new List<Fish.Behavior.CommonFish>();
 
+        UnityEvent OnThrowRod=new UnityEvent();
+
+        public void AddOnThrowRod(UnityAction func)
+        {
+            OnThrowRod.AddListener(func);
+        }
+
         // Start is called before the first frame update
         void Start()
         {
@@ -71,6 +79,7 @@ namespace Player
             m_state = State.ThrowRod;
             fishingToolMgr.ExpandTools();
             canMove = false;
+            OnThrowRod.Invoke();
             await Task.Delay(1000);
             canMove = true;
         }

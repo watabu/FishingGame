@@ -14,15 +14,8 @@ namespace Fish
         [SerializeField] Sprite Rfish;
         [SerializeField] Sprite SRfish;
         [SerializeField] Sprite SSRfish;
-       
-
-        //とりあえず生成される魚
-        public List<GameObject> testFish;
 
         List<Environment.PlaceData.FishGenerateData> availableFishList;
-
-        [Tooltip("魚を生成するスパン(秒)")]
-        public float generateSpan;
 
         //魚を生成する座標
         List<Transform> generators = new List<Transform>();
@@ -35,7 +28,7 @@ namespace Fish
             {
                 generators.Add(child);
             }
-            StartCoroutine(Generate());
+            FindObjectOfType<Player.Player>().AddOnThrowRod(() => GenerateFish());
         }
 
         //場所の設定などから魚を一体生成し、オブジェクトを返す
@@ -55,14 +48,6 @@ namespace Fish
             //GameObject fish = Instantiate(testFish[0], pos, Quaternion.identity);
 
             return fishObj;
-        }
-        IEnumerator Generate()
-        {
-            while (true)
-            {
-                GenerateFish();
-                yield return new WaitForSeconds(generateSpan);
-            }
         }
 
         /// <summary>

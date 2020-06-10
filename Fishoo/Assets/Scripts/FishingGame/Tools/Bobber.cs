@@ -30,8 +30,6 @@ namespace FishingGame.Tools
         public void RetrieveTools()
         {
             isThrown = false;
-
-
         }
         public void SetInvisible()
         {
