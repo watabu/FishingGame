@@ -48,8 +48,7 @@ namespace FishingGame.Tools
 
         private void Awake()
         {
-            if (myUpdate == null)
-                myUpdate = new UnityEvent();
+            if (myUpdate == null)  myUpdate = new UnityEvent();
             obj = gameObject;
             neutralPos = transform.localPosition;
             //            rg2d = obj.GetComponent<Rigidbody2D>();
@@ -58,7 +57,6 @@ namespace FishingGame.Tools
         {
             myUpdate.Invoke();
         }
-
 
         public void SetTarget(CommonFish fish) { m_currentFish = fish; }
         public bool CanBite() { return m_currentFish == null && isInWater && isInWater_mask; }
@@ -98,14 +96,12 @@ namespace FishingGame.Tools
             m_currentFish = null;
         }
 
-
         public void SetInvisible()
         {
             var color = sprite.color;
             color.a = 0;
             sprite.color = color;
         }
-
 
         /// <summary>
         /// 下向きの力をtimeミリ秒与える
@@ -140,14 +136,11 @@ namespace FishingGame.Tools
             Instantiate(biteHookEffect,transform.position,Quaternion.identity, effectParent);
             
             bobber.SetInvisible();
- //           rg2d.simulated = false;
-//            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
         public void PulledToPos(Vector3 pos)
         {
             transform.localPosition = neutralPos + pos;
-
         }
 
         public async void testPullDown()
@@ -188,14 +181,6 @@ namespace FishingGame.Tools
                     obj.GetComponent<Rigidbody>().AddForce(q);
             }
 
-        }
-
-        public void PullToLeft()
-        {
-        }
-
-        public void PullToRight()
-        {
         }
     }
 }
