@@ -22,7 +22,6 @@ public class BookScritpUIMgr : MonoBehaviour
     [SerializeField] GameObject bookDescription;
     [SerializeField] Button SelectedButton;
     [SerializeField] FishInfoFolder FishFolder;
-    [SerializeField] SaveData data;
     [SerializeField] Button backButton;
     [Header("Debug")]
     [SerializeField] bool showNonCaughtFish = false;
@@ -47,12 +46,12 @@ public class BookScritpUIMgr : MonoBehaviour
             if (d == null) continue;
             var script = Instantiate(fishPrefab, bookListContent.transform).GetComponent<FishButtonUIScript>();
             //捕まえたなら詳しい情報を見れる
-            if (data.isCaught(d))
+            if (SaveManager.Instance.isCaught(d))
             {
                 script.SetOnClicked(() =>
                 {
                     Switch(State.description);
-                    descriptionUI.Set(d.icon, d.FishName, d.description, data.fishes[d].count);
+                    descriptionUI.Set(d.icon, d.FishName, d.description, SaveManager.Instance.GetFishCount(d));
                     SelectedButton = script.GetButton;
                 });
             }
@@ -65,9 +64,9 @@ public class BookScritpUIMgr : MonoBehaviour
                     SelectedButton = script.GetButton;
                 });
             }
-            script.Interactable = showNonCaughtFish || data.isCaught(d);
+            script.Interactable = showNonCaughtFish || SaveManager.Instance.isCaught(d);
             script.icon.sprite = d.icon;
-            script.SetFound(data.isCaught(d));
+            script.SetFound(SaveManager.Instance.isCaught(d));
         }
     }
 

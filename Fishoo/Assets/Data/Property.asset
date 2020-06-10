@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ab3da32b1e994741b7e70135ba2b921, type: 3}
+  m_Name: Property
+  m_EditorClassIdentifier: 
+  spring: {r: 1, g: 0.7019608, b: 0.9372549, a: 1}
+  summer: {r: 0.3726415, g: 1, b: 0.40425918, a: 1}
+  autumn: {r: 1, g: 0.5623682, b: 0.3537736, a: 1}
+  winter: {r: 0.15566039, g: 0.72596765, b: 1, a: 1}
+  debug: 0

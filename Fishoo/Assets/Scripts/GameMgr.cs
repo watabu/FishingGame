@@ -19,7 +19,6 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     [SerializeField] AudioSource gameStartBell;
     [SerializeField]private TutorialUI tutorialUI;
     [SerializeField] private bool canSkipTutorial=false;
-    [SerializeField] private SaveData data;
     [SerializeField] private TextMeshProUGUI seasonText;
     [SerializeField] private TextMeshProUGUI weekText;
     List<IInputUpdatable> m_inputObjects = new List<IInputUpdatable>();
@@ -38,7 +37,6 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         Finished
     }
     State m_state = State.Nove;
-    public SaveData saveData { get { return data; } }
 
     // Start is called before the first frame update
     void Start()
@@ -48,9 +46,9 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
             tutorialUI.gameObject.SetActive(false);
         m_IsPauseActive = false;
         m_state = State.Ready;
-        seasonText.text = data.GetSeasonKanji();
-        seasonText.color = data.GetSeasonColor();
-        weekText.text = $"{data.Year}年目";
+        seasonText.text = SaveManager.Instance.GetSeasonKanji();
+        seasonText.color = SaveManager.Instance.GetSeasonColor();
+        weekText.text = $"{ SaveManager.Instance.Year}年目";
         gameStartEffect = Instantiate(gameStartEffectPrefab, gameStartEffectParent).GetComponent<GameStartEffect>();
         this.Delay(3f, () =>
         {
@@ -106,11 +104,6 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         //魚を渡す
         resultManager.SetList(coolerBox.GetFishList);
 
-        //ダーティとしてマークする(変更があった事を記録する)
-        EditorUtility.SetDirty(data);
-        EditorUtility.SetDirty(FindObjectOfType<RankingPanel>().RankingData);
-        //保存する
-        AssetDatabase.SaveAssets();
         SceneManager.MoveGameObjectToScene(coolerBox.gameObject, SceneManager.GetActiveScene());
         SceneManager.sceneLoaded -= ResultSceneLoaded;
     }

@@ -51,12 +51,11 @@ public class FireFly : MonoBehaviour
         m_AppearTime = AppearTime / 100 * 60 + AppearTime % 100;
         m_DisappearTime = DisappearTime / 100 * 60 + DisappearTime % 100;
         Initialize();
-
     }
 
     public void Initialize()
     {
-        int week = GameMgr.Instance.saveData.week;
+        int week =SaveManager.Instance.week;
         if (!WeekList.Contains(week) && WeekList.Count > 0) return;
 
         m_AppearTime = AppearTime / 100 * 60 + AppearTime % 100;
