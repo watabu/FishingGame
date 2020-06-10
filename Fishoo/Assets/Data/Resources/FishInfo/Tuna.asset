@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Tuna
   m_EditorClassIdentifier: 
   FishName: "\u307E\u3050\u308D"
-  description: "\u30AF\u30ED\u30DE\u30B0\u30ED\u306F\u30EC\u30C3\u30C9\u30EA\u30B9\u30C8\u306B\u767B\u9332\u3055\u308C\u3066\u305F\u308A\u3059\u308B"
+  description: "\u4E00\u672C\u91E3\u308A\uFF01\uFF01\uFF01\uFF01"
   description_Caught: 
   sellingPrice: 5
   exp: 1
   icon: {fileID: 21300000, guid: 53cb921b28b74a74cab785b4692fd077, type: 3}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
   isGomi: 0
+  rank: 0
