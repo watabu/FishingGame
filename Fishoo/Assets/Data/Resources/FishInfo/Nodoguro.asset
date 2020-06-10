@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Nodoguro
   m_EditorClassIdentifier: 
   FishName: "\u306E\u3069\u3050\u308D"
-  description: "\u304A\u3044\u3057\u3044\u9AD8\u7D1A\u9B5A"
+  description: "\u304A\u3044\u3057\u3044\u9AD8\u7D1A\u9B5A\u3002\u91E3\u308C\u308B\u3068\u3046\u308C\u3057\u3044\u306D"
   description_Caught: 
   sellingPrice: 300
   exp: 1

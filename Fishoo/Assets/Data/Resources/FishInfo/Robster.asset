@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Robster
   m_EditorClassIdentifier: 
   FishName: "\u30ED\u30D6\u30B9\u30BF\u30FC"
-  description: "\u30ED\u30D6\u30B9\u30BF\u30FC"
+  description: "\u5927\u304D\u3044\u30A8\u30D3\u3002\u305D\u3053\u305D\u3053\u898B\u3064\u3051\u3065\u3089\u3044"
   description_Caught: 
   sellingPrice: 150
   exp: 1
