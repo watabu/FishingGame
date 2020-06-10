@@ -106,7 +106,6 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         //魚を渡す
         resultManager.SetList(coolerBox.GetFishList);
 
-
         //ダーティとしてマークする(変更があった事を記録する)
         EditorUtility.SetDirty(data);
         EditorUtility.SetDirty(FindObjectOfType<RankingPanel>().RankingData);
