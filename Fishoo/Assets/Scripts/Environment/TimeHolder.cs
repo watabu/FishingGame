@@ -92,7 +92,7 @@ namespace Environment
         // Start is called before the first frame update
         void Start()
         {
-            if (Skip) timeSpan = 0.0005f;
+            if (Skip) timeSpan = 0.01f;
             AddOnTimeChanged((time) => { timeText.text = GetTimeString(); });
             CurrentTime = startTime;
             InvokeRepeating("TimeChange", 0f, timeSpan);

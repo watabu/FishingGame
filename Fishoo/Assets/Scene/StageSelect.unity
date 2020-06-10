@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -163,7 +163,6 @@ MonoBehaviour:
   canSkipTutorial: 0
   m_caughtFishCount: 0
   m_fishes: []
-  firstAddedfishes: []
 --- !u!4 &52193223
 Transform:
   m_ObjectHideFlags: 0
@@ -541,6 +540,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108596882}
   m_CullTransparentMesh: 0
+--- !u!1001 &166575255
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2651359014614161324, guid: a463da477b4ecc4479d7cf3e6526a5db,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.52495843
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651359014614161324, guid: a463da477b4ecc4479d7cf3e6526a5db,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3882435
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651359014614161324, guid: a463da477b4ecc4479d7cf3e6526a5db,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 46.36262
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651359014614161324, guid: a463da477b4ecc4479d7cf3e6526a5db,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651359014614161324, guid: a463da477b4ecc4479d7cf3e6526a5db,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651359014614161324, guid: a463da477b4ecc4479d7cf3e6526a5db,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651359014614161324, guid: a463da477b4ecc4479d7cf3e6526a5db,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651359014614161324, guid: a463da477b4ecc4479d7cf3e6526a5db,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651359014614161324, guid: a463da477b4ecc4479d7cf3e6526a5db,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651359014614161324, guid: a463da477b4ecc4479d7cf3e6526a5db,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651359014614161324, guid: a463da477b4ecc4479d7cf3e6526a5db,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651359014614161325, guid: a463da477b4ecc4479d7cf3e6526a5db,
+        type: 3}
+      propertyPath: m_Name
+      value: Effects
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a463da477b4ecc4479d7cf3e6526a5db, type: 3}
 --- !u!1 &179059851
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,7 +1376,6 @@ MonoBehaviour:
   daySeason: {fileID: 1978634840}
   dayWeek: {fileID: 1978634839}
   money: {fileID: 1820448686}
-  data: {fileID: 11400000, guid: 99c8a66cead9076449846857ca683267, type: 2}
   tutorialUI: {fileID: 936190427}
   tutorialSelectButton: {fileID: 731573832}
   popUpUI: {fileID: 108596882}

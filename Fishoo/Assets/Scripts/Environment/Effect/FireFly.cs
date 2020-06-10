@@ -4,13 +4,17 @@ using UnityEngine;
 
 /// <summary>
 /// ある時間帯にのみ出現するものを管理する
-/// 2dLight付けられなくて断念、3dLightは光源として機能しなくて断念
-/// 点滅させようと思ったけどParticleわからん
 /// </summary>
 public class FireFly : MonoBehaviour
 {
-    [SerializeField, Tooltip("出現する周、要素数0で毎週")]
-    List<int> WeekList = new List<int>();
+    [SerializeField, Tooltip("季節で出現するか")]
+    public bool inSpring;
+    public bool inSummer;
+    public bool inAutumn;
+    public bool inWinter;
+
+    List<bool> isAppeared = new List<bool>(); 
+
     [Tooltip("hhmmで設定")] public int AppearTime;
     [Tooltip("hhmmで設定")] public int DisappearTime;
 
@@ -45,6 +49,13 @@ public class FireFly : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        isAppeared.Add(inSpring);
+        isAppeared.Add(inSummer);
+        isAppeared.Add(inAutumn);
+        isAppeared.Add(inWinter);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -55,9 +66,22 @@ public class FireFly : MonoBehaviour
 
     public void Initialize()
     {
-        int week =SaveManager.Instance.week;
-        if (!WeekList.Contains(week) && WeekList.Count > 0) return;
+        int SeasonID = (int)SaveManager.Instance.GetSeasonID();
+        Debug.Log(SeasonID);
+        Debug.Log(isAppeared[SeasonID]);
 
+        if (!isAppeared[SeasonID])
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
+        if(Environment.TimeHolder.Instance == null)
+        {
+            return;
+        }
+        Debug.Log(SeasonID);
+        Debug.Log(isAppeared[SeasonID]);
         m_AppearTime = AppearTime / 100 * 60 + AppearTime % 100;
         m_DisappearTime = DisappearTime / 100 * 60 + DisappearTime % 100;
 

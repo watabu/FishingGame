@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 初期化やステージごとのセーブデータ等の情報をもつ
+/// 初期化のためのセーブデータやステージごとのセーブデータ等の情報をもつ
 /// </summary>
 public class RankingSaveDataMgr : ScriptableObject
 {   

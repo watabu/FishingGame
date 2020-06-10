@@ -190,6 +190,11 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
         }
         return Season.spring;
     }
+
+    public int GetSeasonID()
+    {
+        return (week+3) % 4;
+    }
     public void DeleteAll()
     {
         week = 0;

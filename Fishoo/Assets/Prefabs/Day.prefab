@@ -265,7 +265,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -15.2, y: 0}
+  m_AnchoredPosition: {x: -16.2, y: 0}
   m_SizeDelta: {x: -48.95, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8246318481799217583
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 1026
+  m_textAlignment: 1028
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -361,7 +361,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -73.13292, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 8246318481799217582}
     characterCount: 3

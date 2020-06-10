@@ -66,7 +66,7 @@ public class StageSelectMgr : MonoBehaviour
         NoTitle = true;
         daySeason.text = SaveManager.Instance.GetSeasonKanji();
         daySeason.color = SaveManager.Instance.GetSeasonColor();
-        Debug.Log(SaveManager.Instance.GetSeasonColor());
+//        Debug.Log(SaveManager.Instance.GetSeasonColor());
         dayWeek.text = $"<size=30>{SaveManager.Instance.Year}</size>年目";
         foreach (var i in scenesData)
         {

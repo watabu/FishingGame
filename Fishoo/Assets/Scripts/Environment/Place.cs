@@ -47,7 +47,10 @@ namespace Environment
         // Update is called once per frame
         void Update()
         {
-
+            if (Player.InputSystem.GetKeyDown(KeyCode.Y))
+            {
+                TimeHolder.Instance.AddTime(200);
+            }
         }
 
         void UpdateWeather()
