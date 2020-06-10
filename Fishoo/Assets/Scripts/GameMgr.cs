@@ -91,9 +91,16 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         var coolerBox= FindObjectOfType<Player.CoolerBox>();
         var resultManager = FindObjectOfType<ResultManager>();
         if (resultManager == null)
+        {
+            Debug.Log("null!!!");
             return;
+
+        }
+        Debug.Log(currentPlace);
         //ランキングや背景を渡す
-        Instantiate(currentPlace.backGroundPrefab, resultManager.transform);
+        var obj = Instantiate(currentPlace.backGroundPrefab, resultManager.transform);
+        Debug.Log(obj);
+        Debug.Log("obj");
         resultManager.SelectRankingData(currentPlace.rankingSaveData);
 
         //魚を渡す
