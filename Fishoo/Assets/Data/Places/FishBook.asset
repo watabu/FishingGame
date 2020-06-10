@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da47581674ca684458ea058b301efad4, type: 3}
   m_Name: FishBook
   m_EditorClassIdentifier: 
-  placeName: FishBook
-  description: "\u9B5A\u56F3\u9451\u3092\u898B\u308B"
+  placeName: "\u9B5A\u56F3\u9451"
+  description: "\u3053\u308C\u307E\u3067\u306B\u91E3\u3063\u305F\u9B5A\u306E\u4E00\u89A7\u3092\u898B\u308B"
   description_detail: 
-  cost: 0
-  TravelTime: 0
+  moneyCondition: 0
+  weekCondition: 0
   icon: {fileID: 0}
   startTime: 0
   endTime: 0
@@ -51,4 +51,6 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   rainyPercent: 0
   rainDuration: 0
+  backGroundPrefab: {fileID: 0}
+  rankingSaveData: {fileID: 0}
   availableFishList: []

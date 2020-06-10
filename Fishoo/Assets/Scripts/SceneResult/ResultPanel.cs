@@ -17,7 +17,6 @@ public class ResultPanel : MonoBehaviour
     [SerializeField,Tooltip("Debug")]List<Fish.FishInfo> DebugfishList = new List<Fish.FishInfo>();
 
     public bool canScroll;
-    public SaveData saveData;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +55,7 @@ public class ResultPanel : MonoBehaviour
             script.Money.text = (fish.sellingPrice).ToString();
             script.gameObject.transform.SetParent(contentParent.transform);
             Money += fish.sellingPrice;
-            saveData.AddFish(fish);
+            SaveManager.Instance.AddFish(fish);
         }
         //一匹も釣らなかった時にもらえる魚
         if (fishList.Count < 1)
@@ -70,7 +69,7 @@ public class ResultPanel : MonoBehaviour
             script.Money.text = (fish.sellingPrice).ToString();
             script.gameObject.transform.SetParent(contentParent.transform);
             Money += fish.sellingPrice;
-            saveData.AddFish(fish);
+            SaveManager.Instance.AddFish(fish);
         }
 
         //一日のまとめ                
@@ -78,9 +77,9 @@ public class ResultPanel : MonoBehaviour
         summary.Money.text = Money.ToString();
         summary.count.text = fishList.Count.ToString();
         //セーブデータから累計の記録を受け取る
-        saveData.money += Money;
-        totalScore.GetComponent<TotalScore>().Money.text = saveData.money.ToString();
-        totalScore.GetComponent<TotalScore>().count.text = saveData.caughtFishCount.ToString();
+        SaveManager.Instance.money += Money;
+        totalScore.GetComponent<TotalScore>().Money.text = SaveManager.Instance.money.ToString();
+        totalScore.GetComponent<TotalScore>().count.text = SaveManager.Instance.caughtFishCount.ToString();
         //一番場所を下に
         result.transform.SetAsLastSibling();
         totalScore.transform.SetAsLastSibling();
