@@ -21,6 +21,13 @@ public class StageSelectMgr : MonoBehaviour
     }
 
     [SerializeField] private PlaceAndData[] scenesData;
+    [Header("Sprites")]
+    [SerializeField] private Sprite backSpring;
+    [SerializeField] private Sprite backSummer;
+    [SerializeField] private Sprite backAutumn;
+    [SerializeField] private Sprite backWinter;
+    [SerializeField] private SpriteRenderer back;
+
     [Header("References")]
     [SerializeField] private Transform buttonsParent;
     [SerializeField] private CanvasGroup titleCanvas;
@@ -71,6 +78,7 @@ public class StageSelectMgr : MonoBehaviour
         optionCanvas.interactable = false;
         optionCanvas.alpha = 0f;
         optionCanvas.gameObject.SetActive(false);
+        SetMapFromSeason();
     }
 
     // Update is called once per frame
@@ -182,6 +190,27 @@ public class StageSelectMgr : MonoBehaviour
     {
         popUpUI.SetActive(false);
         popUpBefore.Select();
+    }
+
+    void SetMapFromSeason()
+    {
+        switch (data.season)
+        {
+            case SaveData.Season.spring:
+                back.sprite = backSpring;
+                break;
+            case SaveData.Season.summer:
+                back.sprite = backSummer;
+                break;
+            case SaveData.Season.autumn:
+                back.sprite = backAutumn;
+                break;
+            case SaveData.Season.winter:
+                back.sprite = backWinter;
+                break;
+            default:
+                break;
+        }
     }
 
 }

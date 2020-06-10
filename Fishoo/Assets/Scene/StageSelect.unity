@@ -1245,6 +1245,11 @@ MonoBehaviour:
   - sceneName: Stage_River
     place: {fileID: 11400000, guid: 1178ab60dcfbbd3409d85bef488393c6, type: 2}
     button: {fileID: 1888898065}
+  backSpring: {fileID: 21300000, guid: 06317bbfaad67a24cb7f2ff39f72ad7a, type: 3}
+  backSummer: {fileID: 21300000, guid: 8be43f70815a5ee4484213f9e5e9f248, type: 3}
+  backAutumn: {fileID: 21300000, guid: e55183d998b8a6042b59001fa1080720, type: 3}
+  backWinter: {fileID: 21300000, guid: 6b79fd5ed78193149af73185e7f4ea0a, type: 3}
+  back: {fileID: 2096690944}
   buttonsParent: {fileID: 840964686}
   titleCanvas: {fileID: 778291175}
   stageCanvas: {fileID: 1769093714}

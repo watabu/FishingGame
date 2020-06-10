@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
+  m_Name: Manbo
+  m_EditorClassIdentifier: 
+  FishName: "\u30DE\u30F3\u30DC\u30A6"
+  description: "\u4E00\u5EA6\u306B\u305F\u304F\u3055\u3093\u306E\u9B5A\u3092\u751F\u307F\u3001\u6D77\u306E\u4E2D\u3067\u3082\u304B\u306A\u308A\u5927\u304D\u304F\u80B2\u3064\u7A2E\u985E"
+  description_Caught: 
+  sellingPrice: 50
+  exp: 10
+  icon: {fileID: 21300000, guid: 75fca6fcd915f5445bfaae851e61f96f, type: 3}
+  data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
+  isGomi: 0
+  rank: 0

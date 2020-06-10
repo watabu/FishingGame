@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
+  m_Name: Koi
+  m_EditorClassIdentifier: 
+  FishName: "\u30B3\u30A4"
+  description: "\u6E56\u306B\u751F\u606F\u3059\u308B\u3054\u304F\u4E00\u822C\u3066\u304D\u306A\u9B5A\u3002\u500B\u4F53\u306B\u3088\u3063\u3066\u67C4\u304C\u5927\u5E45\u306B\u9055\u3046\u3002"
+  description_Caught: 
+  sellingPrice: 50
+  exp: 10
+  icon: {fileID: 21300000, guid: 8b54aba30a420c048be72958910dda98, type: 3}
+  data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
+  isGomi: 0
+  rank: 0
