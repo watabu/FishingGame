@@ -125,6 +125,7 @@ public class SaveData : ScriptableObject
 
     public void DeleteAll()
     {
+        season = Season.spring;
         week = 0;
         money = 0;
         m_caughtFishCount = 0;

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Umihebi
   m_EditorClassIdentifier: 
   FishName: "\u30A6\u30DF\u30D8\u30D3"
-  description: "\u30A6\u30DF\u30D8\u30D3"
+  description: "\u53D6\u308A\u6271\u3044\u6CE8\u610F"
   description_Caught: 
   sellingPrice: 15
   exp: 2
   icon: {fileID: 21300000, guid: 8e8c6f7f740fcb04dbab9b5294f9ac39, type: 3}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
   isGomi: 0
+  rank: 0
