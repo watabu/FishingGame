@@ -9,6 +9,11 @@ public class GameProperty : ScriptableObject
     public Color summer;
     public Color autumn;
     public Color winter;
+    [Header("BGM")]
+    public AudioClip springBGM;
+    public AudioClip summerBGM;
+    public AudioClip autumnBGM;
+    public AudioClip winterBGM;
     public bool debug;
 
 }

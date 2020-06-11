@@ -16,4 +16,8 @@ MonoBehaviour:
   summer: {r: 0.3726415, g: 1, b: 0.40425918, a: 1}
   autumn: {r: 1, g: 0.5623682, b: 0.3537736, a: 1}
   winter: {r: 0.15566039, g: 0.72596765, b: 1, a: 1}
+  springBGM: {fileID: 8300000, guid: e076c8494b7fdfa4393c1f6df6abe40c, type: 3}
+  summerBGM: {fileID: 8300000, guid: 290fa605e47fb6e4da74c34efbe755a0, type: 3}
+  autumnBGM: {fileID: 8300000, guid: 0257c58d7e27d1b4688f231207ebbfa3, type: 3}
+  winterBGM: {fileID: 8300000, guid: ccb3d431b84325a4790aa70b53a3a862, type: 3}
   debug: 0

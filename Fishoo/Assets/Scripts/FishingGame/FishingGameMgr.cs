@@ -34,9 +34,9 @@ namespace FishingGame
         private Player.Player player { get { return fishingToolMgr.player; } }//釣りゲームが開始したときのみ他の操作の禁止をする
 
         [Header("References")]
-        [SerializeField] private Fish.FishGenerator fishGenerator;
         [SerializeField] private CommandGenerator commandGenerator;
         [SerializeField] private Player.InputSystem input;
+        [SerializeField] private AudioSource fishCaughtSE;
 
         [SerializeField, Tooltip("コマンドが生成されるまでの最低時間(tick)")] int attackTimeMin=100;
 
@@ -117,6 +117,7 @@ namespace FishingGame
             fishingToolMgr.CatchFish(TargetFish);
             FIshCatchEffect.Instance.Initialize(TargetFish.fishInfo);
             Hook.FinishBite();
+            fishCaughtSE.Play();
         }
 
         /// <summary>
