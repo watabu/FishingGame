@@ -208,7 +208,7 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
     }
     public void DeleteAll()
     {
-        week = 0;
+        week = 1;
         money = 0;
         m_caughtFishCount = 0;
         m_fishes.Clear();
