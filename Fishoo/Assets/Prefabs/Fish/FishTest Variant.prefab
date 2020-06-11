@@ -77,7 +77,7 @@ PrefabInstance:
         type: 3}
       propertyPath: fishMoveData
       value: 
-      objectReference: {fileID: 11400000, guid: 6b79a9f3c74ab2643926fc418c8c37cf,
+      objectReference: {fileID: 11400000, guid: 0330e4f42f29ecc4daa5a3e554b44dc6,
         type: 2}
     - target: {fileID: 5436173513765085611, guid: 7825949a536fcbd47a0952abd332ad46,
         type: 3}

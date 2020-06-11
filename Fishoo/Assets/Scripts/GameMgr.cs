@@ -43,16 +43,21 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     // Start is called before the first frame update
     void Start()
     {
-        BGM.clip = SaveManager.Instance.GetSeasonBGM();
-        BGM.Play();
+
+        if (SaveManager.Instance != null)
+        {
+            BGM.clip = SaveManager.Instance.GetSeasonBGM();
+            BGM.Play();
+            seasonText.text = SaveManager.Instance.GetSeasonKanji();
+            seasonText.color = SaveManager.Instance.GetSeasonColor();
+            weekText.text = $"{ SaveManager.Instance.Year}年目";
+        }
+
         pauseUI.SetActive(false);
         if (tutorialUI != null)
             tutorialUI.gameObject.SetActive(false);
         m_IsPauseActive = false;
         m_state = State.Ready;
-        seasonText.text = SaveManager.Instance.GetSeasonKanji();
-        seasonText.color = SaveManager.Instance.GetSeasonColor();
-        weekText.text = $"{ SaveManager.Instance.Year}年目";
 
         m_CanMove = false;
         CountDownGenerator.Instance.CountStart(2f, 1f, () =>
@@ -105,7 +110,8 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         //魚を渡す
         resultManager.SetList(coolerBox.GetFishList);
 
-        SceneManager.MoveGameObjectToScene(coolerBox.gameObject, SceneManager.GetActiveScene());
+//        Destroy(coolerBox.gameObject);
+        //SceneManager.MoveGameObjectToScene(coolerBox.gameObject, SceneManager.GetActiveScene());
         SceneManager.sceneLoaded -= ResultSceneLoaded;
     }
 

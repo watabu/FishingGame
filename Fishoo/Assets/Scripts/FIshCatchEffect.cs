@@ -15,7 +15,7 @@ public class FIshCatchEffect : SingletonMonoBehaviour<FIshCatchEffect>
     [SerializeField] Transform effectParent;
 
     [SerializeField] Transform effectCanvas;
-
+    [SerializeField]
     EffectScript currentEffect;
 
     private void Start()

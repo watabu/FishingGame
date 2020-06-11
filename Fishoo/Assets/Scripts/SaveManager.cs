@@ -139,16 +139,23 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
         if (fish_ == null) return;
         m_caughtFishCount++;
 
+        if (!isCaught(fish_))
+        {
+            var f = new FishData { fishName = fish_.FishName, count = 1 };
+            m_fishes.Add(f);
+            return;
+        }
+
         foreach (var i in m_fishes)
         {
-            if (isCaught(fish_))
+            if(i.fishName == fish_.FishName)
             {
                 i.count++;
                 return;
             }
         }
-        var f = new FishData { fishName = fish_.FishName, count = 1 };
-        m_fishes.Add(f);
+        
+
     }
     public string GetSeasonKanji()
     {

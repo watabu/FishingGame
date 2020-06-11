@@ -55,6 +55,7 @@ public class ResultPanel : MonoBehaviour
             script.Money.text = (fish.sellingPrice).ToString();
             script.gameObject.transform.SetParent(contentParent.transform);
             Money += fish.sellingPrice;
+            Debug.Log(fish);
             SaveManager.Instance.AddFish(fish);
         }
         //一匹も釣らなかった時にもらえる魚

@@ -21,8 +21,9 @@ MonoBehaviour:
     hpMax: 26
     hpRegene: -0.1
   moveType: 4
+  comment: "\u3061\u3087\u3063\u3068\u3080\u305A\u3044"
   commands:
   - ABXYXXY
-  - AAABBB
-  - RURUL
-  - DURL
+  - AXABXB
+  - RUYUY
+  - DUXLXL
