@@ -177,6 +177,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &72977526 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 296516973}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &74299733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,6 +1182,31 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Stage_Sea
       objectReference: {fileID: 0}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 1325655570}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 1747682246}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 992098931}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 992098931}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a7ce76c8c4ab040a161e67dcaf99fb, type: 3}
 --- !u!1 &319701237
@@ -3931,8 +3968,9 @@ GameObject:
   - component: {fileID: 992098933}
   - component: {fileID: 992098932}
   - component: {fileID: 992098931}
+  - component: {fileID: 992098934}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4025,12 +4063,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7264151, g: 0.0788092, b: 0.0788092, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 9ec3103e51799484fba91c1d7d55db63, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4048,18 +4086,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992098929}
   m_CullTransparentMesh: 0
---- !u!114 &1034367737 stripped
+--- !u!114 &992098934
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
-    type: 3}
-  m_PrefabInstance: {fileID: 7920195445431744321}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 992098929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: f9a58646d18ceb24885446398945fa15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMultiply: 0
 --- !u!1 &1038964803
 GameObject:
   m_ObjectHideFlags: 0
@@ -4530,8 +4569,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9805,7 +9844,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Navigation.m_SelectOnRight
       value: 
-      objectReference: {fileID: 1034367737}
+      objectReference: {fileID: 72977526}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a7ce76c8c4ab040a161e67dcaf99fb, type: 3}
 --- !u!1001 &1312368839
@@ -9994,12 +10033,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Navigation.m_SelectOnRight
       value: 
-      objectReference: {fileID: 1325655570}
+      objectReference: {fileID: 72977526}
     - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
         type: 3}
       propertyPath: m_Navigation.m_SelectOnLeft
       value: 
-      objectReference: {fileID: 1747682246}
+      objectReference: {fileID: 822423594}
     - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -15543,6 +15582,31 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Stage_River
       objectReference: {fileID: 0}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 72977526}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 463139468}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 822423594}
+    - target: {fileID: 7920195445516146018, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 822423594}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a7ce76c8c4ab040a161e67dcaf99fb, type: 3}
 --- !u!224 &1520752705 stripped
