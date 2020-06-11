@@ -43,6 +43,7 @@ public class StageSelectMgr : MonoBehaviour
     [SerializeField] private Selectable tutorialSelectButton;
     [SerializeField] private GameObject popUpUI;
     [SerializeField] private Selectable popUpSelectButton;
+    [SerializeField] private GameObject popUpUI_quitApp;
     [Header("Parameter")]
     [Tooltip("Title画面から遷移するときに何秒経てば遷移できるか")]
     [SerializeField] private float activateInput = 3f;
@@ -197,6 +198,7 @@ public class StageSelectMgr : MonoBehaviour
         popUpUI.SetActive(true);
         popUpSelectButton.Select();
     }
+
     public void DeActivatePopUp()
     {
         popUpUI.SetActive(false);
@@ -206,6 +208,8 @@ public class StageSelectMgr : MonoBehaviour
     {
         popUp2UI.gameObject.SetActive(true);
         popUp2SelectButton.Select();
+        FindObjectOfType<DestroySound>().PlaySound();
+        NoTitle = false;
         SaveManager.Instance.DeleteAll();
     }
     public void CloseResetSaveData()
@@ -242,6 +246,7 @@ public class StageSelectMgr : MonoBehaviour
         daySeason.color = SaveManager.Instance.GetSeasonColor();
         dayWeek.text = $"<size=30>{ SaveManager.Instance.Year}</size>年目";
     }
+
 
 public void QuitApp()
     {

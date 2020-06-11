@@ -40,7 +40,7 @@ namespace Environment
         [SerializeField, ReadOnly] int m_currentTime;
         [SerializeField] bool Skip;
         private int countDownTime1 = 60;
-        private int countDownTime2 = 15;
+        private int countDownTime2 = 20;
         public int CurrentTime
         {
             get { return m_currentTime; }
@@ -57,6 +57,7 @@ namespace Environment
                 if(phase == Phase.phase1 && m_currentTime +countDownTime2 > endTime)
                 {
                     phase = Phase.phase2;
+                    Debug.Log("phase2");
                     InvokeRepeating("CountDown", 0, countDownSpan);
                 }
                 if (phase == Phase.phase2 && m_currentTime == endTime)
@@ -98,7 +99,6 @@ namespace Environment
             AddOnTimeChanged((time) => { timeText.text = GetTimeString(); });
             CurrentTime = startTime;
             timeText.text = GetTimeString();
-            Debug.Log(CurrentTime);
         }
 
         /// <summary>

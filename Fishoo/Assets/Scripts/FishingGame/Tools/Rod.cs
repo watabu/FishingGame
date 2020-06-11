@@ -36,7 +36,6 @@ namespace FishingGame.Tools
         /// </summary>
         public void RetrieveTools()
         {
-            Debug.Log("Retrive");
             throwRodAnimation.clip = retrieveRodClip;
             throwRodAnimation.Play();
         }

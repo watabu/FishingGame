@@ -28,15 +28,18 @@ namespace Environment
         void Awake()
         {
             var timeHolder = TimeHolder.Instance;
-            timeHolder.AddOnTimeChanged((time) =>
+            if (timeHolder != null)
             {
-                if (time % weatherChangeSpan == 0)
+                timeHolder.AddOnTimeChanged((time) =>
                 {
-                    UpdateWeather();
-                }
-            });
-            timeHolder.startTime = placeData.startTime;
-            timeHolder.endTime = placeData.endTime;
+                    if (time % weatherChangeSpan == 0)
+                    {
+                        UpdateWeather();
+                    }
+                });
+                timeHolder.startTime = placeData.startTime;
+                timeHolder.endTime = placeData.endTime;
+            }
             lighting = GetComponent<LightingMgr>();
             lighting.globalColor = placeData.globalColor;
 
@@ -62,12 +65,10 @@ namespace Environment
                 {
                     if (SaveManager.Instance.GetSeason() == SaveManager.Season.winter)
                     {
-                        Debug.Log("Snow!");
                         WeatherManager.Instance.SwitchWeather(PlaceData.Weather.Snowy);
                     }
                     else
                     {
-                        Debug.Log("Rainy!");
                         WeatherManager.Instance.SwitchWeather(PlaceData.Weather.Rainy);
                     }
                     weatherStartTime = TimeHolder.Instance.CurrentTime;
