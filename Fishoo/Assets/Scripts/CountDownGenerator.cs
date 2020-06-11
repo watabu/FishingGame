@@ -30,6 +30,7 @@ public class CountDownGenerator : SingletonMonoBehaviour<CountDownGenerator>
     {
         count.gameObject.SetActive(true);
         start.gameObject.SetActive(true);
+        start.sprite = null;
         StartCoroutine(CountDown(span, Onfinished));
     }
 

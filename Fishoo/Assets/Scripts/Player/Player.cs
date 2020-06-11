@@ -55,11 +55,16 @@ namespace Player
             GameMgr.Instance.AddInputUpdatable(this);
             m_state = State.Normal;
             fishingToolMgr = FishingGame.FishingGameMgr.fishingToolMgr;
+            GameMgr.Instance.AddOnGameStarted(() =>
+            {
+                canMove = true;
+                ThrowRod();
+            });
         }
 
         public void InputUpdate()
         {
-            if (!canMove) return;
+          /*  if (!canMove) return;
             if (m_state == State.Fishing) return;
             if (m_state == State.Normal && InputSystem.GetKeyDown(throwRod))
             {
@@ -68,7 +73,7 @@ namespace Player
             else if (m_state == State.ThrowRod && InputSystem.GetKeyDown(retriveRod))
             {
                 RetrieveRod();
-            }
+            }*/
         }
 
         /// <summary>
@@ -103,6 +108,7 @@ namespace Player
             canMove = false;
             await Task.Delay(1000);
             canMove = true;
+            ThrowRod();
         }
 
         public void StartFishing()
