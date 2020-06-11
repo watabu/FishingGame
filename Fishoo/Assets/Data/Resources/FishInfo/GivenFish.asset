@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: GivenFish
   m_EditorClassIdentifier: 
   FishName: "\u3082\u3089\u3063\u305F\u9B5A"
-  description: "\u4E00\u5339\u3082\u91E3\u308C\u306A\u304B\u3063\u305F\u6642\u306B\u3068\u306A\u308A\u306E\u4EBA\u304B\u3089\u3082\u3089\u3063\u305F\u9B5A\u3002\u6B21\u306F\u91E3\u308C\u308B\u3088\u3046\u306B\u304C\u3093\u3070\u308D\u3046\uFF01"
+  description: "\u4E00\u5339\u3082\u91E3\u308C\u306A\u304B\u3063\u305F\u6642\u306B\u3068\u306A\u308A\u306E\u4EBA\u304B\u3089\u3082\u3089\u3063\u305F\u9B5A\u3002\u6B21\u56DE\u3053\u305D\u306F\u91E3\u308C\u308B\u3088\u3046\u306B\u304C\u3093\u3070\u308D\u3046\uFF01"
   description_Caught: 
   sellingPrice: 10
   exp: 10
-  icon: {fileID: 21300000, guid: 0bd689ff9e3d2e6458b1c7e1a28b979d, type: 3}
+  icon: {fileID: 21300000, guid: a47a90e9cfebb5944b08ecee0e3ea175, type: 3}
   data: {fileID: 11400000, guid: 0b9e27df4d11e9b45bc3f698e4accd68, type: 2}
   isGomi: 0
   rank: 0
