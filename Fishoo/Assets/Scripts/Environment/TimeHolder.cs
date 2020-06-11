@@ -97,6 +97,15 @@ namespace Environment
             if (Skip) timeSpan = 0.01f;
             AddOnTimeChanged((time) => { timeText.text = GetTimeString(); });
             CurrentTime = startTime;
+            timeText.text = GetTimeString();
+            Debug.Log(CurrentTime);
+        }
+
+        /// <summary>
+        /// 時間の進める
+        /// </summary>
+        public void StartTimer()
+        {
             InvokeRepeating("TimeChange", 0f, timeSpan);
         }
 

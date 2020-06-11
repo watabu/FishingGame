@@ -25,7 +25,7 @@ namespace Environment
 
 
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             var timeHolder = TimeHolder.Instance;
             timeHolder.AddOnTimeChanged((time) =>

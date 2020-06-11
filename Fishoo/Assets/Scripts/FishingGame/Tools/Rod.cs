@@ -26,6 +26,7 @@ namespace FishingGame.Tools
         /// </summary>
         public void ExpandTools()
         {
+            if (throwRodAnimation == null) return;
             throwRodAnimation.clip = throwRodClip;
             throwRodAnimation.Play();
         }

@@ -7,21 +7,24 @@ using UnityEngine.Events;
 /// <summary>
 /// シーンに入って最初に指定されるボタンやBボタンを押したときに指定されたボタンへ遷移させる
 /// </summary>
-public class SelectButtonMgr : MonoBehaviour
+public class SelectButtonMgr : SingletonMonoBehaviour<SelectButtonMgr>
 {
 
     [Tooltip("Bボタンを押したときに指定されるボタン"), SerializeField]
-    Button backButton;
-    public Button BackButton { get { return backButton; } }
+    Selectable backButton;
+    public Selectable BackButton { get { return backButton; } }
 
-    public Button temporaryBackButton;
+    public Selectable temporaryBackButton;
 
     [Tooltip("シーンで最初に指定されるボタン"), SerializeField]
     Button firstButton;
     public Button FirstButton { get { return firstButton; } }
+
+    public bool isStop;
     // Use this for initialization
     void Start()
     {
+        isStop = false;
         if (firstButton != null)
             firstButton.Select();
     }
@@ -29,16 +32,13 @@ public class SelectButtonMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ボタンが操作不可能だったり存在しなければ
-        if (backButton ==null || !backButton.IsActive())
-            return;
-        
 
+        if (isStop) return;
         if (Player.InputSystem.GetKeyDown(KeyCode.B))
         {
-            if (temporaryBackButton != null)
+            if (temporaryBackButton != null && temporaryBackButton.IsActive())
                 temporaryBackButton.Select();
-            else
+            else if (backButton!= null && backButton.IsActive())
                 backButton.Select();
         }
     }

@@ -129,6 +129,7 @@ public class ResultManager : MonoBehaviour
 
     public void ToStageSelect()
     {
+        Destroy(FindObjectOfType<Player.CoolerBox>().gameObject);
         SceneManager.LoadScene("StageSelect");
         SaveManager.Instance.AddWeek();
     }
