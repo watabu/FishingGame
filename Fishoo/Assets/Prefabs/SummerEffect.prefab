@@ -49,8 +49,10 @@ MonoBehaviour:
   inSummer: 1
   inAutumn: 0
   inWinter: 0
-  AppearTime: 1400
-  DisappearTime: 1600
+  appearTime: 1100
+  disappearTime: 1300
+  probability_StageSelect: 0.5
+  rateOverTime_Max: 0
   m_AppearTime: 0
   m_DisappearTime: 0
   debug: 0
@@ -832,7 +834,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.9
       mode: 0
       spread: 0
       speed:
@@ -2708,11 +2710,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 0
+    enabled: 1
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.31
       minScalar: 1
       maxCurve:
         serializedVersion: 2

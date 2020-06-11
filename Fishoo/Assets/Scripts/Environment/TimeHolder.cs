@@ -114,6 +114,7 @@ namespace Environment
             color.a = 0;
             while( color.a < 0.5)
             {
+                if (countDownText == null) return;
                 color.a += 0.05f;
                 countDownText.GetComponentInParent<Image>().color = color;
                 var textColor = countDownText.color;

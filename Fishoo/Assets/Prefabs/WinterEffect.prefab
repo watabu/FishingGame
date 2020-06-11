@@ -49,8 +49,10 @@ MonoBehaviour:
   inSummer: 0
   inAutumn: 0
   inWinter: 1
-  AppearTime: 1500
-  DisappearTime: 1700
+  appearTime: 0
+  disappearTime: 0
+  P: 0.5
+  rateOverTime_Max: 200
   m_AppearTime: 0
   m_DisappearTime: 0
   debug: 0
@@ -201,7 +203,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.3
+      scalar: 2.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -2712,7 +2714,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.26
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2878,7 +2880,7 @@ ParticleSystem:
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.35
       minScalar: 0
       maxCurve:
         serializedVersion: 2

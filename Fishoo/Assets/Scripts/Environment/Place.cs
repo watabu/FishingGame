@@ -60,7 +60,16 @@ namespace Environment
                 //データの降水確率がランダム値より大きければ雨を降らせる
                 if (placeData.rainyPercent >= Random.value)
                 {
-                    WeatherManager.Instance.SwitchWeather(PlaceData.Weather.Rainy);
+                    if (SaveManager.Instance.GetSeason() == SaveManager.Season.winter)
+                    {
+                        Debug.Log("Snow!");
+                        WeatherManager.Instance.SwitchWeather(PlaceData.Weather.Snowy);
+                    }
+                    else
+                    {
+                        Debug.Log("Rainy!");
+                        WeatherManager.Instance.SwitchWeather(PlaceData.Weather.Rainy);
+                    }
                     weatherStartTime = TimeHolder.Instance.CurrentTime;
                 }
             }
@@ -69,6 +78,15 @@ namespace Environment
                 if (TimeHolder.Instance.CurrentTime > placeData.rainDuration + weatherStartTime)
                     WeatherManager.Instance.SwitchWeather(PlaceData.Weather.Sunny);
             }
+        }
+
+        public void ChangeRainy()
+        {
+            if (SaveManager.Instance.GetSeason() == SaveManager.Season.winter)
+                WeatherManager.Instance.SwitchWeather(PlaceData.Weather.Snowy);
+            else
+                WeatherManager.Instance.SwitchWeather(PlaceData.Weather.Rainy);
+            weatherStartTime = TimeHolder.Instance.CurrentTime;
         }
 
     }

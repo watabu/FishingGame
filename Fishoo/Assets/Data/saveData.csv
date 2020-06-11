@@ -1,8 +1,8 @@
-week , 16
-money , 2940
+week , 10
+money , 3565
 canSkipTutorial , False
-caughtFishCount , 77
-Fish , バール , 63
+caughtFishCount , 98
+Fish , バール , 81
 Fish , コイ , 1
 Fish , 骨魚 , 1
 Fish , ロブスター , 1
@@ -15,5 +15,8 @@ Fish , エビ , 1
 Fish , ナポレオンフィッシュ , 1
 Fish , イカ , 1
 Fish , ウミヘビ , 1
+Fish , Starfish , 1
+Fish , Bluefish , 1
+Fish , サバ , 1
 Fish , Starfish , 1
 Fish , Bluefish , 1
