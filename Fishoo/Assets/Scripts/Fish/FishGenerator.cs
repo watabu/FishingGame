@@ -15,6 +15,8 @@ namespace Fish
         [SerializeField] Sprite SRfish;
         [SerializeField] Sprite SSRfish;
 
+        [SerializeField] bool debug;
+
         List<Environment.PlaceData.FishGenerateData> availableFishList;
 
         [SerializeField,ReadOnly]List<Environment.PlaceData.FishGenerateData> fishList_R = new List<Environment.PlaceData.FishGenerateData>();
@@ -24,6 +26,8 @@ namespace Fish
         //魚を生成する座標
         List<Transform> generators = new List<Transform>();
 
+        [SerializeField]GameObject testfish;
+        
         private int bottomScore;
         // Start is called before the first frame update
         void Start()
@@ -62,23 +66,33 @@ namespace Fish
         {
             //生成する座標をランダムで選択
             var pos = generators[Random.Range(0, generators.Count)].position;
+            FishInfo selectedFish;
+            if (!debug)
+            {
+                var selectedFishList = SelectFishList();
+                int index = Random.Range(0, selectedFishList.Count);
+                //            Debug.Log(index);
+                selectedFish = selectedFishList[Random.Range(0, selectedFishList.Count)].fishInfo;
+                //場所データから一つランダムに選択
+                //            FishInfo selectedFish = availableFishList[Random.Range(0, availableFishList.Count)].fishInfo;
 
-            var selectedFishList = SelectFishList();
-            int index = Random.Range(0, selectedFishList.Count);
-            Debug.Log(index);
-            FishInfo selectedFish = selectedFishList[Random.Range(0, selectedFishList.Count)].fishInfo;
-            //場所データから一つランダムに選択
-//            FishInfo selectedFish = availableFishList[Random.Range(0, availableFishList.Count)].fishInfo;
+                //Debug.Log(selectedFish);
+                GameObject fishObj = Instantiate(FishPrefab.gameObject, pos, Quaternion.identity);
+                fishObj.GetComponent<Behavior.CommonFish>().InitData(selectedFish, GetShadowSprite(selectedFish.rank));
+                //            commonFish.sprite.sprite = GetShadowSprite(commonFish.fishInfo.rank);
 
-            //Debug.Log(selectedFish);
-            GameObject fishObj = Instantiate(FishPrefab.gameObject, pos, Quaternion.identity);
-            fishObj.GetComponent<Behavior.CommonFish>().InitData(selectedFish, GetShadowSprite(selectedFish.rank));
-            //            commonFish.sprite.sprite = GetShadowSprite(commonFish.fishInfo.rank);
+                //とりあえず生成される魚は確定
+                //GameObject fish = Instantiate(testFish[0], pos, Quaternion.identity);
 
-            //とりあえず生成される魚は確定
-            //GameObject fish = Instantiate(testFish[0], pos, Quaternion.identity);
+                return fishObj;
 
-            return fishObj;
+            }
+            else
+            {
+                GameObject fishObj = Instantiate(testfish, pos, Quaternion.identity);
+                fishObj.GetComponent<Fish.Behavior.CommonFish>().InitData();
+                return fishObj;
+            }
         }
 
         /// <summary>

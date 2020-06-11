@@ -37,10 +37,13 @@ namespace Fish
 
         public Rank rank;
 
-        /// <summary>
-        /// 魚のレア度に応じた魚影のスプライトを得る
-        /// </summary>
-        /// <returns></returns>
+        [SerializeField,Tooltip("どの場所にも登録されていない場合0のまま")]
+        public int usedCount;
+        private void OnEnable()
+        {
+            usedCount = 0;    
+        }
+
 
     }
 }

@@ -39,6 +39,8 @@ namespace Environment
         /// </summary>
         [SerializeField, ReadOnly] int m_currentTime;
         [SerializeField] bool Skip;
+        private int countDownTime1 = 60;
+        private int countDownTime2 = 15;
         public int CurrentTime
         {
             get { return m_currentTime; }
@@ -46,13 +48,13 @@ namespace Environment
             {
                 m_currentTime = Mathf.Clamp(value, startTime, endTime);
                 OnTimeChanged.Invoke(m_currentTime);
-                if(phase == Phase.nomarl&& m_currentTime +60 > endTime)
+                if(phase == Phase.nomarl&& m_currentTime +countDownTime1 > endTime)
                 {
                     phase = Phase.phase1;
                     AddOnTimeChanged((time) => { countDownText.text = "残" + GetTimeString(endTime- m_currentTime); });
                     Appear();
                 }
-                if(phase == Phase.phase1 && m_currentTime +10 > endTime)
+                if(phase == Phase.phase1 && m_currentTime +countDownTime2 > endTime)
                 {
                     phase = Phase.phase2;
                     InvokeRepeating("CountDown", 0, countDownSpan);

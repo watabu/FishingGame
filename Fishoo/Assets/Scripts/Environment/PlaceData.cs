@@ -82,6 +82,7 @@ namespace Environment
             foreach(var fish in availableFishList)
             {
                 if (fish == null) continue;
+                fish.fishInfo.usedCount++;
                 fishCount_dic[fish.fishInfo.rank] += 1;
             }
             fishCount_R = fishCount_dic[Fish.FishInfo.Rank.R];

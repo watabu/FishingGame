@@ -18,11 +18,11 @@ MonoBehaviour:
   recognitionDistance: 2
   lifeTime: 10000
   status:
-    hpMax: 6
+    hpMax: 3
     hpRegene: 0.2
   moveType: 4
   commands:
-  - ABB
-  - BAB
-  - RLL
-  - RRL
+  - AAB
+  - BBA
+  - LUR
+  - RDL

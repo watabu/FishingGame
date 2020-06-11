@@ -42,7 +42,8 @@ namespace Fish
         public FishStatus status;
         [Tooltip("通常時の魚の動き方")]
         public Behavior.MoveType moveType = Behavior.MoveType.SwimHorizontaly;
-        
+        [Tooltip("コメント")]
+        public string comment;
         [Tooltip("コマンド 最大12文字")]
         public List<string> commands;
 

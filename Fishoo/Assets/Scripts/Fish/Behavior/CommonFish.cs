@@ -109,6 +109,31 @@ namespace Fish.Behavior
             });
         }
 
+        public void InitData()
+        {
+
+            var hpbar = HPbar.GetComponent<RectTransform>().sizeDelta;
+            hpbar.x = 10 * fishMoveData.status.hpMax;
+            HPbar.GetComponent<RectTransform>().sizeDelta = hpbar;
+            HPbar.maxValue = fishMoveData.status.hpMax;
+
+            colliderToNoticeHook = GetComponent<CircleCollider2D>();
+            colliderToNoticeHook.radius = fishMoveData.recognitionDistance;
+            SetAppear();
+            m_damageable = GetComponent<Damageable>();
+            m_damageable.Initialize(fishMoveData.status.hpMax, fishMoveData.status.hpMax, fishMoveData.status.hpRegene);
+            m_damageable.AddHPChanged((hp) =>
+            {
+                HPbar.value = hp;
+            });
+            m_damageable.AddDead(() =>
+            {
+                //釣られたときの処理
+                //SetDisAppear();
+                SetCaught();
+            });
+        }
+
         private void Start()
         {
             m_fishingHook = FishingGame.FishingGameMgr.Hook;

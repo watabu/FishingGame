@@ -22,7 +22,7 @@ MonoBehaviour:
     hpRegene: 0.2
   moveType: 4
   commands:
-  - A
-  - BB
-  - RRR
-  - UDR
+  - AAB
+  - BBA
+  - RUU
+  - LDD

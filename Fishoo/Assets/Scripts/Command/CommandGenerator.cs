@@ -26,6 +26,7 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
     /// コンボが最大まで達したか
     /// </summary>
     bool isFever = false;
+
     /// <summary>
     /// targetFishのFishMoveDataがもつコマンドのリストから一つ選んで生成する
     /// </summary>
@@ -76,4 +77,5 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
         comboCount = 0;
         isFever = false;
     }
+
 }

@@ -11,7 +11,7 @@ public class Damageable : MonoBehaviour
     [Header("Properties")]
     [SerializeField, Tooltip("最大体力"), ReadOnly]
     float m_MaxHP;
-    [SerializeField, Tooltip("現在の体力"), ReadOnly]
+    [SerializeField, Tooltip("現在の体力"),ReadOnly]
     float m_HP;
     [SerializeField, Tooltip("秒間ごとの回復量"), ReadOnly]
     float m_HPRegene;
