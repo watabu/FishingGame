@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// ゲームのマネージャー
@@ -18,6 +19,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     [SerializeField] private bool canSkipTutorial=false;
     [SerializeField] private TextMeshProUGUI seasonText;
     [SerializeField] private TextMeshProUGUI weekText;
+    [SerializeField] private Selectable pauseUISelect;
     List<IInputUpdatable> m_inputObjects = new List<IInputUpdatable>();
 
     [SerializeField] public Environment.PlaceData currentPlace;
@@ -41,8 +43,8 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     // Start is called before the first frame update
     void Start()
     {
-       BGM.clip= SaveManager.Instance.GetSeasonBGM();
-            BGM.Play();
+        BGM.clip = SaveManager.Instance.GetSeasonBGM();
+        BGM.Play();
         pauseUI.SetActive(false);
         if (tutorialUI != null)
             tutorialUI.gameObject.SetActive(false);
@@ -53,15 +55,15 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         weekText.text = $"{ SaveManager.Instance.Year}年目";
 
         m_CanMove = false;
-        CountDownGenerator.Instance.CountStart(2f,1f, () =>
-        {
-            m_CanMove = true;
-            if (canSkipTutorial)
-                SwitchState(State.Playing);
-            else
-                SwitchState(State.Tutorial);
-        });
-        Environment.TimeHolder.Instance.AddOnTimeFinished((time)=> { SwitchState(State.Finished); });
+        CountDownGenerator.Instance.CountStart(2f, 1f, () =>
+         {
+             m_CanMove = true;
+             if (canSkipTutorial)
+                 SwitchState(State.Playing);
+             else
+                 SwitchState(State.Tutorial);
+         });
+        Environment.TimeHolder.Instance.AddOnTimeFinished((time) => { SwitchState(State.Finished); });
     }
 
     // Update is called once per frame
@@ -113,6 +115,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         pauseUI.SetActive(true);
         m_IsPauseActive = true;
         pauseUIActivate.Play();
+        pauseUISelect.Select();
     }
     public void ClosePauseUI()
     {
