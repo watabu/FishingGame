@@ -21,7 +21,8 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     List<IInputUpdatable> m_inputObjects = new List<IInputUpdatable>();
 
     [SerializeField] public Environment.PlaceData currentPlace;
-
+    [SerializeField] AudioSource pauseUIActivate;
+    [SerializeField] AudioSource BGM;
     UnityAction OnGameStarted;
     bool m_IsPauseActive = false;
     bool m_CanMove = true;
@@ -40,6 +41,8 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     // Start is called before the first frame update
     void Start()
     {
+       BGM.clip= SaveManager.Instance.GetSeasonBGM();
+            BGM.Play();
         pauseUI.SetActive(false);
         if (tutorialUI != null)
             tutorialUI.gameObject.SetActive(false);
@@ -50,7 +53,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         weekText.text = $"{ SaveManager.Instance.Year}年目";
 
         m_CanMove = false;
-        CountDownGenerator.Instance.CountStart(1, () =>
+        CountDownGenerator.Instance.CountStart(2f,1f, () =>
         {
             m_CanMove = true;
             if (canSkipTutorial)
@@ -109,6 +112,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     {
         pauseUI.SetActive(true);
         m_IsPauseActive = true;
+        pauseUIActivate.Play();
     }
     public void ClosePauseUI()
     {
