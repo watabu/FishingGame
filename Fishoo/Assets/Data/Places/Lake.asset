@@ -55,8 +55,8 @@ MonoBehaviour:
     type: 3}
   rankingSaveData: {fileID: 11400000, guid: 4ad4299fa0f40fe4aacf8aaa452fb371, type: 2}
   fishCount_R: 6
-  fishCount_SR: 1
-  fishCount_SSR: 4
+  fishCount_SR: 2
+  fishCount_SSR: 3
   availableFishList:
   - fishInfo: {fileID: 11400000, guid: 65c7a5c1bc7278847a32c73ebdf0693b, type: 2}
     weather: 0
@@ -99,6 +99,10 @@ MonoBehaviour:
     beginTime: 0
     endTime: 0
   - fishInfo: {fileID: 11400000, guid: 710c77743973bd6488e1a1f131833ed9, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 218bdd517d13b894089c433585814a5a, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
