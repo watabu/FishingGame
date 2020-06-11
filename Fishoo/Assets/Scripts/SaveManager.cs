@@ -190,6 +190,17 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
         }
         return Season.spring;
     }
+    public AudioClip GetSeasonBGM()
+    {
+        switch (week % 4)
+        {
+            case 1: return property.springBGM;
+            case 2: return property.summerBGM;
+            case 3: return property.autumnBGM;
+            case 0: return property.winterBGM;
+        }
+        return property.springBGM;
+    }
 
     public int GetSeasonID()
     {

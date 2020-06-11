@@ -20,22 +20,24 @@ public class CountDownGenerator : SingletonMonoBehaviour<CountDownGenerator>
         base.Awake();
         count.gameObject.SetActive(false);
         start.gameObject.SetActive(false);
+        count.sprite = null;
+        start.sprite = null;
     }
 
     /// <summary>
     /// カウントダウンを開始
     /// </summary>
     /// <param name="span">カウント１つについての秒(デフォルトは１秒)</param>
-    public void CountStart(float span=1f,UnityAction Onfinished=null)
+    public void CountStart(float delay=0f,float span=1f,UnityAction Onfinished=null)
     {
         count.gameObject.SetActive(true);
         start.gameObject.SetActive(true);
-        start.sprite = null;
-        StartCoroutine(CountDown(span, Onfinished));
+        StartCoroutine(CountDown(delay,span, Onfinished));
     }
 
-    IEnumerator CountDown(float span, UnityAction Onfinished)
+    IEnumerator CountDown(float delay,float span, UnityAction Onfinished)
     {
+        yield return new WaitForSeconds(delay);
         count.sprite = count3;
         countDownBell.Play();
         yield return new WaitForSeconds(span);
