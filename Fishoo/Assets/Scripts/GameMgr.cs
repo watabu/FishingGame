@@ -94,11 +94,8 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
             return;
 
         }
-        Debug.Log(currentPlace);
         //ランキングや背景を渡す
         var obj = Instantiate(currentPlace.backGroundPrefab, resultManager.transform);
-        Debug.Log(obj);
-        Debug.Log("obj");
         resultManager.SelectRankingData(currentPlace.rankingSaveData);
 
         //魚を渡す

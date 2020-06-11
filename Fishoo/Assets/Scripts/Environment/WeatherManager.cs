@@ -16,6 +16,7 @@ namespace Environment
         [Header("Effects")]
         [SerializeField] private Transform effectParent;
         [SerializeField] private GameObject rainEffect;
+        [SerializeField] private GameObject snowEffect;
         public PlaceData.Weather CurrentWeather { get; private set; } = PlaceData.Weather.Sunny;
 
         GameObject m_currentEffect;
@@ -34,6 +35,10 @@ namespace Environment
                     m_currentEffect= Instantiate(rainEffect, effectParent);
                     break;
                 case PlaceData.Weather.Snowy:
+                    m_currentEffect = Instantiate(snowEffect, effectParent);
+                    var pos = m_currentEffect.transform.localPosition;
+                    pos.y += 189;
+                    m_currentEffect.transform.localPosition = pos;
                     break;
                 case PlaceData.Weather.Windy:
                     break;
