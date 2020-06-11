@@ -18,11 +18,12 @@ MonoBehaviour:
   recognitionDistance: 2
   lifeTime: 10000
   status:
-    hpMax: 26
+    hpMax: 27
     hpRegene: -0.1
   moveType: 4
+  comment: 
   commands:
-  - ABXYXXY
-  - AAABBB
-  - RURUL
-  - DURL
+  - XYXYXX
+  - ABAALRL
+  - RUDALUD
+  - YAYYB

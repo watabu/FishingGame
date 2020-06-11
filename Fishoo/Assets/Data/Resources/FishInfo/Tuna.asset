@@ -18,6 +18,7 @@ MonoBehaviour:
   sellingPrice: 5
   exp: 1
   icon: {fileID: 21300000, guid: 53cb921b28b74a74cab785b4692fd077, type: 3}
-  data: {fileID: 11400000, guid: 51811fa80cc85db40bc8a9b6dae36ab3, type: 2}
+  data: {fileID: 11400000, guid: 1baf91d5322c6dd459cc5579fccccf06, type: 2}
   isGomi: 0
   rank: 1
+  usedCount: 1

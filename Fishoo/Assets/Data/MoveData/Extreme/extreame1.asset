@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8044401f67968c44c82dd9b9e56633ab, type: 3}
-  m_Name: hard6
+  m_Name: extreame1
   m_EditorClassIdentifier: 
   escapeOnMiss: 0
   speed_nomal: 1
@@ -18,12 +18,13 @@ MonoBehaviour:
   recognitionDistance: 2
   lifeTime: 10000
   status:
-    hpMax: 26
+    hpMax: 30
     hpRegene: -0.1
   moveType: 4
-  comment: 
+  comment: "\u7169\u96D1"
   commands:
-  - RUARUA
-  - LRXLRXY
-  - RDLUAAA
-  - YYLUBAB
+  - ABLURDAB
+  - XYLURDXX
+  - ALDRBABBAB
+  - XYBYBBAX
+  - ABXXYXYXAUD

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8044401f67968c44c82dd9b9e56633ab, type: 3}
-  m_Name: TestFish_MD 2
+  m_Name: extreame4
   m_EditorClassIdentifier: 
   escapeOnMiss: 0
   speed_nomal: 1
@@ -18,11 +18,13 @@ MonoBehaviour:
   recognitionDistance: 2
   lifeTime: 10000
   status:
-    hpMax: 15
-    hpRegene: 0.2
+    hpMax: 42
+    hpRegene: -0.1
   moveType: 4
+  comment: "\u307E\u3042\u307E\u3042"
   commands:
-  - ABLUALU
-  - XYDRXDR
-  - AAYB
-  - BBYA
+  - ABRUABLDXY
+  - ABXYABXYUYU
+  - RDLURDLUA
+  - DDABDUAB
+  - DYABDYAX
