@@ -14,10 +14,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     [Header("References")]
     [SerializeField] private Player.InputSystem inputSystem;
     [SerializeField] private GameObject pauseUI;
-    [SerializeField] private GameObject gameStartEffectPrefab;
-    [SerializeField] private Transform gameStartEffectParent;
-    [SerializeField] AudioSource gameStartBell;
-    [SerializeField]private TutorialUI tutorialUI;
+    [SerializeField] private TutorialUI tutorialUI;
     [SerializeField] private bool canSkipTutorial=false;
     [SerializeField] private TextMeshProUGUI seasonText;
     [SerializeField] private TextMeshProUGUI weekText;
@@ -26,8 +23,10 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
     [SerializeField] public Environment.PlaceData currentPlace;
 
     UnityAction OnGameStarted;
-    GameStartEffect gameStartEffect;
     bool m_IsPauseActive = false;
+    bool m_CanMove = true;
+
+
     public enum State
     {
         Nove,
@@ -49,11 +48,11 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         seasonText.text = SaveManager.Instance.GetSeasonKanji();
         seasonText.color = SaveManager.Instance.GetSeasonColor();
         weekText.text = $"{ SaveManager.Instance.Year}年目";
-        gameStartEffect = Instantiate(gameStartEffectPrefab, gameStartEffectParent).GetComponent<GameStartEffect>();
-        this.Delay(3f, () =>
+
+        m_CanMove = false;
+        CountDownGenerator.Instance.CountStart(1, () =>
         {
-            gameStartBell.Play();
-            gameStartEffect.FadeOut();
+            m_CanMove = true;
             if (canSkipTutorial)
                 SwitchState(State.Playing);
             else
@@ -75,7 +74,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
                 OpenPauseUI();
         }
         //ポーズ中はプレイヤーを動かしたりしない
-        if (!m_IsPauseActive)
+        if (m_CanMove&&!m_IsPauseActive)
         {
             foreach (var i in m_inputObjects)
                 i.InputUpdate();
