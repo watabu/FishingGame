@@ -152,6 +152,7 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
                 tutorialUI.Initialize();
                 break;
             case State.Playing:
+                Environment.TimeHolder.Instance.StartTimer();
                 if (tutorialUI == null)
                 {
                     OnGameStarted?.Invoke();
@@ -162,7 +163,6 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
                 break;
             case State.Finished:
                 SceneManager.sceneLoaded += ResultSceneLoaded;
-                Debug.Log("aa");
                 SceneManager.LoadScene("Result");
                 break;
             default:

@@ -1,32 +1,32 @@
-week , 26
-money , 5825
+week , 28
+money , 5960
 canSkipTutorial , False
-caughtFishCount , 152
+caughtFishCount , 159
 Fish , バール , 112
 Fish , コイ , 2
 Fish , 骨魚 , 1
 Fish , ロブスター , 2
 Fish , もらった魚 , 1
 Fish , Starfish , 1
-Fish , 茶色い魚 , 2
+Fish , 茶色い魚 , 3
 Fish , Bluefish , 1
-Fish , 岩 , 2
+Fish , 岩 , 3
 Fish , エビ , 1
 Fish , ナポレオンフィッシュ , 1
-Fish , イカ , 2
-Fish , ウミヘビ , 1
+Fish , イカ , 3
+Fish , ウミヘビ , 2
 Fish , Starfish , 1
 Fish , Bluefish , 1
 Fish , サバ , 1
 Fish , Starfish , 1
 Fish , Bluefish , 1
 Fish , うに , 2
-Fish , ブーツ , 1
+Fish , ブーツ , 2
 Fish , さんま , 1
 Fish , 藻 , 1
 Fish , タイヤ , 2
 Fish , マンボウ , 1
-Fish , たこ , 2
+Fish , たこ , 3
 Fish , ウミネコ？ , 1
 Fish , Greenfish , 1
 Fish , ウミウシ？ , 1
@@ -34,3 +34,4 @@ Fish , Greenfish , 1
 Fish , うなぎ , 1
 Fish , ホオジロザメ , 1
 Fish , のどぐろ , 2
+Fish , まぐろ , 1

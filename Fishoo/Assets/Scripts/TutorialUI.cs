@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class TutorialUI : MonoBehaviour
 {
@@ -38,9 +39,10 @@ public class TutorialUI : MonoBehaviour
 
     public void CloseUI()
     {
-        buttonMgr.temporaryBackButton = null;
         gameObject.SetActive(false);
-        buttonMgr.FirstButton.Select();
+        Selectable selectable = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
+        buttonMgr.temporaryBackButton = selectable;
+        selectable.Select();
     }
 
 }

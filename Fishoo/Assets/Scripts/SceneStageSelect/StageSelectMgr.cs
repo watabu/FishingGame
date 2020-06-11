@@ -131,6 +131,7 @@ public class StageSelectMgr : MonoBehaviour
                 break;
             case State.stageSelect:
                 stageCanvas.gameObject.SetActive(true);
+                SelectButtonMgr.Instance.BackButton.Select();
                 titleCanvas.DOFade(0f, 0.5f);
                 stageCanvas.DOFade(1f, 0.5f).OnComplete(() =>
                 {
@@ -159,6 +160,7 @@ public class StageSelectMgr : MonoBehaviour
     Selectable optionBefore;
     public void ActivateOption()
     {
+        SelectButtonMgr.Instance.isStop = true;
         optionBefore = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
         optionCanvas.gameObject.SetActive(true);
         optionCanvas.DOFade(1f, 0.5f).OnComplete(() =>
@@ -177,6 +179,7 @@ public class StageSelectMgr : MonoBehaviour
             optionCanvas.gameObject.SetActive(false);
         });
         optionBefore.Select();
+        SelectButtonMgr.Instance.isStop = false;
     }
 
     Selectable popUpBefore;
