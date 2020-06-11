@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1468283986021226162}
   - component: {fileID: 1468283986021226163}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: GameStartSE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 80264ccc24a77424aa8f3c80ddf7edb3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 57f0ed473f6dfc54984d7653fc6d4da9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.505
   m_Pitch: 1
@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 3858737251211782933}
   - component: {fileID: 2379498746385174767}
   m_Layer: 0
-  m_Name: Audio Source (1)
+  m_Name: CountDownBell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -385,7 +385,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8d475de1f34550546838ff76ab89e8ff, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1d0af4c924336aa4ca74f9c975ba75e6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.505
   m_Pitch: 1

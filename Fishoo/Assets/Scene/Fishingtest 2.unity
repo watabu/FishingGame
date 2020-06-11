@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1344,7 +1344,10 @@ MonoBehaviour:
   canSkipTutorial: 1
   seasonText: {fileID: 432085691}
   weekText: {fileID: 1270863174}
+  pauseUISelect: {fileID: 0}
   currentPlace: {fileID: 0}
+  pauseUIActivate: {fileID: 0}
+  BGM: {fileID: 0}
 --- !u!4 &621125309
 Transform:
   m_ObjectHideFlags: 0
@@ -1418,9 +1421,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a67c58333484145be777b343761780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishGenerator: {fileID: 0}
   commandGenerator: {fileID: 1076578344}
   input: {fileID: 487605938}
+  fishCaughtSE: {fileID: 0}
   attackTimeMin: 100
   m_targetFish: {fileID: 0}
   canAttack: 0
@@ -6743,8 +6746,10 @@ MonoBehaviour:
   inSummer: 0
   inAutumn: 0
   inWinter: 0
-  AppearTime: 730
-  DisappearTime: 1855
+  appearTime: 0
+  disappearTime: 0
+  probability_StageSelect: 0
+  rateOverTime_Max: 0
   m_AppearTime: 0
   m_DisappearTime: 0
   debug: 0
@@ -6830,6 +6835,7 @@ MonoBehaviour:
   effectParent: {fileID: 1186425627}
   rainEffect: {fileID: 5808905631822179074, guid: 188ab01c7e6f76045ad207b0a818c69e,
     type: 3}
+  snowEffect: {fileID: 0}
 --- !u!1 &1065154872
 GameObject:
   m_ObjectHideFlags: 0

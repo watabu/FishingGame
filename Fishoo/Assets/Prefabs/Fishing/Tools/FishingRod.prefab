@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 1902484931}
-  CaughtFishList: []
 --- !u!212 &1902484931
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -492,7 +491,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3ad85efadcab1944d949f4eee31a0c97, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f0ce879f29d30a844b6a7526a922e894, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.52
   m_Pitch: 1
@@ -778,7 +777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1659281992b547c48b90c5eb2e3c721a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaft: {fileID: 5072582634350938805}
   sprite: {fileID: 5072582634451358808}
   throwRodClip: {fileID: 7400000, guid: d663cea6f329b2440bef907d3b763553, type: 2}
   retrieveRodClip: {fileID: 7400000, guid: 52fc30919922367458f98574be109295, type: 2}

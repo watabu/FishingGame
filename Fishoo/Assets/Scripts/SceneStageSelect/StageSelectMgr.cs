@@ -33,6 +33,9 @@ public class StageSelectMgr : MonoBehaviour
     [SerializeField] private CanvasGroup titleCanvas;
     [SerializeField] private CanvasGroup stageCanvas;
     [SerializeField] private CanvasGroup optionCanvas;
+    [SerializeField] private Selectable firstSelectButton;
+    [SerializeField] private GameObject popUp2UI;
+    [SerializeField] private Selectable popUp2SelectButton;
     [SerializeField] private TextMeshProUGUI daySeason;
     [SerializeField] private TextMeshProUGUI dayWeek;
     [SerializeField] private TextMeshProUGUI money;
@@ -57,6 +60,7 @@ public class StageSelectMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        firstSelectButton.Select();
         if (!NoTitle)
             m_state = State.title;
         else
@@ -79,6 +83,7 @@ public class StageSelectMgr : MonoBehaviour
         optionCanvas.interactable = false;
         optionCanvas.alpha = 0f;
         optionCanvas.gameObject.SetActive(false);
+        popUp2UI.gameObject.SetActive(false);
         SetMapFromSeason();
     }
 
@@ -149,12 +154,14 @@ public class StageSelectMgr : MonoBehaviour
 
     public void ActivateTutorial()
     {
+        popUpBefore = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
         tutorialUI.SetActive(true);
         tutorialUI.GetComponent<TutorialUI>().Initialize();
     }
     public void DeActivateTutorial()
     {
         tutorialUI.SetActive(false);
+        popUpBefore.Select();
     }
 
     Selectable optionBefore;
@@ -186,8 +193,8 @@ public class StageSelectMgr : MonoBehaviour
 
     public void ActivatePopUp()
     {
-        popUpUI.SetActive(true);
         popUpBefore = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
+        popUpUI.SetActive(true);
         popUpSelectButton.Select();
     }
     public void DeActivatePopUp()
@@ -195,7 +202,18 @@ public class StageSelectMgr : MonoBehaviour
         popUpUI.SetActive(false);
         popUpBefore.Select();
     }
-
+    public void ResetSaveData()
+    {
+        popUp2UI.gameObject.SetActive(true);
+        popUp2SelectButton.Select();
+        SaveManager.Instance.DeleteAll();
+    }
+    public void CloseResetSaveData()
+    {
+        popUp2UI.gameObject.SetActive(false);
+        optionCanvas.gameObject.SetActive(false);
+        DeActivateOption();
+    }
     void SetMapFromSeason()
     {
         switch (SaveManager.Instance.GetSeason())

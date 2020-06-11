@@ -271,7 +271,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -221241818511655153, guid: 26d27e204cadb5a4fbe83bbf24263b7d,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: f5606a6381d07b24c988a1b8d870acc8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bd8040efeca95204597a1bb663d0b467, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
@@ -367,7 +367,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7920195445422277073}
   - component: {fileID: 6500178888962941323}
-  - component: {fileID: 3373506510880191801}
   - component: {fileID: 5620042744156151330}
   m_Layer: 5
   m_Name: StageSelectButton
@@ -414,60 +413,6 @@ MonoBehaviour:
   description: {fileID: 7665192857077112013}
   buttonName: {fileID: 7920195445477121910}
   button: {fileID: 7920195445516146018}
---- !u!114 &3373506510880191801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7920195445422277070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5620042744156151330}
-          m_MethodName: SetTrigger
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Open
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 8417276429589345023}
-          m_MethodName: Play
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5620042744156151330}
-          m_MethodName: SetTrigger
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Close
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!95 &5620042744156151330
 Animator:
   serializedVersion: 3
@@ -790,7 +735,7 @@ MonoBehaviour:
             m_StringArgument: Open
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 8417276429589345023}
           m_MethodName: Play
           m_Mode: 1
           m_Arguments:
