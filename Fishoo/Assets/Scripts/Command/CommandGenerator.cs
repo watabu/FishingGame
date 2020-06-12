@@ -32,6 +32,10 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
     /// </summary>
     bool isFever = false;
 
+    private void Start()
+    {
+        SetComboImageAlpha(0);
+    }
     /// <summary>
     /// targetFishのFishMoveDataがもつコマンドのリストから一つ選んで生成する
     /// </summary>
