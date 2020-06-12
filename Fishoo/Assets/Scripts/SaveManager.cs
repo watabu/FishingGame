@@ -63,7 +63,7 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
         }
     }
 
-    void Save()
+   public  void Save()
     {
 
         StreamWriter streamWriter = new StreamWriter("Assets/Data/saveData.csv", false);
