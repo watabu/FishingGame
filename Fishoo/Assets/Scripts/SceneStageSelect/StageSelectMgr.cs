@@ -75,7 +75,10 @@ public class StageSelectMgr : MonoBehaviour
         dayWeek.text = $"<size=30>{SaveManager.Instance.Year}</size>年目";
         foreach (var i in scenesData)
         {
-            i.button.Initialize(i.place.description, i.place.placeName, () => { SceneManager.LoadScene(i.sceneName); });
+            string description = i.place.description;
+            description += i.place.AchievementInfo().ToString();
+            i.button.Initialize(description, i.place.placeName, () => { SceneManager.LoadScene(i.sceneName); });
+            
         }
         money.text = $"現在の所持金：{SaveManager.Instance.money}";
         m_time = 0f;

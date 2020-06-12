@@ -156,7 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0c1dc4b8ae1f546a856ccc5f82db58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 4900000, guid: 46b905d6e05270749bfe1e165c6e4477, type: 3}
   property: {fileID: 11400000, guid: 1bf3a1fa685571347b350451eab7890b, type: 2}
   week: 0
   money: 0
@@ -1479,6 +1478,36 @@ PrefabInstance:
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
       objectReference: {fileID: 992098931}
+    - target: {fileID: 8879494532287923734, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879494532287923734, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879494532287923734, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879494532287923734, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1718308860}
+    - target: {fileID: 8879494532287923734, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: DebugPrint
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879494532287923734, guid: 10a7ce76c8c4ab040a161e67dcaf99fb,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a7ce76c8c4ab040a161e67dcaf99fb, type: 3}
 --- !u!1 &319701237
@@ -5000,6 +5029,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1698740661}
         m_MethodName: Select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1718308860}
+        m_MethodName: IgnoreThis
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17666,6 +17706,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 463139468}
         m_MethodName: Select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1718308860}
+        m_MethodName: AdaptThis
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

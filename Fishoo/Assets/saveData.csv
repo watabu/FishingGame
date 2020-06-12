@@ -1,7 +1,7 @@
-week , 5
-money , 650
+week , 6
+money , 1665
 canSkipTutorial , False
-caughtFishCount , 12
+caughtFishCount , 23
 Fish , もらった魚 , 3
 Fish , ホオジロザメ , 1
 Fish , 骨魚 , 1
@@ -10,5 +10,11 @@ Fish , リュウグウノツカイ , 1
 Fish , ロブスター , 1
 Fish , バール , 1
 Fish , タイヤ , 1
-Fish , のどぐろ , 1
+Fish , のどぐろ , 3
 Fish , チャウオ , 1
+Fish , アサギウオ , 1
+Fish , ハリセンボン , 2
+Fish , クラゲ , 2
+Fish , たこ , 2
+Fish , マンボウ , 1
+Fish , ウミウシ？ , 1

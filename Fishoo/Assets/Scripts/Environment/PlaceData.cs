@@ -90,5 +90,24 @@ namespace Environment
             fishCount_SSR = fishCount_dic[Fish.FishInfo.Rank.SSR];
         }
 
+
+        public int AchievementRate()
+        {
+            var info = AchievementInfo();
+            if (info.Item2 == 0)
+                return 100;
+            return info.Item1 * 100 / info.Item2;
+        }
+
+        public (int,int) AchievementInfo()
+        {
+            var data = SaveManager.Instance;
+            int caughtFishCount = 0;
+            foreach (var fish in availableFishList)
+            {
+                caughtFishCount += (data.isCaught(fish.fishInfo) ? 1 : 0);
+            }
+            return (caughtFishCount, availableFishList.Count);
+        }
     }
 }

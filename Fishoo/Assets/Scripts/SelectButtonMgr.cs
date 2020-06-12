@@ -43,6 +43,14 @@ public class SelectButtonMgr : SingletonMonoBehaviour<SelectButtonMgr>
         }
     }
 
+    public void IgnoreThis()
+    {
+        isStop = true;
+    }
+    public void AdaptThis()
+    {
+        isStop = false;
+    }
     public void LoadStageSelect()
     {
         SceneManager.LoadScene("StageSelect");

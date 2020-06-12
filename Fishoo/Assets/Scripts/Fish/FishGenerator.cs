@@ -70,6 +70,10 @@ namespace Fish
             if (!debug)
             {
                 var selectedFishList = SelectFishList();
+                if (selectedFishList.Count == 0)
+                {
+                    Debug.LogError("PlaceDataに設定されている魚のランクのうちどれかが0です。PlaceDataの魚のレア度の変更を検討してください");
+                }
                 int index = Random.Range(0, selectedFishList.Count);
                 //            Debug.Log(index);
                 selectedFish = selectedFishList[Random.Range(0, selectedFishList.Count)].fishInfo;

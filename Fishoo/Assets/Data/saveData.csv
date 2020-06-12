@@ -1,4 +1,10 @@
-week , 1
-money , 0
+week , 2
+money , 335
 canSkipTutorial , False
-caughtFishCount , 0
+caughtFishCount , 6
+Fish , 岩 , 1
+Fish , サバ , 1
+Fish , コイ , 1
+Fish , 骨魚 , 1
+Fish , ウミウシ？ , 1
+Fish , ロブスター , 1
