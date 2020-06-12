@@ -1,8 +1,9 @@
-week , 1
-money , 160
+week , 4
+money , 240
 canSkipTutorial , False
-caughtFishCount , 4
+caughtFishCount , 8
 Fish , うなぎ , 1
-Fish , もらった魚 , 1
+Fish , もらった魚 , 4
 Fish , ダイオウイカ , 1
 Fish , イカ , 1
+Fish , エビ , 1
