@@ -20,4 +20,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 8b54aba30a420c048be72958910dda98, type: 3}
   data: {fileID: 11400000, guid: a7aa0f16754b03346b8cd7583eb5de89, type: 2}
   isGomi: 0
-  rank: 0
+  rank: 1
+  usedCount: 1

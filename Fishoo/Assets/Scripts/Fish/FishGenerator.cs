@@ -70,8 +70,6 @@ namespace Fish
             if (!debug)
             {
                 var selectedFishList = SelectFishList();
-                int index = Random.Range(0, selectedFishList.Count);
-                //            Debug.Log(index);
                 selectedFish = selectedFishList[Random.Range(0, selectedFishList.Count)].fishInfo;
                 //場所データから一つランダムに選択
                 //            FishInfo selectedFish = availableFishList[Random.Range(0, availableFishList.Count)].fishInfo;
@@ -104,23 +102,38 @@ namespace Fish
             bottomScore++;
             //int score = Random.Range(0, 100) + bottomScore;
             int score = Random.Range(0, 100);
-            score = Mathf.Min(score, 99);
-//            Debug.Log(score);
-//            var rank = GetRank(score, SaveManager.Instance.Year);
+            //            Debug.Log(score);
+            //            var rank = GetRank(score, SaveManager.Instance.Year);
             var rank = GetRank(score, 3);
             Debug.Log(rank);
-            switch (rank)
+            while (true)
             {
-                case FishInfo.Rank.R:
-                    return fishList_R;
-                case FishInfo.Rank.SR:
-                    bottomScore = 0;
-                    return fishList_SR;
-                case FishInfo.Rank.SSR:
-                    bottomScore = 0;
-                    return fishList_SSR;
+                switch (rank)
+                {
+                    case FishInfo.Rank.R:
+                        if (fishList_R.Count == 0)
+                        {
+                            rank = FishInfo.Rank.SR;
+                            continue;
+                        }
+                        return fishList_R;
+                    case FishInfo.Rank.SR:
+                        if (fishList_SR.Count == 0)
+                        {
+                            rank = FishInfo.Rank.SSR;
+                            continue;
+                        }
+                        bottomScore = 0;
+                        return fishList_SR;
+                    case FishInfo.Rank.SSR:
+                        if (fishList_SSR.Count == 0)
+                        {
+                            return null;
+                        }
+                        bottomScore = 0;
+                        return fishList_SSR;
+                }
             }
-            return fishList_R;
         }
 
         /// <summary>
@@ -131,10 +144,8 @@ namespace Fish
         /// <returns></returns>
         FishInfo.Rank GetRank(int score, int year)
         {
-            if (score < 50)
-                return FishInfo.Rank.R;
-            if (score < 80)
-                return FishInfo.Rank.SR;
+            if (score < 70) return FishInfo.Rank.R;
+            if (score < 92)  return FishInfo.Rank.SR;
             return FishInfo.Rank.SSR;
             //if (year < 2)
             //{
