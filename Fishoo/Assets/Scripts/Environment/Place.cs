@@ -27,35 +27,35 @@ namespace Environment
         // Start is called before the first frame update
         void Awake()
         {
-            var timeHolder = TimeHolder.Instance;
-            if (timeHolder != null)
-            {
-                timeHolder.AddOnTimeChanged((time) =>
-                {
-                    if (time % weatherChangeSpan == 0)
-                    {
-                        UpdateWeather();
-                    }
-                });
-                timeHolder.startTime = placeData.startTime;
-                timeHolder.endTime = placeData.endTime;
-
-                //リザルトの背景・ランキングのために渡す
-                GameMgr.Instance.currentPlace = placeData;
-            }
             lighting = GetComponent<LightingMgr>();
             lighting.globalColor = placeData.globalColor;
+            var timeHolder = TimeHolder.Instance;
+            if (timeHolder == null)
+            {
+                Debug.LogError("Time Holder does not find");
+                return;
+            }
+            timeHolder.AddOnTimeChanged((time) =>
+            {
+                if (time % weatherChangeSpan == 0)
+                {
+                    UpdateWeather();
+                }
+            });
+            timeHolder.startTime = placeData.startTime;
+            timeHolder.endTime = placeData.endTime;
 
-            
+            //リザルトの背景・ランキングのために渡す
+            GameMgr.Instance.currentPlace = placeData;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (Player.InputSystem.GetKeyDown(KeyCode.Y))
+           /* if (Player.InputSystem.GetKeyDown(KeyCode.Y))
             {
                 TimeHolder.Instance.AddTime(200);
-            }
+            }*/
         }
 
         void UpdateWeather()

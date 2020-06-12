@@ -21,7 +21,7 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
     }
     void Load()
     {
-      var  path = Application.dataPath + "/" + "saveData.csv";
+        var path = Application.dataPath + "/" + "saveData.csv";
         StringBuilder sb = new StringBuilder(1024);  //※capacity は任意
         if (!File.Exists(path))
         {
@@ -40,8 +40,7 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
         string[] line = File.ReadAllLines(path);
         foreach (var l in line)
         {
-         var command=   l.Replace(" ", "").Replace("　", "");
-            Debug.Log(command);
+            var command = l.Replace(" ", "").Replace("　", "");
             var dat = command.Trim().Split(','); // , 区切りでリストに追加
 
             Debug.Log($"dat[0]='{dat[0]}'");

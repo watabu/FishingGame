@@ -53,16 +53,7 @@ MonoBehaviour:
   rainDuration: 120
   backGroundPrefab: {fileID: 0}
   rankingSaveData: {fileID: 11400000, guid: 9512525e72c774146b0209ac0316167c, type: 2}
-  availableFishList:
-  - fish: {fileID: 5436173513765085611, guid: f107d1fffe224fe49ad416683ac2d105, type: 3}
-    weather: 0
-    beginTime: 0
-    endTime: 0
-  - fish: {fileID: 5436173513765085611, guid: 698804cda834cf14bb2d92a63509cd03, type: 3}
-    weather: 0
-    beginTime: 0
-    endTime: 0
-  - fish: {fileID: 5436173513765085611, guid: a6c7000cd9557404386e80e6fe2c5f05, type: 3}
-    weather: 0
-    beginTime: 0
-    endTime: 0
+  fishCount_R: 0
+  fishCount_SR: 0
+  fishCount_SSR: 0
+  availableFishList: []
