@@ -102,7 +102,6 @@ namespace Fish
             bottomScore++;
             //int score = Random.Range(0, 100) + bottomScore;
             int score = Random.Range(0, 100);
-            score = Mathf.Min(score, 99);
             //            Debug.Log(score);
             //            var rank = GetRank(score, SaveManager.Instance.Year);
             var rank = GetRank(score, 3);
@@ -145,10 +144,8 @@ namespace Fish
         /// <returns></returns>
         FishInfo.Rank GetRank(int score, int year)
         {
-            if (score < 50)
-                return FishInfo.Rank.R;
-            if (score < 80)
-                return FishInfo.Rank.SR;
+            if (score < 70) return FishInfo.Rank.R;
+            if (score < 92)  return FishInfo.Rank.SR;
             return FishInfo.Rank.SSR;
             //if (year < 2)
             //{

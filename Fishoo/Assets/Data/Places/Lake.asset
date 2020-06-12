@@ -54,9 +54,9 @@ MonoBehaviour:
   backGroundPrefab: {fileID: 7517221855657897763, guid: b912090cca0830949bfbf12fe249dd40,
     type: 3}
   rankingSaveData: {fileID: 11400000, guid: 4ad4299fa0f40fe4aacf8aaa452fb371, type: 2}
-  fishCount_R: 7
-  fishCount_SR: 2
-  fishCount_SSR: 3
+  fishCount_R: 12
+  fishCount_SR: 1
+  fishCount_SSR: 1
   availableFishList:
   - fishInfo: {fileID: 11400000, guid: 65c7a5c1bc7278847a32c73ebdf0693b, type: 2}
     weather: 0
@@ -99,6 +99,14 @@ MonoBehaviour:
     beginTime: 0
     endTime: 0
   - fishInfo: {fileID: 11400000, guid: 30e5e7eaa3599274d952abf13122fbdd, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: d3738a5cce2663f4fbfd31d432881c43, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 7295029901e7fae48b1fed7b5a56dbf1, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
