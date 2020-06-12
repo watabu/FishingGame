@@ -53,6 +53,10 @@ public class CountDownGenerator : SingletonMonoBehaviour<CountDownGenerator>
         yield return new WaitForSeconds(span);
         start.sprite = null;
         Onfinished.Invoke();
+        count.gameObject.SetActive(false);
+        start.gameObject.SetActive(false);
+        countDownBell.Stop();
+        gameStartBell.Stop();
         yield return null;
     }
 }
