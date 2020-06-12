@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
   m_Name: StarFish
   m_EditorClassIdentifier: 
-  FishName: Star fish
+  FishName: "\u30D2\u30C8\u30C7"
   description: "\u30D2\u30C8\u30C7\u3002\u3069\u3046\u3084\u3063\u3066\u91DD\u306B\u98DF\u3044\u3064\u3044\u305F\u3093\u3060\u308D\u3046"
   description_Caught: 
   sellingPrice: 50
@@ -21,3 +21,4 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: b3c8276ce7b96d14a80a743231d30138, type: 2}
   isGomi: 0
   rank: 0
+  usedCount: 1

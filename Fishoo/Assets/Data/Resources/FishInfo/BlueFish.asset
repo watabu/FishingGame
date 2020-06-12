@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
   m_Name: BlueFish
   m_EditorClassIdentifier: 
-  FishName: Blue fish
+  FishName: "\u30A2\u30B5\u30AE\u30A6\u30AA"
   description: "DHA\u914D\u5408"
   description_Caught: 
   sellingPrice: 50
@@ -21,3 +21,4 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 29ca03316ac8546478612d644f16358d, type: 2}
   isGomi: 0
   rank: 0
+  usedCount: 0
