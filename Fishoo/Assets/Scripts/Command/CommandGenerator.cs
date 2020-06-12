@@ -31,10 +31,11 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
     /// コンボが最大まで達したか
     /// </summary>
     bool isFever = false;
-
+    private Animator comboAnimator;
     private void Start()
     {
         SetComboImageAlpha(0);
+        comboAnimator = comboImage.GetComponent<Animator>();
     }
     /// <summary>
     /// targetFishのFishMoveDataがもつコマンドのリストから一つ選んで生成する
@@ -66,6 +67,8 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
     public void OnCommandKilled()
     {
         comboImage.sprite = comboSpriteList[comboCount];
+        comboAnimator.SetTrigger("ComboChanged");
+        
         audio.clip = commandsSE[comboCount];
         audio.Play();
          comboCount++;

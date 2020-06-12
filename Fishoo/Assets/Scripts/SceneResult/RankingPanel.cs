@@ -41,7 +41,7 @@ public class RankingPanel : MonoBehaviour
     /// <param name="record"></param>
     public void UpdateRanking(RankingSaveData.Record record)
     {
-        Debug.Log("updateRanking");
+//        Debug.Log("updateRanking");
         int rank = RankingData.InsertRecord(record);
 
         DrawRanking();

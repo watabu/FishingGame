@@ -78,7 +78,7 @@ public class ResultManager : MonoBehaviour
     /// <param name="fishList"></param>
     public void SetList(List<Fish.FishInfo> fishList)
     {
-        Debug.Log("SetList");
+//        Debug.Log("SetList");
         result.debug = false;
         ranking.debug = false;
         //リザルトの更新

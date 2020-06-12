@@ -107,6 +107,8 @@ namespace Player
             coolerBox.Add(fish);
             canMove = false;
             await Task.Delay(1000);
+            if (gameObject == null)
+                return;
             canMove = true;
             ThrowRod();
         }

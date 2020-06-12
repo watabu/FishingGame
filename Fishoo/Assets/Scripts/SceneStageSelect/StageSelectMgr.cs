@@ -76,7 +76,14 @@ public class StageSelectMgr : MonoBehaviour
         foreach (var i in scenesData)
         {
             string description = i.place.description;
-            description += i.place.AchievementInfo().ToString();
+            description += "\n";
+            if (i.place.AchievementInfo().Item2 != 0)
+            {
+                description += "達成率:";
+                var item = i.place.AchievementInfo();
+                description += item.Item1 + "/" + item.Item2;
+
+            }
             i.button.Initialize(description, i.place.placeName, () => { SceneManager.LoadScene(i.sceneName); });
             
         }

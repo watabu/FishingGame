@@ -9,6 +9,7 @@ public class ResultContent : MonoBehaviour
 
     public Image icon;
     public Image Frame;
+    public Image new_Icon;
     public TextMeshProUGUI Name;
     public TextMeshProUGUI count;
     public TextMeshProUGUI Money;

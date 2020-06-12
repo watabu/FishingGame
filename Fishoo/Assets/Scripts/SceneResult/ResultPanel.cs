@@ -42,7 +42,7 @@ public class ResultPanel : MonoBehaviour
     /// <param name="fishList"></param>
     public void UpdateResult(List<Fish.FishInfo> fishList) 
     {
-        Debug.Log("updateResult");
+        //Debug.Log("updateResult");
         int Money = 0;
         foreach(var fish in fishList) {
             if (fish == null) continue;
@@ -55,7 +55,8 @@ public class ResultPanel : MonoBehaviour
             script.Money.text = (fish.sellingPrice).ToString();
             script.gameObject.transform.SetParent(contentParent.transform);
             Money += fish.sellingPrice;
-            Debug.Log(fish);
+            if (SaveManager.Instance.isCaught(fish))
+                script.new_Icon.gameObject.SetActive(false);
             SaveManager.Instance.AddFish(fish);
         }
         //一匹も釣らなかった時にもらえる魚

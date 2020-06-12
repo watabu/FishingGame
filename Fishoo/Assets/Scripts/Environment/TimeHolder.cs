@@ -58,7 +58,7 @@ namespace Environment
                 if (phase == Phase.phase1 && m_currentTime + countDownTime2 > endTime)
                 {
                     phase = Phase.phase2;
-                    Debug.Log("phase2");
+                    //Debug.Log("phase2");
                     InvokeRepeating("CountDown", 0, countDownSpan);
                 }
                 if (phase == Phase.phase2 && m_currentTime == endTime)
