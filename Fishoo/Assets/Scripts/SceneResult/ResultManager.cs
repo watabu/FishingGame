@@ -133,6 +133,15 @@ public class ResultManager : MonoBehaviour
         SceneManager.LoadScene("StageSelect");
         SaveManager.Instance.AddWeek();
     }
+
+    public void ToTitle()
+    {
+        Destroy(FindObjectOfType<Player.CoolerBox>().gameObject);
+        StageSelectMgr.SetTitleActive();
+        SceneManager.LoadScene("StageSelect");
+        SaveManager.Instance.AddWeek();
+    }
+
     public void SelectRankingData(RankingSaveData data)
     {
         ranking.RankingData = data;

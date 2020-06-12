@@ -247,6 +247,10 @@ public class StageSelectMgr : MonoBehaviour
         dayWeek.text = $"<size=30>{ SaveManager.Instance.Year}</size>年目";
     }
 
+    static public void SetTitleActive()
+    {
+        NoTitle = false;
+    }
 
 public void QuitApp()
     {

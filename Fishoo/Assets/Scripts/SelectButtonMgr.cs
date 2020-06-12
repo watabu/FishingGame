@@ -25,8 +25,8 @@ public class SelectButtonMgr : SingletonMonoBehaviour<SelectButtonMgr>
     void Start()
     {
         isStop = false;
-        if (firstButton != null)
-            firstButton.Select();
+        //if (firstButton != null)
+          //  firstButton.Select();
     }
 
     // Update is called once per frame

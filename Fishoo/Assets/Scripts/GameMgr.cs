@@ -172,7 +172,9 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
 
     public void BackToTitle()
     {
-        SceneManager.sceneLoaded += ResultSceneLoaded;
+        var coolerBox = FindObjectOfType<Player.CoolerBox>();
+        Destroy(coolerBox.gameObject);
+        SceneManager.sceneLoaded -= ResultSceneLoaded;
         SceneManager.LoadScene("StageSelect");
     }
 }

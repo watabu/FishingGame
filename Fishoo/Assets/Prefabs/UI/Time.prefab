@@ -97,6 +97,7 @@ MonoBehaviour:
   m_currentTime: 0
   Skip: 0
   timeText: {fileID: 1965974153401760239}
+  countDownImage: {fileID: 1965974153813059051}
   countDownText: {fileID: 1965974154916367789}
   countDownAudio: {fileID: 1965974153813059049}
   OnTimeChanged:

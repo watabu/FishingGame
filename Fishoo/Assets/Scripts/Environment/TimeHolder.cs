@@ -68,6 +68,7 @@ namespace Environment
         }
 
         [SerializeField] private TextMeshProUGUI timeText;
+        [SerializeField] private Image countDownImage;
         [SerializeField] private TextMeshProUGUI countDownText;
         [SerializeField] private AudioSource countDownAudio;
         [SerializeField] private TimeHolderEvent OnTimeChanged = new TimeHolderEvent();
@@ -84,9 +85,9 @@ namespace Environment
         {
             endTime = 999999;
             phase = Phase.nomarl;
-            var color = countDownText.GetComponentInParent<Image>().color;
+            var color = countDownImage.color;
             color.a = 0;
-            countDownText.GetComponentInParent<Image>().color = color;
+            countDownImage.color = color;
             var textColor = countDownText.color;
             textColor.a = color.a;
             countDownText.color = textColor;
@@ -121,13 +122,13 @@ namespace Environment
 
         async void Appear()
         {
-            var color = countDownText.GetComponentInParent<Image>().color;
+            var color = countDownImage.color;
             color.a = 0;
             while( color.a < 0.5)
             {
                 if (countDownText == null) return;
                 color.a += 0.05f;
-                countDownText.GetComponentInParent<Image>().color = color;
+                countDownImage.color = color;
                 var textColor = countDownText.color;
                 textColor.a = color.a*2;
                 countDownText.color = textColor;
