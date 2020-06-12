@@ -118,6 +118,8 @@ namespace FishingGame
             FIshCatchEffect.Instance.Initialize(TargetFish.fishInfo);
             Hook.FinishBite();
             fishCaughtSE.Play();
+            commandGenerator.ResetComboCount();
+
         }
 
         /// <summary>

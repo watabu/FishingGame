@@ -740,7 +740,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1d2c614d3ee6189479c7ce5adc3477b8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1696,7 +1696,7 @@ MonoBehaviour:
   tutorialUI: {fileID: 936190427}
   tutorialSelectButton: {fileID: 731573832}
   popUpUI: {fileID: 108596882}
-  popUpSelectButton: {fileID: 1687738891}
+  popUpSelectButton: {fileID: 1166977721}
   popUpUI_quitApp: {fileID: 0}
   activateInput: 0.8
 --- !u!4 &340032048

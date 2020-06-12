@@ -39,12 +39,14 @@ namespace Environment
                 });
                 timeHolder.startTime = placeData.startTime;
                 timeHolder.endTime = placeData.endTime;
+
+                //リザルトの背景・ランキングのために渡す
+                GameMgr.Instance.currentPlace = placeData;
             }
             lighting = GetComponent<LightingMgr>();
             lighting.globalColor = placeData.globalColor;
 
-            //リザルトの背景・ランキングのために渡す
-            GameMgr.Instance.currentPlace = placeData;
+            
         }
 
         // Update is called once per frame

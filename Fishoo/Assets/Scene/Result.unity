@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2911,7 +2911,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00004208088, y: -0.000017506}
+  m_AnchoredPosition: {x: -0.00004208088, y: -0.000030517578}
   m_SizeDelta: {x: 9.7, y: 353}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &940439373
@@ -3961,7 +3961,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 200042327}
   m_Direction: 2
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.07266312
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6051,7 +6051,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 849977103}
   m_HandleRect: {fileID: 849977102}
   m_Direction: 0
-  m_Value: 0.0000031461382
+  m_Value: 0.000009438414
   m_Size: 0.9864695
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -6122,7 +6122,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 84115de3d63f06743b07043d7a8d8e01, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.55
   m_Pitch: 1
   Loop: 0
   Mute: 0

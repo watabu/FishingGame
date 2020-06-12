@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Threading.Tasks;
 
 public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
 {
@@ -19,8 +21,11 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
     [SerializeField] private List<CommandData> commandsData=new List<CommandData>();
     [SerializeField] private List<AudioClip> commandsSE=new List<AudioClip>();
     [SerializeField] private AudioSource audio;
+    [SerializeField] private Image comboImage;
+    [SerializeField] private Image comboImage2;
+    [SerializeField] private List<Sprite> comboSpriteList = new List<Sprite>();
 
-    public int MaxCombo = 8;
+    [ReadOnly]public int MaxCombo = 8;
     [ReadOnly]public int comboCount = 0;
     /// <summary>
     /// コンボが最大まで達したか
@@ -40,7 +45,7 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
         List<KeyCode> com = fishMoveData.GetCommands();
         obj.SetCommand(com,commandEffectParent);
         if (isFever)
-            ResetComboCount();
+            FinishCombo();
     }
 
     public GameObject GetCommandPrefab(KeyCode key)
@@ -56,6 +61,7 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
 
     public void OnCommandKilled()
     {
+        comboImage.sprite = comboSpriteList[comboCount];
         audio.clip = commandsSE[comboCount];
         audio.Play();
          comboCount++;
@@ -64,6 +70,7 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
             isFever = true;
             comboCount--;
         }
+        SetComboImageAlpha(1);
     }
 
     public void PlayeMistakeSound()
@@ -72,10 +79,36 @@ public class CommandGenerator : SingletonMonoBehaviour<CommandGenerator>
         audio.PlayOneShot(commandsSE[0]);
         audio.PlayOneShot(commandsSE[2]);
     }
+
+    /// <summary>
+    /// ミス等でコンボをリセットする
+    /// </summary>
     public void ResetComboCount()
     {
         comboCount = 0;
+        comboImage.sprite = null;
         isFever = false;
+        SetComboImageAlpha(0);
+    }
+
+    /// <summary>
+    /// コンボ数の表記を0.3秒残すコンボリセット
+    /// </summary>
+    public async void FinishCombo()
+    {
+        comboCount = 0;
+        isFever = false;
+        await Task.Delay(300);
+        SetComboImageAlpha(0);
+        comboImage.sprite = null;
+    }
+
+    void SetComboImageAlpha(float a)
+    {
+        var color = comboImage.color;
+        color.a = a;
+        comboImage.color = color;
+        comboImage2.color = color;
     }
 
 }
