@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.Events;
 using System.Threading.Tasks;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace Environment
 {
@@ -17,9 +18,9 @@ namespace Environment
         public class TimeHolderEvent : UnityEvent<int> { }
 
         [Tooltip("開始時刻")]
-        public int startTime;
+        public int startTime= 420;
         [Tooltip("終了時刻")]
-        public int endTime = 999999;
+        public int endTime = 1140;
 
         [Tooltip("時刻変化")]
         public float timeSpan = 0.2f;
@@ -48,13 +49,13 @@ namespace Environment
             {
                 m_currentTime = Mathf.Clamp(value, startTime, endTime);
                 OnTimeChanged.Invoke(m_currentTime);
-                if(phase == Phase.nomarl&& m_currentTime +countDownTime1 > endTime)
+                if (phase == Phase.nomarl && m_currentTime + countDownTime1 > endTime)
                 {
                     phase = Phase.phase1;
-                    AddOnTimeChanged((time) => { countDownText.text = "残" + GetTimeString(endTime- m_currentTime); });
+                    AddOnTimeChanged((time) => { countDownText.text = "残" + GetTimeString(endTime - m_currentTime); });
                     Appear();
                 }
-                if(phase == Phase.phase1 && m_currentTime +countDownTime2 > endTime)
+                if (phase == Phase.phase1 && m_currentTime + countDownTime2 > endTime)
                 {
                     phase = Phase.phase2;
                     Debug.Log("phase2");
@@ -81,9 +82,9 @@ namespace Environment
 
         float m_time = 0f;
 
-        private void Awake()
+        private new void Awake()
         {
-            endTime = 999999;
+            base.Awake();
             phase = Phase.nomarl;
             var color = countDownImage.color;
             color.a = 0;
@@ -91,7 +92,6 @@ namespace Environment
             var textColor = countDownText.color;
             textColor.a = color.a;
             countDownText.color = textColor;
-
         }
         // Start is called before the first frame update
         void Start()
@@ -100,6 +100,8 @@ namespace Environment
             AddOnTimeChanged((time) => { timeText.text = GetTimeString(); });
             CurrentTime = startTime;
             timeText.text = GetTimeString();
+            endTime = 1140;
+            Debug.Log($"終了時刻は{GetTimeString(endTime)}です");
         }
 
         /// <summary>
@@ -120,21 +122,16 @@ namespace Environment
             countDownAudio.Play();
         }
 
-        async void Appear()
+        void Appear()
         {
             var color = countDownImage.color;
             color.a = 0;
-            while( color.a < 0.5)
-            {
-                if (countDownText == null) return;
-                color.a += 0.05f;
-                countDownImage.color = color;
-                var textColor = countDownText.color;
-                textColor.a = color.a*2;
-                countDownText.color = textColor;
-                await Task.Delay(20);
-            }
-
+            countDownImage.color = color;
+            color = countDownText.color;
+            color.a = 0;
+            countDownText.color = color;
+            countDownImage.DOFade(0.5f, 1f);
+            countDownText.DOFade(1f, 1f);
         }
 
         public void AddTime(int t) { CurrentTime += t; }

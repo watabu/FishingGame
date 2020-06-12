@@ -255,10 +255,9 @@ public class StageSelectMgr : MonoBehaviour
 public void QuitApp()
     {
         SaveManager.Instance.Save();
-        Application.Quit();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-
 #endif
+        Application.Quit();
     }
 }

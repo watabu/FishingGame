@@ -8,9 +8,6 @@ using UnityEngine;
 public class SaveManager : SingletonMonoBehaviour<SaveManager>
 {
 
-    [SerializeField] TextAsset data;
-
-
     public new void Awake()
     {
         base.Awake();
@@ -24,19 +21,29 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
     }
     void Load()
     {
+        var path = Application.dataPath + "/" + "saveData.csv";
         StringBuilder sb = new StringBuilder(1024);  //※capacity は任意
-        var line = data.text.Replace(" ", "").Split('\n');
-
-        foreach(var l in line)
+        if (!File.Exists(path))
         {
-            var dat = l.Trim().Split(','); // , 区切りでリストに追加
-
-            if (dat.Length == 1)
+            Debug.Log("File does not exist");
+            using (File.Create(path))
             {
-                Debug.LogError($"SaveData has error   {l}");
-                continue;
+                week = 1;
+                money = 0;
+                canSkipTutorial = false;
+                m_caughtFishCount = 0;
+                m_fishes.Clear();
+                return;
             }
-            Debug.Log($"dat[0]={dat[0]}");
+        }
+
+        string[] line = File.ReadAllLines(path);
+        foreach (var l in line)
+        {
+            var command = l.Replace(" ", "").Replace("　", "");
+            var dat = command.Trim().Split(','); // , 区切りでリストに追加
+
+            Debug.Log($"dat[0]='{dat[0]}'");
             switch (dat[0])
             {
                 case "week":
@@ -65,8 +72,27 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
 
    public  void Save()
     {
-
-        StreamWriter streamWriter = new StreamWriter("Assets/Data/saveData.csv", false);
+      var  path = Application.dataPath + "/" + "saveData.csv";
+        FileInfo fi = new FileInfo(path);
+        Debug.Log(path);
+        using (StreamWriter sw = fi.CreateText())
+        {
+            sw.WriteLine($"week , {week}");
+            sw.Flush();
+            sw.WriteLine($"money , {money}");
+            sw.Flush();
+            sw.WriteLine($"canSkipTutorial , {canSkipTutorial}");
+            sw.Flush();
+            sw.WriteLine($"caughtFishCount , {m_caughtFishCount}");
+            sw.Flush();
+            foreach (var f in m_fishes)
+            {
+                sw.WriteLine($"Fish , {f.fishName} , {f.count}");
+                sw.Flush();
+            }
+        }
+      /*  Debug.Log(path);
+        StreamWriter streamWriter = new StreamWriter(path, false);
 
         streamWriter.WriteLine($"week , {week}");
             streamWriter.Flush();
@@ -80,7 +106,7 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
         {
             streamWriter.WriteLine($"Fish , {f.fishName} , {f.count}");
             streamWriter.Flush();
-        }
+        }*/
     }
 
 
@@ -219,5 +245,6 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
         money = 0;
         m_caughtFishCount = 0;
         m_fishes.Clear();
+        Save();
     }
 }
