@@ -8,8 +8,8 @@ public class RankingContent : MonoBehaviour
 {
 
     public Image icon;
-    public Image Frame;
-    public TextMeshProUGUI Name;
+    public Image frame;
+    public TextMeshProUGUI fisherName;
     public TextMeshProUGUI count;
     public TextMeshProUGUI score;
     // Start is called before the first frame update

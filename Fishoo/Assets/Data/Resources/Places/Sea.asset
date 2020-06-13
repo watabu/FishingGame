@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da47581674ca684458ea058b301efad4, type: 3}
   m_Name: Sea
   m_EditorClassIdentifier: 
+  isFishingStage: 1
+  id: 3
   placeName: Salty Sea
   description: "\u3057\u3087\u3063\u3071\u3044\u3002"
   description_detail: 
@@ -53,10 +55,12 @@ MonoBehaviour:
   rainDuration: 120
   backGroundPrefab: {fileID: 8858876451100477718, guid: c36fa5fcb093c744681eb646539bacce,
     type: 3}
+  rankingSaveData_Origin: {fileID: 11400000, guid: e4643c727f80c914696bcc3180fc4993,
+    type: 2}
   rankingSaveData: {fileID: 11400000, guid: 7f348a1e7b5b813439e639c7437a36e3, type: 2}
-  fishCount_R: 7
-  fishCount_SR: 3
-  fishCount_SSR: 5
+  fishCount_R: 8
+  fishCount_SR: 6
+  fishCount_SSR: 6
   availableFishList:
   - fishInfo: {fileID: 11400000, guid: 00c755003769fa04f96028f1169dba99, type: 2}
     weather: 0

@@ -9,27 +9,25 @@ using UnityEngine;
 /// </summary>
 public class RankingSaveData : ScriptableObject
 {
-    [SerializeField]
-    public string PlaceName;
 
     [System.Serializable]
     public struct Record
     {
         public Sprite icon;
-        public string Name;
-        public int FishCount;
-        public int Score;
+        public string name;
+        public int fishCount;
+        public int score;
     };
     
 
-    [SerializeField,Tooltip("ランキングはスコアで自動でソートされる")] public List<Record> Ranking = new List<Record>();
-    [SerializeField] public int MaxRanking;
+    [SerializeField,Tooltip("ランキングはスコアで自動でソートされる")] public List<Record> ranking = new List<Record>();
+    [SerializeField] public int maxRanking;
 
     private void OnEnable()
     {
-        Ranking.Sort(delegate (Record x, Record y)
+        ranking.Sort(delegate (Record x, Record y)
         {
-            return  y.Score - x.Score ;
+            return  y.score - x.score ;
         });
 
     }
@@ -42,20 +40,20 @@ public class RankingSaveData : ScriptableObject
     public int InsertRecord(Record record)
     {
 
-        for(int i = 0; i < Ranking.Count; i++)
+        for(int i = 0; i < ranking.Count; i++)
         {
-            if( record.Score > Ranking[i].Score )
+            if( record.score > ranking[i].score )
             {
-                Ranking.Insert(i, record);
-                if (Ranking.Count > MaxRanking)
-                    Ranking.RemoveAt(MaxRanking);
+                ranking.Insert(i, record);
+                if (ranking.Count > maxRanking)
+                    ranking.RemoveAt(maxRanking);
                 return i;
             }
         }
-        if (Ranking.Count == MaxRanking)
+        if (ranking.Count == maxRanking)
             return -1;
-        Ranking.Add(record);
-        return Ranking.Count;
+        ranking.Add(record);
+        return ranking.Count;
     }
     
 }

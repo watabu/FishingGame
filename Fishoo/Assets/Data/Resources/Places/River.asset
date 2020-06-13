@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da47581674ca684458ea058b301efad4, type: 3}
   m_Name: River
   m_EditorClassIdentifier: 
+  isFishingStage: 1
+  id: 2
   placeName: Relief River
   description: "\u8DB3\u3092\u5165\u308C\u3066\u6DBC\u3082\u3046"
   description_detail: 
@@ -53,10 +55,12 @@ MonoBehaviour:
   rainDuration: 120
   backGroundPrefab: {fileID: 4829804836035818219, guid: 3ed866eb06443ac4d90fd257e76f76a3,
     type: 3}
+  rankingSaveData_Origin: {fileID: 11400000, guid: 4584964ef77d58f4aaca5e2699ae86a0,
+    type: 2}
   rankingSaveData: {fileID: 11400000, guid: 70330402770a3a048a71c618dd05d2aa, type: 2}
-  fishCount_R: 8
-  fishCount_SR: 2
-  fishCount_SSR: 5
+  fishCount_R: 11
+  fishCount_SR: 4
+  fishCount_SSR: 3
   availableFishList:
   - fishInfo: {fileID: 11400000, guid: 30e5e7eaa3599274d952abf13122fbdd, type: 2}
     weather: 0

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e32163a8d9cb6f543ac6a033d52a2e51, type: 3}
-  m_Name: Ranking_Lake
+  m_Name: Ranking_Lake_Origin 1
   m_EditorClassIdentifier: 
   ranking:
   - icon: {fileID: -8397345125273054732, guid: df3014b604923fb47af170f797e9b538, type: 3}
@@ -35,10 +35,6 @@ MonoBehaviour:
     score: 320
   - icon: {fileID: 21300000, guid: 4d763126be9dd474a9e48c8bf16b24f3, type: 3}
     name: "\u3042\u3093\u3071\u3093"
-    fishCount: 2
-    score: 120
-  - icon: {fileID: 21300000, guid: 80b884e13d3680243af3d83e2182f2b2, type: 3}
-    name: "\u3042\u306A\u305F"
     fishCount: 2
     score: 120
   maxRanking: 15

@@ -52,6 +52,7 @@ MonoBehaviour:
   rainyPercent: 0.2
   rainDuration: 120
   backGroundPrefab: {fileID: 0}
+  rankingSaveData_Origin: {fileID: 0}
   rankingSaveData: {fileID: 11400000, guid: 9512525e72c774146b0209ac0316167c, type: 2}
   fishCount_R: 0
   fishCount_SR: 0

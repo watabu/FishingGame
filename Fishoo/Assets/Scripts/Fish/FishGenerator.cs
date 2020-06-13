@@ -11,9 +11,9 @@ namespace Fish
         [Tooltip("魚を生成する座標オブジェクトをまとめている親オブジェクト")]
         [SerializeField] private Transform generatorsParent;
         [SerializeField] Fish.Behavior.CommonFish FishPrefab;
-        [SerializeField] Sprite Rfish;
-        [SerializeField] Sprite SRfish;
-        [SerializeField] Sprite SSRfish;
+        [SerializeField] Sprite fishR;
+        [SerializeField] Sprite fishSR;
+        [SerializeField] Sprite fishSSR;
 
         [SerializeField] bool debug;
 
@@ -185,13 +185,13 @@ namespace Fish
             switch (rank)
             {
                 case FishInfo.Rank.R:
-                    return Rfish;
+                    return fishR;
                 case FishInfo.Rank.SR:
-                    return SRfish;
+                    return fishSR;
                 case FishInfo.Rank.SSR:
-                    return SSRfish;
+                    return fishSSR;
             }
-            return Rfish;
+            return fishR;
         }
     }
 }

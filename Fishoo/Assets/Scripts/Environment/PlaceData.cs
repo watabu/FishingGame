@@ -28,7 +28,10 @@ namespace Environment
             Snowy,
             Windy,
         }
-
+        [Tooltip("釣りを行う場所か")]
+        public bool isFishingStage;
+        [Tooltip("セーブで使われるID")]
+        public int id;
         [Tooltip("場所の名前"), TextArea]
         public string placeName;
         [Tooltip("場所の説明（地図での）"), TextArea]
@@ -59,7 +62,9 @@ namespace Environment
         public int rainDuration=120;
         [Tooltip("その場所の背景")]
         public GameObject backGroundPrefab;
-        [Tooltip("ランキングデータ")]
+        [SerializeField,Tooltip("ランキングデータの原型")]
+        private RankingSaveData rankingSaveData_Origin;
+        [SerializeField,Tooltip("ランキングデータ")]
         public RankingSaveData rankingSaveData;
 
         [SerializeField, ReadOnly] int fishCount_R;
@@ -108,6 +113,11 @@ namespace Environment
                 caughtFishCount += (data.isCaught(fish.fishInfo) ? 1 : 0);
             }
             return (caughtFishCount, availableFishList.Count);
+        }
+        public void ResetRanking()
+        {
+            rankingSaveData.ranking = new List<RankingSaveData.Record>(rankingSaveData_Origin.ranking);
+            rankingSaveData.maxRanking = rankingSaveData_Origin.maxRanking;
         }
     }
 }

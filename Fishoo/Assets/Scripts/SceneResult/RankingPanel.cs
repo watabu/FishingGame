@@ -14,7 +14,7 @@ public class RankingPanel : MonoBehaviour
 
     public bool canScroll;
     [Tooltip("各ステージのランキングデータ")]
-    public RankingSaveData RankingData;
+    public RankingSaveData rankingData;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,27 +42,27 @@ public class RankingPanel : MonoBehaviour
     public void UpdateRanking(RankingSaveData.Record record)
     {
 //        Debug.Log("updateRanking");
-        int rank = RankingData.InsertRecord(record);
+        int rank = rankingData.InsertRecord(record);
 
         DrawRanking();
     }
 
     public void DrawRanking()
     {
-        foreach (var rec in RankingData.Ranking)
+        foreach (var rec in rankingData.ranking)
         {
             var script = Instantiate(contentPrefab, contentParent.transform).GetComponent<RankingContent>();
             script.icon.sprite = rec.icon;
             //魚の値段によって枠の色を変えるとか?
             //script.Frame.sprite = ;
-            script.Name.text = rec.Name;
-            script.count.text = rec.FishCount.ToString();
-            script.score.text = rec.Score.ToString();
+            script.fisherName.text = rec.name;
+            script.count.text = rec.fishCount.ToString();
+            script.score.text = rec.score.ToString();
             script.gameObject.transform.SetParent(contentParent.transform);
         }
         //縦の長さをそろえる
         var rectTransform = contentParent.GetComponent<RectTransform>().sizeDelta;
-        rectTransform.y = 80.3f * (RankingData.Ranking.Count);
+        rectTransform.y = 80.3f * (rankingData.ranking.Count);
         contentParent.GetComponent<RectTransform>().sizeDelta = rectTransform;
     }
 

@@ -24,7 +24,6 @@ public class ResultManager : MonoBehaviour
     [SerializeField] Animator messagePanel;
     [SerializeField] RankingPanel ranking;
     [SerializeField] Animator animator;
-    [SerializeField] Sprite PlayerIcon;
     [SerializeField] SelectButtonMgr buttonMgr;
     // Start is called before the first frame update
     void Awake()
@@ -85,14 +84,14 @@ public class ResultManager : MonoBehaviour
         result.UpdateResult(fishList);
         //ランキングの更新
         RankingSaveData.Record record;
-        record.Name = "あなた";
-        record.icon = PlayerIcon;
-        record.FishCount = fishList.Count;
+        record.name = SaveManager.Instance.playerName;
+        record.icon = SaveManager.Instance.playerIcon;
+        record.fishCount = fishList.Count;
         int sum = 0;
-        record.Score = 0;
+        record.score = 0;
         foreach (var x in fishList)
             sum += x.sellingPrice;
-        record.Score = sum;
+        record.score = sum;
         ranking.UpdateRanking(record);
     }
     public void ActivateMessage()
@@ -129,6 +128,7 @@ public class ResultManager : MonoBehaviour
 
     public void ToStageSelect()
     {
+        SaveManager.Instance.Save();
         Destroy(FindObjectOfType<Player.CoolerBox>().gameObject);
         SceneManager.LoadScene("StageSelect");
         SaveManager.Instance.AddWeek();
@@ -136,6 +136,7 @@ public class ResultManager : MonoBehaviour
 
     public void ToTitle()
     {
+        SaveManager.Instance.Save();
         Destroy(FindObjectOfType<Player.CoolerBox>().gameObject);
         StageSelectMgr.SetTitleActive();
         SceneManager.LoadScene("StageSelect");
@@ -144,6 +145,6 @@ public class ResultManager : MonoBehaviour
 
     public void SelectRankingData(RankingSaveData data)
     {
-        ranking.RankingData = data;
+        ranking.rankingData = data;
     }
 }

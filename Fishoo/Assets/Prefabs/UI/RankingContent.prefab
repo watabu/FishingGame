@@ -1092,7 +1092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 2439160009778269861}
-  Frame: {fileID: 2439160011371578543}
-  Name: {fileID: 2439160009566021111}
+  frame: {fileID: 0}
+  fisherName: {fileID: 2439160009566021111}
   count: {fileID: 2439160010153269557}
   score: {fileID: 2439160011179812271}

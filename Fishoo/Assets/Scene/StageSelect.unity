@@ -162,6 +162,9 @@ MonoBehaviour:
   canSkipTutorial: 0
   m_caughtFishCount: 0
   m_fishes: []
+  playerIcon: {fileID: 21300000, guid: 80b884e13d3680243af3d83e2182f2b2, type: 3}
+  playerName: "\u3042\u306A\u305F"
+  placeDatas: []
 --- !u!4 &52193223
 Transform:
   m_ObjectHideFlags: 0
@@ -17541,7 +17544,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 1166977721}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
+    m_NormalColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 0.44705883}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}

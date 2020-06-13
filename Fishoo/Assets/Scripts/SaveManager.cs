@@ -7,10 +7,24 @@ using UnityEngine;
 
 public class SaveManager : SingletonMonoBehaviour<SaveManager>
 {
-
+    
     public new void Awake()
     {
         base.Awake();
+        //場所の初期化
+        var availablePlaces = Resources.LoadAll<Environment.PlaceData>("Places");
+
+        placeDatas.Clear();
+        foreach (var place in availablePlaces)
+        {
+            //釣りステージならランキングデータを初期化
+            placeDatas.Add(place);
+            if (place.isFishingStage)
+            {
+                Debug.Log(place.placeName);
+                place.ResetRanking();
+            }
+        }
         Load();
         DontDestroyOnLoad(gameObject);
     }
@@ -22,7 +36,10 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
     void Load()
     {
         var path = Application.dataPath + "/" + "saveData.csv";
-        StringBuilder sb = new StringBuilder(1024);  //※capacity は任意
+        //var path = Application.dataPath + "/" + "saveData2";
+
+        //魚文の文字数(週や金の分70文字, 魚の分16文字*60種類, ランキングデータの分(30文字*15行*3ステージ) ~= 2500 < 4048
+        StringBuilder sb = new StringBuilder(4048);  //※capacity は任意
         if (!File.Exists(path))
         {
             Debug.Log("File does not exist");
@@ -36,6 +53,7 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
                 return;
             }
         }
+        
 
         string[] line = File.ReadAllLines(path);
         foreach (var l in line)
@@ -63,6 +81,9 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
                 case "Fish":
                     m_fishes.Add(new FishData() { fishName = dat[1], count = int.Parse(dat[2]) });
                     break;
+                case "Ranking":
+                    InsertRecord(int.Parse(dat[1]), int.Parse(dat[2]), int.Parse(dat[3]));
+                    break;
                 default:
                     Debug.Log($"This propery is not exist '{dat[0]}'");
                     break;
@@ -72,7 +93,8 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
 
    public  void Save()
     {
-      var  path = Application.dataPath + "/" + "saveData.csv";
+        var path = Application.dataPath + "/" + "saveData.csv";
+        //var path = Application.dataPath + "/" + "saveData2";
         FileInfo fi = new FileInfo(path);
         Debug.Log(path);
         using (StreamWriter sw = fi.CreateText())
@@ -89,6 +111,18 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
             {
                 sw.WriteLine($"Fish , {f.fishName} , {f.count}");
                 sw.Flush();
+            }
+            foreach(var place in placeDatas)
+            {
+                if (!place.isFishingStage) continue;
+                foreach(var rec in place.rankingSaveData.ranking)
+                {
+                    if (rec.name != playerName)
+                        continue;
+                    Debug.Log(place.placeName + " " + rec.fishCount + " " + rec.score);
+                    sw.WriteLine($"Ranking , {place.id} , {rec.fishCount} , {rec.score}");
+                    sw.Flush();
+                }
             }
         }
       /*  Debug.Log(path);
@@ -108,6 +142,7 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
             streamWriter.Flush();
         }*/
     }
+
 
 
     public enum Season
@@ -144,6 +179,13 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
     [SerializeField]
     [Header("Fish Data")]
     List<FishData> m_fishes = new List<FishData>();
+    [Tooltip("ランキングで表示されるプレイヤーのアイコン")]public Sprite playerIcon;
+    [Tooltip("ランキングで表示されるプレイヤーの名前")] public string playerName;
+    /// <summary>
+    /// ランキングデータの保存用
+    /// </summary>
+    [SerializeField]List<Environment.PlaceData> placeDatas = new List<Environment.PlaceData>();
+
 
     public bool isCaught(Fish.FishInfo fish) {
         for (int i = 0; i < m_fishes.Count; i++)
@@ -157,7 +199,7 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
         return 0;
     }
     /// <summary>
-    /// TODO
+    /// 
     /// </summary>
     /// <param name="fish"></param>
     public void AddFish(Fish.FishInfo fish_)
@@ -183,6 +225,27 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
         
 
     }
+
+    private void InsertRecord(int placeID, int fishCount, int score)
+    {
+        if(placeID == 0)
+        {
+            Debug.LogError("placeIDの0は非使用です。設定しなおしてください。");
+        }
+        RankingSaveData.Record record;
+        record.icon = playerIcon;
+        record.name = playerName;
+        record.fishCount = fishCount;
+        record.score = score;
+        foreach (var place in placeDatas)
+        {
+            if(place.id == placeID)
+            {
+                place.rankingSaveData.InsertRecord(record);
+            }
+        }
+    }
+
     public string GetSeasonKanji()
     {
         switch (GetSeason())
@@ -245,6 +308,15 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
         money = 0;
         m_caughtFishCount = 0;
         m_fishes.Clear();
+        foreach (var place in placeDatas)
+        {
+            //釣りステージならランキングデータを初期化
+            if (place.isFishingStage)
+            {
+                Debug.Log(place.placeName);
+                place.ResetRanking();
+            }
+        }
         Save();
     }
 }
