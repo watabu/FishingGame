@@ -54,7 +54,8 @@ public class StageSelectMgr : MonoBehaviour
         none,
         title,
         stageSelect,
-        selected
+        selected,
+        tutorial
     }
     State m_state = State.none;
     float m_time = 0f;
@@ -109,7 +110,11 @@ public class StageSelectMgr : MonoBehaviour
             case State.title:
                 if (Input.anyKeyDown)
                 {
-                    SwitchState(State.stageSelect);
+                    if (SaveManager.Instance.canSkipTutorial)
+                        SwitchState(State.stageSelect);
+                    else
+                        SwitchState(State.tutorial);
+
                 }
                 break;
             case State.stageSelect:
@@ -130,6 +135,7 @@ public class StageSelectMgr : MonoBehaviour
     public void SwitchState(State state, bool ignore = false)
     {
         if (!ignore && m_time < activateInput) return;
+        var previousState = m_state;
         m_state = state;
         switch (m_state)
         {
@@ -148,32 +154,82 @@ public class StageSelectMgr : MonoBehaviour
             case State.stageSelect:
                 stageCanvas.gameObject.SetActive(true);
                 SelectButtonMgr.Instance.BackButton.Select();
-                titleCanvas.DOFade(0f, 0.5f);
-                stageCanvas.DOFade(1f, 0.5f).OnComplete(() =>
+                Debug.Log(previousState);
+                if (previousState == State.title)
                 {
-                    titleCanvas.gameObject.SetActive(false);
-                    titleCanvas.interactable = false;
-                    stageCanvas.interactable = true;
-                });
+                    titleCanvas.DOFade(0f, 0.5f);
+                    stageCanvas.DOFade(1f, 0.5f).OnComplete(() =>
+                    {
+                        titleCanvas.gameObject.SetActive(false);
+                        titleCanvas.interactable = false;
+                        stageCanvas.interactable = true;
+                    });
+
+                }
+                else if (previousState == State.tutorial)
+                {
+                    tutorialUI.GetComponent<CanvasGroup>().DOFade(0f, 0.5f);
+                    stageCanvas.DOFade(1f, 0.5f).OnComplete(() =>
+                    {
+                        tutorialUI.SetActive(false);
+                        stageCanvas.interactable = true;
+                    });
+                }
+
+
                 break;
             case State.selected:
+                break;
+            case State.tutorial:
+                tutorialUI.SetActive(true);
+                if (previousState == State.title)
+                {
+                    titleCanvas.DOFade(0f, 0.5f);
+                }else if(previousState == State.stageSelect)
+                {
+                    stageCanvas.DOFade(0f, 0.5f);
+                }
+                tutorialUI.GetComponent<CanvasGroup>().alpha = 0;
+                tutorialUI.GetComponent<TutorialUI>().Initialize();
+
+                tutorialUI.GetComponent<CanvasGroup>().DOFade(1f, 0.8f).OnComplete(() =>
+                {
+                    SaveManager.Instance.canSkipTutorial = true;
+
+                });
+
                 break;
             default:
                 break;
         }
     }
-
+    /// <summary>
+    /// オプションからチュートリアルへ
+    /// </summary>
     public void ActivateTutorial()
     {
         popUpBefore = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
+        Debug.Log(popUpBefore.gameObject);
         tutorialUI.SetActive(true);
         tutorialUI.GetComponent<TutorialUI>().Initialize();
+        tutorialUI.GetComponent<CanvasGroup>().DOFade(1f, 0.5f);
+        SaveManager.Instance.canSkipTutorial = true;
     }
+    /// <summary>
+    /// チュートリアルからオプションに戻る
+    /// </summary>
     public void DeActivateTutorial()
     {
+        if (m_state == State.tutorial)
+        {
+            SwitchState(State.stageSelect);
+            return;
+        }
         tutorialUI.SetActive(false);
         popUpBefore.Select();
     }
+
+
 
     Selectable optionBefore;
     public void ActivateOption()

@@ -39,6 +39,10 @@ public class TutorialUI : MonoBehaviour
 
     public void CloseUI()
     {
+        foreach(Transform panel in description.transform)
+        {
+            panel.gameObject.SetActive(false);
+        }
         gameObject.SetActive(false);
         Selectable selectable = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
         buttonMgr.temporaryBackButton = selectable;

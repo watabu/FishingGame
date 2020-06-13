@@ -1,21 +1,4 @@
-week , 8
-money , 1680
-canSkipTutorial , False
-caughtFishCount , 25
-Fish , ロブスター , 1
-Fish , まぐろ , 1
-Fish , バール , 2
-Fish , チャウオ , 3
-Fish , サイタヅマウオ , 4
-Fish , もらった魚 , 4
-Fish , 岩 , 2
-Fish , タイヤ , 2
-Fish , コイ , 2
-Fish , うなぎ , 1
-Fish , 藻 , 1
-Fish , エビ , 1
-Fish , ミジンコ , 1
-Ranking , 1 , 10 , 600
-Ranking , 1 , 4 , 465
-Ranking , 1 , 7 , 245
-Ranking , 2 , 4 , 370
+week , 1
+money , 0
+canSkipTutorial , True
+caughtFishCount , 0

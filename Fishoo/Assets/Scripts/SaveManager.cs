@@ -308,6 +308,7 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
         money = 0;
         m_caughtFishCount = 0;
         m_fishes.Clear();
+        canSkipTutorial = false;
         foreach (var place in placeDatas)
         {
             //釣りステージならランキングデータを初期化
