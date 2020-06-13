@@ -16,29 +16,29 @@ MonoBehaviour:
   - icon: {fileID: -2877082233261712458, guid: bfd4b1b23bfea794690d6534f74d5af1, type: 3}
     name: TAS
     fishCount: 20
-    score: 1820
+    score: 1700
   - icon: {fileID: 21300000, guid: 73a013e55998efc4882c40a1b4414a5d, type: 3}
     name: "\u3066\u3044\u3067\u3093"
     fishCount: 23
-    score: 1700
+    score: 1640
   - icon: {fileID: 21300000, guid: 02da57d892397654bb64214e806447d0, type: 3}
     name: "\u8001\u795E"
     fishCount: 15
-    score: 1370
+    score: 1510
   - icon: {fileID: 4157433902393332385, guid: 7f57f63accc614147b9e4c120505136f, type: 3}
     name: "\u534A\u89D2\u6F22\u5B57"
     fishCount: 12
-    score: 1028
+    score: 1270
   - icon: {fileID: 3279383209562468046, guid: bfd4b1b23bfea794690d6534f74d5af1, type: 3}
     name: "\u3053\u3044\u3057"
     fishCount: 9
-    score: 850
+    score: 1100
   - icon: {fileID: 7056004227108429249, guid: c245cf24608afa842b3790771ea1f0cb, type: 3}
     name: "\u4E09\u89D2\u5DDE"
     fishCount: 5
-    score: 540
+    score: 790
   - icon: {fileID: 21300000, guid: 21fd3a9db0ccdc04b999552fa9bff0b5, type: 3}
     name: "\u30D5\u30CA\u91E3\u308A"
     fishCount: 6
-    score: 230
+    score: 460
   maxRanking: 15

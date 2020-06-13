@@ -62,11 +62,7 @@ MonoBehaviour:
   fishCount_SR: 1
   fishCount_SSR: 1
   availableFishList:
-  - fishInfo: {fileID: 11400000, guid: 65c7a5c1bc7278847a32c73ebdf0693b, type: 2}
-    weather: 0
-    beginTime: 0
-    endTime: 0
-  - fishInfo: {fileID: 11400000, guid: 868df025d9ab5d342824d9ad6d68d1f5, type: 2}
+  - fishInfo: {fileID: 11400000, guid: 3f05c895793234d4886a9cae2fab7409, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
@@ -78,6 +74,18 @@ MonoBehaviour:
     weather: 0
     beginTime: 0
     endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 04389fd2d1f75f34d91d71ad379ef358, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: d3738a5cce2663f4fbfd31d432881c43, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 7699ac18272ccc74f88abb0ebae7defb, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
   - fishInfo: {fileID: 11400000, guid: 37fe7f0efc1052a439cbb12d6d9a4831, type: 2}
     weather: 0
     beginTime: 0
@@ -86,11 +94,11 @@ MonoBehaviour:
     weather: 0
     beginTime: 0
     endTime: 0
-  - fishInfo: {fileID: 11400000, guid: 6233a1eecbc084f4f81ae6e329e9ff5f, type: 2}
+  - fishInfo: {fileID: 11400000, guid: 868df025d9ab5d342824d9ad6d68d1f5, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
-  - fishInfo: {fileID: 11400000, guid: 04389fd2d1f75f34d91d71ad379ef358, type: 2}
+  - fishInfo: {fileID: 11400000, guid: 6233a1eecbc084f4f81ae6e329e9ff5f, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
@@ -98,15 +106,7 @@ MonoBehaviour:
     weather: 0
     beginTime: 0
     endTime: 0
-  - fishInfo: {fileID: 11400000, guid: 3f05c895793234d4886a9cae2fab7409, type: 2}
-    weather: 0
-    beginTime: 0
-    endTime: 0
-  - fishInfo: {fileID: 11400000, guid: 30e5e7eaa3599274d952abf13122fbdd, type: 2}
-    weather: 0
-    beginTime: 0
-    endTime: 0
-  - fishInfo: {fileID: 11400000, guid: d3738a5cce2663f4fbfd31d432881c43, type: 2}
+  - fishInfo: {fileID: 11400000, guid: 65c7a5c1bc7278847a32c73ebdf0693b, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
@@ -114,7 +114,7 @@ MonoBehaviour:
     weather: 0
     beginTime: 0
     endTime: 0
-  - fishInfo: {fileID: 11400000, guid: d3738a5cce2663f4fbfd31d432881c43, type: 2}
+  - fishInfo: {fileID: 11400000, guid: 30e5e7eaa3599274d952abf13122fbdd, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0

@@ -58,18 +58,10 @@ MonoBehaviour:
   rankingSaveData_Origin: {fileID: 11400000, guid: e4643c727f80c914696bcc3180fc4993,
     type: 2}
   rankingSaveData: {fileID: 11400000, guid: 7f348a1e7b5b813439e639c7437a36e3, type: 2}
-  fishCount_R: 8
-  fishCount_SR: 6
-  fishCount_SSR: 6
+  fishCount_R: 9
+  fishCount_SR: 7
+  fishCount_SSR: 7
   availableFishList:
-  - fishInfo: {fileID: 11400000, guid: 00c755003769fa04f96028f1169dba99, type: 2}
-    weather: 0
-    beginTime: 0
-    endTime: 0
-  - fishInfo: {fileID: 11400000, guid: cca6f96024e7a754a86f5f3603fbf468, type: 2}
-    weather: 0
-    beginTime: 0
-    endTime: 0
   - fishInfo: {fileID: 11400000, guid: 60b01eff3481eaa468fa5a3730c3a441, type: 2}
     weather: 0
     beginTime: 0
@@ -78,7 +70,55 @@ MonoBehaviour:
     weather: 0
     beginTime: 0
     endTime: 0
-  - fishInfo: {fileID: 11400000, guid: b7876aaae610f114c95129f92549d639, type: 2}
+  - fishInfo: {fileID: 11400000, guid: cca6f96024e7a754a86f5f3603fbf468, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 710c77743973bd6488e1a1f131833ed9, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 8b893825a0f2152418273003962d3c44, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: b9c0589ecdd2c6448821211863166785, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: f3891ce8479969c4689d4ed971087ad0, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 006598fc192398748898c0ba1ca48c45, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 008b83388c502c349ad4c2b5fdd8d0ee, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: bb74db3e562066643b8f14f3ff8cb76b, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 96c4b04ccf6e6c04f8c98099a90d2dd5, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 96c4b04ccf6e6c04f8c98099a90d2dd5, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 00c755003769fa04f96028f1169dba99, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 00c755003769fa04f96028f1169dba99, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 8908ec4dc15dfd04087c97ece214d77e, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
@@ -90,27 +130,19 @@ MonoBehaviour:
     weather: 0
     beginTime: 0
     endTime: 0
-  - fishInfo: {fileID: 11400000, guid: f3891ce8479969c4689d4ed971087ad0, type: 2}
-    weather: 0
-    beginTime: 0
-    endTime: 0
-  - fishInfo: {fileID: 11400000, guid: 008b83388c502c349ad4c2b5fdd8d0ee, type: 2}
-    weather: 0
-    beginTime: 0
-    endTime: 0
-  - fishInfo: {fileID: 11400000, guid: 96c4b04ccf6e6c04f8c98099a90d2dd5, type: 2}
-    weather: 0
-    beginTime: 0
-    endTime: 0
   - fishInfo: {fileID: 11400000, guid: d3738a5cce2663f4fbfd31d432881c43, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
-  - fishInfo: {fileID: 11400000, guid: 006598fc192398748898c0ba1ca48c45, type: 2}
+  - fishInfo: {fileID: 11400000, guid: 8e0c8d45325d998498c96f0b21a511c3, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
-  - fishInfo: {fileID: 11400000, guid: 0c89c9f0f70d7de449719ab8d8824f87, type: 2}
+  - fishInfo: {fileID: 11400000, guid: b7876aaae610f114c95129f92549d639, type: 2}
+    weather: 0
+    beginTime: 0
+    endTime: 0
+  - fishInfo: {fileID: 11400000, guid: 218bdd517d13b894089c433585814a5a, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0
@@ -118,27 +150,7 @@ MonoBehaviour:
     weather: 0
     beginTime: 0
     endTime: 0
-  - fishInfo: {fileID: 11400000, guid: 8908ec4dc15dfd04087c97ece214d77e, type: 2}
-    weather: 0
-    beginTime: 0
-    endTime: 0
-  - fishInfo: {fileID: 11400000, guid: 96c4b04ccf6e6c04f8c98099a90d2dd5, type: 2}
-    weather: 0
-    beginTime: 0
-    endTime: 0
-  - fishInfo: {fileID: 11400000, guid: 00c755003769fa04f96028f1169dba99, type: 2}
-    weather: 0
-    beginTime: 0
-    endTime: 0
-  - fishInfo: {fileID: 11400000, guid: 4508ec88f1f03b44ca85cd1ffb749b3a, type: 2}
-    weather: 0
-    beginTime: 0
-    endTime: 0
-  - fishInfo: {fileID: 11400000, guid: b9c0589ecdd2c6448821211863166785, type: 2}
-    weather: 0
-    beginTime: 0
-    endTime: 0
-  - fishInfo: {fileID: 11400000, guid: 710c77743973bd6488e1a1f131833ed9, type: 2}
+  - fishInfo: {fileID: 11400000, guid: 0c89c9f0f70d7de449719ab8d8824f87, type: 2}
     weather: 0
     beginTime: 0
     endTime: 0

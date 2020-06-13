@@ -79,12 +79,18 @@ namespace Environment
 
         private void OnEnable()
         {
+            availableFishList.Sort(delegate (FishGenerateData x, FishGenerateData y)
+                            {
+                                return y.fishInfo.sellingPrice - x.fishInfo.sellingPrice;
+                            });
+
+
             Dictionary<Fish.FishInfo.Rank, int> fishCount_dic = new Dictionary<Fish.FishInfo.Rank, int>();
             fishCount_dic.Add(Fish.FishInfo.Rank.R, 0);
             fishCount_dic.Add(Fish.FishInfo.Rank.SR, 0);
             fishCount_dic.Add(Fish.FishInfo.Rank.SSR, 0);
 
-            foreach(var fish in availableFishList)
+            foreach (var fish in availableFishList)
             {
                 if (fish == null) continue;
                 fish.fishInfo.usedCount++;

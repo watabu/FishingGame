@@ -233,6 +233,11 @@ MonoBehaviour:
   generatorsParent: {fileID: 3507683972603145851}
   FishPrefab: {fileID: 5436173513765085611, guid: 7825949a536fcbd47a0952abd332ad46,
     type: 3}
-  Rfish: {fileID: 21300000, guid: 9dfa473df795c5f40a9d5769e3d7169c, type: 3}
-  SRfish: {fileID: 21300000, guid: f619f336b9316fd49bc4270b7b9b514c, type: 3}
-  SSRfish: {fileID: 21300000, guid: 32341c78e5060c149a60ffa1e5277715, type: 3}
+  fishR: {fileID: 21300000, guid: 9dfa473df795c5f40a9d5769e3d7169c, type: 3}
+  fishSR: {fileID: 21300000, guid: f619f336b9316fd49bc4270b7b9b514c, type: 3}
+  fishSSR: {fileID: 21300000, guid: 32341c78e5060c149a60ffa1e5277715, type: 3}
+  debug: 0
+  fishList_R: []
+  fishList_SR: []
+  fishList_SSR: []
+  testfish: {fileID: 0}

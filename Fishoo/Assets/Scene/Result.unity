@@ -1707,7 +1707,6 @@ MonoBehaviour:
   messagePanel: {fileID: 915631087}
   ranking: {fileID: 795699120}
   animator: {fileID: 1498616295}
-  PlayerIcon: {fileID: 21300000, guid: a4d94011f26cdf542a1eab7465ee060b, type: 3}
   buttonMgr: {fileID: 1481722023}
 --- !u!4 &621125309
 Transform:
@@ -2124,7 +2123,7 @@ MonoBehaviour:
   scrollbar: {fileID: 181224096}
   debug: 0
   canScroll: 0
-  RankingData: {fileID: 11400000, guid: 70330402770a3a048a71c618dd05d2aa, type: 2}
+  rankingData: {fileID: 0}
 --- !u!114 &795699121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2787,7 +2786,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &915631086
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2968,7 +2967,7 @@ RectTransform:
   m_GameObject: {fileID: 979622589}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 1424440366}
   - {fileID: 240952916}
@@ -2979,7 +2978,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.33755273}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -40, y: -153}
+  m_AnchoredPosition: {x: -28.29, y: -153}
   m_SizeDelta: {x: 107.35, y: -14.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &979622591
@@ -5928,7 +5927,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1798537953}
   m_HandleRect: {fileID: 1798537952}
   m_Direction: 0
-  m_Value: -0.071935736
+  m_Value: -0.071940124
   m_Size: 0.98072386
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -6051,8 +6050,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 849977103}
   m_HandleRect: {fileID: 849977102}
   m_Direction: 0
-  m_Value: 0.000006292237
-  m_Size: 0.98646945
+  m_Value: 0.000003146158
+  m_Size: 0.98646957
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

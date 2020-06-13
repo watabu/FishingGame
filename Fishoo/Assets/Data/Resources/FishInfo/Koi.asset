@@ -15,10 +15,10 @@ MonoBehaviour:
   FishName: "\u30B3\u30A4"
   description: "\u6E56\u306B\u751F\u606F\u3059\u308B\u3002\u6765\u305F\u4EBA\u306E\u990C\u3092\u697D\u3057\u307F\u306B\u3057\u3066\u3044\u308B\u3002"
   description_Caught: 
-  sellingPrice: 50
+  sellingPrice: 90
   exp: 10
   icon: {fileID: 21300000, guid: 8b54aba30a420c048be72958910dda98, type: 3}
   data: {fileID: 11400000, guid: a7aa0f16754b03346b8cd7583eb5de89, type: 2}
   isGomi: 0
   rank: 1
-  usedCount: 1
+  usedCount: 2

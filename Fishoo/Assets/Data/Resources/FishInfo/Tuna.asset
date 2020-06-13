@@ -15,7 +15,7 @@ MonoBehaviour:
   FishName: "\u307E\u3050\u308D"
   description: "\u4E00\u672C\u91E3\u308A\uFF01\uFF01\uFF01\uFF01"
   description_Caught: 
-  sellingPrice: 5
+  sellingPrice: 160
   exp: 1
   icon: {fileID: 21300000, guid: 53cb921b28b74a74cab785b4692fd077, type: 3}
   data: {fileID: 11400000, guid: 1baf91d5322c6dd459cc5579fccccf06, type: 2}
