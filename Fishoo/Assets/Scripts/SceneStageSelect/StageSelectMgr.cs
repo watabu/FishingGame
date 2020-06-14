@@ -175,6 +175,14 @@ public class StageSelectMgr : MonoBehaviour
                         stageCanvas.interactable = true;
                     });
                 }
+                else
+                {
+                    stageCanvas.DOFade(1f, 0.5f).OnComplete(() =>
+                    {
+                        stageCanvas.interactable = true;
+                    });
+
+                }
 
 
                 break;

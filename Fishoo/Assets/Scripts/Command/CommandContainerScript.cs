@@ -51,11 +51,6 @@ public class CommandContainerScript : MonoBehaviour
         {
             OnFalseKeyDown();
         }
-        if (cheat && Player.InputSystem.GetKeyDown(KeyCode.R))
-        {
-            FishingGame.FishingGameMgr.Instance.TargetFish.Damaged(100);
-            OnFinish();
-        }
     }
 
     public void SetCommand(List<KeyCode> commands,Transform effectParent)

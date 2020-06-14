@@ -55,8 +55,8 @@ public class CountDownGenerator : SingletonMonoBehaviour<CountDownGenerator>
         Onfinished.Invoke();
         count.gameObject.SetActive(false);
         start.gameObject.SetActive(false);
-        countDownBell.Stop();
-        gameStartBell.Stop();
+        countDownBell.StopWithFadeOut(0.5f);
+        gameStartBell.StopWithFadeOut(0.8f);
         yield return null;
     }
 }

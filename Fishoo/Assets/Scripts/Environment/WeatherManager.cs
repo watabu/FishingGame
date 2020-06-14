@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using DG.Tweening;
+using System.Threading.Tasks;
 
 namespace Environment
 {
@@ -15,6 +15,7 @@ namespace Environment
         [SerializeField]private Place place;
         [Header("Effects")]
         [SerializeField] private Transform effectParent;
+        [SerializeField] private Transform effectParent_Snow;
         [SerializeField] private GameObject rainEffect;
         [SerializeField] private GameObject snowEffect;
         [SerializeField] private AudioSource audioSource;
@@ -24,9 +25,18 @@ namespace Environment
 
         GameObject m_currentEffect;
 
-        public void SwitchWeather(PlaceData.Weather weather)
+        public async void SwitchWeather(PlaceData.Weather weather)
         {
             CurrentWeather = weather;
+            ParticleSystem particle = null;
+            if(m_currentEffect !=null)
+                particle = m_currentEffect.GetComponent<ParticleSystem>();
+            if (particle != null)
+            {
+                var emission = particle.emission;
+                emission.rateOverTime = 0;
+                await Task.Delay(3000);
+            }
             Destroy(m_currentEffect);
             switch (CurrentWeather)
             {
@@ -43,10 +53,7 @@ namespace Environment
                     break;
                 case PlaceData.Weather.Snowy:
                     audioSource.StopWithFadeOut(2);
-                    m_currentEffect = Instantiate(snowEffect, effectParent);
-                    var pos = m_currentEffect.transform.localPosition;
-                    pos.y += 189;
-                    m_currentEffect.transform.localPosition = pos;
+                    m_currentEffect = Instantiate(snowEffect, effectParent_Snow);
                     break;
                 case PlaceData.Weather.Windy:
                     audioSource.StopWithFadeOut(2);
