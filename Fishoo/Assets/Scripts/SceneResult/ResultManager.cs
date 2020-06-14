@@ -25,6 +25,8 @@ public class ResultManager : MonoBehaviour
     [SerializeField] RankingPanel ranking;
     [SerializeField] Animator animator;
     [SerializeField] SelectButtonMgr buttonMgr;
+    private float time;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -32,11 +34,14 @@ public class ResultManager : MonoBehaviour
         messagePanel.gameObject.SetActive(false);
         result.canScroll = true;
         ChangePanel(PanelState.result);
+        time = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Time.time - time < 1)
+            return;
         if (Player.InputSystem.GetKeyDown(KeyCode.B))
         {
             //メッセージパネルがあるならスクロール操作をしない
