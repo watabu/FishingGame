@@ -1,15 +1,36 @@
-week , 2
-money , 1320
+week , 5
+money , 5740
 canSkipTutorial , True
-caughtFishCount , 12
-Fish , 藻 , 1
-Fish , チャウオ , 1
+caughtFishCount , 59
+Fish , チャウオ , 2
+Fish , クラゲ , 4
+Fish , バール , 2
+Fish , イカ , 4
+Fish , ウミヘビ , 1
+Fish , 岩 , 4
+Fish , 藻 , 3
+Fish , ロブスター , 2
 Fish , 骨魚 , 1
-Fish , クラゲ , 1
-Fish , サバ , 2
-Fish , まぐろ , 2
-Fish , エビ , 1
-Fish , 岩 , 1
-Fish , コイ , 1
-Fish , ウミウシ？ , 1
-Ranking , 2 , 12 , 1320
+Fish , エビ , 2
+Fish , ミジンコ , 1
+Fish , サイタヅマウオ , 3
+Fish , タイヤ , 2
+Fish , コイ , 6
+Fish , もらった魚 , 1
+Fish , いくら , 2
+Fish , さんま , 2
+Fish , アサギウオ , 2
+Fish , ヒトデ , 1
+Fish , リュウグウノツカイ , 1
+Fish , うに , 2
+Fish , ハリセンボン , 2
+Fish , ダイオウイカ , 2
+Fish , シュモクザメ , 2
+Fish , サバ , 1
+Fish , たこ , 2
+Fish , ブーツ , 1
+Fish , のどぐろ , 1
+Ranking , 1 , 18 , 1210
+Ranking , 2 , 16 , 1735
+Ranking , 3 , 16 , 1915
+Ranking , 3 , 9 , 880

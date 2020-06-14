@@ -18,8 +18,8 @@ MonoBehaviour:
   recognitionDistance: 2
   lifeTime: 10000
   status:
-    hpMax: 24
-    hpRegene: -0.1
+    hpMax: 16
+    hpRegene: -0.5
   moveType: 4
   comment: "\u306A\u3093\u304B\u304D\u3082\u3044"
   commands:
