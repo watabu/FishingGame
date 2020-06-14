@@ -38,7 +38,7 @@ namespace FishingGame
         [SerializeField] private Player.InputSystem input;
         [SerializeField] private AudioSource fishCaughtSE;
 
-        [SerializeField, Tooltip("コマンドが生成されるまでの最低時間(tick)")] int attackTimeMin=100;
+        [SerializeField, Tooltip("コマンドが生成されるまでの最低時間(tick)")] int attackTimeMin=10;
 
         [Tooltip("今狙っている魚"),ReadOnly]
         [SerializeField]
@@ -101,7 +101,7 @@ namespace FishingGame
 
             m_isFishing = true;
             canAttack = true;
-            attackTimer = attackTimeMin *3 /4;
+            attackTimer = attackTimeMin *2;
 
             player.StartFishing();
             commandGenerator.ResetComboCount();
@@ -143,7 +143,7 @@ namespace FishingGame
         }
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
             if (isFishing)
             {
@@ -161,7 +161,7 @@ namespace FishingGame
                 FishingSucceeded();
                 return;
             }
-            if(++attackTimer > attackTimeMin && canAttack)
+            if( canAttack)
             {
                 canAttack = false;
                 attackTimer = 0;

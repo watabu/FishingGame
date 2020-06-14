@@ -31,7 +31,7 @@ namespace Fish.Behavior
         /// 針に気づいて近づく速さ
         /// </summary>
         [Tooltip("針に気づいて近づく速さ")]
-        public float moveSpeed = 0.05f;
+        private float moveSpeed = 0.5f;
 
         /// <summary>
         /// 魚が湧いてから経った時間

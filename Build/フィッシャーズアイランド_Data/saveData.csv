@@ -1,17 +1,28 @@
-week , 2
-money , 1945
+week , 4
+money , 3360
 canSkipTutorial , True
-caughtFishCount , 14
-Fish , イカ , 1
-Fish , ナポレオンフィッシュ , 1
-Fish , うに , 1
-Fish , サバ , 1
-Fish , ダイオウイカ , 1
-Fish , たこ , 1
-Fish , いくら , 2
-Fish , マンボウ , 2
-Fish , クラゲ , 1
+caughtFishCount , 25
+Fish , アサギウオ , 1
+Fish , ウミウシ？ , 1
 Fish , ブーツ , 1
 Fish , ハリセンボン , 1
+Fish , マンボウ , 1
+Fish , いくら , 1
+Fish , サバ , 1
+Fish , クラゲ , 2
 Fish , のどぐろ , 1
-Ranking , 3 , 14 , 1945
+Fish , たこ , 1
+Fish , リュウグウノツカイ , 1
+Fish , タイヤ , 2
+Fish , ホオジロザメ , 1
+Fish , 骨魚 , 2
+Fish , 藻 , 1
+Fish , まぐろ , 1
+Fish , エビ , 2
+Fish , チャウオ , 1
+Fish , ロブスター , 1
+Fish , ヒトデ , 1
+Fish , ウミネコ？ , 1
+Ranking , 2 , 12 , 1025
+Ranking , 3 , 11 , 1795
+Ranking , 3 , 2 , 540
