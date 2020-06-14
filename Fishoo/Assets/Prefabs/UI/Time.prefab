@@ -92,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startTime: 0
   endTime: 0
-  timeSpan: 0.05
+  timeSpan: 0.2
   timeDelta: 1
   m_currentTime: 0
   Skip: 0
@@ -608,7 +608,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1d0af4c924336aa4ca74f9c975ba75e6, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0

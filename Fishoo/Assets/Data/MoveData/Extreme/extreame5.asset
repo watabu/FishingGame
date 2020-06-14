@@ -19,7 +19,7 @@ MonoBehaviour:
   lifeTime: 10000
   status:
     hpMax: 40
-    hpRegene: -0.1
+    hpRegene: -0.2
   moveType: 4
   comment: "\u307E\u3042\u307E\u3042"
   commands:

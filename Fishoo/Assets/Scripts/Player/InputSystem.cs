@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Player
 {
@@ -270,5 +271,32 @@ public static class MyExtensions
         char[] C = { c };
         return new string(C);
     }
+    public static bool Play(this AudioSource audioSource, AudioClip audioClip = null, float volume = 1f)
+    {
+        if (audioClip == null || volume <= 0f) return false;
+        audioSource.clip = audioClip;
+        audioSource.volume = volume;
 
+        audioSource.Play();
+        return true;
+    }
+
+    public static void PlayWithFadeIn(this AudioSource audioSource, AudioClip audioClip, float fadeTime = 0.1f)
+    {
+        audioSource.Play(audioClip, 0.1f);
+        audioSource.DOFade(1f, fadeTime);
+    }
+    public static void PlayWithFadeIn(this AudioSource audioSource, AudioClip audioClip, float endValue, float fadeTime = 0.1f)
+    {
+        audioSource.Play(audioClip, 0.1f);
+        audioSource.DOFade(endValue, fadeTime);
+    }
+    public static void StopWithFadeOut(this AudioSource audioSource, float fadeTime = 0.1f)
+    {
+        if (!audioSource.isPlaying || audioSource.clip == null) return;
+        audioSource.DOFade(0f, fadeTime).OnComplete(() =>
+        {
+            audioSource.Stop();
+        });
+    }
 }

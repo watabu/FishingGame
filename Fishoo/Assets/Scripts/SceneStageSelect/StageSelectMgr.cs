@@ -274,7 +274,7 @@ public class StageSelectMgr : MonoBehaviour
     {
         popUp2UI.gameObject.SetActive(true);
         popUp2SelectButton.Select();
-        FindObjectOfType<DestroySound>().PlaySound();
+        FindObjectOfType<SoundOnDestroy>().PlaySound();
         NoTitle = false;
         SaveManager.Instance.DeleteAll();
     }

@@ -19,7 +19,7 @@ MonoBehaviour:
   lifeTime: 10000
   status:
     hpMax: 38
-    hpRegene: -0.1
+    hpRegene: -0.2
   moveType: 4
   comment: "\u3061\u3087\u3063\u3068\u3072\u3063\u304B\u3051"
   commands:

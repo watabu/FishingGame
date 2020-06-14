@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using DG.Tweening;
 
 namespace Environment
 {
@@ -17,6 +17,9 @@ namespace Environment
         [SerializeField] private Transform effectParent;
         [SerializeField] private GameObject rainEffect;
         [SerializeField] private GameObject snowEffect;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip rainySound;
+        
         public PlaceData.Weather CurrentWeather { get; private set; } = PlaceData.Weather.Sunny;
 
         GameObject m_currentEffect;
@@ -28,24 +31,36 @@ namespace Environment
             switch (CurrentWeather)
             {
                 case PlaceData.Weather.Sunny:
+                    audioSource.StopWithFadeOut(2);
                     break;
                 case PlaceData.Weather.Cloudy:
+                    audioSource.StopWithFadeOut(2);
                     break;
                 case PlaceData.Weather.Rainy:
                     m_currentEffect= Instantiate(rainEffect, effectParent);
+                    audioSource.PlayWithFadeIn(rainySound,0.75f,  2);
+                    //audioSource.Play();
                     break;
                 case PlaceData.Weather.Snowy:
+                    audioSource.StopWithFadeOut(2);
                     m_currentEffect = Instantiate(snowEffect, effectParent);
                     var pos = m_currentEffect.transform.localPosition;
                     pos.y += 189;
                     m_currentEffect.transform.localPosition = pos;
                     break;
                 case PlaceData.Weather.Windy:
+                    audioSource.StopWithFadeOut(2);
                     break;
                 default:
+                    audioSource.StopWithFadeOut(2);
                     break;
             }
         }
 
+
+
+
+
     }
+
 }

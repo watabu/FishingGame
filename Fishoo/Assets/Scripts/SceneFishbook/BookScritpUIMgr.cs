@@ -57,10 +57,12 @@ public class BookScritpUIMgr : MonoBehaviour
             }
             else if (showNonCaughtFish)
             {
+                string description = "まだ釣ったことがない。";
+                
                 script.SetOnClicked(() =>
                 {
                     Switch(State.description);
-                    descriptionUI.Set(d.icon, d.FishName, d.description, 0);
+                    descriptionUI.Set(fishNotFound, d.FishName, description, 0);
                     SelectedButton = script.GetButton;
                 });
             }
