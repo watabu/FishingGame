@@ -40,25 +40,17 @@ namespace Fish.Behavior
         public float m_livingTime;
 
         [SerializeField, Tooltip("魚がエサを狙っているかなどの状態"), ReadOnly]
-        private FishState _state;
+        private FishState m_state;
         /// <summary>
         /// 魚の状態(読み取り専用)
         /// </summary>
-        public FishState state { get { return _state; } }
+        public FishState state { get { return m_state; } }
 
         [Header("Object References")]
-        public FishMove fishMove;
+        [Tooltip("釣り中の魚の動き")]public FishMove fishMove;
+        [SerializeField,Tooltip("魚の画像")]public SpriteRenderer sprite;
+        [SerializeField,Tooltip("体力バー")]Slider HPbar;
 
-
-
-        [Tooltip("魚の画像")]
-        public SpriteRenderer sprite;
-
-        [Tooltip("体力バー")]
-        public Slider HPbar;
-
-        [Tooltip("針に気づく範囲")]
-        CircleCollider2D colliderToNoticeHook;
 
         /// <summary>
         /// 一時的に実行したい関数を入れる
@@ -68,10 +60,12 @@ namespace Fish.Behavior
         Damageable m_damageable;
 
         static private FishingGame.Tools.Hook m_fishingHook;
-        public FishingGame.Tools.Hook GetHook{get { return m_fishingHook; }}
+        public FishingGame.Tools.Hook Hook{get { return m_fishingHook; }}
+        FishingGame.FishingGameMgr fishingGameMgr { get { return Hook.fishingGameMgr; } } 
+
 
         /// <summary>
-        /// 
+        /// プレハブから作成したときにFishInfoや魚影を設定する
         /// </summary>
         /// <param name="fishInfo"></param>
         /// <param name="fishMoveData"></param>
@@ -79,7 +73,6 @@ namespace Fish.Behavior
         {
             this.fishInfo = fishInfo;
             fishMove.fish = this;
-            fishMove.data = fishInfo.data;
             fishMoveData = fishInfo.data;
 
             var hpbar = HPbar.GetComponent<RectTransform>().sizeDelta;
@@ -92,8 +85,7 @@ namespace Fish.Behavior
                 //画像が指定されていなければ子供のオブジェクトから画像を得る
                 this.sprite = transform.GetComponentInChildren<SpriteRenderer>();
             }
-            colliderToNoticeHook = GetComponent<CircleCollider2D>();
-            colliderToNoticeHook.radius = fishMoveData.recognitionDistance;
+
             SetAppear();
             m_damageable = GetComponent<Damageable>();
             m_damageable.Initialize(fishMoveData.status.hpMax, fishMoveData.status.hpMax, fishMoveData.status.hpRegene);
@@ -105,34 +97,11 @@ namespace Fish.Behavior
             {
                 //釣られたときの処理
                 //SetDisAppear();
-                SetCaught();
+                SwitchState(FishState.Caught);
             });
         }
 
-        public void InitData()
-        {
 
-            var hpbar = HPbar.GetComponent<RectTransform>().sizeDelta;
-            hpbar.x = 10 * fishMoveData.status.hpMax;
-            HPbar.GetComponent<RectTransform>().sizeDelta = hpbar;
-            HPbar.maxValue = fishMoveData.status.hpMax;
-
-            colliderToNoticeHook = GetComponent<CircleCollider2D>();
-            colliderToNoticeHook.radius = fishMoveData.recognitionDistance;
-            SetAppear();
-            m_damageable = GetComponent<Damageable>();
-            m_damageable.Initialize(fishMoveData.status.hpMax, fishMoveData.status.hpMax, fishMoveData.status.hpRegene);
-            m_damageable.AddHPChanged((hp) =>
-            {
-                HPbar.value = hp;
-            });
-            m_damageable.AddDead(() =>
-            {
-                //釣られたときの処理
-                //SetDisAppear();
-                SetCaught();
-            });
-        }
 
         private void Start()
         {
@@ -154,9 +123,7 @@ namespace Fish.Behavior
                     if (fishMoveData == null) return;
                     if (m_livingTime > fishMoveData.lifeTime)
                         SetDisAppear();
-                    //                    fishMove.MoveFree();
-                    //nomalMove.Move();
-                    SetApproaching();
+                    SwitchState(FishState.Approaching);
                     break;
                 //エサを狙っている
                 case FishState.Approaching:
@@ -179,6 +146,33 @@ namespace Fish.Behavior
 
         }
 
+        /// <summary>
+        /// 魚の状態を待機中・針へ向かう・釣りゲーム中などに変える
+        /// </summary>
+        /// <param name="state"></param>
+        public void SwitchState(FishState state)
+        {
+            switch (state)
+            {
+                case FishState.Approaching:
+                    SetApproaching();
+                    break;
+                case FishState.Biting:
+                    SetBiting();
+                    break;
+                case FishState.Caught:
+                    SetCaught();
+                    break;
+                case FishState.Escaping:
+                    SetEscaping();
+                    break;
+                case FishState.Nomal:
+                    break;
+            }
+
+
+        }
+
         //釣りゲーム外
 
         /// <summary>
@@ -188,7 +182,7 @@ namespace Fish.Behavior
         {
 //            Debug.Log("魚が現れた");
             HPbar.gameObject.SetActive(false);
-            _state = FishState.Nomal;
+            m_state = FishState.Nomal;
             ColorFader.Instance.StartFadeIn(sprite, 0.5f);
         }
 
@@ -200,27 +194,21 @@ namespace Fish.Behavior
          //   m_fishingHook.FinishBite();
             ColorFader.Instance.StartFadeOut(sprite, 0.5f, () => gameObject.SetActive(false));
         }
-
-        /// <summary>
-        /// 釣り針と接触したときに可能なら釣り針を狙う
-        /// </summary>
-        /// <param name="collision"></param>
-        private void OnTriggerEnter2D(Collider2D collision)
+        public void TakeDamage(float damage)
         {
-            if (collision.gameObject.tag != "Hook") return;
-//            Debug.Log("衝突！" + collision);
-            SetApproaching();
+            m_damageable.TakeDamage(damage);
         }
 
         /// <summary>
         /// 釣り針を狙うときに行う最初の処理
+        /// 参照数１！
         /// </summary>
-        public void SetApproaching()
+        private void SetApproaching()
         {
             if (m_fishingHook.CanBite())
             {
 //                Debug.Log("魚がエサを狙っている");
-                _state = FishState.Approaching;
+                m_state = FishState.Approaching;
                 m_fishingHook.SetTarget(this);
             }
             else
@@ -236,7 +224,7 @@ namespace Fish.Behavior
         /// 釣り針を狙う
         /// 釣りゲーム開始前のミニゲーム
         /// </summary>
-        async void ApproachHook()
+        private async void ApproachHook()
         {
             if (isDone) return;
 
@@ -280,35 +268,18 @@ namespace Fish.Behavior
                 m_fishingHook.PullDown(force, time);
 
                 //釣りゲームへ移行する
-                SetBiting();
+                SwitchState(FishState.Biting);
             }
         }
 
         /// <summary>
         /// 釣り針の方に近づいていく
         /// </summary>
-        void MoveToHook()
+        private void MoveToHook()
         {
             transform.position = Vector3.MoveTowards(transform.position, m_fishingHook.transform.position, moveSpeed);
         }
 
-        /// <summary>
-        /// 針をつついた後に向かう針から離れた点
-        /// </summary>
-        Vector3 LeavePoint;
-        void LeaveFromHook()
-        {
-            LeavePoint = m_fishingHook.transform.position;
-            LeavePoint.x += 0.5f;
-            myUpdate.AddListener(_LeaveFromHook);
-        }
-
-        void _LeaveFromHook()
-        {
-            transform.position = Vector3.MoveTowards(transform.position, LeavePoint, moveSpeed / 30);
-            if ((LeavePoint - transform.position).sqrMagnitude < 0.01f)
-                myUpdate.RemoveListener(_LeaveFromHook);
-        }
 
         public bool IsNearHook()
         {
@@ -320,49 +291,91 @@ namespace Fish.Behavior
         /// <summary>
         /// 針に食いついたときに最初に行う処理
         /// 釣りゲーム状態に移行する
+        /// 参照数１！
         /// </summary>
-        public void SetBiting()
+        private void SetBiting()
         {
 //            Debug.Log("魚がくいついた!");
-            _state = FishState.Biting;
+            m_state = FishState.Biting;
             HPbar.gameObject.SetActive(true);
-
-            ////釣りゲーム開始
-            m_fishingHook.fishingGameMgr.StartFishing(this);
+            fishingGameMgr.StartFishing();
         }
 
         /// <summary>
         /// 釣りゲーム中の処理
         /// </summary>
-        void Bite()
+        private void Bite()
         {
 
         }
-        
-        public void SetCaught()
+
+        /// <summary>
+        /// 参照数１！
+        /// </summary>
+        private void SetCaught()
         {
             sprite.sprite = fishInfo.icon;
             HPbar.gameObject.SetActive(false);
-//            Debug.Log("魚を捕まえた!");
-            _state = FishState.Caught;
+            m_state = FishState.Caught;
 //            m_fishingHook.fishingGameMgr.FishingSucceeded();
         }
 
         /// <summary>
         /// 釣りに失敗したときの最初に行う処理
         /// 逃走状態に移行する
+        /// 参照数１！
         /// </summary>
-        public void SetEscaping()
+        private void SetEscaping()
         {
-//            Debug.Log("魚は逃げ出した");
             transform.parent = null;
-            _state = FishState.Escaping;
+            m_state = FishState.Escaping;
          //   m_fishingHook.fishingGameMgr.FishingFailed();
         }
-        public void Damaged(float damage)
+
+
+
+        /// <summary>
+        /// 針をつついた後に向かう針から離れた点
+        /// </summary>
+        Vector3 LeavePoint;
+        private void LeaveFromHook()
         {
-            m_damageable.TakeDamage(damage);
+            LeavePoint = m_fishingHook.transform.position;
+            LeavePoint.x += 0.5f;
+            myUpdate.AddListener(_LeaveFromHook);
+        }
+
+        private void _LeaveFromHook()
+        {
+            transform.position = Vector3.MoveTowards(transform.position, LeavePoint, moveSpeed / 30);
+            if ((LeavePoint - transform.position).sqrMagnitude < 0.01f)
+                myUpdate.RemoveListener(_LeaveFromHook);
+        }
+        public void InitData_Debug()
+        {
+
+            var hpbar = HPbar.GetComponent<RectTransform>().sizeDelta;
+            hpbar.x = 10 * fishMoveData.status.hpMax;
+            HPbar.GetComponent<RectTransform>().sizeDelta = hpbar;
+            HPbar.maxValue = fishMoveData.status.hpMax;
+
+            SetAppear();
+            m_damageable = GetComponent<Damageable>();
+            m_damageable.Initialize(fishMoveData.status.hpMax, fishMoveData.status.hpMax, fishMoveData.status.hpRegene);
+            m_damageable.AddHPChanged((hp) =>
+            {
+                HPbar.value = hp;
+            });
+            m_damageable.AddDead(() =>
+            {
+                //釣られたときの処理
+                SwitchState(FishState.Caught);
+            });
         }
 
     }
+
+
+
+
 }

@@ -8,25 +8,25 @@ namespace Player
     public class InputSystem : SingletonMonoBehaviour<InputSystem>
     {
         /// <summary>
-        /// Axisesの過去の値を持つ 
+        /// axisesの過去の値を持つ 
         /// </summary>
-        static Dictionary<KeyCode,bool> AxisValues = new Dictionary<KeyCode, bool>();
+        static Dictionary<KeyCode,bool> axisValues = new Dictionary<KeyCode, bool>();
         /// <summary>
         /// InputからGetButtonDownで入力を得るボタンたち
         /// </summary>
-        static List<KeyCode> Buttons = new List<KeyCode>() { KeyCode.A, KeyCode.B, KeyCode.X, KeyCode.Y ,KeyCode.Escape, KeyCode.L, KeyCode.R};
+        static List<KeyCode> buttons = new List<KeyCode>() { KeyCode.A, KeyCode.B, KeyCode.X, KeyCode.Y ,KeyCode.Escape, KeyCode.L, KeyCode.R};
         /// <summary>
         /// InputからAxis経由で入力を得るボタンたち
         /// </summary>
-        static List<KeyCode> Axises = new List<KeyCode>() { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.DownArrow };
+        static List<KeyCode> axises = new List<KeyCode>() { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.DownArrow };
         private void Awake()
         {
-            if (AxisValues.Count == 0)
+            if (axisValues.Count == 0)
             {
-                //Axisesを値管理リストに入れる
-                foreach (var key in Axises)
+                //axisesを値管理リストに入れる
+                foreach (var key in axises)
                 {
-                    AxisValues.Add(key, false);
+                    axisValues.Add(key, false);
                 }
             }
         }
@@ -42,9 +42,9 @@ namespace Player
         }
         void UpdateInput()
         {
-            foreach(var Axis in Axises)
+            foreach(var Axis in axises)
             {
-                AxisValues[Axis] = GetKey(Axis);
+                axisValues[Axis] = GetKey(Axis);
             }
         }
         static public bool GetKeyDown(KeyCode key)
@@ -53,10 +53,10 @@ namespace Player
             //キーボードで入力されていれば
             if (Input.GetKeyDown(key))
                 return true;
-            if (Buttons.Contains(key))
+            if (buttons.Contains(key))
                 return Input.GetButtonDown(key.ToString());
-            if (Axises.Contains(key))
-                return (AxisValues[key] ==false && GetKey(key));
+            if (axises.Contains(key))
+                return (axisValues[key] ==false && GetKey(key));
             else
             {
                 Debug.LogWarning("想定していないキー入力です。");
@@ -68,9 +68,9 @@ namespace Player
             //キーボードで入力されていれば
             if (Input.GetKey(key))
                 return true;
-            if (Buttons.Contains(key))
+            if (buttons.Contains(key))
                 return Input.GetButton(key.ToString());
-            if (Axises.Contains(key))
+            if (axises.Contains(key))
                 if(key == KeyCode.RightArrow || key == KeyCode.LeftArrow)
                     return (Input.GetAxisRaw(key.ToString()) > 0.99);
                 else
@@ -96,7 +96,7 @@ namespace Player
             {
                 if (Input.anyKeyDown)
                     return true;
-                foreach (var key in Axises)
+                foreach (var key in axises)
                 {
                     if (GetKeyDown(key))
                         return true;
@@ -162,12 +162,12 @@ namespace Player
 
         void InputTest()
         {
-            foreach (var key in Buttons)
+            foreach (var key in buttons)
             {
                 if (GetKeyDown(key))
                     Debug.Log(key);
             }
-            foreach(var axis in Axises)
+            foreach(var axis in axises)
             {
                 if (GetKeyDown(axis))
                     Debug.Log(axis);
@@ -271,6 +271,7 @@ public static class MyExtensions
         char[] C = { c };
         return new string(C);
     }
+
     public static bool Play(this AudioSource audioSource, AudioClip audioClip = null, float volume = 1f)
     {
         if (audioClip == null || volume <= 0f) return false;
@@ -291,6 +292,12 @@ public static class MyExtensions
         audioSource.Play(audioClip, 0.1f);
         audioSource.DOFade(endValue, fadeTime);
     }
+
+    /// <summary>
+    /// 音をフェードアウトする
+    /// </summary>
+    /// <param name="audioSource"></param>
+    /// <param name="fadeTime"></param>
     public static void StopWithFadeOut(this AudioSource audioSource, float fadeTime = 0.1f)
     {
         if (!audioSource.isPlaying || audioSource.clip == null) return;

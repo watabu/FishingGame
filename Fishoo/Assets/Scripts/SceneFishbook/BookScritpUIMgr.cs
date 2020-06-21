@@ -51,7 +51,7 @@ public class BookScritpUIMgr : MonoBehaviour
                 script.SetOnClicked(() =>
                 {
                     Switch(State.description);
-                    descriptionUI.Set(d.icon, d.FishName, d.description, SaveManager.Instance.GetFishCount(d));
+                    descriptionUI.Set(d.icon, d.fishName, d.description, SaveManager.Instance.GetFishCount(d));
                     SelectedButton = script.GetButton;
                 });
             }
@@ -62,7 +62,7 @@ public class BookScritpUIMgr : MonoBehaviour
                 script.SetOnClicked(() =>
                 {
                     Switch(State.description);
-                    descriptionUI.Set(fishNotFound, d.FishName, description, 0);
+                    descriptionUI.Set(fishNotFound, d.fishName, description, 0);
                     SelectedButton = script.GetButton;
                 });
             }

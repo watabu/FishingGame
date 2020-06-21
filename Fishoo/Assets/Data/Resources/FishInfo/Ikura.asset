@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
   m_Name: Ikura
   m_EditorClassIdentifier: 
-  FishName: "\u3044\u304F\u3089"
+  fishName: "\u3044\u304F\u3089"
   description: "\u4E03\u3064\u96C6\u3081\u308B\u3068\u9858\u3044\u304C\u53F6\u3046\u304B\u3082\u3057\u308C\u306A\u3044"
   description_Caught: 
   sellingPrice: 40

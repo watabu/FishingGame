@@ -88,7 +88,7 @@ public class CommandContainerScript : MonoBehaviour
         {
             float damage = 0.25f;
 //            Debug.Log(damage);
-            FishingGame.FishingGameMgr.Instance.TargetFish.Damaged(damage);
+            FishingGame.FishingGameMgr.Instance.TargetFish.TakeDamage(damage);
             FishingGame.FishingGameMgr.Instance.TargetFish.fishMove.ReceiveNextKey(m_commands[command_index]);
         }
     }
@@ -107,7 +107,7 @@ public class CommandContainerScript : MonoBehaviour
 //            Debug.Log(m_generator.comboCount);
             damage = m_generator.comboCount * m_generator.comboCount /10;
   //          Debug.Log(damage);
-            FishingGame.FishingGameMgr.Instance.TargetFish.Damaged(damage);
+            FishingGame.FishingGameMgr.Instance.TargetFish.TakeDamage(damage);
         }
         //次のコマンドを生成する許可をする
         FishingGame.FishingGameMgr.Instance.canAttack = true;

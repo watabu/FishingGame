@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
   m_Name: Umiushi
   m_EditorClassIdentifier: 
-  FishName: "\u30A6\u30DF\u30A6\u30B7\uFF1F"
+  fishName: "\u30A6\u30DF\u30A6\u30B7\uFF1F"
   description: "\u6D77\u3067\u91E3\u308C\u305F\u304B\u3089\u30A6\u30DF\u30A6\u30B7\u3002"
   description_Caught: 
   sellingPrice: 420

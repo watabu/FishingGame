@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
   m_Name: BoneFish
   m_EditorClassIdentifier: 
-  FishName: "\u9AA8\u9B5A"
+  fishName: "\u9AA8\u9B5A"
   description: "\u671D\u3054\u306F\u3093\u306E\u6B8B\u308A"
   description_Caught: 
   sellingPrice: 50

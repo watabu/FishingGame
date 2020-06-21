@@ -40,7 +40,7 @@ public class FIshCatchEffect : SingletonMonoBehaviour<FIshCatchEffect>
                 break;
         }
         var obj = Instantiate(Effect_Text, effectCanvas);
-        obj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = info.FishName;
+        obj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = info.fishName;
         currentEffect.SetOnDead(() =>
         {
             renderer.DOFade(0f, 0.5f).OnComplete(() =>

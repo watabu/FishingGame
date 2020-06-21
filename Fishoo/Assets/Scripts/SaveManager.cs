@@ -189,13 +189,13 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
 
     public bool isCaught(Fish.FishInfo fish) {
         for (int i = 0; i < m_fishes.Count; i++)
-            if (m_fishes[i].fishName == fish.FishName) return true;
+            if (m_fishes[i].fishName == fish.fishName) return true;
         return false;
     }
     public int GetFishCount(Fish.FishInfo fish)
     {
         for (int i = 0; i < m_fishes.Count; i++)
-            if (m_fishes[i].fishName == fish.FishName) return m_fishes[i].count;
+            if (m_fishes[i].fishName == fish.fishName) return m_fishes[i].count;
         return 0;
     }
     /// <summary>
@@ -209,14 +209,14 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
 
         if (!isCaught(fish_))
         {
-            var f = new FishData { fishName = fish_.FishName, count = 1 };
+            var f = new FishData { fishName = fish_.fishName, count = 1 };
             m_fishes.Add(f);
             return;
         }
 
         foreach (var i in m_fishes)
         {
-            if(i.fishName == fish_.FishName)
+            if(i.fishName == fish_.fishName)
             {
                 i.count++;
                 return;

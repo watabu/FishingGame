@@ -51,7 +51,7 @@ public class ResultPanel : MonoBehaviour
             script.icon.sprite = fish.icon;
             //魚の値段によって枠の色を変えるとか?
             //script.Frame.sprite = ;
-            script.Name.text = fish.FishName;
+            script.Name.text = fish.fishName;
             script.Money.text = (fish.sellingPrice).ToString();
             script.gameObject.transform.SetParent(contentParent.transform);
             Money += fish.sellingPrice;
@@ -67,7 +67,7 @@ public class ResultPanel : MonoBehaviour
             script.icon.sprite = fish.icon;
             //魚の値段によって枠の色を変えるとか?
             //script.Frame.sprite = ;
-            script.Name.text = fish.FishName;
+            script.Name.text = fish.fishName;
             script.Money.text = (fish.sellingPrice).ToString();
             script.gameObject.transform.SetParent(contentParent.transform);
             Money += fish.sellingPrice;

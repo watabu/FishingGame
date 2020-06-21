@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
   m_Name: BlueFish
   m_EditorClassIdentifier: 
-  FishName: "\u30A2\u30B5\u30AE\u30A6\u30AA"
+  fishName: "\u30A2\u30B5\u30AE\u30A6\u30AA"
   description: "DHA\u914D\u5408"
   description_Caught: 
   sellingPrice: 40

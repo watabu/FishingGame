@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
   m_Name: Sherk2
   m_EditorClassIdentifier: 
-  FishName: "\u30B7\u30E5\u30E2\u30AF\u30B6\u30E1"
+  fishName: "\u30B7\u30E5\u30E2\u30AF\u30B6\u30E1"
   description: "\u6D77\u306E\u8352\u304F\u308C\u3082\u306E\u3002\u7279\u5FB4\u7684\u306A\u982D"
   description_Caught: 
   sellingPrice: 230

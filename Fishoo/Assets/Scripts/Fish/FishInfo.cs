@@ -13,7 +13,7 @@ namespace Fish
     public class FishInfo : ScriptableObject
     {
         [Tooltip("魚の名前")]
-        public string FishName;
+        public string fishName;
         [Tooltip("アイテムとしての魚の説明欄（図鑑など）"),TextArea]
         public string description;
         [Tooltip("釣りあげたときに表示される説明 未使用")]

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
   m_Name: Octopus
   m_EditorClassIdentifier: 
-  FishName: "\u305F\u3053"
+  fishName: "\u305F\u3053"
   description: "\u6700\u3082\u8CE2\u3044\u7121\u810A\u690E\u52D5\u7269\u3068\u3082\u3044\u308F\u308C\u308B\u3002"
   description_Caught: 
   sellingPrice: 55

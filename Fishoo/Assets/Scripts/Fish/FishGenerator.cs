@@ -4,7 +4,11 @@ using UnityEngine;
 
 namespace Fish
 {
-
+    /// <summary>
+    /// Playerで釣り竿が投げられるーFishingGameMgrで魚が生成される
+    /// 魚は一直線に針へ向かう
+    /// CommonFishが針に十分近づいたことを検出したら釣り開始
+    /// </summary>
     public class FishGenerator : MonoBehaviour
     {
         [SerializeField] private Environment.Place place;
@@ -58,17 +62,21 @@ namespace Fish
             {
                 generators.Add(child);
             }
-            FindObjectOfType<Player.Player>().AddOnThrowRod(() => GenerateFish());
         }
 
         //場所の設定などから魚を一体生成し、オブジェクトを返す
         public GameObject GenerateFish()
         {
-            //生成する座標をランダムで選択
+            //生成する座標をリストからランダムで選択
             var pos = generators[Random.Range(0, generators.Count)].position;
             FishInfo selectedFish;
-            if (!debug)
+            if (debug)
             {
+                GameObject fishObj = Instantiate(testfish, pos, Quaternion.identity);
+                fishObj.GetComponent<Fish.Behavior.CommonFish>().InitData_Debug();
+                return fishObj;
+            }
+            else {
                 var selectedFishList = SelectFishList();
                 if (selectedFishList.Count == 0)
                 {
@@ -76,39 +84,25 @@ namespace Fish
                 }
 
                 selectedFish = selectedFishList[Random.Range(0, selectedFishList.Count)].fishInfo;
-                //場所データから一つランダムに選択
-                //            FishInfo selectedFish = availableFishList[Random.Range(0, availableFishList.Count)].fishInfo;
 
-                //Debug.Log(selectedFish);
                 GameObject fishObj = Instantiate(FishPrefab.gameObject, pos, Quaternion.identity);
                 fishObj.GetComponent<Behavior.CommonFish>().InitData(selectedFish, GetShadowSprite(selectedFish.rank));
-                //            commonFish.sprite.sprite = GetShadowSprite(commonFish.fishInfo.rank);
 
-                //とりあえず生成される魚は確定
-                //GameObject fish = Instantiate(testFish[0], pos, Quaternion.identity);
 
-                return fishObj;
-
-            }
-            else
-            {
-                GameObject fishObj = Instantiate(testfish, pos, Quaternion.identity);
-                fishObj.GetComponent<Fish.Behavior.CommonFish>().InitData();
                 return fishObj;
             }
         }
 
         /// <summary>
-        /// 年ごとに魚のレア度の排出率を変える。
+        /// 年ごとに魚のレア度の排出率を変える。（変わってない)
         /// </summary>
         /// <returns></returns>
         List<Environment.PlaceData.FishGenerateData> SelectFishList()
         {
             bottomScore++;
-            //int score = Random.Range(0, 100) + bottomScore;
+            //int score = Random.Range(0, 100) + bottomScore; //だんだんSレア排出率が上がる計算式
             int score = Random.Range(0, 100);
-            //            Debug.Log(score);
-            //            var rank = GetRank(score, SaveManager.Instance.Year);
+
             var rank = GetRank(score, 3);
             Debug.Log(rank);
             while (true)

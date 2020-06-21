@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
   m_Name: JerryFish
   m_EditorClassIdentifier: 
-  FishName: "\u30AF\u30E9\u30B2"
+  fishName: "\u30AF\u30E9\u30B2"
   description: "\u6C34\u4E2D\u3092\u5996\u3057\u304F\u52D5\u304F\u3044\u304D\u3082\u306E"
   description_Caught: 
   sellingPrice: 140

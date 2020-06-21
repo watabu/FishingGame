@@ -34,11 +34,10 @@ namespace FishingGame
         private Player.Player player { get { return fishingToolMgr.player; } }//釣りゲームが開始したときのみ他の操作の禁止をする
 
         [Header("References")]
+        [SerializeField] private Fish.FishGenerator generator;
         [SerializeField] private CommandGenerator commandGenerator;
-        [SerializeField] private Player.InputSystem input;
         [SerializeField] private AudioSource fishCaughtSE;
-
-        [SerializeField, Tooltip("コマンドが生成されるまでの最低時間(tick)")] int attackTimeMin=10;
+        
 
         [Tooltip("今狙っている魚"),ReadOnly]
         [SerializeField]
@@ -69,26 +68,25 @@ namespace FishingGame
         public bool isFishing { get { return m_isFishing; } }
         bool m_isFishing = false;
         bool isFishCaught { get { return TargetFish.state == Fish.Behavior.FishState.Caught; } }
-        
 
-        /// <summary>
-        /// 攻撃の間隔をあけるためのタイマー
-        /// </summary>
-        int attackTimer=0;
 
-        /// <summary>
-        /// 魚が針を狙い始めた
-        /// </summary>
-        public void StartApproaching()
+        private void Start()
         {
-            
+            FindObjectOfType<Player.Player>().AddOnThrowRod(() => PrepareFish());
         }
 
+        /// <summary>
+        /// 釣り竿が投げられたときに魚を用意する
+        /// </summary>
+        public void PrepareFish()
+        {
+            m_targetFish = generator.GenerateFish().GetComponent<Fish.Behavior.CommonFish>();
+        }
 
         /// <summary>
-        /// 釣りゲームが始まったときに呼び出す関数
+        /// 魚が針に引っ掛かり釣りゲームを開始する
         /// </summary>
-        public void StartFishing(Fish.Behavior.CommonFish target)
+        public void StartFishing()
         {
             if (isFishing)
             {
@@ -97,11 +95,10 @@ namespace FishingGame
             }
             Hook.OnBiteHook();
             WhenFishingStart.Invoke();
-            m_targetFish = target;
 
             m_isFishing = true;
             canAttack = true;
-            attackTimer = attackTimeMin *2;
+
 
             player.StartFishing();
             commandGenerator.ResetComboCount();
@@ -119,7 +116,6 @@ namespace FishingGame
             Hook.FinishBite();
             fishCaughtSE.Play();
             commandGenerator.ResetComboCount();
-
         }
 
         /// <summary>
@@ -131,7 +127,7 @@ namespace FishingGame
             WhenFishingFailed.Invoke();
             m_isFishing = false;
             fishingToolMgr.RetrieveTools();
-            m_targetFish.SetEscaping();
+            m_targetFish.SwitchState(Fish.Behavior.FishState.Escaping);
         }
 
         new private void Awake()
@@ -164,7 +160,6 @@ namespace FishingGame
             if( canAttack)
             {
                 canAttack = false;
-                attackTimer = 0;
                 commandGenerator.Generate();
             }
         }

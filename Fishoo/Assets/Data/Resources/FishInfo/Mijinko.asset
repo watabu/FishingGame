@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
   m_Name: Mijinko
   m_EditorClassIdentifier: 
-  FishName: "\u30DF\u30B8\u30F3\u30B3"
+  fishName: "\u30DF\u30B8\u30F3\u30B3"
   description: "\u307B\u307C\u898B\u3048\u306A\u3044"
   description_Caught: 
   sellingPrice: 20

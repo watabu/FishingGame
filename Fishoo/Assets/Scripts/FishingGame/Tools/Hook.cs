@@ -7,7 +7,10 @@ using Fish.Behavior;
 
 namespace FishingGame.Tools
 {
-    //釣り針
+    /// <summary>
+    /// 釣り針
+    /// どの魚が狙っているかを保管し二重に魚が引っ掛からないようにする
+    /// </summary>
     public class Hook : MonoBehaviour, FishingTool
     {
         [SerializeField]
@@ -16,7 +19,7 @@ namespace FishingGame.Tools
         [SerializeField] GameObject biteHookEffect;
         [SerializeField] Transform effectParent;
 
-        public Bobber bobber;
+        [SerializeField]Bobber bobber;
         public SpriteRenderer sprite;
 
         [Tooltip("釣り針を引っ張る力の大きさ")]
@@ -24,10 +27,6 @@ namespace FishingGame.Tools
         [Tooltip("ニュートラルポジション")]
         Vector3 neutralPos;
 
-        /// <summary>
-        ///     力の作用するゲームオブジェクト(rg2dを持つ)
-        /// </summary>
-        GameObject obj;
 
         /// <summary>
         /// 一時的に行いたい関数
@@ -49,7 +48,6 @@ namespace FishingGame.Tools
         private void Awake()
         {
             if (myUpdate == null)  myUpdate = new UnityEvent();
-            obj = gameObject;
             neutralPos = transform.localPosition;
             //            rg2d = obj.GetComponent<Rigidbody2D>();
         }
@@ -78,7 +76,7 @@ namespace FishingGame.Tools
             isInWater_mask = true;
             isInWater = false;
             m_currentFish = null;
-            await Task.Delay(2000);
+            await Task.Delay(1700);
             isInWater = true;
         }
 
@@ -89,10 +87,7 @@ namespace FishingGame.Tools
         {
             isInWater_mask = false;
             isInWater = false;
-            if (currentFish != null && currentFish.state != Fish.Behavior.FishState.Caught)
-            {
-                currentFish.SetEscaping();
-            }
+
             m_currentFish = null;
         }
 
@@ -143,44 +138,7 @@ namespace FishingGame.Tools
             transform.localPosition = neutralPos + pos;
         }
 
-        public async void testPullDown()
-        {
-            int _time = 10;
 
-            myUpdate.AddListener(_PullDown);
-            await Task.Delay(_time);
-            myUpdate.RemoveListener(_PullDown);
-        }
-        /// <summary>
-        /// マウスの方向に引っ張る
-        /// </summary>
-        void testPull()
-        {
-            Vector3 p = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
-            Vector2 q;
 
-            q.x = p.x - this.transform.position.x;
-            q.y = p.y - this.transform.position.y;
-            q /= Mathf.Sqrt(q.x * q.x + q.y * q.y);
-            q *= force;
-
-            if (Input.GetMouseButton(0))
-            {
-                if (obj.GetComponent<Rigidbody2D>() != null)
-                    obj.GetComponent<Rigidbody2D>().AddForce(q);
-                else
-                    obj.GetComponent<Rigidbody>().AddForce(q);
-
-            }
-            if (Input.GetMouseButton(1))
-            {
-                q *= 10;
-                if (obj.GetComponent<Rigidbody2D>() != null)
-                    obj.GetComponent<Rigidbody2D>().AddForce(q);
-                else
-                    obj.GetComponent<Rigidbody>().AddForce(q);
-            }
-
-        }
     }
 }

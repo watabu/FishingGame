@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
   m_Name: DaioIka
   m_EditorClassIdentifier: 
-  FishName: "\u30C0\u30A4\u30AA\u30A6\u30A4\u30AB"
+  fishName: "\u30C0\u30A4\u30AA\u30A6\u30A4\u30AB"
   description: "\u5DE8\u5927\u306A\u30A4\u30AB\u3002\u6DF1\u6D77\u306B\u751F\u606F\u3057\u3001\u8DB3\u3092\u5668\u7528\u306B\u6271\u3046\u3002"
   description_Caught: 
   sellingPrice: 190

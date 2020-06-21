@@ -11,7 +11,7 @@ namespace Fish.Behavior
     public class FishMove : MonoBehaviour
     {
         [SerializeField] public Behavior.CommonFish fish;
-        [SerializeField] public Fish.FishMoveData data;
+        FishMoveData data { get { return fish.fishMoveData; } }
 
         [Tooltip("移動方向"), ReadOnly]
         public Vector2 moveDirection;
@@ -24,7 +24,7 @@ namespace Fish.Behavior
             if (fish.state == Behavior.FishState.Biting && CurrentKey!= KeyCode.None)
             {
 //                fish.transform.localPosition = KeyToVec3(CurrentKey) *2;
-                fish.GetHook.PulledToPos(KeyToVec3(CurrentKey) * 2);
+                fish.Hook.PulledToPos(KeyToVec3(CurrentKey) * 2);
 
             }
         }

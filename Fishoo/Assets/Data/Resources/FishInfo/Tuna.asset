@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0770525a3f5a53e46ae30d2c875247c0, type: 3}
   m_Name: Tuna
   m_EditorClassIdentifier: 
-  FishName: "\u307E\u3050\u308D"
+  fishName: "\u307E\u3050\u308D"
   description: "\u4E00\u672C\u91E3\u308A\uFF01\uFF01\uFF01\uFF01"
   description_Caught: 
   sellingPrice: 160
