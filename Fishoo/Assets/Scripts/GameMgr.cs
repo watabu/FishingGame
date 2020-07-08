@@ -91,7 +91,6 @@ public class GameMgr : SingletonMonoBehaviour<GameMgr>
         }
     }
 
-
     //リザルト画面に切り替えたとき呼ばれる
     private void ResultSceneLoaded(Scene next, LoadSceneMode mode)
     {
