@@ -7,7 +7,10 @@ using UnityEngine;
 
 public class SaveManager : SingletonMonoBehaviour<SaveManager>
 {
-    
+    [Header("save file")]
+    [SerializeField] string directory = "Data";
+    [SerializeField] string filename = "saveData.csv";
+
     public new void Awake()
     {
         base.Awake();
@@ -35,115 +38,79 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
     }
     void Load()
     {
-        var path = Application.dataPath + "/" + "saveData.csv";
-        //var path = Application.dataPath + "/" + "saveData2";
 
-        //魚文の文字数(週や金の分70文字, 魚の分16文字*60種類, ランキングデータの分(30文字*15行*3ステージ) ~= 2500 < 4048
-        StringBuilder sb = new StringBuilder(4048);  //※capacity は任意
-        if (!File.Exists(path))
+      if(!CSVReader.Exists(directory, filename))
         {
             Debug.Log("File does not exist");
-            using (File.Create(path))
-            {
-                week = 1;
-                money = 0;
-                canSkipTutorial = false;
-                m_caughtFishCount = 0;
-                m_fishes.Clear();
-                return;
-            }
+            week = 1;
+            money = 0;
+            canSkipTutorial = false;
+            m_caughtFishCount = 0;
+            m_fishes.Clear();
+            return;
         }
-        
+        var dat = CSVReader.Read(directory, filename);
 
-        string[] line = File.ReadAllLines(path);
-        foreach (var l in line)
+        foreach (var l in dat)
         {
-            var command = l.Replace(" ", "").Replace("　", "");
-            var dat = command.Trim().Split(','); // , 区切りでリストに追加
-
-            Debug.Log($"dat[0]='{dat[0]}'");
-            switch (dat[0])
+            Debug.Log($"dat[0]='{l[0]}'");
+            switch (l[0])
             {
                 case "week":
-                    week = int.Parse(dat[1]);
-                    Debug.Log($"week={dat[1]}");
+                    week = int.Parse(l[1]);
+                    Debug.Log($"week={l[1]}");
                     break;
                 case "money":
-                    money = int.Parse(dat[1]);
-                    Debug.Log($"money={dat[1]}");
+                    money = int.Parse(l[1]);
+                    Debug.Log($"money={l[1]}");
                     break;
                 case "canSkipTutorial":
-                    canSkipTutorial = bool.Parse(dat[1]);
+                    canSkipTutorial = bool.Parse(l[1]);
                     break;
                 case "caughtFishCount":
-                    m_caughtFishCount = int.Parse(dat[1]);
+                    m_caughtFishCount = int.Parse(l[1]);
                     break;
                 case "Fish":
-                    m_fishes.Add(new FishData() { fishName = dat[1], count = int.Parse(dat[2]) });
+                    m_fishes.Add(new FishData() { fishName = l[1], count = int.Parse(l[2]) });
                     break;
                 case "Ranking":
-                    InsertRecord(int.Parse(dat[1]), int.Parse(dat[2]), int.Parse(dat[3]));
+                    InsertRecord(int.Parse(l[1]), int.Parse(l[2]), int.Parse(l[3]));
                     break;
                 default:
-                    Debug.Log($"This propery is not exist '{dat[0]}'");
+                    Debug.Log($"This propery is not exist '{l[0]}'");
                     break;
             }
         }
     }
 
-   public  void Save()
+    public void Save()
     {
-        var path = Application.dataPath + "/" + "saveData.csv";
-        //var path = Application.dataPath + "/" + "saveData2";
-        FileInfo fi = new FileInfo(path);
-        Debug.Log(path);
-        using (StreamWriter sw = fi.CreateText())
+        if (!CSVReader.Exists(directory, filename))
         {
-            sw.WriteLine($"week , {week}");
-            sw.Flush();
-            sw.WriteLine($"money , {money}");
-            sw.Flush();
-            sw.WriteLine($"canSkipTutorial , {canSkipTutorial}");
-            sw.Flush();
-            sw.WriteLine($"caughtFishCount , {m_caughtFishCount}");
-            sw.Flush();
-            foreach (var f in m_fishes)
+            CSVReader.CreateFile(directory, filename);
+        }
+
+        var dat = new List<List<string>>();
+        dat.Add(new List<string>() { "week", week.ToString() });
+        dat.Add(new List<string>() { "money", money.ToString() });
+        dat.Add(new List<string>() { "canSkipTutorial", canSkipTutorial.ToString() });
+        dat.Add(new List<string>() { "caughtFishCount", m_caughtFishCount.ToString() });
+        foreach (var f in m_fishes)
+        {
+            dat.Add(new List<string>() { "Fish", f.fishName, f.count.ToString() });
+        }
+        foreach (var place in placeDatas)
+        {
+            if (!place.isFishingStage) continue;
+            foreach (var rec in place.rankingSaveData.ranking)
             {
-                sw.WriteLine($"Fish , {f.fishName} , {f.count}");
-                sw.Flush();
-            }
-            foreach(var place in placeDatas)
-            {
-                if (!place.isFishingStage) continue;
-                foreach(var rec in place.rankingSaveData.ranking)
-                {
-                    if (rec.name != playerName)
-                        continue;
-                    Debug.Log(place.placeName + " " + rec.fishCount + " " + rec.score);
-                    sw.WriteLine($"Ranking , {place.id} , {rec.fishCount} , {rec.score}");
-                    sw.Flush();
-                }
+                if (rec.name != playerName) continue;
+                Debug.Log(place.placeName + " " + rec.fishCount + " " + rec.score);
+                dat.Add(new List<string>() { "Ranking", place.id.ToString(), rec.fishCount.ToString(), rec.score.ToString() });
             }
         }
-      /*  Debug.Log(path);
-        StreamWriter streamWriter = new StreamWriter(path, false);
-
-        streamWriter.WriteLine($"week , {week}");
-            streamWriter.Flush();
-        streamWriter.WriteLine($"money , {money}");
-            streamWriter.Flush();
-        streamWriter.WriteLine($"canSkipTutorial , {canSkipTutorial}");
-            streamWriter.Flush();
-        streamWriter.WriteLine($"caughtFishCount , {m_caughtFishCount}");
-        streamWriter.Flush();
-        foreach(var f in m_fishes)
-        {
-            streamWriter.WriteLine($"Fish , {f.fishName} , {f.count}");
-            streamWriter.Flush();
-        }*/
+        CSVReader.Write(directory, filename, dat);
     }
-
-
 
     public enum Season
     {
@@ -160,6 +127,7 @@ public class SaveManager : SingletonMonoBehaviour<SaveManager>
         public int count;
     }
 
+    [Header("property")]
     public GameProperty property;
     public int week;
     public int money;
