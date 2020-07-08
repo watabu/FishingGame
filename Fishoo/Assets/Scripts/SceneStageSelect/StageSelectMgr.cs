@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// ボタンを押すと特定のシーンに移動できるようにするクラス
 /// </summary>
-public class StageSelectMgr : MonoBehaviour
+public class StageSelectMgr : SingletonMonoBehaviour<StageSelectMgr>
 {
     [System.Serializable]
     public class PlaceAndData
@@ -27,6 +27,10 @@ public class StageSelectMgr : MonoBehaviour
     [SerializeField] private Sprite backAutumn;
     [SerializeField] private Sprite backWinter;
     [SerializeField] private SpriteRenderer back;
+    [Header("Stages")]
+    [SerializeField] private GameObject lakePrefab;
+    [SerializeField] private GameObject oceanPrefab;
+    [SerializeField] private GameObject liverPrefab;
 
     [Header("References")]
     [SerializeField] private Transform buttonsParent;
@@ -48,6 +52,8 @@ public class StageSelectMgr : MonoBehaviour
     [Tooltip("Title画面から遷移するときに何秒経てば遷移できるか")]
     [SerializeField] private float activateInput = 3f;
     static bool NoTitle = false;
+
+    string m_loadStage="";//読み込まれるステージの名前
 
     public enum State
     {
@@ -321,10 +327,37 @@ public class StageSelectMgr : MonoBehaviour
         dayWeek.text = $"<size=30>{ SaveManager.Instance.Year}</size>年目";
     }
 
+    void StageLoaded(Scene next, LoadSceneMode mode)
+    {
+        switch (m_loadStage)
+        {
+            case "ocean":
+                Instantiate(oceanPrefab);
+                break;
+            case "liver":
+                Instantiate(liverPrefab);
+                break;
+            case "lake":
+                Instantiate(lakePrefab);
+                break;
+            default:
+                break;
+        }
+        SceneManager.sceneLoaded -= StageLoaded;
+    }
+
+    public void ChangeToStage(string stageName)
+    {
+        SceneManager.sceneLoaded += StageLoaded;
+        m_loadStage = stageName;
+        SceneManager.LoadScene("Stage");
+    }
+
     static public void SetTitleActive()
     {
         NoTitle = false;
     }
+
 
 public void QuitApp()
     {

@@ -56,10 +56,9 @@ public class SelectButtonMgr : SingletonMonoBehaviour<SelectButtonMgr>
         SceneManager.LoadScene("StageSelect");
         
     }
-    public void LoadStage(string Stage)
+    public void LoadStage(string stage)
     {
-        SceneManager.LoadScene(Stage);
-
+        StageSelectMgr.Instance.ChangeToStage(stage);
     }
 
     public void DebugPrint()
