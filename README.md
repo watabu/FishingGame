@@ -3,10 +3,10 @@
 ## 紹介
 [日本ゲーム大賞2020「アマチュア部門」](https://awards.cesa.or.jp/amateur/index.html)に応募したゲームです。
 Unityで作成。
-### 制作者
-- [田中奏一郎](https://github.com/kyoichi001)
-- [渡部航太郎](https://github.com/watabu)
-### 音楽提供者
+### 制作者 :computer:
+- [kyoichi001](https://github.com/kyoichi001)
+- [watabu](https://github.com/watabu)
+### 音楽提供者 :musical_note:
 - https://twitter.com/Euk_lid
 
 ## 内容
