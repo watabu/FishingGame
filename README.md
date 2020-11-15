@@ -9,6 +9,9 @@ Unityで作成。
 ### 音楽提供者 :musical_note:
 - https://twitter.com/Euk_lid
 
+## 紹介動画 :clapper:
+[youtube](https://youtu.be/3lK6tjFcE1k)
+
 ## 内容
 魚を制限時間内に釣り上げていき、スコアを稼ぐゲームです。
 プレイヤーは糸を垂らし、魚がかかるとゲームスタートです。画面下にコマンドが現れるのでそのコマンドを順番に入力していきます。
